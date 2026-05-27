@@ -834,12 +834,14 @@
     <div class="modal">
       <div class="modal-eyebrow">Peer Review · Spring 2026</div>
       <h2 class="modal-title">Sign in to rate your classmates' dreams.</h2>
-      <p class="modal-sub">Enter your student ID. You'll be matched against the class allowlist. Each card gets one rating from you — you can come back and update it anytime.</p>
+      <p class="modal-sub">Enter your <strong>student ID</strong> and <strong>email</strong>. On your first visit, the email is locked to this student ID — no one else can log in as you afterwards.</p>
       <label for="loginId">Student ID</label>
       <input id="loginId" type="text" placeholder="e.g. 202509038" inputmode="numeric" autocomplete="off">
+      <label for="loginEmail">Email</label>
+      <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email">
       <button class="modal-btn" id="loginBtn" onclick="signIn()">Continue</button>
       <div class="modal-error" id="loginError"></div>
-      <div class="modal-note">Your rating and feedback are visible only to the professor and to the speaker of that card. You cannot rate your own dream.</div>
+      <div class="modal-note">First-time visitors: any email works — it gets bound to your student ID. Returning visitors: use the same email you registered with. Ratings and feedback are visible only to the professor. You cannot rate your own dream. If your account is locked by mistake, contact the professor to reset it.</div>
     </div>
   </div>
 
@@ -858,9 +860,11 @@
         loadAggregates();
         loadMyRatings();
       }
-      // Allow Enter in login input
-      document.getElementById("loginId").addEventListener("keydown", e => {
-        if (e.key === "Enter") signIn();
+      // Allow Enter in login inputs
+      ["loginId", "loginEmail"].forEach(id => {
+        document.getElementById(id).addEventListener("keydown", e => {
+          if (e.key === "Enter") signIn();
+        });
       });
     });
 
@@ -940,20 +944,27 @@
     // ── Sign in ──────────────────────────────────
     async function signIn() {
       const idEl = document.getElementById("loginId");
+      const emailEl = document.getElementById("loginEmail");
       const btn = document.getElementById("loginBtn");
       const err = document.getElementById("loginError");
       const id = idEl.value.trim();
+      const email = emailEl.value.trim().toLowerCase();
       err.textContent = "";
       if (!id) { err.textContent = "Please enter your student ID."; return; }
+      if (!email) { err.textContent = "Please enter your email."; return; }
       btn.disabled = true; btn.textContent = "Checking…";
       try {
         const r = await fetch(`${API}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ studentId: id })
+          body: JSON.stringify({ studentId: id, email })
         });
         const data = await r.json();
-        if (!r.ok) { err.textContent = data.message || data.error || "Login failed."; btn.disabled = false; btn.textContent = "Continue"; return; }
+        if (!r.ok) {
+          err.textContent = data.message || data.error || "Login failed.";
+          btn.disabled = false; btn.textContent = "Continue";
+          return;
+        }
         me = data.student;
         localStorage.setItem("dtw_me", JSON.stringify(me));
         document.getElementById("loginModal").style.display = "none";
@@ -961,6 +972,14 @@
         markSelfCard();
         loadAggregates();
         loadMyRatings();
+        if (data.first_time) {
+          // Small welcome toast
+          const toast = document.createElement("div");
+          toast.style.cssText = "position:fixed;top:60px;right:16px;z-index:99;background:#16a34a;color:#fff;padding:12px 18px;border-radius:100px;font-size:13px;font-weight:500;box-shadow:0 12px 24px rgba(22,163,74,0.3);animation:fadeOut 6s forwards";
+          toast.textContent = `✓ Welcome, ${me.name}. Email locked to this student ID.`;
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 6000);
+        }
       } catch (e) {
         err.textContent = "Network error: " + e.message;
         btn.disabled = false; btn.textContent = "Continue";
@@ -973,7 +992,8 @@
     }
 
     function showAuthBar() {
-      document.getElementById("authName").textContent = me.name;
+      const label = me.email ? `${me.name} · ${me.email}` : me.name;
+      document.getElementById("authName").textContent = label;
       document.getElementById("authBar").style.display = "flex";
     }
 
