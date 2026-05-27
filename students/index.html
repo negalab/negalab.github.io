@@ -4,29 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Students Portfolio · Dream to Website · SMIT Web Design Spring 2026</title>
-  <meta name="description" content="Per-student submissions for Week 11 (Dream) + Week 12 (Theory + AI Document + Design + Tool). Spring 2026 Web Design & Development at SMIT.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #fafaf8;
-      --ink: #1a1a1a;
-      --ink-dim: #64748b;
-      --line: #e5e7eb;
-      --accent: #c96442;
-      --accent-bright: #e88058;
-      --theory: #7c3aed;
-      --design: #ea580c;
-      --ok: #16a34a;
-      --warn: #ca8a04;
-      --new: #2563eb;
+      --bg: #fafaf8; --ink: #1a1a1a; --ink-dim: #64748b; --line: #e5e7eb;
+      --accent: #c96442; --accent-bright: #e88058;
+      --theory: #7c3aed; --design: #ea580c;
+      --ok: #16a34a; --warn: #ca8a04; --new: #2563eb;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.6; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
 
-    /* HERO */
     .hero { padding: 80px 6vw 60px; background: linear-gradient(180deg, #0a0a0a 0%, #141414 100%); color: #ededed; position: relative; overflow: hidden; }
     .hero::before { content: ""; position: absolute; top: 20%; left: 30%; width: 60%; height: 60%; background: radial-gradient(ellipse, rgba(201, 100, 66, 0.15) 0%, transparent 60%); pointer-events: none; }
     .hero-inner { max-width: 1400px; margin: 0 auto; position: relative; }
@@ -41,7 +32,6 @@
     .hero-nav a { color: #cbd5e1; text-decoration: none; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; transition: all 0.2s; }
     .hero-nav a:hover { border-color: var(--accent); color: #fff; }
 
-    /* STUDENTS */
     main { max-width: 1100px; margin: 0 auto; padding: 60px 6vw 100px; }
     .student { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 32px 36px; margin-bottom: 24px; scroll-margin-top: 20px; }
     .s-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
@@ -54,7 +44,7 @@
     .tag-warn { background: #fef3c7; color: var(--warn); }
     .tag-new { background: #dbeafe; color: var(--new); }
 
-    .s-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .s-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
     .s-block { padding: 18px 20px; border-radius: 12px; background: #fafafa; border: 1px solid #f1f5f9; display: flex; flex-direction: column; }
     .s-block.dream { background: #fef3c7; border-color: #fde68a; }
     .s-block.theory { background: #ede9fe; border-color: #ddd6fe; }
@@ -73,18 +63,65 @@
     .link.primary:hover { background: var(--accent-bright); }
     .link-disabled { display: inline-block; font-size: 11px; color: #cbd5e1; font-style: italic; padding: 6px 14px; }
 
+    /* RATING SECTION */
+    .rate-section { background: #fafafa; border: 1px dashed #d1d5db; border-radius: 12px; padding: 18px 20px; display: none; }
+    body.signed-in .rate-section { display: block; }
+    body.signed-in .rate-section.self-section { display: none; }
+    body.signed-in .student.is-self .s-header::after { content: "★ Your dream"; padding: 4px 10px; background: #c96442; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; border-radius: 100px; }
+    .rate-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+    .rate-title { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #94a3b8; font-weight: 700; }
+    .rate-avg { display: flex; gap: 6px; }
+    .avg-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; font-size: 10px; font-weight: 700; border-radius: 100px; letter-spacing: 0.02em; }
+    .avg-badge.empty { background: #f1f5f9; color: #94a3b8; }
+    .avg-badge.theory { background: #ddd6fe; color: #5b21b6; }
+    .avg-badge.theory.empty { background: #f1f5f9; color: #94a3b8; }
+    .avg-badge.design { background: #fed7aa; color: #9a3412; }
+    .avg-badge.design.empty { background: #f1f5f9; color: #94a3b8; }
+    .avg-badge .val { font-family: 'JetBrains Mono', monospace; }
+    .rate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+    .rate-label { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 6px; }
+    .axis.theory { color: var(--theory); }
+    .axis.design { color: var(--design); }
+    .rate-status { color: var(--ok); font-size: 10px; }
+    .stars { display: flex; gap: 3px; }
+    .star-btn { background: none; border: none; cursor: pointer; font-size: 22px; color: #d1d5db; padding: 0; line-height: 1; transition: color 0.15s, transform 0.15s; }
+    .star-btn.hover, .star-btn:hover { color: #fbbf24; transform: scale(1.15); }
+    .stars.theory .star-btn.active { color: #7c3aed; }
+    .stars.design .star-btn.active { color: #ea580c; }
+    .feedback-input { width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; font-size: 12px; resize: vertical; min-height: 56px; max-height: 140px; background: #fff; color: var(--ink); line-height: 1.5; margin-bottom: 8px; }
+    .feedback-input:focus { outline: none; border-color: var(--accent); }
+    .submit-btn { padding: 8px 16px; background: var(--ink); color: #fff; border: none; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; transition: background 0.2s; letter-spacing: 0.04em; }
+    .submit-btn:hover { background: var(--accent); }
+    .submit-btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+    /* AUTH BAR + MODAL */
+    .auth-bar { position: fixed; top: 16px; right: 16px; z-index: 100; display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: rgba(20,20,20,0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; font-size: 12px; color: #ededed; }
+    .auth-bar .admin-badge { padding: 2px 8px; background: var(--accent); color: #fff; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
+    .auth-bar .auth-action { background: none; border: none; color: var(--accent); font-size: 11px; cursor: pointer; padding: 0; font-family: inherit; letter-spacing: 0.04em; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(10,10,10,0.92); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .modal { background: #fff; border-radius: 20px; padding: 40px 36px 30px; max-width: 440px; width: 100%; }
+    .modal-eyebrow { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+    .modal-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; line-height: 1.15; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 10px; }
+    .modal-sub { font-size: 13px; color: var(--ink-dim); line-height: 1.5; margin-bottom: 24px; }
+    .modal label { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; font-weight: 600; margin-bottom: 6px; }
+    .modal input { width: 100%; padding: 12px 14px; border: 1.5px solid #e2e8f0; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--ink); margin-bottom: 16px; }
+    .modal input:focus { outline: none; border-color: var(--accent); }
+    .modal-btn { width: 100%; padding: 14px; background: var(--ink); color: #fff; border: none; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; letter-spacing: 0.06em; }
+    .modal-btn:hover { background: var(--accent); }
+    .modal-btn:disabled { background: #cbd5e1; }
+    .modal-error { color: #dc2626; font-size: 12px; margin-top: 8px; line-height: 1.5; min-height: 16px; }
+    .modal-note { font-size: 11px; color: #94a3b8; margin-top: 16px; line-height: 1.5; padding-top: 14px; border-top: 1px solid #f1f5f9; }
+
     @media (max-width: 720px) {
       .s-grid { grid-template-columns: 1fr; }
       .student { padding: 24px 22px; }
+      .rate-grid { grid-template-columns: 1fr; }
     }
 
-    /* FOOTER */
     footer { background: #0a0a0a; color: #cbd5e1; padding: 60px 6vw; }
     .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
     footer h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: #fff; margin-bottom: 10px; }
     footer p { font-size: 13px; color: var(--ink-dim); max-width: 480px; line-height: 1.7; }
-    footer a { color: var(--accent-bright); text-decoration: none; }
-    footer a:hover { color: #fff; }
     .footer-meta { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #555; }
   </style>
 </head>
@@ -94,7 +131,7 @@
     <div class="hero-inner">
       <div class="hero-eyebrow">Dream Conference · Web Design Edition</div>
       <h1 class="hero-title">Students<br><em>Portfolio</em></h1>
-      <p class="hero-sub">Two weeks of work, side by side. Week 11 — the dream you can see. Week 12 — the theory under it, the AI document that becomes your final presentation, the design approach, the tools.</p>
+      <p class="hero-sub">Two weeks of work, side by side. Week 11 — the dream. Week 12 — the theory, AI document, design approach, tools. Sign in to review and rate.</p>
       <div class="hero-stats">
         <div class="stat"><div class="num">17</div><div class="lbl">Students</div></div>
         <div class="stat"><div class="num">5</div><div class="lbl">Complete</div></div>
@@ -102,7 +139,7 @@
         <div class="stat"><div class="num">2</div><div class="lbl">New This Week</div></div>
       </div>
       <div class="hero-nav">
-        <a href="/dream-to-website/">← Back to Dream Conference</a>
+        <a href="/dream-to-website/">← Dream Conference</a>
         <a href="/">negalab home</a>
       </div>
     </div>
@@ -143,6 +180,32 @@
             <p class="s-text small">I used genspark AI tool.</p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-04" data-speaker-id="202509053">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-04</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509071">
@@ -179,6 +242,32 @@ tracking platform</p>
             <p class="s-text small">claude</p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-15" data-speaker-id="202509071">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-15</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509056">
@@ -213,6 +302,32 @@ tracking platform</p>
             <div class="s-label">Tool(s)</div>
             <p class="s-text small">I love genspark</p>
           </div>
+        </div>
+        
+        <div class="rate-section" data-card-id="talk-10" data-speaker-id="202509056">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-10</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         </div>
       </section>
 
@@ -249,6 +364,32 @@ tracking platform</p>
             <p class="s-text small">I love lovable</p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-11" data-speaker-id="202509070">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-11</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509065">
@@ -283,6 +424,32 @@ tracking platform</p>
             <div class="s-label">Tool(s)</div>
             <p class="s-text small">Genspark</p>
           </div>
+        </div>
+        
+        <div class="rate-section" data-card-id="talk-07" data-speaker-id="202509065">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-07</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         </div>
       </section>
 
@@ -319,6 +486,32 @@ tracking platform</p>
             <p class="s-text small"><em>—</em></p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-08" data-speaker-id="202509012">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-08</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509044">
@@ -353,6 +546,32 @@ tracking platform</p>
             <div class="s-label">Tool(s)</div>
             <p class="s-text small"><em>—</em></p>
           </div>
+        </div>
+        
+        <div class="rate-section" data-card-id="talk-14" data-speaker-id="202509044">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-14</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         </div>
       </section>
 
@@ -389,6 +608,32 @@ tracking platform</p>
             <p class="s-text small"><em>—</em></p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-06" data-speaker-id="202509038">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-06</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509042">
@@ -423,6 +668,32 @@ tracking platform</p>
             <div class="s-label">Tool(s)</div>
             <p class="s-text small"><em>—</em></p>
           </div>
+        </div>
+        
+        <div class="rate-section" data-card-id="talk-03" data-speaker-id="202509042">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-03</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         </div>
       </section>
 
@@ -459,6 +730,32 @@ tracking platform</p>
             <p class="s-text small"><em>—</em></p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-05" data-speaker-id="202509040">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-05</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509054">
@@ -493,6 +790,32 @@ tracking platform</p>
             <div class="s-label">Tool(s)</div>
             <p class="s-text small"><em>—</em></p>
           </div>
+        </div>
+        
+        <div class="rate-section" data-card-id="talk-12" data-speaker-id="202509054">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-12</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         </div>
       </section>
 
@@ -529,6 +852,32 @@ tracking platform</p>
             <p class="s-text small">I use claude AI, chatgpt, Gemini, Figma, stitch, Obsidian, lovable, genspark, github</p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-18" data-speaker-id="202509074">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-18</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509039">
@@ -563,6 +912,32 @@ tracking platform</p>
             <div class="s-label">Tool(s)</div>
             <p class="s-text small">Genspark claude</p>
           </div>
+        </div>
+        
+        <div class="rate-section" data-card-id="talk-17" data-speaker-id="202509039">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-17</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         </div>
       </section>
 
@@ -599,6 +974,32 @@ tracking platform</p>
             <p class="s-text small"><em>—</em></p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-13" data-speaker-id="202509041">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-13</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509045">
@@ -633,6 +1034,32 @@ tracking platform</p>
             <div class="s-label">Tool(s)</div>
             <p class="s-text small"><em>—</em></p>
           </div>
+        </div>
+        
+        <div class="rate-section" data-card-id="talk-02" data-speaker-id="202509045">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-02</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         </div>
       </section>
 
@@ -669,6 +1096,32 @@ tracking platform</p>
             <p class="s-text small"><em>—</em></p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-01" data-speaker-id="202509035">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-01</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
       <section class="student" id="s-202509048">
@@ -704,6 +1157,32 @@ tracking platform</p>
             <p class="s-text small"><em>—</em></p>
           </div>
         </div>
+        
+        <div class="rate-section" data-card-id="talk-09" data-speaker-id="202509048">
+          <div class="rate-header">
+            <span class="rate-title">Peer Review · talk-09</span>
+            <span class="rate-avg">
+              <span class="avg-badge theory empty" data-role="avg-theory"><span class="lbl">T</span> <span class="val">—</span></span>
+              <span class="avg-badge design empty" data-role="avg-design"><span class="lbl">D</span> <span class="val">—</span></span>
+            </span>
+          </div>
+          <div class="rate-grid">
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis theory">Theory</span> <span class="rate-status" data-role="status-theory"></span></div>
+              <div class="stars theory" data-role="stars-theory">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+            <div class="rate-col">
+              <div class="rate-label"><span class="axis design">Design</span> <span class="rate-status" data-role="status-design"></span></div>
+              <div class="stars design" data-role="stars-design">
+                <button class="star-btn" data-value="1">★</button><button class="star-btn" data-value="2">★</button><button class="star-btn" data-value="3">★</button><button class="star-btn" data-value="4">★</button><button class="star-btn" data-value="5">★</button>
+              </div>
+            </div>
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
+        </div>
       </section>
 
   </main>
@@ -712,11 +1191,220 @@ tracking platform</p>
     <div class="footer-inner">
       <div>
         <h3>Dream Conference · Students Portfolio</h3>
-        <p>Web Design &amp; Development · Spring 2026 · SMIT (DMC, Seoul). Final presentations on <strong>June 10, 2026</strong>. Each student opens their own website live and reads their AI Document text for 4 minutes — covering Dream, Theory, Design, Tool.</p>
+        <p>Web Design &amp; Development · Spring 2026 · SMIT (DMC, Seoul). Final presentations on <strong>June 10, 2026</strong>.</p>
       </div>
       <div class="footer-meta">Curated May 27, 2026 · Prof. DY</div>
     </div>
   </footer>
+
+  <!-- AUTH BAR -->
+  <div id="authBar" class="auth-bar" style="display:none">
+    <span>Signed in as <strong class="auth-name" id="authName"></strong></span>
+    <button class="auth-action" onclick="signOut()">Sign out</button>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-eyebrow">Peer Review · Spring 2026</div>
+      <h2 class="modal-title">Sign in to review.</h2>
+      <p class="modal-sub">Student ID + email. Professor ID is <code>dykwon</code>. First-time login binds the email to that ID.</p>
+      <label for="loginId">Student ID</label>
+      <input id="loginId" type="text" placeholder="202509XXX or dykwon" autocomplete="off">
+      <label for="loginEmail">Email</label>
+      <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email">
+      <button class="modal-btn" id="loginBtn" onclick="signIn()">Continue</button>
+      <div class="modal-error" id="loginError"></div>
+      <div class="modal-note">Once bound, only the same email can log in with that student ID. Contact the professor if you need a reset.</div>
+    </div>
+  </div>
+
+  <script>
+    const API = "https://dream-to-website-api.dykwon-248.workers.dev";
+    let me = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      wireRatingWidgets();
+      const stored = localStorage.getItem("dtw_me");
+      if (stored) {
+        me = JSON.parse(stored);
+        document.getElementById("loginModal").style.display = "none";
+        document.body.classList.add("signed-in");
+        showAuthBar();
+        markSelfStudent();
+        loadAggregates();
+        loadMyRatings();
+      }
+      ["loginId", "loginEmail"].forEach(id => {
+        document.getElementById(id).addEventListener("keydown", e => { if (e.key === "Enter") signIn(); });
+      });
+    });
+
+    function wireRatingWidgets() {
+      document.querySelectorAll(".rate-section").forEach(section => {
+        const submit = section.querySelector('[data-role="submit"]');
+        const sel = { theory: 0, design: 0 };
+        ["theory", "design"].forEach(axis => {
+          const stars = section.querySelectorAll(`[data-role="stars-${axis}"] .star-btn`);
+          stars.forEach(s => {
+            const v = parseInt(s.dataset.value, 10);
+            s.addEventListener("mouseenter", () => stars.forEach(x => x.classList.toggle("hover", parseInt(x.dataset.value,10) <= v)));
+            s.addEventListener("mouseleave", () => stars.forEach(x => x.classList.remove("hover")));
+            s.addEventListener("click", () => {
+              sel[axis] = v;
+              stars.forEach(x => x.classList.toggle("active", parseInt(x.dataset.value,10) <= v));
+              submit.disabled = !(sel.theory || sel.design);
+            });
+          });
+        });
+        submit.addEventListener("click", () => submitRating(section, sel));
+      });
+    }
+
+    async function signIn() {
+      const id = document.getElementById("loginId").value.trim();
+      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const btn = document.getElementById("loginBtn");
+      const err = document.getElementById("loginError");
+      err.textContent = "";
+      if (!id) { err.textContent = "Please enter your student ID."; return; }
+      if (!email) { err.textContent = "Please enter your email."; return; }
+      btn.disabled = true; btn.textContent = "Checking…";
+      try {
+        const r = await fetch(`${API}/login`, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ studentId: id, email })
+        });
+        const data = await r.json();
+        if (!r.ok) { err.textContent = data.message || data.error; btn.disabled = false; btn.textContent = "Continue"; return; }
+        me = data.student;
+        localStorage.setItem("dtw_me", JSON.stringify(me));
+        document.getElementById("loginModal").style.display = "none";
+        document.body.classList.add("signed-in");
+        showAuthBar();
+        markSelfStudent();
+        loadAggregates();
+        loadMyRatings();
+      } catch (e) {
+        err.textContent = "Network error: " + e.message;
+        btn.disabled = false; btn.textContent = "Continue";
+      }
+    }
+
+    function signOut() { localStorage.removeItem("dtw_me"); location.reload(); }
+
+    function showAuthBar() {
+      const bar = document.getElementById("authBar");
+      const label = me.email ? `${me.name} · ${me.email}` : me.name;
+      document.getElementById("authName").textContent = label;
+      bar.querySelectorAll(".admin-badge").forEach(b => b.remove());
+      if (me.is_admin) {
+        const badge = document.createElement("span");
+        badge.className = "admin-badge"; badge.textContent = "PROFESSOR";
+        bar.insertBefore(badge, bar.firstChild);
+      }
+      bar.style.display = "flex";
+    }
+
+    function markSelfStudent() {
+      if (!me || me.is_admin) return;  // admin rates everyone
+      const self = document.querySelector(`.student[id="s-${me.id}"]`);
+      if (self) {
+        self.classList.add("is-self");
+        const rs = self.querySelector(".rate-section");
+        if (rs) rs.classList.add("self-section");
+      }
+    }
+
+    async function submitRating(section, selected) {
+      const cardId = section.dataset.cardId;
+      const fb = section.querySelector('[data-role="feedback"]').value.trim();
+      const sT = section.querySelector('[data-role="status-theory"]');
+      const sD = section.querySelector('[data-role="status-design"]');
+      const submit = section.querySelector('[data-role="submit"]');
+      submit.disabled = true; submit.textContent = "Saving…";
+      try {
+        const r = await fetch(`${API}/rate`, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            studentId: me.id, cardId,
+            theoryRating: selected.theory || null,
+            designRating: selected.design || null,
+            feedback: fb
+          })
+        });
+        const data = await r.json();
+        if (!r.ok) {
+          sT.textContent = sD.textContent = "✗ " + (data.message || data.error);
+          sT.style.color = sD.style.color = "#dc2626";
+          submit.disabled = false; submit.textContent = "Submit"; return;
+        }
+        if (selected.theory) { sT.textContent = "✓"; sT.style.color = "var(--ok)"; }
+        if (selected.design) { sD.textContent = "✓"; sD.style.color = "var(--ok)"; }
+        submit.textContent = "Update";
+        submit.disabled = false;
+        updateAvgBadge(section, data.aggregate);
+      } catch (e) {
+        sT.textContent = sD.textContent = "✗ Network";
+        sT.style.color = sD.style.color = "#dc2626";
+        submit.disabled = false; submit.textContent = "Submit";
+      }
+    }
+
+    function updateAvgBadge(section, agg) {
+      const t = section.querySelector('[data-role="avg-theory"]');
+      const d = section.querySelector('[data-role="avg-design"]');
+      if (!agg) return;
+      if (agg.theory_count > 0) {
+        t.classList.remove("empty");
+        t.innerHTML = `<span class="lbl">T</span> <span class="val">${agg.theory_avg} · ${agg.theory_count}</span>`;
+      }
+      if (agg.design_count > 0) {
+        d.classList.remove("empty");
+        d.innerHTML = `<span class="lbl">D</span> <span class="val">${agg.design_avg} · ${agg.design_count}</span>`;
+      }
+    }
+
+    async function loadAggregates() {
+      try {
+        const r = await fetch(`${API}/aggregates`);
+        const data = await r.json();
+        data.cards.forEach(c => {
+          const sec = document.querySelector(`.rate-section[data-card-id="${c.card_id}"]`);
+          if (sec) updateAvgBadge(sec, c);
+        });
+      } catch (e) {}
+    }
+
+    async function loadMyRatings() {
+      if (!me) return;
+      try {
+        const r = await fetch(`${API}/my-ratings?studentId=${encodeURIComponent(me.id)}`);
+        const data = await r.json();
+        data.ratings.forEach(rt => {
+          const sec = document.querySelector(`.rate-section[data-card-id="${rt.card_id}"]`);
+          if (!sec) return;
+          if (rt.theory_rating) {
+            sec.querySelectorAll('[data-role="stars-theory"] .star-btn').forEach(b => {
+              b.classList.toggle("active", parseInt(b.dataset.value,10) <= rt.theory_rating);
+            });
+            const s = sec.querySelector('[data-role="status-theory"]');
+            s.textContent = "✓"; s.style.color = "var(--ok)";
+          }
+          if (rt.design_rating) {
+            sec.querySelectorAll('[data-role="stars-design"] .star-btn').forEach(b => {
+              b.classList.toggle("active", parseInt(b.dataset.value,10) <= rt.design_rating);
+            });
+            const s = sec.querySelector('[data-role="status-design"]');
+            s.textContent = "✓"; s.style.color = "var(--ok)";
+          }
+          sec.querySelector('[data-role="feedback"]').value = rt.feedback || "";
+          const submit = sec.querySelector('[data-role="submit"]');
+          submit.textContent = "Update"; submit.disabled = false;
+        });
+      } catch (e) {}
+    }
+  </script>
 
 </body>
 </html>
