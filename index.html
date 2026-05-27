@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>negalab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Fraunces:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #ededed;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: radial-gradient(ellipse at 30% 40%, rgba(201, 100, 66, 0.12) 0%, transparent 50%), #0a0a0a;
+    }
+    .wrap { max-width: 600px; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #e88058; margin-bottom: 24px; font-weight: 500; }
+    h1 { font-family: 'Fraunces', serif; font-size: clamp(48px, 10vw, 96px); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 32px; color: #fff; }
+    h1 em { font-style: italic; color: #c96442; font-weight: 400; }
+    p { font-size: 16px; line-height: 1.7; color: #999; max-width: 480px; margin-bottom: 40px; }
+    .links { display: flex; flex-direction: column; gap: 12px; }
+    .links a { display: inline-flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; color: #ededed; text-decoration: none; font-size: 15px; transition: all 0.3s; }
+    .links a:hover { background: rgba(201, 100, 66, 0.1); border-color: #c96442; transform: translateX(4px); }
+    .links a .arrow { color: #c96442; font-family: monospace; }
+    .footer { margin-top: 48px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #555; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">negalab · spring 2026</div>
+    <h1>A small <em>lab</em><br>of dreams.</h1>
+    <p>Landing pages, conference showcases, and quiet experiments from a classroom at SMIT.</p>
+    <div class="links">
+      <a href="/dream-conference/"><span>🎤 Dream Conference 2026 — 16 student dreams</span><span class="arrow">→</span></a>
+      <a href="/GITPAGE_TEST/"><span>📓 Personal wiki + blog (Astro / Quartz)</span><span class="arrow">→</span></a>
+    </div>
+    <div class="footer">negalab.github.io</div>
+  </div>
+</body>
+</html>
