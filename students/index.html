@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students Portfolio · Dream to Website · SMIT Web Design Spring 2026</title>
+  <meta name="description" content="Per-student submissions for Week 11 (Dream) + Week 12 (Theory + AI Document + Design + Tool). Spring 2026 Web Design & Development at SMIT.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafaf8;
+      --ink: #1a1a1a;
+      --ink-dim: #64748b;
+      --line: #e5e7eb;
+      --accent: #c96442;
+      --accent-bright: #e88058;
+      --theory: #7c3aed;
+      --design: #ea580c;
+      --ok: #16a34a;
+      --warn: #ca8a04;
+      --new: #2563eb;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.6; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+    /* HERO */
+    .hero { padding: 80px 6vw 60px; background: linear-gradient(180deg, #0a0a0a 0%, #141414 100%); color: #ededed; position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; top: 20%; left: 30%; width: 60%; height: 60%; background: radial-gradient(ellipse, rgba(201, 100, 66, 0.15) 0%, transparent 60%); pointer-events: none; }
+    .hero-inner { max-width: 1400px; margin: 0 auto; position: relative; }
+    .hero-eyebrow { font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-bright); font-weight: 600; margin-bottom: 16px; }
+    .hero-title { font-family: 'Fraunces', serif; font-size: clamp(48px, 7vw, 96px); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; color: #fff; margin-bottom: 20px; }
+    .hero-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+    .hero-sub { font-family: 'Fraunces', serif; font-size: clamp(18px, 1.8vw, 24px); font-weight: 300; max-width: 720px; color: #cbd5e1; margin-bottom: 32px; }
+    .hero-stats { display: flex; gap: 40px; margin-top: 24px; flex-wrap: wrap; }
+    .stat .num { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700; color: #fff; line-height: 1; }
+    .stat .lbl { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); margin-top: 4px; }
+    .hero-nav { margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; letter-spacing: 0.06em; }
+    .hero-nav a { color: #cbd5e1; text-decoration: none; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; transition: all 0.2s; }
+    .hero-nav a:hover { border-color: var(--accent); color: #fff; }
+
+    /* STUDENTS */
+    main { max-width: 1100px; margin: 0 auto; padding: 60px 6vw 100px; }
+    .student { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 32px 36px; margin-bottom: 24px; scroll-margin-top: 20px; }
+    .s-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+    .s-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 500; }
+    .s-name { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
+    .s-id { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-dim); margin-top: 6px; letter-spacing: 0.04em; }
+    .s-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { display: inline-block; padding: 5px 12px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .tag-ok { background: #dcfce7; color: var(--ok); }
+    .tag-warn { background: #fef3c7; color: var(--warn); }
+    .tag-new { background: #dbeafe; color: var(--new); }
+
+    .s-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .s-block { padding: 18px 20px; border-radius: 12px; background: #fafafa; border: 1px solid #f1f5f9; display: flex; flex-direction: column; }
+    .s-block.dream { background: #fef3c7; border-color: #fde68a; }
+    .s-block.theory { background: #ede9fe; border-color: #ddd6fe; }
+    .s-block.dt { background: #ffedd5; border-color: #fed7aa; }
+    .s-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); font-weight: 700; margin-bottom: 10px; display: flex; align-items: baseline; gap: 8px; }
+    .s-sublabel { font-size: 9px; font-weight: 500; color: var(--ink-dim); letter-spacing: 0.08em; text-transform: none; }
+    .s-block.theory .s-label { color: var(--theory); }
+    .s-block.dt .s-label { color: var(--design); }
+    .s-text { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 400; line-height: 1.5; color: var(--ink); flex-grow: 1; }
+    .s-text.small { font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 400; }
+    .s-text em { color: #cbd5e1; font-style: italic; }
+    .s-link-row { margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,0.06); }
+    .link { display: inline-block; font-size: 12px; font-weight: 500; color: var(--ink); text-decoration: none; padding: 6px 14px; background: rgba(0,0,0,0.06); border-radius: 100px; transition: all 0.2s; letter-spacing: 0.02em; }
+    .link:hover { background: var(--ink); color: #fff; }
+    .link.primary { background: var(--accent); color: #fff; }
+    .link.primary:hover { background: var(--accent-bright); }
+    .link-disabled { display: inline-block; font-size: 11px; color: #cbd5e1; font-style: italic; padding: 6px 14px; }
+
+    @media (max-width: 720px) {
+      .s-grid { grid-template-columns: 1fr; }
+      .student { padding: 24px 22px; }
+    }
+
+    /* FOOTER */
+    footer { background: #0a0a0a; color: #cbd5e1; padding: 60px 6vw; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+    footer h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+    footer p { font-size: 13px; color: var(--ink-dim); max-width: 480px; line-height: 1.7; }
+    footer a { color: var(--accent-bright); text-decoration: none; }
+    footer a:hover { color: #fff; }
+    .footer-meta { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #555; }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Dream Conference · Web Design Edition</div>
+      <h1 class="hero-title">Students<br><em>Portfolio</em></h1>
+      <p class="hero-sub">Two weeks of work, side by side. Week 11 — the dream you can see. Week 12 — the theory under it, the AI document that becomes your final presentation, the design approach, the tools.</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">17</div><div class="lbl">Students</div></div>
+        <div class="stat"><div class="num">5</div><div class="lbl">Complete</div></div>
+        <div class="stat"><div class="num">10</div><div class="lbl">W12 Pending</div></div>
+        <div class="stat"><div class="num">2</div><div class="lbl">New This Week</div></div>
+      </div>
+      <div class="hero-nav">
+        <a href="/dream-to-website/">← Back to Dream Conference</a>
+        <a href="/">negalab home</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+      <section class="student" id="s-202509053">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 01</div>
+            <h2 class="s-name">Ghisingsusmita</h2>
+            <div class="s-id">202509053</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-ok">Complete</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">My dream is to learn and cook different types of food and also to upload the easy cooking recipes for those who wants  to learn cooking.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/slides/SZWZ76hBQ7it2qdMT3HTfq/Untitled?node-id=1-33&amp;t=mUiLVytu8rIbZq9I-0" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text">My web business idea is based on the old idea that food connects people and cultures. With modern technology and social media, people can now easily learn cooking skills and share recipes online.</p>
+            <div class="s-link-row"><a class="link primary" href="https://www.genspark.ai/agents?id=08295f19-658c-4176-82aa-f0f208ad6360" target="_blank" rel="noopener">Open AI Document →</a></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small">A modern dark food-style design inspired by cooking, learning, and creativity.</p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small">I used genspark AI tool.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509071">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 02</div>
+            <h2 class="s-name">Kamlesh Rawal</h2>
+            <div class="s-id">202509071</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-ok">Complete</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">I want to make beautiful and different websites. Want to make fitness website</p>
+            <div class="s-link-row"><span class="link-disabled">No deck yet</span></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text">rackMyHealth is a comprehensive web design concept for a modern health and wellness
+tracking platform</p>
+            <div class="s-link-row"><a class="link primary" href="https://www.genspark.ai/aidrive/shared/db6dcfd9-e185-4f00-bf5d-1328a4affdd1" target="_blank" rel="noopener">Open AI Document →</a></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small">i take design from the claude into github</p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small">claude</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509056">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 03</div>
+            <h2 class="s-name">Moktan Aarya</h2>
+            <div class="s-id">202509056</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-ok">Complete</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">I want to travel the world and e?plore it as much as I can.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/slides/rXGFRWYgF6r33Sv12Ct5nJ/Untitled?node-id=1-32&amp;t=elhWXwSrn4NmgxQp-0" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text">My dream ia to travel the world and immerse myself  in its breathtaking diversity. I long to witness vibrant cultural festival</p>
+            <div class="s-link-row"><a class="link primary" href="https://www.genspark.ai/agents?id=6c3bb24b-7148-403e-b3a9-f7c913d1c3e1" target="_blank" rel="noopener">Open AI Document →</a></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small">I want to update all the things to website what I experience</p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small">I love genspark</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509070">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 04</div>
+            <h2 class="s-name">Shah Lila</h2>
+            <div class="s-id">202509070</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-ok">Complete</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">I want to be a content creator.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/slides/tL5AJmRUIJivzzxvGX1KLp/Untitled?node-id=1-33&amp;t=87rLiUs5acgnaA9m-0" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text">I want to create content about which are not explore yet</p>
+            <div class="s-link-row"><a class="link primary" href="https://www.genspark.ai/agents?id=6ca5dfb9-cf1e-4e8f-b1b3-4b6c0c49b909" target="_blank" rel="noopener">Open AI Document →</a></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small">My design approach to create content</p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small">I love lovable</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509065">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 05</div>
+            <h2 class="s-name">Tamang dan</h2>
+            <div class="s-id">202509065</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-ok">Complete</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">Montessori school</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/make/OcQnXk9h76fFAcj7BJZq05/Montessori-Business-Presentation?t=oEsGq25yOmZ9gAws-20&amp;fullscreen=1&amp;preview-route=%2Fslide-3" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text">My business is Montessori school.it focuses on children growth and development</p>
+            <div class="s-link-row"><a class="link primary" href="https://www.genspark.ai/aidrive/shared/b397a426-c896-4f75-ace6-9be90267ffe6" target="_blank" rel="noopener">Open AI Document →</a></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small">Claude</p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small">Genspark</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509012">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 06</div>
+            <h2 class="s-name">Asadullo</h2>
+            <div class="s-id">202509012</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">My dream is creating an opportunities about education specifically for artificial intelligence science for those who are highly interested but can&#x27;t afford it.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/design/OI1h3xP8v62mVaAfZ9Yxhv?node-id=" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509044">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 07</div>
+            <h2 class="s-name">Ayer Ramesh banauna</h2>
+            <div class="s-id">202509044</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">Frying car</p>
+            <div class="s-link-row"><span class="link-disabled">No deck yet</span></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509038">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 08</div>
+            <h2 class="s-name">Karki Newton</h2>
+            <div class="s-id">202509038</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">i want to connect musicians and music lovers and help them get their desired musical instruments locally in Nepal.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/make/hYn36toKqsdNL6M5Dkmi4X/Redesign-existing-page?t=11hEd6adwUaTqtdu-20&amp;fullscreen=1" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509042">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 09</div>
+            <h2 class="s-name">lama Dawa tashi</h2>
+            <div class="s-id">202509042</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">I want to create a modern crochet brand that offers trendy, beginner-friendly clothing patterns for Gen-Z makers. My goal is to empower young creators to build their own sustainable wardrobes and move away from fast fashion.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/make/PhzSGD5TVBqJRLmhdctFxL/Sleep-Monitoring-App?fullscreen=1&amp;t=SpNbHahEAdwjBaWX-1&amp;code-node-id=0-9" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509040">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 10</div>
+            <h2 class="s-name">LIMBU DILPA</h2>
+            <div class="s-id">202509040</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">My dream is to create a simple and comforting app called “ShiftMate” that helps students manage their part-time work without stress. I want to make something that helps students easily track their shifts, working hours, and earnings in one cozy and organized space. Through ShiftMate, I hope to make student life feel a little more balanced, clear, and less overwhelming.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/make/ZrfIWzZj2CZ3GLKfUwdc83/ShiftMate-Presentation-Design?t=MY8TuimphEqET8o3-1" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509054">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 11</div>
+            <h2 class="s-name">Mahatra Sandeep</h2>
+            <div class="s-id">202509054</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">I want to make a website about engineering and mining.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/make/WTIbOAbWELTCbtox6GWCxY/Dream-Visualization-Slides?fullscreen=1&amp;t=P2xDmsv8yyNbWLxo-1&amp;code-node-id=0-9" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509074">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 12</div>
+            <h2 class="s-name">Neupane Bibek</h2>
+            <div class="s-id">202509074</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-new">W12 only · new this week</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">No deck yet</span></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text">My idea is from my work experience. I started it because of the problems that i faced during my working days. Because of the AI era, I am focusing to solve the BIM complexity problems  with the help of AI.</p>
+            <div class="s-link-row"><a class="link primary" href="https://www.genspark.ai/aidrive/files/Genspark/AI%20Docs#p_fid=6b8a1025-8359-43d6-b938-86b543fcef48" target="_blank" rel="noopener">Open AI Document →</a></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small">I want to combine construction issues with AI.</p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small">I use claude AI, chatgpt, Gemini, Figma, stitch, Obsidian, lovable, genspark, github</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509039">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 13</div>
+            <h2 class="s-name">Rai Eliza</h2>
+            <div class="s-id">202509039</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-new">W12 only · new this week</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">No deck yet</span></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text">My web design stands on global awareness of sustainable and ethical fashion.</p>
+            <div class="s-link-row"><a class="link primary" href="https://www.genspark.ai/aidrive/shared/6b4756c4-9d40-431e-98d5-e9d8b72b6416" target="_blank" rel="noopener">Open AI Document →</a></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small">Claude</p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small">Genspark claude</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509041">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 14</div>
+            <h2 class="s-name">Raut Dikshya</h2>
+            <div class="s-id">202509041</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">I want to create a space where art, emotions, and stories can connect people from different cultures. I want my work to inspire others and make them feel understood.</p>
+            <div class="s-link-row"><span class="link-disabled">No deck yet</span></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509045">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 15</div>
+            <h2 class="s-name">Shrivastav Anjali</h2>
+            <div class="s-id">202509045</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">My dream is to build an AI assistant that helps people reduce stress, stay organized, and live a healthier and more balanced life.</p>
+            <div class="s-link-row"><a class="link" href="https://gamma.app/docs/CalmAI-Your-AI-Life-Companion-6psaqkc10p05986" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509035">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 16</div>
+            <h2 class="s-name">TAMANG SUJATA</h2>
+            <div class="s-id">202509035</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">I want to create a skincare brand that brings calm, confidence, and simplicity back into self-care. Sujerra is meant to help people feel comfortable in their natural skin through gentle routines and intentional care, rather than overwhelming beauty standards. It represents balance, consistency, and emotional comfort.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/make/J08LAozlbLGyYVe1kawxuF/Luxury-Skincare-Presentation?t=n7O108onlnBl53K1-20&amp;fullscreen=1" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="student" id="s-202509048">
+        <header class="s-header">
+          <div class="s-meta">
+            <div class="s-num">No. 17</div>
+            <h2 class="s-name">Thapa samir</h2>
+            <div class="s-id">202509048</div>
+          </div>
+          <div class="s-tags"><span class="tag tag-warn">W12 pending</span></div>
+        </header>
+
+        <div class="s-grid">
+          <div class="s-block dream">
+            <div class="s-label">Dream <span class="s-sublabel">Week 11</span></div>
+            <p class="s-text">Its my dream about homogenus mixture between artifical interlligence and civil engineering. So it shows the my dreams to build sustanble infrastructure devepoment of my country.</p>
+            <div class="s-link-row"><a class="link" href="https://www.figma.com/make/WTIbOAbWELTCbtox6GWCxY/Dream-Visualization-Slides?fullscreen=1&amp;t=P2xDmsv8yyNbWLxo-1&amp;code-node-id=0-9" target="_blank" rel="noopener">Figma Deck →</a></div>
+          </div>
+
+          <div class="s-block theory">
+            <div class="s-label">Theory <span class="s-sublabel">Week 12 · own words</span></div>
+            <p class="s-text"><em>not submitted</em></p>
+            <div class="s-link-row"><span class="link-disabled">Not submitted yet</span></div>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Web Design</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+
+          <div class="s-block dt">
+            <div class="s-label">Tool(s)</div>
+            <p class="s-text small"><em>—</em></p>
+          </div>
+        </div>
+      </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h3>Dream Conference · Students Portfolio</h3>
+        <p>Web Design &amp; Development · Spring 2026 · SMIT (DMC, Seoul). Final presentations on <strong>June 10, 2026</strong>. Each student opens their own website live and reads their AI Document text for 4 minutes — covering Dream, Theory, Design, Tool.</p>
+      </div>
+      <div class="footer-meta">Curated May 27, 2026 · Prof. DY</div>
+    </div>
+  </footer>
+
+</body>
+</html>

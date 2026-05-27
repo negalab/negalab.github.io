@@ -483,17 +483,31 @@
     }
 
     /* ══════════ PEER REVIEW UI ══════════ */
-    .avg-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: #fef3c7; color: #92400e; font-size: 11px; font-weight: 700; border-radius: 100px; margin-left: 10px; letter-spacing: 0.02em; }
+    .avg-badges { display: inline-flex; gap: 6px; margin-left: 10px; }
+    .avg-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: #fef3c7; color: #92400e; font-size: 10px; font-weight: 700; border-radius: 100px; letter-spacing: 0.02em; }
     .avg-badge.empty { background: #f1f5f9; color: #94a3b8; }
-    .avg-badge .star { font-size: 10px; }
+    .avg-badge .label { letter-spacing: 0.08em; }
+    .avg-badge .val { font-family: 'JetBrains Mono', monospace; }
+    .avg-badge.theory { background: #ddd6fe; color: #5b21b6; }
+    .avg-badge.theory.empty { background: #f1f5f9; color: #94a3b8; }
+    .avg-badge.design { background: #fed7aa; color: #9a3412; }
+    .avg-badge.design.empty { background: #f1f5f9; color: #94a3b8; }
 
-    .rate-block { border-top: 1px dashed #e2e8f0; padding-top: 18px; margin-top: 4px; margin-bottom: 18px; }
-    .rate-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-    .rate-label .status { color: #16a34a; font-size: 10px; }
-    .stars { display: flex; gap: 4px; margin-bottom: 12px; }
-    .star-btn { background: none; border: none; cursor: pointer; font-size: 26px; color: #d1d5db; padding: 0; line-height: 1; transition: color 0.15s, transform 0.15s; }
+    .rate-block { border-top: 1px dashed #e2e8f0; padding-top: 16px; margin-top: 4px; margin-bottom: 18px; }
+    .rate-row { margin-bottom: 12px; }
+    .rate-row:last-of-type { margin-bottom: 14px; }
+    .rate-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+    .rate-label .axis { color: #1a1a1a; font-weight: 700; }
+    .rate-label .axis.theory { color: #5b21b6; }
+    .rate-label .axis.design { color: #9a3412; }
+    .rate-label .axis-note { font-size: 9px; color: #cbd5e1; font-weight: 500; letter-spacing: 0.04em; text-transform: none; }
+    .rate-status { font-size: 10px; color: #16a34a; letter-spacing: 0.04em; }
+    .stars { display: flex; gap: 3px; }
+    .star-btn { background: none; border: none; cursor: pointer; font-size: 22px; color: #d1d5db; padding: 0; line-height: 1; transition: color 0.15s, transform 0.15s; }
     .star-btn:hover, .star-btn.hover { color: #fbbf24; }
     .star-btn.active { color: #f59e0b; }
+    .stars.theory .star-btn.active { color: #7c3aed; }
+    .stars.design .star-btn.active { color: #ea580c; }
     .star-btn:hover { transform: scale(1.15); }
     .feedback-input { width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; font-size: 12px; resize: vertical; min-height: 56px; max-height: 140px; background: #fafafa; color: #1a1a1a; line-height: 1.5; }
     .feedback-input:focus { outline: none; border-color: #c96442; background: #fff; }
@@ -858,17 +872,19 @@
         const cardId = `talk-${talkNum}`;
         card.dataset.cardId = cardId;
 
-        // Avg badge slot (next to card-num)
+        // Avg badges (two: Theory + Design) next to card-num
         const numEl = card.querySelector(".card-num");
-        if (numEl && !numEl.querySelector(".avg-badge")) {
-          const badge = document.createElement("span");
-          badge.className = "avg-badge empty";
-          badge.dataset.role = "avg";
-          badge.innerHTML = `<span class="star">★</span> — · 0 ratings`;
-          numEl.appendChild(badge);
+        if (numEl && !numEl.querySelector(".avg-badges")) {
+          const wrap = document.createElement("span");
+          wrap.className = "avg-badges";
+          wrap.innerHTML = `
+            <span class="avg-badge theory empty" data-role="avg-theory"><span class="label">T</span> <span class="val">—</span></span>
+            <span class="avg-badge design empty" data-role="avg-design"><span class="label">D</span> <span class="val">—</span></span>
+          `;
+          numEl.appendChild(wrap);
         }
 
-        // Skip rate block on in-progress cards (deck coming soon)
+        // Skip rate block on in-progress cards
         if (card.classList.contains("in-progress")) return;
 
         // Rate block before CTA
@@ -877,31 +893,47 @@
         const block = document.createElement("div");
         block.className = "rate-block";
         block.innerHTML = `
-          <div class="rate-label"><span>Your rating</span><span class="status" data-role="status"></span></div>
-          <div class="stars" data-role="stars">
-            ${[1, 2, 3, 4, 5].map(n => `<button class="star-btn" data-value="${n}" aria-label="${n} stars">★</button>`).join("")}
+          <div class="rate-row">
+            <div class="rate-label">
+              <span><span class="axis theory">Theory</span> <span class="axis-note">foundation · precedent · timing</span></span>
+              <span class="rate-status" data-role="status-theory"></span>
+            </div>
+            <div class="stars theory" data-role="stars-theory">
+              ${[1, 2, 3, 4, 5].map(n => `<button class="star-btn" data-value="${n}" aria-label="${n}">★</button>`).join("")}
+            </div>
+          </div>
+          <div class="rate-row">
+            <div class="rate-label">
+              <span><span class="axis design">Design</span> <span class="axis-note">visual + clarity</span></span>
+              <span class="rate-status" data-role="status-design"></span>
+            </div>
+            <div class="stars design" data-role="stars-design">
+              ${[1, 2, 3, 4, 5].map(n => `<button class="star-btn" data-value="${n}" aria-label="${n}">★</button>`).join("")}
+            </div>
           </div>
           <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
-          <button class="submit-btn" data-role="submit" disabled>Submit rating</button>
+          <button class="submit-btn" data-role="submit" disabled>Submit</button>
         `;
         cta.parentNode.insertBefore(block, cta);
 
-        // Wire up stars
-        const stars = block.querySelectorAll(".star-btn");
         const submit = block.querySelector('[data-role="submit"]');
-        let selected = 0;
-        stars.forEach(s => {
-          const v = parseInt(s.dataset.value, 10);
-          s.addEventListener("mouseenter", () => stars.forEach(x => x.classList.toggle("hover", parseInt(x.dataset.value, 10) <= v)));
-          s.addEventListener("mouseleave", () => stars.forEach(x => x.classList.remove("hover")));
-          s.addEventListener("click", () => {
-            selected = v;
-            stars.forEach(x => x.classList.toggle("active", parseInt(x.dataset.value, 10) <= selected));
-            submit.disabled = false;
+        const selectedRef = { theory: 0, design: 0 };
+
+        ["theory", "design"].forEach(axis => {
+          const stars = block.querySelectorAll(`[data-role="stars-${axis}"] .star-btn`);
+          stars.forEach(s => {
+            const v = parseInt(s.dataset.value, 10);
+            s.addEventListener("mouseenter", () => stars.forEach(x => x.classList.toggle("hover", parseInt(x.dataset.value, 10) <= v)));
+            s.addEventListener("mouseleave", () => stars.forEach(x => x.classList.remove("hover")));
+            s.addEventListener("click", () => {
+              selectedRef[axis] = v;
+              stars.forEach(x => x.classList.toggle("active", parseInt(x.dataset.value, 10) <= v));
+              submit.disabled = !(selectedRef.theory || selectedRef.design);
+            });
           });
         });
 
-        submit.addEventListener("click", () => submitRating(card, cardId, selected, block));
+        submit.addEventListener("click", () => submitRating(card, cardId, selectedRef, block));
       });
     }
 
@@ -957,33 +989,40 @@
     }
 
     // ── Submit rating ────────────────────────────
-    async function submitRating(card, cardId, rating, block) {
+    async function submitRating(card, cardId, selected, block) {
       const fb = block.querySelector('[data-role="feedback"]').value.trim();
-      const status = block.querySelector('[data-role="status"]');
+      const sT = block.querySelector('[data-role="status-theory"]');
+      const sD = block.querySelector('[data-role="status-design"]');
       const submit = block.querySelector('[data-role="submit"]');
       submit.disabled = true; submit.textContent = "Saving…";
       try {
         const r = await fetch(`${API}/rate`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ studentId: me.id, raterName: me.name, cardId, rating, feedback: fb })
+          body: JSON.stringify({
+            studentId: me.id,
+            cardId,
+            theoryRating: selected.theory || null,
+            designRating: selected.design || null,
+            feedback: fb
+          })
         });
         const data = await r.json();
         if (!r.ok) {
-          status.textContent = "✗ " + (data.message || data.error);
-          status.style.color = "#dc2626";
-          submit.disabled = false; submit.textContent = "Submit rating";
+          sT.textContent = sD.textContent = "✗ " + (data.message || data.error);
+          sT.style.color = sD.style.color = "#dc2626";
+          submit.disabled = false; submit.textContent = "Submit";
           return;
         }
-        status.textContent = "✓ Saved";
-        status.style.color = "#16a34a";
-        submit.textContent = "Update rating";
+        if (selected.theory) { sT.textContent = "✓"; sT.style.color = "#16a34a"; }
+        if (selected.design) { sD.textContent = "✓"; sD.style.color = "#16a34a"; }
+        submit.textContent = "Update";
         submit.disabled = false;
         updateAvgBadge(card, data.aggregate);
       } catch (e) {
-        status.textContent = "✗ Network error";
-        status.style.color = "#dc2626";
-        submit.disabled = false; submit.textContent = "Submit rating";
+        sT.textContent = sD.textContent = "✗ Network";
+        sT.style.color = sD.style.color = "#dc2626";
+        submit.disabled = false; submit.textContent = "Submit";
       }
     }
 
@@ -1000,14 +1039,22 @@
     }
 
     function updateAvgBadge(card, agg) {
-      const badge = card.querySelector('.avg-badge[data-role="avg"]');
-      if (!badge) return;
-      if (agg && agg.count > 0) {
-        badge.classList.remove("empty");
-        badge.innerHTML = `<span class="star">★</span> ${agg.avg} · ${agg.count} rating${agg.count === 1 ? "" : "s"}`;
+      const tBadge = card.querySelector('[data-role="avg-theory"]');
+      const dBadge = card.querySelector('[data-role="avg-design"]');
+      if (!tBadge || !dBadge || !agg) return;
+      if (agg.theory_count > 0) {
+        tBadge.classList.remove("empty");
+        tBadge.innerHTML = `<span class="label">T</span> <span class="val">${agg.theory_avg} · ${agg.theory_count}</span>`;
       } else {
-        badge.classList.add("empty");
-        badge.innerHTML = `<span class="star">★</span> — · 0 ratings`;
+        tBadge.classList.add("empty");
+        tBadge.innerHTML = `<span class="label">T</span> <span class="val">—</span>`;
+      }
+      if (agg.design_count > 0) {
+        dBadge.classList.remove("empty");
+        dBadge.innerHTML = `<span class="label">D</span> <span class="val">${agg.design_avg} · ${agg.design_count}</span>`;
+      } else {
+        dBadge.classList.add("empty");
+        dBadge.innerHTML = `<span class="label">D</span> <span class="val">—</span>`;
       }
     }
 
@@ -1022,17 +1069,24 @@
           if (!card) return;
           const block = card.querySelector(".rate-block");
           if (!block) return;
-          // restore selected stars
-          block.querySelectorAll(".star-btn").forEach(b => {
-            b.classList.toggle("active", parseInt(b.dataset.value, 10) <= rt.rating);
-          });
+          if (rt.theory_rating) {
+            block.querySelectorAll('[data-role="stars-theory"] .star-btn').forEach(b => {
+              b.classList.toggle("active", parseInt(b.dataset.value, 10) <= rt.theory_rating);
+            });
+            const sT = block.querySelector('[data-role="status-theory"]');
+            sT.textContent = "✓"; sT.style.color = "#16a34a";
+          }
+          if (rt.design_rating) {
+            block.querySelectorAll('[data-role="stars-design"] .star-btn').forEach(b => {
+              b.classList.toggle("active", parseInt(b.dataset.value, 10) <= rt.design_rating);
+            });
+            const sD = block.querySelector('[data-role="status-design"]');
+            sD.textContent = "✓"; sD.style.color = "#16a34a";
+          }
           block.querySelector('[data-role="feedback"]').value = rt.feedback || "";
           const submit = block.querySelector('[data-role="submit"]');
-          submit.textContent = "Update rating";
+          submit.textContent = "Update";
           submit.disabled = false;
-          const status = block.querySelector('[data-role="status"]');
-          status.textContent = "✓ Saved";
-          status.style.color = "#16a34a";
         });
       } catch (e) { /* silent */ }
     }
