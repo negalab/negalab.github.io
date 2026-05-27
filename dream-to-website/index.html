@@ -481,6 +481,50 @@
       .footer-inner { grid-template-columns: 1fr; gap: 40px; }
       .speakers-header { flex-direction: column; align-items: flex-start; }
     }
+
+    /* ══════════ PEER REVIEW UI ══════════ */
+    .avg-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; background: #fef3c7; color: #92400e; font-size: 11px; font-weight: 700; border-radius: 100px; margin-left: 10px; letter-spacing: 0.02em; }
+    .avg-badge.empty { background: #f1f5f9; color: #94a3b8; }
+    .avg-badge .star { font-size: 10px; }
+
+    .rate-block { border-top: 1px dashed #e2e8f0; padding-top: 18px; margin-top: 4px; margin-bottom: 18px; }
+    .rate-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #94a3b8; font-weight: 700; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .rate-label .status { color: #16a34a; font-size: 10px; }
+    .stars { display: flex; gap: 4px; margin-bottom: 12px; }
+    .star-btn { background: none; border: none; cursor: pointer; font-size: 26px; color: #d1d5db; padding: 0; line-height: 1; transition: color 0.15s, transform 0.15s; }
+    .star-btn:hover, .star-btn.hover { color: #fbbf24; }
+    .star-btn.active { color: #f59e0b; }
+    .star-btn:hover { transform: scale(1.15); }
+    .feedback-input { width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-family: inherit; font-size: 12px; resize: vertical; min-height: 56px; max-height: 140px; background: #fafafa; color: #1a1a1a; line-height: 1.5; }
+    .feedback-input:focus { outline: none; border-color: #c96442; background: #fff; }
+    .feedback-input::placeholder { color: #cbd5e1; }
+    .submit-btn { margin-top: 8px; padding: 8px 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; transition: background 0.2s; letter-spacing: 0.04em; }
+    .submit-btn:hover { background: #c96442; }
+    .submit-btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+    .self-card { background: linear-gradient(135deg, #fff7ed, #fef3c7); }
+    .self-card .rate-block { display: none; }
+    .self-card::after { content: "★ Your dream"; position: absolute; top: 14px; right: 14px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: #c96442; padding: 4px 10px; background: rgba(255, 255, 255, 0.7); border-radius: 100px; }
+
+    /* ══════════ AUTH BAR + LOGIN MODAL ══════════ */
+    .auth-bar { position: fixed; top: 16px; right: 16px; z-index: 100; display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px; font-size: 12px; color: #ededed; }
+    .auth-bar .auth-name { font-weight: 500; }
+    .auth-bar .auth-action { background: none; border: none; color: #c96442; font-size: 11px; cursor: pointer; padding: 0; font-family: inherit; letter-spacing: 0.04em; }
+    .auth-bar .auth-action:hover { color: #e88058; }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(10, 10, 10, 0.92); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .modal { background: #fff; border-radius: 20px; padding: 48px 40px 36px; max-width: 440px; width: 100%; position: relative; }
+    .modal-eyebrow { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #c96442; font-weight: 600; margin-bottom: 14px; }
+    .modal-title { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; line-height: 1.15; color: #1a1a1a; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .modal-sub { font-size: 14px; color: #64748b; line-height: 1.55; margin-bottom: 28px; }
+    .modal label { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; font-weight: 600; margin-bottom: 8px; }
+    .modal input { width: 100%; padding: 14px 16px; border: 1.5px solid #e2e8f0; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #1a1a1a; margin-bottom: 20px; transition: border-color 0.2s; }
+    .modal input:focus { outline: none; border-color: #c96442; }
+    .modal-btn { width: 100%; padding: 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 100px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; letter-spacing: 0.06em; }
+    .modal-btn:hover { background: #c96442; }
+    .modal-btn:disabled { background: #cbd5e1; cursor: wait; }
+    .modal-error { color: #dc2626; font-size: 13px; margin-top: 8px; line-height: 1.5; min-height: 18px; }
+    .modal-note { font-size: 11px; color: #94a3b8; margin-top: 18px; line-height: 1.55; padding-top: 16px; border-top: 1px solid #f1f5f9; }
   </style>
 </head>
 <body>
@@ -763,6 +807,236 @@
       <div>Curated May 27, 2026</div>
     </div>
   </footer>
+
+
+  <!-- ══════════ AUTH BAR (top right) ══════════ -->
+  <div id="authBar" class="auth-bar" style="display:none">
+    <span>Signed in as <strong class="auth-name" id="authName"></strong></span>
+    <button class="auth-action" onclick="signOut()">Sign out</button>
+  </div>
+
+  <!-- ══════════ LOGIN MODAL ══════════ -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-eyebrow">Peer Review · Spring 2026</div>
+      <h2 class="modal-title">Sign in to rate your classmates' dreams.</h2>
+      <p class="modal-sub">Enter your student ID. You'll be matched against the class allowlist. Each card gets one rating from you — you can come back and update it anytime.</p>
+      <label for="loginId">Student ID</label>
+      <input id="loginId" type="text" placeholder="e.g. 202509038" inputmode="numeric" autocomplete="off">
+      <button class="modal-btn" id="loginBtn" onclick="signIn()">Continue</button>
+      <div class="modal-error" id="loginError"></div>
+      <div class="modal-note">Your rating and feedback are visible only to the professor and to the speaker of that card. You cannot rate your own dream.</div>
+    </div>
+  </div>
+
+  <script>
+    const API = "https://dream-to-website-api.dykwon-248.workers.dev";
+    let me = null;  // { id, name }
+
+    // ── Boot ──────────────────────────────────
+    document.addEventListener("DOMContentLoaded", () => {
+      injectRatingWidgets();
+      const stored = localStorage.getItem("dtw_me");
+      if (stored) {
+        me = JSON.parse(stored);
+        showAuthBar();
+        markSelfCard();
+        loadAggregates();
+        loadMyRatings();
+      }
+      // Allow Enter in login input
+      document.getElementById("loginId").addEventListener("keydown", e => {
+        if (e.key === "Enter") signIn();
+      });
+    });
+
+    // ── Inject rating widget into every card ─────
+    function injectRatingWidgets() {
+      const cards = document.querySelectorAll(".speakers-grid .card");
+      cards.forEach((card, idx) => {
+        const talkNum = String(idx + 1).padStart(2, "0");
+        const cardId = `talk-${talkNum}`;
+        card.dataset.cardId = cardId;
+
+        // Avg badge slot (next to card-num)
+        const numEl = card.querySelector(".card-num");
+        if (numEl && !numEl.querySelector(".avg-badge")) {
+          const badge = document.createElement("span");
+          badge.className = "avg-badge empty";
+          badge.dataset.role = "avg";
+          badge.innerHTML = `<span class="star">★</span> — · 0 ratings`;
+          numEl.appendChild(badge);
+        }
+
+        // Skip rate block on in-progress cards (deck coming soon)
+        if (card.classList.contains("in-progress")) return;
+
+        // Rate block before CTA
+        const cta = card.querySelector(".card-cta");
+        if (!cta) return;
+        const block = document.createElement("div");
+        block.className = "rate-block";
+        block.innerHTML = `
+          <div class="rate-label"><span>Your rating</span><span class="status" data-role="status"></span></div>
+          <div class="stars" data-role="stars">
+            ${[1, 2, 3, 4, 5].map(n => `<button class="star-btn" data-value="${n}" aria-label="${n} stars">★</button>`).join("")}
+          </div>
+          <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
+          <button class="submit-btn" data-role="submit" disabled>Submit rating</button>
+        `;
+        cta.parentNode.insertBefore(block, cta);
+
+        // Wire up stars
+        const stars = block.querySelectorAll(".star-btn");
+        const submit = block.querySelector('[data-role="submit"]');
+        let selected = 0;
+        stars.forEach(s => {
+          const v = parseInt(s.dataset.value, 10);
+          s.addEventListener("mouseenter", () => stars.forEach(x => x.classList.toggle("hover", parseInt(x.dataset.value, 10) <= v)));
+          s.addEventListener("mouseleave", () => stars.forEach(x => x.classList.remove("hover")));
+          s.addEventListener("click", () => {
+            selected = v;
+            stars.forEach(x => x.classList.toggle("active", parseInt(x.dataset.value, 10) <= selected));
+            submit.disabled = false;
+          });
+        });
+
+        submit.addEventListener("click", () => submitRating(card, cardId, selected, block));
+      });
+    }
+
+    // ── Sign in ──────────────────────────────────
+    async function signIn() {
+      const idEl = document.getElementById("loginId");
+      const btn = document.getElementById("loginBtn");
+      const err = document.getElementById("loginError");
+      const id = idEl.value.trim();
+      err.textContent = "";
+      if (!id) { err.textContent = "Please enter your student ID."; return; }
+      btn.disabled = true; btn.textContent = "Checking…";
+      try {
+        const r = await fetch(`${API}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ studentId: id })
+        });
+        const data = await r.json();
+        if (!r.ok) { err.textContent = data.message || data.error || "Login failed."; btn.disabled = false; btn.textContent = "Continue"; return; }
+        me = data.student;
+        localStorage.setItem("dtw_me", JSON.stringify(me));
+        document.getElementById("loginModal").style.display = "none";
+        showAuthBar();
+        markSelfCard();
+        loadAggregates();
+        loadMyRatings();
+      } catch (e) {
+        err.textContent = "Network error: " + e.message;
+        btn.disabled = false; btn.textContent = "Continue";
+      }
+    }
+
+    function signOut() {
+      localStorage.removeItem("dtw_me");
+      location.reload();
+    }
+
+    function showAuthBar() {
+      document.getElementById("authName").textContent = me.name;
+      document.getElementById("authBar").style.display = "flex";
+    }
+
+    // ── Self-card highlight (block self rating UI) ─
+    function markSelfCard() {
+      if (!me) return;
+      document.querySelectorAll(".speakers-grid .card").forEach(card => {
+        const nameEl = card.querySelector(".card-name");
+        if (nameEl && nameEl.textContent.trim().toLowerCase() === me.name.toLowerCase()) {
+          card.classList.add("self-card");
+        }
+      });
+    }
+
+    // ── Submit rating ────────────────────────────
+    async function submitRating(card, cardId, rating, block) {
+      const fb = block.querySelector('[data-role="feedback"]').value.trim();
+      const status = block.querySelector('[data-role="status"]');
+      const submit = block.querySelector('[data-role="submit"]');
+      submit.disabled = true; submit.textContent = "Saving…";
+      try {
+        const r = await fetch(`${API}/rate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ studentId: me.id, raterName: me.name, cardId, rating, feedback: fb })
+        });
+        const data = await r.json();
+        if (!r.ok) {
+          status.textContent = "✗ " + (data.message || data.error);
+          status.style.color = "#dc2626";
+          submit.disabled = false; submit.textContent = "Submit rating";
+          return;
+        }
+        status.textContent = "✓ Saved";
+        status.style.color = "#16a34a";
+        submit.textContent = "Update rating";
+        submit.disabled = false;
+        updateAvgBadge(card, data.aggregate);
+      } catch (e) {
+        status.textContent = "✗ Network error";
+        status.style.color = "#dc2626";
+        submit.disabled = false; submit.textContent = "Submit rating";
+      }
+    }
+
+    // ── Aggregates ───────────────────────────────
+    async function loadAggregates() {
+      try {
+        const r = await fetch(`${API}/aggregates`);
+        const data = await r.json();
+        data.cards.forEach(c => {
+          const card = document.querySelector(`.card[data-card-id="${c.card_id}"]`);
+          if (card) updateAvgBadge(card, c);
+        });
+      } catch (e) { /* silent */ }
+    }
+
+    function updateAvgBadge(card, agg) {
+      const badge = card.querySelector('.avg-badge[data-role="avg"]');
+      if (!badge) return;
+      if (agg && agg.count > 0) {
+        badge.classList.remove("empty");
+        badge.innerHTML = `<span class="star">★</span> ${agg.avg} · ${agg.count} rating${agg.count === 1 ? "" : "s"}`;
+      } else {
+        badge.classList.add("empty");
+        badge.innerHTML = `<span class="star">★</span> — · 0 ratings`;
+      }
+    }
+
+    // ── Load my prior ratings ────────────────────
+    async function loadMyRatings() {
+      if (!me) return;
+      try {
+        const r = await fetch(`${API}/my-ratings?studentId=${encodeURIComponent(me.id)}`);
+        const data = await r.json();
+        data.ratings.forEach(rt => {
+          const card = document.querySelector(`.card[data-card-id="${rt.card_id}"]`);
+          if (!card) return;
+          const block = card.querySelector(".rate-block");
+          if (!block) return;
+          // restore selected stars
+          block.querySelectorAll(".star-btn").forEach(b => {
+            b.classList.toggle("active", parseInt(b.dataset.value, 10) <= rt.rating);
+          });
+          block.querySelector('[data-role="feedback"]').value = rt.feedback || "";
+          const submit = block.querySelector('[data-role="submit"]');
+          submit.textContent = "Update rating";
+          submit.disabled = false;
+          const status = block.querySelector('[data-role="status"]');
+          status.textContent = "✓ Saved";
+          status.style.color = "#16a34a";
+        });
+      } catch (e) { /* silent */ }
+    }
+  </script>
 
 </body>
 </html>
