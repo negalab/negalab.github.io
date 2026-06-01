@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class Progress · SMIT · Spring 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--bg2:#141414;--card:#161616;--ink:#ededed;--dim:#8a8a8a;--accent:#c96442;--bright:#e88058;--gold:#d4af37;--line:rgba(255,255,255,.08);--ok:#3fb950;--off:#37373a}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:90px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 6vw}
+.hero{padding:50px 6vw 22px;background:radial-gradient(ellipse at 18% 0%,rgba(201,100,66,.14),transparent 55%),var(--bg)}
+.hero .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.hero h1{font-family:Fraunces;font-weight:800;font-size:clamp(32px,5.5vw,56px);line-height:1.02;margin:10px 0 6px;letter-spacing:-.02em}
+.hero .sub{color:var(--dim);max-width:600px;font-size:14.5px}
+.authbar{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:11px 6vw;display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+.authbar .who{color:var(--ink)} .authbar .pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--accent);color:var(--accent);border-radius:100px;padding:3px 9px}
+.authbar button{margin-left:auto;background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:100px;padding:6px 14px;font-size:12px;cursor:pointer}
+.tabs{display:flex;gap:8px;margin:26px 0 4px}
+.tabs button{background:transparent;color:var(--dim);border:1px solid var(--line);border-radius:100px;padding:7px 16px;font-size:13px;font-weight:500;cursor:pointer}
+.tabs button.active{border-color:var(--accent);color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin:16px 0}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.c-name{font-family:Fraunces;font-weight:700;font-size:24px;letter-spacing:-.01em}
+.c-meta{font-family:'JetBrains Mono';font-size:11px;color:var(--dim);margin-top:3px;text-transform:uppercase;letter-spacing:.08em}
+.rate{text-align:right;flex-shrink:0}
+.rate .big{font-family:Fraunces;font-weight:800;font-size:28px;line-height:1}
+.rate .big .den{color:var(--dim);font-size:17px}
+.rate .lab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:2px}
+.matrix{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 4px}
+.wk{width:42px;height:40px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:600;border:1px solid var(--line)}
+.wk .n{font-size:11px} .wk .dot{font-size:9px;margin-top:1px}
+.wk.on{background:rgba(63,185,80,.14);border-color:rgba(63,185,80,.4);color:var(--ok)}
+.wk.off{background:transparent;color:var(--off);border-style:dashed}
+.overall{margin:18px 0 4px;padding:15px 17px;border-left:3px solid var(--accent);background:rgba(201,100,66,.07);border-radius:0 10px 10px 0;font-size:14.5px;color:#e8e8e8}
+.overall .t{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+.weeks{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.wkrow{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px}
+.wkrow .tag{flex-shrink:0;width:46px;font-family:'JetBrains Mono';font-size:12px;font-weight:600;color:var(--accent);padding-top:1px}
+.wkrow.miss .tag{color:var(--off)} .wkrow.miss{color:var(--off)}
+.wkrow .ctext{flex:1}
+[contenteditable="true"]{outline:none;border-radius:6px;padding:2px 6px;margin:-2px -6px;transition:.15s;cursor:text}
+[contenteditable="true"]:hover{background:rgba(255,255,255,.04)}
+[contenteditable="true"]:focus{background:rgba(201,100,66,.12);box-shadow:0 0 0 1px var(--accent)}
+.saved{color:var(--ok);font-size:11px;margin-left:8px}
+.empty{color:var(--dim);font-style:italic}
+.note{font-size:12px;color:var(--dim)}
+/* modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:#fff;color:#1a1a1a;border-radius:18px;padding:34px 32px;max-width:420px;width:100%;font-family:Inter}
+.modal .me{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.modal h2{font-family:Fraunces;font-weight:700;font-size:24px;margin:8px 0 6px;color:#111}
+.modal p{font-size:13.5px;color:#555;margin-bottom:18px;line-height:1.55}
+.modal label{display:block;font-size:12px;font-weight:600;color:#444;margin:12px 0 5px}
+.modal input{width:100%;padding:11px 13px;border:1px solid #ddd;border-radius:10px;font-size:14px}
+.modal button{width:100%;margin-top:18px;padding:12px;background:var(--accent);color:#fff;border:0;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer}
+.modal button:disabled{background:#cbd5e1}
+.modal .err{color:#dc2626;font-size:13px;margin-top:8px;min-height:18px}
+.modal .hint{font-size:11px;color:#999;margin-top:16px;padding-top:14px;border-top:1px solid #f0f0f0;line-height:1.5}
+</style></head><body>
+
+<div class="hero">
+  <div class="eyebrow">SMIT · DMC, Seoul · Spring 2026</div>
+  <h1>Class Progress</h1>
+  <div class="sub">Your assignment submission record and your professor's comments, week by week.</div>
+</div>
+
+<div class="authbar" id="authbar" style="display:none">
+  <span class="pill" id="rolePill"></span>
+  <span>Signed in as <span class="who" id="whoName"></span></span>
+  <button onclick="signOut()">Sign out</button>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs" style="display:none"></div>
+  <div id="content"></div>
+</div>
+
+<div id="loginModal" class="modal-overlay">
+  <div class="modal">
+    <div class="me">Class Progress · Spring 2026</div>
+    <h2>Sign in to see your progress.</h2>
+    <p>Enter your <strong>student ID</strong> and <strong>email</strong>. Students see only their own record; the professor sees the full dashboard.</p>
+    <label for="lid">Student ID</label>
+    <input id="lid" type="text" placeholder="your student ID" inputmode="numeric" autocomplete="off">
+    <label for="lem">Email</label>
+    <input id="lem" type="email" placeholder="you@example.com" autocomplete="email">
+    <button id="lbtn" onclick="signIn()">Continue</button>
+    <div class="err" id="lerr"></div>
+    <div class="hint">First time: your email locks to your student ID. Returning: use the same email. Your comments are private to you and the professor.</div>
+  </div>
+</div>
+
+<script>
+const API = "https://dream-to-website-api.dykwon-248.workers.dev";
+const COURSE_LABEL = { "webdesign-spring-2026":"Web Design & Development", "genai-spring-2026":"Generative AI & E-Business" };
+let me = null, adminData = null, curCohort = null;
+const $ = s => document.querySelector(s);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const s = localStorage.getItem("dtw_me");
+  if (s) { try { me = JSON.parse(s); if (me && me.id) { boot(); return; } } catch(e){} }
+  ["lid","lem"].forEach(id => $("#"+id).addEventListener("keydown", e => { if (e.key==="Enter") signIn(); }));
+});
+
+async function signIn(){
+  const id=$("#lid").value.trim(), em=$("#lem").value.trim().toLowerCase(), btn=$("#lbtn"), err=$("#lerr");
+  err.textContent="";
+  if(!id){err.textContent="Please enter your student ID.";return;}
+  if(!em){err.textContent="Please enter your email.";return;}
+  btn.disabled=true; btn.textContent="Checking…";
+  try{
+    const r=await fetch(`${API}/login`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({studentId:id,email:em})});
+    const d=await r.json();
+    if(!r.ok){ err.textContent=d.message||d.error||"Login failed."; btn.disabled=false; btn.textContent="Continue"; return; }
+    me=d.student; localStorage.setItem("dtw_me",JSON.stringify(me));
+    $("#loginModal").style.display="none"; boot();
+  }catch(e){ err.textContent="Network error: "+e.message; btn.disabled=false; btn.textContent="Continue"; }
+}
+function signOut(){ localStorage.removeItem("dtw_me"); location.reload(); }
+
+function boot(){
+  $("#loginModal").style.display="none";
+  $("#authbar").style.display="flex";
+  $("#rolePill").textContent = me.is_admin ? "Professor" : "Student";
+  $("#whoName").textContent = me.name + (me.email? " · "+me.email : "");
+  if (me.is_admin) loadAdmin(); else loadStudent();
+}
+
+// ── helpers ──
+function matrixHTML(weeks){
+  return `<div class="matrix">`+weeks.map(w=>{
+    const on=w.submitted==1;
+    return `<div class="wk ${on?'on':'off'}"><span class="n">W${w.week}</span><span class="dot">${on?'✓':'·'}</span></div>`;
+  }).join("")+`</div>`;
+}
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function weeksHTML(weeks, editable, sid){
+  return `<div class="weeks">`+weeks.map(w=>{
+    const miss=w.submitted!=1, c=w.comment||"";
+    const body = editable
+      ? `<span class="ctext" contenteditable="true" data-target="${sid}" data-week="${w.week}" onblur="saveComment(this)">${esc(c)||"<span class='empty'>—</span>"}</span>`
+      : `<span class="ctext ${c?'':'empty'}">${esc(c)||"—"}</span>`;
+    return `<div class="wkrow ${miss?'miss':''}"><span class="tag">W${w.week}</span>${body}</div>`;
+  }).join("")+`</div>`;
+}
+function cardHTML(s, editable){
+  const weeks=s.weeks||[], done=weeks.filter(w=>w.submitted==1).length, tot=weeks.length;
+  const ov=s.overall_comment||"";
+  const ovBody = editable
+    ? `<span contenteditable="true" data-target="${s.student_id}" data-week="" onblur="saveComment(this)">${esc(ov)||"<span class='empty'>— add a comment</span>"}</span>`
+    : `<span class="${ov?'':'empty'}">${esc(ov)||"No comment yet."}</span>`;
+  return `<div class="card">
+    <div class="card-head">
+      <div><div class="c-name">${esc(s.name||s.student_id)}</div>
+      <div class="c-meta">${COURSE_LABEL[s.cohort]||s.cohort||""}</div></div>
+      <div class="rate"><div class="big">${done}<span class="den">/${tot}</span></div><div class="lab">weeks in</div></div>
+    </div>
+    ${matrixHTML(weeks)}
+    <div class="overall"><div class="t">Overall</div>${ovBody}</div>
+    ${weeksHTML(weeks, editable, s.student_id)}
+  </div>`;
+}
+
+// ── student view ──
+async function loadStudent(){
+  $("#content").innerHTML=`<p class="note">Loading…</p>`;
+  try{
+    const r=await fetch(`${API}/my-progress`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({studentId:me.id,email:me.email})});
+    const d=await r.json();
+    if(!r.ok){ $("#content").innerHTML=`<p class="note">${d.message||d.error}</p>`; return; }
+    $("#content").innerHTML=cardHTML(d.progress, false);
+  }catch(e){ $("#content").innerHTML=`<p class="note">Network error.</p>`; }
+}
+
+// ── professor dashboard ──
+async function loadAdmin(){
+  $("#content").innerHTML=`<p class="note">Loading dashboard…</p>`;
+  try{
+    const r=await fetch(`${API}/admin/progress`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({studentId:me.id,email:me.email})});
+    const d=await r.json();
+    if(!r.ok){ $("#content").innerHTML=`<p class="note">${d.message||d.error}</p>`; return; }
+    adminData=d.students;
+    const cohorts=[...new Set(adminData.map(s=>s.cohort))];
+    curCohort=curCohort||cohorts[0];
+    const tabs=$("#tabs"); tabs.style.display="flex";
+    tabs.innerHTML=cohorts.map(c=>`<button class="${c===curCohort?'active':''}" onclick="setCohort('${c}')">${COURSE_LABEL[c]||c}</button>`).join("");
+    renderAdmin();
+  }catch(e){ $("#content").innerHTML=`<p class="note">Network error.</p>`; }
+}
+function setCohort(c){ curCohort=c; loadAdmin(); }
+function renderAdmin(){
+  const list=adminData.filter(s=>s.cohort===curCohort);
+  $("#content").innerHTML=`<p class="note" style="margin:8px 0 0">${list.length} students · click any comment to edit</p>`+list.map(s=>cardHTML(s,true)).join("");
+}
+
+// ── professor edits a comment ──
+async function saveComment(el){
+  const target=el.dataset.target, week=el.dataset.week, text=el.textContent.trim();
+  try{
+    await fetch(`${API}/admin/comment`,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({studentId:me.id,email:me.email,target,week:week===""?null:parseInt(week,10),comment:text})});
+    const tag=document.createElement("span"); tag.className="saved"; tag.textContent="✓ saved";
+    el.parentNode.appendChild(tag); setTimeout(()=>tag.remove(),1500);
+  }catch(e){ /* silent */ }
+}
+</script>
+</body></html>
