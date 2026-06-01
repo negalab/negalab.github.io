@@ -1034,12 +1034,8 @@
           numEl.appendChild(wrap);
         }
 
-        // Skip rate block on in-progress cards
-        if (card.classList.contains("in-progress")) return;
-
-        // Rate block before CTA
+        // Rate block — insert before CTA if present, else append (empty/awaiting cards have no CTA)
         const cta = card.querySelector(".card-cta");
-        if (!cta) return;
         const block = document.createElement("div");
         block.className = "rate-block";
         block.innerHTML = `
@@ -1064,7 +1060,7 @@
           <textarea class="feedback-input" data-role="feedback" placeholder="One sentence of feedback (optional)" maxlength="2000"></textarea>
           <button class="submit-btn" data-role="submit" disabled>Submit</button>
         `;
-        cta.parentNode.insertBefore(block, cta);
+        if (cta) cta.parentNode.insertBefore(block, cta); else card.appendChild(block);
 
         const submit = block.querySelector('[data-role="submit"]');
         const selectedRef = { theory: 0, design: 0 };
