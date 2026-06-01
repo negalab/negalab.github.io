@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTDT · Dream · Theory · Design · Tool — SMIT</title>
+<meta name="description" content="DTDT creative methodology and final presentation guide — Prof. Doo Young Kwon, SMIT.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,800;9..144,1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--bg2:#141414;--ink:#ededed;--dim:#8a8a8a;--line:rgba(255,255,255,.1);
+  --accent:#c96442;--gold:#d4af37;
+  --c-dream:#e8c84d;--c-theory:#a78bfa;--c-design:#e88058;--c-tool:#c96442;
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow:hidden}
+.deck{height:100vh;width:100vw;position:relative}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:7vh 9vw;opacity:0;transition:opacity .4s}
+.slide.active{display:flex;opacity:1}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+h1{font-family:Fraunces;font-weight:800;font-size:clamp(40px,7vw,92px);line-height:1.0;letter-spacing:-.02em}
+h2{font-family:Fraunces;font-weight:700;font-size:clamp(30px,4.4vw,58px);line-height:1.05;letter-spacing:-.02em;margin-bottom:26px}
+.lead{font-size:clamp(18px,2.1vw,26px);font-weight:300;line-height:1.55;max-width:900px;color:#e2e2e2}
+.lead .em{color:var(--accent);font-weight:500}
+ul.pts{list-style:none;max-width:920px}
+ul.pts li{font-size:clamp(16px,1.8vw,23px);line-height:1.5;padding:11px 0 11px 30px;position:relative;color:#dcdcdc;border-bottom:1px solid rgba(255,255,255,.05)}
+ul.pts li::before{content:"";position:absolute;left:2px;top:21px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+ul.pts li b{color:#fff;font-weight:600}
+.quote{font-family:Fraunces;font-style:italic;font-weight:500;font-size:clamp(28px,4.2vw,54px);line-height:1.3;color:#fff;max-width:1100px;letter-spacing:-.01em}
+.quote .src{display:block;font-family:'JetBrains Mono';font-style:normal;font-size:14px;color:var(--dim);margin-top:28px;letter-spacing:.1em}
+.sub{color:var(--dim);font-size:clamp(15px,1.5vw,19px);margin-top:18px;line-height:1.6}
+.tag{display:inline-block;font-family:'JetBrains Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:100px;border:1px solid;margin-bottom:22px}
+/* element color theming */
+.s-dream .eyebrow,.s-dream .tag{color:var(--c-dream);border-color:var(--c-dream)}
+.s-theory .eyebrow,.s-theory .tag{color:var(--c-theory);border-color:var(--c-theory)}
+.s-design .eyebrow,.s-design .tag{color:var(--c-design);border-color:var(--c-design)}
+.s-tool .eyebrow,.s-tool .tag{color:var(--c-tool);border-color:var(--c-tool)}
+.s-dream h2{color:var(--c-dream)} .s-theory h2{color:var(--c-theory)}
+.s-design h2{color:var(--c-design)} .s-tool h2{color:var(--c-tool)}
+/* title slide */
+.title-meta{margin-top:46px;font-family:'JetBrains Mono';font-size:14px;color:var(--dim);line-height:2}
+.title-meta b{color:var(--ink);font-weight:500}
+.hero-bg{background:radial-gradient(ellipse at 22% 18%,rgba(201,100,66,.18),transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(212,175,55,.08),transparent 50%),var(--bg)}
+.dtdt-word span{display:inline-block}
+.dtdt-word .d{color:var(--c-dream)} .dtdt-word .t1{color:var(--c-theory)}
+.dtdt-word .d2{color:var(--c-design)} .dtdt-word .t2{color:var(--c-tool)}
+/* two-col */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.card h3{font-family:Fraunces;font-weight:600;font-size:22px;margin-bottom:8px}
+.card p{font-size:15px;color:var(--dim);line-height:1.5}
+/* steps */
+.steps{display:grid;gap:14px;max-width:980px}
+.step{display:flex;gap:18px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.step .n{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;font-family:'JetBrains Mono'}
+.step .b{font-size:clamp(15px,1.6vw,19px);line-height:1.45}
+.step .b b{color:#fff;font-weight:600}
+.step .b .mono{font-family:'JetBrains Mono';font-size:.85em;color:var(--gold)}
+/* nav */
+.nav{position:fixed;bottom:22px;right:30px;font-family:'JetBrains Mono';font-size:13px;color:var(--dim);z-index:10;letter-spacing:.1em}
+.nav b{color:var(--accent)}
+.progress{position:fixed;bottom:0;left:0;height:3px;background:var(--accent);z-index:10;transition:width .3s}
+.hint{position:fixed;bottom:22px;left:30px;font-family:'JetBrains Mono';font-size:11px;color:#555;z-index:10;letter-spacing:.08em}
+.brand{position:fixed;top:22px;right:30px;font-family:'JetBrains Mono';font-size:11px;color:#555;letter-spacing:.16em;text-transform:uppercase;z-index:10}
+svg{max-width:100%;height:auto}
+.flow-cap{font-size:clamp(14px,1.5vw,19px);color:#cfcfcf;line-height:1.5;max-width:1000px;margin-top:26px}
+.kpi{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
+.kpi .axis{font-family:'JetBrains Mono';font-size:13px;padding:6px 13px;border-radius:100px;border:1px solid var(--line)}
+.kpi .axis.t{color:var(--c-theory);border-color:var(--c-theory)}
+.kpi .axis.d{color:var(--c-design);border-color:var(--c-design)}
+@media(max-width:760px){.cols{grid-template-columns:1fr;gap:20px}}
+</style></head>
+<body>
+<div class="brand">DTDT · SMIT · DMC</div>
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide hero-bg active">
+    <div class="eyebrow">Creative Methodology · Final Presentation Guide</div>
+    <h1 class="dtdt-word"><span class="d">Dream</span> <span style="color:#555">·</span> <span class="t1">Theory</span><br><span class="d2">Design</span> <span style="color:#555">·</span> <span class="t2">Tool</span></h1>
+    <div class="title-meta">
+      <b>DTDT</b> — a method to build your own creative logic<br>
+      Prof. Doo Young Kwon · Seoul Media Institute of Technology<br>
+      Department of New Media · Spatial Media Laboratory
+    </div>
+  </section>
+
+  <!-- 2 MOTIVATION -->
+  <section class="slide">
+    <div class="eyebrow">Why DTDT</div>
+    <h2>You do the assigned work well.<br>But what about <span style="color:var(--accent)">your own idea?</span></h2>
+    <ul class="pts">
+      <li>Since 2009, many students master <b>given</b> assignments — yet struggle to turn <b>their own ideas</b> into results.</li>
+      <li>When we create, we usually create <b>for others</b>, not for ourselves.</li>
+      <li>DTDT is a method to develop <b>your own design theory</b>. Why not write your own book?</li>
+    </ul>
+  </section>
+
+  <!-- 3 QUOTE -->
+  <section class="slide hero-bg">
+    <div class="quote">"Not to teach — but to let you<br><span style="color:var(--gold)">feel the interest</span> for yourself."
+      <span class="src">가르치는 것이 아니라, 맘껏 흥미를 느끼도록 한다 · 자기가 하고 싶은 걸 할 때 가장 매력적이다</span>
+    </div>
+  </section>
+
+  <!-- 4 OVERVIEW DIAGRAM -->
+  <section class="slide">
+    <div class="eyebrow">The Four Elements</div>
+    <svg viewBox="0 0 1000 230" width="1000">
+      <defs><marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#666"/></marker></defs>
+      <line x1="200" y1="80" x2="270" y2="80" stroke="#666" stroke-width="2" marker-end="url(#ar)"/>
+      <line x1="445" y1="80" x2="515" y2="80" stroke="#666" stroke-width="2" marker-end="url(#ar)"/>
+      <line x1="690" y1="80" x2="760" y2="80" stroke="#666" stroke-width="2" marker-end="url(#ar)"/>
+      <g text-anchor="middle" font-family="Fraunces" font-weight="600">
+        <circle cx="120" cy="80" r="62" fill="rgba(232,200,77,.14)" stroke="#e8c84d" stroke-width="2"/>
+        <text x="120" y="88" fill="#e8c84d" font-size="24">Dream</text>
+        <circle cx="365" cy="80" r="62" fill="rgba(167,139,250,.14)" stroke="#a78bfa" stroke-width="2"/>
+        <text x="365" y="88" fill="#a78bfa" font-size="24">Theory</text>
+        <circle cx="610" cy="80" r="62" fill="rgba(232,128,88,.14)" stroke="#e88058" stroke-width="2"/>
+        <text x="610" y="88" fill="#e88058" font-size="24">Design</text>
+        <circle cx="855" cy="80" r="62" fill="rgba(201,100,66,.16)" stroke="#c96442" stroke-width="2"/>
+        <text x="855" y="88" fill="#c96442" font-size="26">Tool</text>
+      </g>
+      <g text-anchor="middle" font-family="Inter" font-size="14" fill="#9a9a9a">
+        <text x="120" y="182">the energy source</text>
+        <text x="365" y="182">your own logic</text>
+        <text x="610" y="182">the outcome</text>
+        <text x="855" y="182">how you make it</text>
+      </g>
+    </svg>
+    <div class="flow-cap"><span style="color:#fff">Dream</span> drives you to study <span style="color:#fff">Theory</span>, shape a <span style="color:#fff">Design</span>, and pick the <span style="color:#fff">Tool</span> to build it. The point is not the four boxes — it is the <span style="color:var(--accent)">logic that links them</span>.</div>
+  </section>
+
+  <!-- 5 DREAM -->
+  <section class="slide s-dream">
+    <span class="tag">D · Dream</span>
+    <h2>The energy source.</h2>
+    <ul class="pts">
+      <li>A dream is the <b>source of the power</b> to act and think — it makes you create, build theory, and learn tools.</li>
+      <li>Not a <b>killer dream</b>. Not <b>only a dream</b>. One <b>actionable</b> dream you can design with tools and explain with theory.</li>
+      <li>It need not be the best. It must be <b>truly yours</b> — the one that makes everything else worth doing.</li>
+    </ul>
+  </section>
+
+  <!-- 6 THEORY -->
+  <section class="slide s-theory">
+    <span class="tag">T · Theory</span>
+    <h2>Your own logic.</h2>
+    <ul class="pts">
+      <li>The bridge between <b>Dream</b> and <b>Design</b> — a theory for <b>both</b>, not for one alone.</li>
+      <li>It can borrow from an art movement, an artist's style, a science, a technology. But <b>originality lives here</b>.</li>
+      <li>Others may share your Dream and Design — <b>your Theory and Tool make you different.</b> Back it with evidence and examples.</li>
+    </ul>
+  </section>
+
+  <!-- 7 DESIGN -->
+  <section class="slide s-design">
+    <span class="tag">D · Design</span>
+    <h2>The outcome.</h2>
+    <ul class="pts">
+      <li>The example that embodies your concept — from the <b>intangible</b> (an idea) to the <b>tangible</b> (a site, a film, a product).</li>
+      <li>Many designs are usually needed before one converges. <b>Theme → Concept → Result.</b></li>
+      <li>Without a strong Dream and Theory, a Design becomes a <b>house built on sand</b>.</li>
+    </ul>
+  </section>
+
+  <!-- 8 TOOL -->
+  <section class="slide s-tool">
+    <span class="tag">T · Tool</span>
+    <h2>How you make it.</h2>
+    <ul class="pts">
+      <li>A device used to produce an outcome but <b>not consumed</b> in the process — software, hardware, materials, <b>methodology</b>.</li>
+      <li>The tool can change the Design — even the Theory. Core Tool + design-specific tools.</li>
+      <li>What matters is not the tool itself but the <b>method</b>: <span class="mono" style="font-family:'JetBrains Mono';color:var(--gold)">Conventional → Computational</span>. Your style, coded.</li>
+    </ul>
+  </section>
+
+  <!-- 9 STABLE vs CHANGEABLE -->
+  <section class="slide">
+    <div class="eyebrow">What stays · What moves</div>
+    <svg viewBox="0 0 1000 250" width="1000">
+      <rect x="40" y="55" width="330" height="140" rx="16" fill="rgba(232,200,77,.06)" stroke="#7a6f3a" stroke-width="2"/>
+      <text x="205" y="48" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#9a8f5a" letter-spacing="2">STABLE · YOUR ANCHOR</text>
+      <text x="125" y="135" text-anchor="middle" font-family="Fraunces" font-size="26" fill="#e8c84d">Dream</text>
+      <text x="285" y="135" text-anchor="middle" font-family="Fraunces" font-size="26" fill="#a78bfa">Theory</text>
+      <rect x="630" y="55" width="330" height="140" rx="16" fill="rgba(201,100,66,.06)" stroke="#7a4a38" stroke-width="2" stroke-dasharray="7 6"/>
+      <text x="795" y="48" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#9a6a52" letter-spacing="2">CHANGEABLE · ADAPTS</text>
+      <text x="715" y="135" text-anchor="middle" font-family="Fraunces" font-size="26" fill="#e88058">Design</text>
+      <text x="880" y="135" text-anchor="middle" font-family="Fraunces" font-size="26" fill="#c96442">Tool</text>
+      <line x1="370" y1="125" x2="628" y2="125" stroke="#555" stroke-width="2" marker-end="url(#ar)"/>
+      <text x="500" y="115" text-anchor="middle" font-family="Inter" font-size="13" fill="#777">client · budget · culture · tech trend</text>
+    </svg>
+    <div class="flow-cap"><b style="color:#fff">Dream &amp; Theory</b> stay constant — they are who you are. <b style="color:#fff">Design &amp; Tool</b> change with the client, budget, culture, and shifting technology.</div>
+  </section>
+
+  <!-- 10 LOGICAL COMPOSITION -->
+  <section class="slide hero-bg">
+    <div class="eyebrow">The Core</div>
+    <div class="quote">The important thing is to make a <span style="color:var(--accent)">logic</span><br>by <span style="color:var(--gold)">linking</span> the dream, theory, design, and tool.</div>
+  </section>
+
+  <!-- 11 CYCLE -->
+  <section class="slide">
+    <div class="eyebrow">It is a wheel</div>
+    <div style="display:flex;gap:50px;align-items:center;flex-wrap:wrap">
+    <svg viewBox="0 0 260 260" width="260" height="260">
+      <defs><marker id="ar2" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c96442"/></marker></defs>
+      <circle cx="130" cy="130" r="92" fill="none" stroke="#2a2a2a" stroke-width="14"/>
+      <path d="M130 38 A92 92 0 0 1 222 130" fill="none" stroke="#c96442" stroke-width="3" marker-end="url(#ar2)"/>
+      <path d="M222 130 A92 92 0 0 1 130 222" fill="none" stroke="#c96442" stroke-width="3" marker-end="url(#ar2)"/>
+      <path d="M130 222 A92 92 0 0 1 38 130" fill="none" stroke="#c96442" stroke-width="3" marker-end="url(#ar2)"/>
+      <path d="M38 130 A92 92 0 0 1 130 38" fill="none" stroke="#c96442" stroke-width="3" marker-end="url(#ar2)"/>
+      <g font-family="Fraunces" font-size="17" text-anchor="middle">
+        <text x="130" y="34" fill="#e8c84d">Dream</text>
+        <text x="234" y="135" fill="#a78bfa">Theory</text>
+        <text x="130" y="240" fill="#e88058">Design</text>
+        <text x="26" y="135" fill="#c96442">Tool</text>
+      </g>
+    </svg>
+    <div style="flex:1;min-width:280px">
+      <h2 style="margin-bottom:18px">Keep turning.</h2>
+      <ul class="pts">
+        <li>Each element can be a whole study on its own — but they <b>connect</b>.</li>
+        <li>Run one full loop, get feedback, and the result feeds your <b>next Dream</b>.</li>
+        <li>The model itself has value — for a project, a business, or research.</li>
+      </ul>
+    </div>
+    </div>
+  </section>
+
+  <!-- 12 APPLY -->
+  <section class="slide">
+    <div class="eyebrow">Your Final Project</div>
+    <h2>Map your e-business onto DTDT.</h2>
+    <div class="cols">
+      <div class="card" style="border-color:#7a6f3a"><h3 style="color:var(--c-dream)">Dream</h3><p>What do you want to bring into the world? One sentence, truly yours.</p></div>
+      <div class="card" style="border-color:#5a4a7a"><h3 style="color:var(--c-theory)">Theory</h3><p>Why should it exist? The foundation, precedent, and timing behind it.</p></div>
+      <div class="card" style="border-color:#7a5240"><h3 style="color:var(--c-design)">Design</h3><p>Your site, your film, your product — the concept made visible.</p></div>
+      <div class="card" style="border-color:#7a4a38"><h3 style="color:var(--c-tool)">Tool</h3><p>Lovable, Figma, Hailuo, Genspark, Claude — whatever builds it.</p></div>
+    </div>
+  </section>
+
+  <!-- 13 DTDT TALK level -->
+  <section class="slide">
+    <div class="eyebrow">DTDT Talk · Presenting</div>
+    <h2>Speak at the audience's level.</h2>
+    <div class="lead">If the audience does not understand, it is <span class="em">not because they are slow</span>. A selfish talk demands they keep up. A good talk is <span style="color:#fff">designed so even a seven-year-old can follow.</span></div>
+  </section>
+
+  <!-- 14 DTDT TALK 5 moves -->
+  <section class="slide">
+    <div class="eyebrow">DTDT Talk · 4 minutes</div>
+    <h2>Five moves of a short speech.</h2>
+    <ul class="pts">
+      <li><b>Define yourself</b> — jot down key words for who you are, your strengths and skills.</li>
+      <li><b>Hook your listener</b> — not "I graduated in CS," but "I spent four years preparing to redefine how we use a computer."</li>
+      <li><b>Less is more</b> — get to the point. Convey your message in as few words as possible.</li>
+      <li><b>Explain in layman's terms</b> — don't impress with jargon.</li>
+      <li><b>Practice, practice, practice</b> — in front of the mirror; polish your body language.</li>
+    </ul>
+  </section>
+
+  <!-- 15 EVALUATION -->
+  <section class="slide">
+    <div class="eyebrow">How you are evaluated</div>
+    <h2>Peer review — two axes.</h2>
+    <div class="lead" style="margin-bottom:22px">On presentation day, every classmate signs in and rates each speaker. The professor rates everyone too. Each card gets two star ratings plus one line of feedback.</div>
+    <div class="kpi">
+      <span class="axis t">★ Theory — foundation · precedent · timing</span>
+      <span class="axis d">★ Design — visual + clarity</span>
+    </div>
+    <div class="sub">Dream and Tool are personal and contextual — they are <b style="color:#cfcfcf">not scored</b>. You cannot rate your own card. Ratings and comments are visible only to the professor.</div>
+  </section>
+
+  <!-- 16 WEBSITE -->
+  <section class="slide">
+    <div class="eyebrow">How to use the website</div>
+    <h2>Your dream goes live on the board.</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="b"><b>Open your board.</b> <span class="mono">negalab.github.io/dream-to-website</span> (Web Design) · <span class="mono">/dream-to-ai</span> (Generative AI). Anyone can view it.</div></div>
+      <div class="step"><div class="n">2</div><div class="b"><b>Sign in</b> — top-right button. Enter your <b>student ID + email</b> (first time locks your email to your ID).</div></div>
+      <div class="step"><div class="n">3</div><div class="b"><b>Rate your classmates</b> — stars for Theory + Design, one line of feedback, Submit. You can update anytime.</div></div>
+      <div class="step"><div class="n">4</div><div class="b"><b>View progress</b> — the button on your own card opens your assignment record + the professor's comments, week by week.</div></div>
+    </div>
+  </section>
+
+  <!-- 17 CLOSING -->
+  <section class="slide hero-bg">
+    <div class="quote" style="text-align:left">"Dream a precious dream, study many theories,<br>and <span style="color:var(--gold)">design something meaningful</span> with the right tool."
+      <span class="src">소중한 꿈을 꾸고, 다양한 이론을 공부하고, 적합한 도구로 의미 있게 디자인한다</span>
+    </div>
+    <div style="margin-top:54px;font-family:Fraunces;font-style:italic;font-size:clamp(22px,3vw,38px);color:var(--accent)">What is your dream?</div>
+  </section>
+
+</div>
+
+<div class="progress" id="prog"></div>
+<div class="nav"><b id="cur">1</b> / <span id="tot">17</span></div>
+<div class="hint">← → arrows · space · click</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0; const tot=slides.length;
+  document.getElementById('tot').textContent=tot;
+  function show(n){
+    i=Math.max(0,Math.min(tot-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('cur').textContent=i+1;
+    document.getElementById('prog').style.width=((i+1)/tot*100)+'%';
+  }
+  function next(){show(i+1)} function prev(){show(i-1)}
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(tot-1);}
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    (e.clientX < window.innerWidth*0.28) ? prev() : next();
+  });
+  show(0);
+</script>
+</body></html>
