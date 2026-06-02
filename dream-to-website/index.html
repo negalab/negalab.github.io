@@ -428,6 +428,40 @@
       margin-bottom: 16px;
     }
 
+    
+    /* Per-row form button in progress popup */
+    .prow { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+    .prow b { color: #c96442; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; min-width: 28px; font-family: 'JetBrains Mono', monospace; }
+    .prow > span, .prow > b + span { flex-grow: 1; font-size: 13px; color: #1a1a1a; line-height: 1.5; }
+    .prow.miss > span { color: #cbd5e1; font-style: italic; }
+    .wf-btn {
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      background: rgba(201, 100, 66, 0.08);
+      color: #c96442;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .wf-btn:hover {
+      background: #c96442;
+      color: #fff;
+    }
+    a.pw {
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    a.pw:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(201, 100, 66, 0.2);
+    }
+
     /* ── FOOTER ────────────────────────────────── */
     .footer {
       padding: 80px 6vw 60px;
@@ -1330,6 +1364,7 @@
       renderProgressPopup(prog, !!me.is_admin);
     }
     function escp(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+    const WEEK_FORMS = {"1": "https://docs.google.com/forms/d/1Fr4fb5Isw39Jh3oO_xWs9OXBcQMqZ2JDX3JjbvJFs5Q/viewform", "2": "https://docs.google.com/forms/d/1w9K94c2-WKR5x9L9qFO7J1LFpMiX6vc0dWE4pfJ99_I/viewform", "3": "https://docs.google.com/forms/d/1OgPTK9914zZb4YWpXs_4rXzT1SRvGU57Wb0tGF59TiE/viewform", "4": "https://docs.google.com/forms/d/1rdnF0yutKfgD-iLLMo-ECSoKwrB1pFd4ILW2Xd74V8w/viewform", "5": "https://docs.google.com/forms/d/1DLG8C21Ss_41bSsXh1fyVUrvTtBBXLi_k7sbnCXoK7g/viewform", "6": "https://docs.google.com/forms/d/1a3dRUiNArDwh-7Jo6Qn9XyMYRLEhSbDBTPI2TtPvXpA/viewform", "7": "https://docs.google.com/forms/d/1RmaSjD2mufMTxuHgnKIIU11xfEkBN7LLGpvIpCJC6-4/viewform", "8": "https://docs.google.com/forms/d/1ejQqq-lX_h_ou7wz0k4b7fL_TuVbvJ3_T2BecJSm63U/viewform", "9": "https://docs.google.com/forms/d/1tk1tjn1dGod8uPjexcqnkyCySkJhn-JJSlFgBlykkUM/viewform", "10": "https://docs.google.com/forms/d/1fKEhuaBnm47EOKiD4GSvuHvijkG6bO_U2nfd7_Vu27g/viewform", "11": "https://docs.google.com/forms/d/1JX5jKp2uR5cn2Tr6-QkeYh8eTwky2I3La5m2GuhEFHY/viewform", "12": "https://docs.google.com/forms/d/1QhtJb9PZ0jZzNw9o5GBQt5yIWaHgP8_eS55gIzho7MI/viewform", "14": "https://docs.google.com/forms/d/1PwRkVCCvI08aasBAL_snsIcbWY2QLcjvdDgX3FBmE0w/viewform"};
     function renderProgressPopup(p, editable){
       const weeks=p.weeks||[], done=weeks.filter(w=>w.submitted==1).length, tot=weeks.length;
       const mtx=weeks.map(w=>`<div class="pw ${w.submitted==1?'on':'off'}">W${w.week}<br>${w.submitted==1?'✓':'·'}</div>`).join("");
@@ -1337,7 +1372,9 @@
       const ovBody=editable?`<span contenteditable="true" data-t="${p.student_id}" data-w="" onblur="saveProgressComment(this)">${escp(ov)||"— add a comment"}</span>`:(escp(ov)||"No comment yet.");
       const rows=weeks.map(w=>{ const c=w.comment||"", miss=w.submitted!=1;
         const body=editable?`<span contenteditable="true" data-t="${p.student_id}" data-w="${w.week}" onblur="saveProgressComment(this)">${escp(c)||"—"}</span>`:(escp(c)||"—");
-        return `<div class="prow ${miss?'miss':''}"><b>W${w.week}</b>${body}</div>`; }).join("");
+        const formUrl = WEEK_FORMS[w.week];
+        const formBtn = formUrl ? `<a class="wf-btn" href="${formUrl}" target="_blank" rel="noopener" title="Open W${w.week} form">Form ↗</a>` : '';
+        return `<div class="prow ${miss?'miss':''}"><b>W${w.week}</b>${body}${formBtn}</div>`; }).join("");
       document.getElementById("progressBody").innerHTML=
         `<div class="ph"><div class="pn">${escp(p.name||p.student_id)}</div><div class="pr">${done}/${tot} weeks</div></div>
          <div class="pmtx">${mtx}</div><div class="pov"><div class="t">Overall</div>${ovBody}</div><div>${rows}</div>`;
