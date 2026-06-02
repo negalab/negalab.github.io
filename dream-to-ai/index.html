@@ -428,105 +428,39 @@
       border-radius: 100px;
       margin-bottom: 16px;
     }
-    /* ── ASSIGNMENTS SECTION ───────────────────── */
-    .assignments {
-      background: var(--bg-mid);
-      padding: 100px 6vw;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-    .assignments-header {
-      max-width: 1100px;
-      margin: 0 auto 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-    .assignments-eyebrow {
-      font-size: 12px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--accent-bright);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .assignments-title {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(36px, 4.5vw, 64px);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: #fff;
-    }
-    .assignments-sub {
-      font-size: 14px;
-      color: var(--ink-dim);
-      max-width: 420px;
-      line-height: 1.55;
-    }
-    .assignments-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
-    }
-    .assign-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 20px 22px 18px;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-      position: relative;
-    }
-    .assign-card:hover {
-      background: rgba(201, 100, 66, 0.08);
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-    .assign-card .week-tag {
+    
+    /* Per-row form button in progress popup */
+    .prow { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+    .prow b { color: #c96442; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; min-width: 28px; font-family: 'JetBrains Mono', monospace; }
+    .prow > span, .prow > b + span { flex-grow: 1; font-size: 13px; color: #1a1a1a; line-height: 1.5; }
+    .prow.miss > span { color: #cbd5e1; font-style: italic; }
+    .wf-btn {
+      flex-shrink: 0;
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--accent-bright);
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      background: rgba(201, 100, 66, 0.08);
+      color: #c96442;
+      border-radius: 100px;
+      text-decoration: none;
       font-weight: 600;
-      text-transform: uppercase;
+      transition: all 0.2s;
+      white-space: nowrap;
     }
-    .assign-card .assign-title {
-      font-family: 'Fraunces', serif;
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.35;
+    .wf-btn:hover {
+      background: #c96442;
       color: #fff;
-      letter-spacing: -0.005em;
-      flex-grow: 1;
     }
-    .assign-card .assign-cta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 6px;
-      padding-top: 12px;
-      border-top: 1px dashed rgba(255, 255, 255, 0.08);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
+    /* Week pill (top matrix) as clickable link */
+    a.pw {
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
-    .assign-card .assign-cta .arrow {
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--accent);
-      transition: transform 0.25s;
-    }
-    .assign-card:hover .assign-cta .arrow {
-      transform: translateX(4px);
+    a.pw:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(201, 100, 66, 0.2);
     }
 
     /* ── FOOTER ────────────────────────────────── */
@@ -1108,69 +1042,6 @@
 
     </div>
   </section>
-  <!-- ══════════ WEEKLY ASSIGNMENTS ══════════ -->
-  <section class="assignments">
-    <div class="assignments-header">
-      <div>
-        <div class="assignments-eyebrow">Generative AI &amp; E-Business · Spring 2026</div>
-        <h2 class="assignments-title">Weekly Assignments</h2>
-      </div>
-      <p class="assignments-sub">All 10 weekly submission forms in one place. Sign in to each form with your school email.</p>
-    </div>
-    <div class="assignments-grid">
-      <a class="assign-card" href="https://docs.google.com/forms/d/1kIODR7wtr36g0v5FU8DbnDViOHAjD8k09DIVX64LY6s/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 03</div>
-        <div class="assign-title">What the World Watches — YouTube Culture Map</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/1LlVPznQLbIxSIbp-FZby2mzkWJOJxwEt-eSKnx7BdE4/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 04</div>
-        <div class="assign-title">Your First Claude Artifact</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/163c5_gaywRRaBGoAqDPHIE5zqT7q4Y_kKzPJB0vghWI/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 05</div>
-        <div class="assign-title">Three Ways to Work with Claude</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/1UGmftfmYkiBW0abOUIHrHSe8SiZmo0kdUNX5pCEcPeg/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 06</div>
-        <div class="assign-title">Build Your First Obsidian Vault</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/1rDEeM_jDHKBOSfbUt00QNhLIrmCkxMbM9sfiib1HskU/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 07</div>
-        <div class="assign-title">Midterm - My AI Portfolio</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/1ST2mExqwyRtCBxIckRPsI51LeWAnhj83Htqf52gm15w/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 08</div>
-        <div class="assign-title">Midterm — Now It Is Your Turn</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/1DrzWkVo_eHEsAdRBj7zhIxISntuDObdVeK7Y-Pl9ouk/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 09</div>
-        <div class="assign-title">Your Story as Slides (Gamma)</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/1AWB2J9BivWt3ZkwTCbD9QYkksx2nJCVbhhGyh-I1Sa0/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 10</div>
-        <div class="assign-title">You On Screen (HeyGen)</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/1wEXG7L4f-u_9TQckgTriPrkSiQ2FidJxGwlifKcOA-s/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 11</div>
-        <div class="assign-title">Your Dream, Made Real (Hailuo)</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-      <a class="assign-card" href="https://docs.google.com/forms/d/11SMP-mPAXnbFk940IHHm_-kDV8mcyjShstXnGeh_6l0/viewform" target="_blank" rel="noopener">
-        <div class="week-tag">Week 12</div>
-        <div class="assign-title">Hire an Agent (Genspark) · DTDT Series 2/4: THEORY</div>
-        <div class="assign-cta"><span>Open form</span><span class="arrow">→</span></div>
-      </a>
-    </div>
-  </section>
-
   <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
     <div class="footer-inner">
@@ -1534,14 +1405,23 @@
       renderProgressPopup(prog, !!me.is_admin);
     }
     function escp(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+    const WEEK_FORMS = {"3": "https://docs.google.com/forms/d/1kIODR7wtr36g0v5FU8DbnDViOHAjD8k09DIVX64LY6s/viewform", "4": "https://docs.google.com/forms/d/1LlVPznQLbIxSIbp-FZby2mzkWJOJxwEt-eSKnx7BdE4/viewform", "5": "https://docs.google.com/forms/d/163c5_gaywRRaBGoAqDPHIE5zqT7q4Y_kKzPJB0vghWI/viewform", "6": "https://docs.google.com/forms/d/1UGmftfmYkiBW0abOUIHrHSe8SiZmo0kdUNX5pCEcPeg/viewform", "7": "https://docs.google.com/forms/d/1rDEeM_jDHKBOSfbUt00QNhLIrmCkxMbM9sfiib1HskU/viewform", "8": "https://docs.google.com/forms/d/1ST2mExqwyRtCBxIckRPsI51LeWAnhj83Htqf52gm15w/viewform", "9": "https://docs.google.com/forms/d/1DrzWkVo_eHEsAdRBj7zhIxISntuDObdVeK7Y-Pl9ouk/viewform", "10": "https://docs.google.com/forms/d/1AWB2J9BivWt3ZkwTCbD9QYkksx2nJCVbhhGyh-I1Sa0/viewform", "11": "https://docs.google.com/forms/d/1wEXG7L4f-u_9TQckgTriPrkSiQ2FidJxGwlifKcOA-s/viewform", "12": "https://docs.google.com/forms/d/11SMP-mPAXnbFk940IHHm_-kDV8mcyjShstXnGeh_6l0/viewform"};
     function renderProgressPopup(p, editable){
       const weeks=p.weeks||[], done=weeks.filter(w=>w.submitted==1).length, tot=weeks.length;
-      const mtx=weeks.map(w=>`<div class="pw ${w.submitted==1?'on':'off'}">W${w.week}<br>${w.submitted==1?'✓':'·'}</div>`).join("");
+      const mtx=weeks.map(w=>{
+          const formUrl = WEEK_FORMS[w.week];
+          const inner = `W${w.week}<br>${w.submitted==1?'✓':'·'}`;
+          return formUrl
+            ? `<a class="pw ${w.submitted==1?'on':'off'}" href="${formUrl}" target="_blank" rel="noopener" title="Open W${w.week} form">${inner}</a>`
+            : `<div class="pw ${w.submitted==1?'on':'off'}">${inner}</div>`;
+        }).join("");
       const ov=p.overall_comment||"";
       const ovBody=editable?`<span contenteditable="true" data-t="${p.student_id}" data-w="" onblur="saveProgressComment(this)">${escp(ov)||"— add a comment"}</span>`:(escp(ov)||"No comment yet.");
       const rows=weeks.map(w=>{ const c=w.comment||"", miss=w.submitted!=1;
         const body=editable?`<span contenteditable="true" data-t="${p.student_id}" data-w="${w.week}" onblur="saveProgressComment(this)">${escp(c)||"—"}</span>`:(escp(c)||"—");
-        return `<div class="prow ${miss?'miss':''}"><b>W${w.week}</b>${body}</div>`; }).join("");
+        const formUrl = WEEK_FORMS[w.week];
+        const formBtn = formUrl ? `<a class="wf-btn" href="${formUrl}" target="_blank" rel="noopener" title="Open W${w.week} form">Form ↗</a>` : '';
+        return `<div class="prow ${miss?'miss':''}"><b>W${w.week}</b>${body}${formBtn}</div>`; }).join("");
       document.getElementById("progressBody").innerHTML=
         `<div class="ph"><div class="pn">${escp(p.name||p.student_id)}</div><div class="pr">${done}/${tot} weeks</div></div>
          <div class="pmtx">${mtx}</div><div class="pov"><div class="t">Overall</div>${ovBody}</div><div>${rows}</div>`;
