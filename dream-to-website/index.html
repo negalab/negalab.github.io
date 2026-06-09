@@ -1069,7 +1069,13 @@
     function injectRatingWidgets() {
       const cards = document.querySelectorAll(".speakers-grid .card");
       cards.forEach((card, idx) => {
-        const talkNum = String(idx + 1).padStart(2, "0");
+        // Derive cardId from .card-num text (preserves identity across reorder)
+        const numEl = card.querySelector(".card-num");
+        let talkNum = String(idx + 1).padStart(2, "0");
+        if (numEl) {
+          const m = numEl.textContent.match(/(\d+)/);
+          if (m) talkNum = m[1].padStart(2, "0");
+        }
         const cardId = `talk-${talkNum}`;
         card.dataset.cardId = cardId;
 
