@@ -1080,7 +1080,6 @@
         card.dataset.cardId = cardId;
 
         // Avg badges (two: Theory + Design) next to card-num
-        const numEl = card.querySelector(".card-num");
         if (numEl && !numEl.querySelector(".avg-badges")) {
           const wrap = document.createElement("span");
           wrap.className = "avg-badges";
