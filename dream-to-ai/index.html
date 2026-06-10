@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dream to AI · SMIT Generative AI & E-Business · Spring 2026</title>
-  <meta name="description" content="From a sentence to a film — 36 students at SMIT (DMC, Seoul) turning their dreams into AI films. Part of the Dream Conference series.">
+  <meta name="description" content="From a sentence to a film — students at SMIT (DMC, Seoul) turning their dreams into AI films. Part of the Dream Conference series.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -272,6 +272,20 @@
       gap: 28px;
     }
 
+    
+    /* Avatar thumbnail */
+    .card-avatar {
+      width: 100%;
+      max-width: 180px;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f5f1e8, #faf8f3);
+      object-fit: cover;
+      margin: 0 0 18px 0;
+      display: block;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
     .card {
       background: var(--bg-card);
       color: var(--ink-card);
@@ -413,6 +427,40 @@
       text-transform: uppercase;
       border-radius: 100px;
       margin-bottom: 16px;
+    }
+    
+    /* Per-row form button in progress popup */
+    .prow { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+    .prow b { color: #c96442; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; min-width: 28px; font-family: 'JetBrains Mono', monospace; }
+    .prow > span, .prow > b + span { flex-grow: 1; font-size: 13px; color: #1a1a1a; line-height: 1.5; }
+    .prow.miss > span { color: #cbd5e1; font-style: italic; }
+    .wf-btn {
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      background: rgba(201, 100, 66, 0.08);
+      color: #c96442;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .wf-btn:hover {
+      background: #c96442;
+      color: #fff;
+    }
+    /* Week pill (top matrix) as clickable link */
+    a.pw {
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    a.pw:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(201, 100, 66, 0.2);
     }
 
     /* ── FOOTER ────────────────────────────────── */
@@ -561,8 +609,6 @@
     .prog-modal [contenteditable]:hover { background: #f6f6f6; }
     .prog-modal [contenteditable]:focus { background: #faf3f0; box-shadow: 0 0 0 1px #c96442; }
     .prog-close { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 24px; color: #999; cursor: pointer; line-height: 1; }
-      .card-links{display:flex;flex-direction:column;gap:7px;margin-top:12px}
-    .card-links .card-cta{margin-top:0}
   </style>
 </head>
 <body>
@@ -581,7 +627,7 @@
         <span class="em">to AI</span>
       </h1>
       <p class="hero-sub">
-        All 36 students. 36 dreams. One classroom at DMC, Seoul where the question was not <em>"what tool will you use?"</em> but <em>"what dream do you want to put on screen?"</em>
+        Every student, every dream. One classroom at DMC, Seoul where the question was not <em>"what tool will you use?"</em> but <em>"what dream do you want to put on screen?"</em>
       </p>
       <div class="hero-meta">
         <div>
@@ -619,6 +665,18 @@
     </div>
   </section>
 
+  <!-- ══════════ DTDT LECTURE VIDEO ══════════ -->
+  <section class="intro-band" style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);">
+    <div class="intro-inner" style="max-width:920px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#c96442;margin-bottom:14px;">Watch First · 7 min</p>
+      <h3 style="font-family:Fraunces,serif;font-weight:700;font-size:clamp(24px,3vw,36px);color:#fff;margin-bottom:16px;line-height:1.2;">DTDT — Dream · Theory · Design · Tool</h3>
+      <p style="color:#bbb;font-size:15px;line-height:1.6;margin-bottom:24px;">A way of thinking I have used for many years. Four words. Not steps — four sides of a single wheel. Hear it before you prepare.</p>
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,.1);">
+        <iframe src="https://www.youtube.com/embed/CZVeU4bs2zA" title="DTDT Lecture" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- ══════════ SPEAKERS ══════════ -->
   <section class="speakers">
     <div class="speakers-header">
@@ -626,458 +684,535 @@
         <div class="speakers-eyebrow">The Lineup</div>
         <h2 class="speakers-title">Speakers</h2>
       </div>
-      <div class="speakers-count">
-        <strong>36</strong>
-        dreams on the program
+      <div class="speakers-count" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8a8a8a;">
+        the lineup
       </div>
     </div>
 
     <div class="speakers-grid">
 
-      <!-- FILM 01 — Sevinch -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 01 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Sevinch</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to travel through time and experience different eras of human history with my own eyes. I want to explore ancient civilizations, witness the rise of great cultures, and see what the future of humanity might look like. Through this project, I imagined myself traveling from Ancient Egypt and Baghdad to Silk Road Samarkand, Joseon Korea, Belle Époque Paris, New York in the 1920s, futurist</p>
-        <div class="card-links">
-        <a href="https://drive.google.com/file/d/1iG2TWxNGygRIfD8bH2bnZg7WZpKkFtAT/view?usp=drivesdk" class="card-cta" target="_blank" rel="noopener">1 · Drive <span class="arrow">→</span></a>
-        </div>
-      </article>
-
-      <!-- FILM 02 — Javkhlan -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 02 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Javkhlan</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">"Mongolia built the world's biggest empire on horseback. Now I'm building its first digital one."</p>
-      </article>
-
-      <!-- FILM 03 — Gulnoza -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 03 <span class="total">of 36</span></div>
+      <!-- Film 03 — Gulnoza (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620015.png" alt="Gulnoza" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 03 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Gulnoza</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I want to build a bridge between humans and the animals they love. Every day, millions of pet owners look into the eyes of their dog, cat, horse, or cow and wonder — what are you feeling right now? Are you happy? In pain? Scared? Animals communicate constantly through sounds, body posture, and behavior, but most people simply don't have the knowledge to understand them. My dream is to change that.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/AI-that-speaks-your-pets-language-1rkc2i1nwt80565" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"I want to build a bridge between humans and the animals they love. Every day, millions of pet owners look into the eyes of their dog, cat, horse, or cow and wonder — what are you feeling right now? Are you happy? In pain? Scared? Animals communicate constantly through sounds, body posture, and behav"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/AI-that-speaks-your-pets-language-1rkc2i1nwt80565" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 04 — Elyorbek -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 04 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Elyorbek</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I want to transform how we experience history by bringing ancient cultural sites to life through interactive, immersive AI visualizations, helping modern people reconnect with the beautiful simplicity of the past.</p>
-        <div class="card-links">
-        <a href="https://drive.google.com/file/d/1_C0Rn_MprHldseJydR6AelOQ-lBurIXK/view?usp=sharing" class="card-cta" target="_blank" rel="noopener">1 · Drive <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 05 — Sitorakhon -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 05 <span class="total">of 36</span></div>
+
+
+
+
+      <!-- Film 05 — Sitorakhon (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620017.png" alt="Sitorakhon" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 05 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Sitorakhon</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I want to build a platform that keeps immigrant children’s mother tongues alive. When families migrate, children lose their first language word by word — not because they choose to, but because the world stops speaking it. My dream is The Living Tongue: an AI platform where children watch nature videos and hear their heritage language tied to what they see. Five minutes a day. Emotionally anchored</p>
-        <div class="card-links">
-        <a href="https://claude.ai/share/a0bf504e-f100-47b5-a733-d584453d7a0e" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        <a href="https://gamma.app/docs/Untitled-2a44jnk5zt7pccp" class="card-cta" target="_blank" rel="noopener">2 · Gamma <span class="arrow">→</span></a>
-        <a href="https://app.heygen.com/videos/c2c4d3ee86ec485a9c9fd9aefacafc91" class="card-cta" target="_blank" rel="noopener">3 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"I want to build a platform that keeps immigrant children’s mother tongues alive. When families migrate, children lose their first language word by word — not because they choose to, but because the world stops speaking it. My dream is The Living Tongue: an AI platform where children watch nature vid"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://claude.ai/share/a0bf504e-f100-47b5-a733-d584453d7a0e" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 06 — Yubraj -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 06 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 06 — Yubraj (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620018.png" alt="Yubraj" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 06 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Yubraj</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to make a movie that teaches the importance of nature. I want to tell a story that helps people see nature as something we are deeply connected to, not separate from our lives. Through simple storytelling, I hope to show how natural cycles shape everything around us and why they deserve our respect and awareness.</p>
-        <div class="card-links">
-        <a href="https://app.heygen.com/videos/the-himalayan-haven-0cee36e98e5741be8ceaa4775d635cf7" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to make a movie that teaches the importance of nature. I want to tell a story that helps people see nature as something we are deeply connected to, not separate from our lives. Through simple storytelling, I hope to show how natural cycles shape everything around us and why they deserve "<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://app.heygen.com/videos/the-himalayan-haven-0cee36e98e5741be8ceaa4775d635cf7" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 07 — Rasit Kumar -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 07 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 07 — Rasit Kumar (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620019.png" alt="Rasit Kumar" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 07 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Rasit Kumar</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to create a Korean-friendly trekking and expedition company in Nepal that helps Korean travelers explore the Himalayas easily, safely, and comfortably.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Korean-Friendly-Trekking-Expedition-Company-in-Nepal-kf8vpgm8ph4ra4i" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to create a Korean-friendly trekking and expedition company in Nepal that helps Korean travelers explore the Himalayas easily, safely, and comfortably."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/Korean-Friendly-Trekking-Expedition-Company-in-Nepal-kf8vpgm8ph4ra4i" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 08 — Ashmita -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 08 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Ashmita</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to become a fashion designer and introduce Korean-inspired street fashion to Nepal. I want to create affordable, trendy, and high-quality clothing that combines Korean fashion styles with Nepali culture and lifestyle. Through my brand, I hope to inspire confidence, creativity, and self-expression among young people while making modern fashion accessible to everyone.</p>
-        <div class="card-links">
-        <a href="https://docs.google.com/presentation/d/1nlNIwGvXSVU5EPP-3G8UA7aUBJ7IIwXE/edit?usp=drivesdk&amp;ouid=104586677705824495784&amp;rtpof=true&amp;sd=true" class="card-cta" target="_blank" rel="noopener">1 · Slides <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 09 — Pokiza -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 09 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Pokiza</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">Every parent deserves to know if their child's speech is developing on track. "First Words AI" is a multilingual AI-powered tool that checks a child's speech milestones by age and gives personalized advice — available in Uzbek, Korean, English, and Russian, so any parent in the world can use it.</p>
-        <div class="card-links">
-        <a href="https://claude.ai/share/02d2df8e-6908-4f07-8fe3-a290e3485303" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        <a href="https://claude.ai/public/artifacts/39782821-060f-4f27-ad9a-e7bf2cb4f6f1" class="card-cta" target="_blank" rel="noopener">2 · Link <span class="arrow">→</span></a>
-        <a href="https://ap.wps.com/cms/docs/d/cbTakksPixirwLwQ?sa=601.1074" class="card-cta" target="_blank" rel="noopener">3 · Link <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 10 — Asia -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 10 <span class="total">of 36</span></div>
+
+
+
+      <!-- Film 10 — Asia (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620024.png" alt="Asia" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 10 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Asia</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I want to build a free AI-powered study abroad consultant that any student — no matter where they are from — can use to find the right university, in the right country, for the right cost, and then actually apply without paying a single penny to anyone. You upload your documents, tell the app your dream, and it matches you to programs you can get into and afford. Then you press one button and it a</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Why-Im-Building-the-Consultant-Nobody-Could-Afford-is4reqypfrz1lqn" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        <a href="https://claude.ai/public/artifacts/804142ac-c393-480e-a673-d163591389cb" class="card-cta" target="_blank" rel="noopener">2 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"I want to build a free AI-powered study abroad consultant that any student — no matter where they are from — can use to find the right university, in the right country, for the right cost, and then actually apply without paying a single penny to anyone. You upload your documents, tell the app your d"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://claude.ai/public/artifacts/804142ac-c393-480e-a673-d163591389cb" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 11 — Khusnigul -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 11 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 11 — Khusnigul (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620025.png" alt="Khusnigul" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 11 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Khusnigul</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to create a next-generation global digital platform that breaks the boundaries of traditional business through AI automation and advanced analytics. Starting from South Korea, I want to establish a futuristic corporate empire with active branches in worldwide economic hubs like New York, London, and Tokyo, showing how technology can seamlessly connect global operations.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Untitled-0y2gl0x00fspuf1" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        <a href="https://gamma.app/docs/Untitled-r32z7wf19qe1prb" class="card-cta" target="_blank" rel="noopener">2 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to create a next-generation global digital platform that breaks the boundaries of traditional business through AI automation and advanced analytics. Starting from South Korea, I want to establish a futuristic corporate empire with active branches in worldwide economic hubs like New York,"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/Untitled-r32z7wf19qe1prb" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 12 — Asilbek (awaiting) -->
-      <article class="card" style="opacity:.6">
-        <div class="card-num">Film <span class="slash">/</span> 12 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Asilbek</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream" style="font-style:italic;color:#94a3b8">— No submission yet.</p>
-      </article>
 
-      <!-- FILM 13 — Sarbon (awaiting) -->
-      <article class="card" style="opacity:.6">
-        <div class="card-num">Film <span class="slash">/</span> 13 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Sarbon</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream" style="font-style:italic;color:#94a3b8">— No submission yet.</p>
-      </article>
 
-      <!-- FILM 14 — Sherbek -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 14 <span class="total">of 36</span></div>
+
+
+
+      <!-- Film 14 — Sherbek (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620028.png" alt="Sherbek" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 14 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Sherbek</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to travel to space. I want to see new worlds with purple oceans and big planets. I want to show this beauty to everyone.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/The-Purple-Ocean-Visualizing-an-Alien-World-6jyy9ckq07wis57" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        <a href="https://app.pixverse.ai/?detail=video&amp;id=404445853282428&amp;platform=web" class="card-cta" target="_blank" rel="noopener">2 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to travel to space. I want to see new worlds with purple oceans and big planets. I want to show this beauty to everyone."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/The-Purple-Ocean-Visualizing-an-Alien-World-6jyy9ckq07wis57" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 15 — Ziyodbek -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 15 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 15 — Ziyodbek (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620029.png" alt="Ziyodbek" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 15 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Ziyodbek</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">A beauty marketplace built for Central Asia — giving people in Uzbekistan access to the same cosmetics experience that exists in bigger markets.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/A-beauty-marketplace-built-for-Central-Asia-ddcca2ufnmbw7cu" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        <a href="https://niveya-backend-production.up.railway.app/" class="card-cta" target="_blank" rel="noopener">2 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"A beauty marketplace built for Central Asia — giving people in Uzbekistan access to the same cosmetics experience that exists in bigger markets."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/A-beauty-marketplace-built-for-Central-Asia-ddcca2ufnmbw7cu" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 16 — Javlon -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 16 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Javlon</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">Open modern school in my village</p>
-        <div class="card-links">
-        <a href="https://docs.google.com/presentation/d/1Epd9X_pDKjvhwOxTozR47MnRLbI3ARkg/edit?usp=drivesdk&amp;ouid=111647471710088519447&amp;rtpof=true&amp;sd=true" class="card-cta" target="_blank" rel="noopener">1 · Slides <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 17 — Bekzod -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 17 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Bekzod</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">"My dream is simple: everyone deserves an expert in their corner. Right now, a financial advisor costs $400/hr. A lawyer is even more. Most people face their biggest life decisions — buying a home, changing jobs, managing debt — completely alone. That's the problem I want to solve."</p>
-        <div class="card-links">
-        <a href="https://go.wps.com/a8M4ofQQ8WW2" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        <a href="https://sg.docworkspace.com/d/sbTaktwnrm9hMmVB_j0hqb4pij8he7sx6f8" class="card-cta" target="_blank" rel="noopener">2 · Link <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 18 — Umida -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 18 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Umida</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to establish a premium, contemporary Uzbek Halal restaurant in South Korea named "Halal Food." I want to create a trusted culinary hub where Muslim students, expats, and global travelers can enjoy authentic, high-quality Uzbek dishes like Osh, Narin, and Manti with absolute confidence in its halal integrity, while bridging cultures through traditional hospitality</p>
-        <div class="card-links">
-        <a href="https://claude.ai/public/artifacts/d673eff6-75e9-4243-99e6-7967adaee698" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 19 — Md Shahporan -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 19 <span class="total">of 36</span></div>
+
+
+      <!-- Film 19 — Md Shahporan (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620033.png" alt="Md Shahporan" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 19 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Md Shahporan</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I want to be the bridge between knowledge and the people who need it most. My dream isn’t about only my own progress.</p>
-        <div class="card-links">
-        <a href="https://docs.google.com/presentation/d/1dlKFytJMAKLQjwc3tp_OYCVJ4iR1UHX3/edit?usp=drivesdk&amp;ouid=110539731831070413433&amp;rtpof=true&amp;sd=true" class="card-cta" target="_blank" rel="noopener">1 · Slides <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"I want to be the bridge between knowledge and the people who need it most. My dream isn’t about only my own progress."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://docs.google.com/presentation/d/1dlKFytJMAKLQjwc3tp_OYCVJ4iR1UHX3/edit?usp=drivesdk&amp;ouid=110539731831070413433&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 20 — Md Abu -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 20 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 20 — Md Abu (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620034.png" alt="Musa" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 20 </div>
         <div class="card-speaker">Speaker</div>
-        <div class="card-name">Md Abu</div>
+        <div class="card-name">Musa</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I want to create an online platform that helps rural people improve their agriculture. Many farmers face problems such as lack of information, modern technology, and market access. My platform will provide useful farming advice, weather updates, crop management tips, and information about new agricultural technologies.
-The goal is to help farmers increase their productivity and income. It will als</p>
-        <div class="card-links">
-        <a href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        <a href="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400&amp;q=80&#x27;" class="card-cta" target="_blank" rel="noopener">2 · Link <span class="arrow">→</span></a>
-        <a href="http://www.w3.org/2000/svg&#x27;%3E%3Cfilter" class="card-cta" target="_blank" rel="noopener">3 · Link <span class="arrow">→</span></a>
-        <a href="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&amp;q=80&quot;" class="card-cta" target="_blank" rel="noopener">4 · Link <span class="arrow">→</span></a>
-        <a href="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500&amp;q=80&quot;" class="card-cta" target="_blank" rel="noopener">5 · Link <span class="arrow">→</span></a>
-        <a href="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=500&amp;q=80&quot;" class="card-cta" target="_blank" rel="noopener">6 · Link <span class="arrow">→</span></a>
-        <a href="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=500&amp;q=80&quot;" class="card-cta" target="_blank" rel="noopener">7 · Link <span class="arrow">→</span></a>
-        <a href="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=500&amp;q=80&quot;" class="card-cta" target="_blank" rel="noopener">8 · Link <span class="arrow">→</span></a>
-        <a href="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?w=600&amp;q=80&quot;" class="card-cta" target="_blank" rel="noopener">9 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"I want to create an online platform that helps rural people improve their agriculture. Many farmers face problems such as lack of information, modern technology, and market access. My platform will provide useful farming advice, weather updates, crop management tips, and information about new agricu"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://ap.wps.com/cms/module/common/preview/?sid=cbMasiTQfb3nC7eN" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 21 — Akmal -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 21 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Akmal</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">"I want to bring a world where young people from Uzbekistan and Central Asia are not limited by geography when it comes to their biggest dreams. I want to prove that a kid from this part of the world can reach space — and along the way, build tools and platforms that inspire the next generation to dream bigger, learn harder, and use technology to change their lives."</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Akmal-E-Business-Student-Aspiring-Astronaut-jwtp9w862qdqmxq" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 22 — Mian -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 22 <span class="total">of 36</span></div>
+
+
+
+
+      <!-- Film 22 — Mian (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620036.png" alt="Mian" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 22 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Mian</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to create systems that ensure no human sleeps hungry anywhere in the world. I want to bring into the world a future where food is treated as a basic human right and where communities use technology, cooperation, and compassion to support one another.
-
-Even today, millions of people struggle with hunger while huge amounts of food are wasted every day. I believe this is not only a proble</p>
-        <div class="card-links">
-        <a href="https://app.heygen.com/videos/a-world-without-hunger-d363c2b29f6a445d9d07359c54fe122b" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        <a href="https://gamma.app/docs/A-World-Without-Hunger-g8gd5i0ymtdl3i3" class="card-cta" target="_blank" rel="noopener">2 · Gamma <span class="arrow">→</span></a>
-        <a href="https://www.genspark.ai/agents?id=0d8dafe6-f9b2-4dfb-94e8-916ff063fdde" class="card-cta" target="_blank" rel="noopener">3 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to create systems that ensure no human sleeps hungry anywhere in the world. I want to bring into the world a future where food is treated as a basic human right and where communities use technology, cooperation, and compassion to support one another. Even today, millions of people strugg"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://app.heygen.com/videos/a-world-without-hunger-d363c2b29f6a445d9d07359c54fe122b" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 23 — Arslan -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 23 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 23 — Arslan (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620037.png" alt="Arslan" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 23 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Arslan</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">Create a global digital platform that connects farmers and food buyers across different countries, making agricultural trade faster, easier, and more transparent.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/A-Global-Digital-Marketplace-for-Agricultural-Trade-sxc9dnwt9msrsez" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"Create a global digital platform that connects farmers and food buyers across different countries, making agricultural trade faster, easier, and more transparent."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/A-Global-Digital-Marketplace-for-Agricultural-Trade-sxc9dnwt9msrsez" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 24 — Zilola -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 24 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 24 — Zilola (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620039.png" alt="Zilola" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 24 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Zilola</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">A photostudio in midieval style where people can feel themselves as royal members, workers, witches and etc.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/ZILOLA-AZIMOVA-sxkmru8v1863v6g" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"A photostudio in midieval style where people can feel themselves as royal members, workers, witches and etc."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/ZILOLA-AZIMOVA-sxkmru8v1863v6g" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 25 — Govind -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 25 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 25 — Govind (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620040.png" alt="Govind" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 25 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Govind</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to revolutionize and scale my family’s traditional footwear manufacturing and wholesale business, Rakhi Footwear, into a modern, globally recognized e-commerce brand. I want to bridge the gap between traditional Indian craftsmanship/manufacturing and global consumer markets. By using AI-driven design, automation, and digital marketing, my goal is to create a seamless, borderless B2B an</p>
-        <div class="card-links">
-        <a href="https://gamma.design/ppt/ppt/?uid=17803973159404&amp;template=431" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to revolutionize and scale my family’s traditional footwear manufacturing and wholesale business, Rakhi Footwear, into a modern, globally recognized e-commerce brand. I want to bridge the gap between traditional Indian craftsmanship/manufacturing and global consumer markets. By using AI-"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.design/ppt/ppt/?uid=17803973159404&amp;template=431" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 26 — Gurdeep -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 26 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 26 — Gurdeep (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620042.png" alt="Gurdeep" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 26 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Gurdeep</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">She Had Wings.
-They Clipped Them.
-"Somewhere in India right now, a girl just got her graduation results. She topped her class. She has a hundred dreams. And tonight — her family will tell her it's time to get married."</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/A-Dream-A-Revolution-cy7gbbgraj59zsa" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"they Had Wings. They Clipped Them. &quot;Somewhere in India right now, a girl just got they graduation results. they topped they class. they has a hundred dreams. And tonight — they family will tell they it&#x27;s time to get married.&quot;"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/A-Dream-A-Revolution-cy7gbbgraj59zsa" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 27 — Satpal (awaiting) -->
-      <article class="card" style="opacity:.6">
-        <div class="card-num">Film <span class="slash">/</span> 27 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Satpal</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream" style="font-style:italic;color:#94a3b8">— No submission yet.</p>
-      </article>
 
-      <!-- FILM 28 — Satwinder -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 28 <span class="total">of 36</span></div>
+
+
+
+
+      <!-- Film 28 — Satwinder (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620044.png" alt="Satwinder" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 28 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Satwinder</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to bring creativity and imagination into the world through AI-generated art. I want to help people create beautiful artwork easily, express their ideas, and inspire others through digital creativity.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Your-Dream-What-do-you-want-to-bring-into-the-world-u8xyye1t4p93mhv" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to bring creativity and imagination into the world through AI-generated art. I want to help people create beautiful artwork easily, express their ideas, and inspire others through digital creativity."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/Your-Dream-What-do-you-want-to-bring-into-the-world-u8xyye1t4p93mhv" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 29 — Sandeep -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 29 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 29 — Sandeep (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620048.png" alt="Sandeep" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 29 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Sandeep</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to create a trekking company that connects Korean travelers with authentic Himalayan trekking experiences.</p>
-        <div class="card-links">
-        <a href="https://sandeepgaur0612ibex.github.io/sandeepgaur.github.io/" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to create a trekking company that connects Korean travelers with authentic Himalayan trekking experiences."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://sandeepgaur0612ibex.github.io/sandeepgaur.github.io/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 30 — Harshit -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 30 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Harshit</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I have tourist find tourist places</p>
-      </article>
 
-      <!-- FILM 31 — Aryan -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 31 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Aryan</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">Helping Indian students to find a job</p>
-      </article>
 
-      <!-- FILM 32 — Ilash -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 32 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Ilash</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to create Intelligents Only — a premium preparation course platform in Uzbekistan. I want to build a place where the smartest and most motivated students can prepare for university entrance exams, international certificates (IELTS, SAT, GMAT), and future careers using the power of Artificial Intelligence. The name "Intelligents Only" means this is a space for those who are serious, amb</p>
-        <div class="card-links">
-        <a href="https://ap.wps.com/cms/docs/d/cbCaipV2Xx4IJTHr?sa=601.1304" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 33 — Javohir -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 33 <span class="total">of 36</span></div>
+
+
+      <!-- Film 33 — Javohir (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620053.png" alt="Javohir" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 33 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Javohir</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to travel to the Moon. I want to bring the spirit of exploration back to everyday people — to show that reaching the Moon is no longer only for government astronauts, but for anyone bold enough to work toward it. I want to inspire my generation to look up, dream bigger, and believe that the impossible is just a plan waiting to be made.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Untitled-5bo8zfrsvcl44eq" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"I want to introduce people travelling to the moon."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://www.genspark.ai/agents?id=9d172c0e-fbe6-4b82-a6b0-8f26a5fbde1c" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 34 — Nizomjon -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 34 <span class="total">of 36</span></div>
-        <div class="card-speaker">Speaker</div>
-        <div class="card-name">Nizomjon</div>
-        <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">I want to bring into the world an AI-powered platform that solves real everyday problems for people — especially those who don't have access to expensive experts, mentors, or consultants. My dream is simple but powerful: a person wakes up, faces a problem — maybe they need legal advice, business guidance, medical help, or just don't know how to start 
-something — and instead of feeling lost, they </p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Untitled-iu9ijxppucxbhxv" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
-      </article>
 
-      <!-- FILM 35 — Buddhi Maya -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 35 <span class="total">of 36</span></div>
+
+
+
+
+      <!-- Film 35 — Buddhi Maya (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620055.png" alt="Buddhi Maya" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 35 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Buddhi Maya</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">My dream is to create an event management company that organizes meaningful and memorable events for people and communities in my home country . I want to bring people together through well-planned events such as cultural festivals, weddings, charity events, corporate gatherings, and community celebrations. I enjoy creativity and organizing activities that make people happy.</p>
-        <div class="card-links">
-        <a href="https://app.heygen.com/videos/dreaming-of-events-in-nepal-67b9197123c54efaadd9f3278505c353" class="card-cta" target="_blank" rel="noopener">1 · Link <span class="arrow">→</span></a>
-        <a href="https://gemini.google.com/share/5fd46764cb6e" class="card-cta" target="_blank" rel="noopener">2 · Link <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"My dream is to create an event management company that organizes meaningful and memorable events for people and communities in nepal . I want to bring people together through well-planned events such as cultural festivals, weddings, charity events, corporate gatherings, and community celebrations. I"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gemini.google.com/share/5fd46764cb6e" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
-      <!-- FILM 36 — Hafsa -->
-      <article class="card">
-        <div class="card-num">Film <span class="slash">/</span> 36 <span class="total">of 36</span></div>
+
+
+
+
+
+      <!-- Film 36 — Hafsa (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620066.png" alt="Hafsa" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 36 </div>
         <div class="card-speaker">Speaker</div>
         <div class="card-name">Hafsa</div>
         <div class="card-talk-label">The Dream</div>
-        <p class="card-dream">Authentic Pakistani Halal Food in South Korea
-Open a Pakistani halal restaurant in Korea serving real taste to the Muslim community and introducing Koreans to bold Pakistani flavors — available both in person and through an online app. Beyond business, I want to be a role model for girls in my village who are told they cannot dream big.</p>
-        <div class="card-links">
-        <a href="https://gamma.app/docs/Untitled-vu6yl1vdyo4nyb4" class="card-cta" target="_blank" rel="noopener">1 · Gamma <span class="arrow">→</span></a>
-        </div>
+        <p class="card-dream" data-source="W14">"Authentic Pakistani Halal Food in South Korea Open a Pakistani halal restaurant in Korea serving real taste to the Muslim community and introducing Koreans to bold Pakistani flavors — available both in person and through an online app. Beyond business, I want to be a role model for girls in my villa"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://gamma.app/docs/Untitled-vu6yl1vdyo4nyb4" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 08 — Ashmita (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620021.png" alt="Ashmita" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 08 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Ashmita</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"My dream is to become a fashion designer and introduce Korean-inspired street fashion to Nepal. I want to create affordable, trendy, and high-quality clothing that combines Korean fashion styles with Nepali culture and lifestyle. Through my brand, I hope to inspire confidence, creativity, and self-e"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://docs.google.com/presentation/d/1nlNIwGvXSVU5EPP-3G8UA7aUBJ7IIwXE/edit?usp=drivesdk&amp;ouid=104586677705824495784&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 16 — Javlon (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620030.png" alt="Javlon" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 16 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Javlon</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"Open a modern school"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://docs.google.com/presentation/d/1Epd9X_pDKjvhwOxTozR47MnRLbI3ARkg/edit?usp=drivesdk&amp;ouid=111647471710088519447&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 04 — Elyorbek (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620016.png" alt="Elyorbek" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 04 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Elyorbek</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"I want to transform how we experience history by bringing ancient cultural sites to life through interactive, immersive AI visualizations, helping modern people reconnect with the beautiful simplicity of the past."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://drive.google.com/file/d/1_C0Rn_MprHldseJydR6AelOQ-lBurIXK/view?usp=sharing" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 09 — Pokiza (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620023.png" alt="Pokiza" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 09 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Pokiza</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"Every parent deserves to know if their child&#x27;s speech is developing on track. &quot;First Words AI&quot; is a multilingual AI-powered tool that checks a child&#x27;s speech milestones by age and gives personalized advice — available in Uzbek, Korean, English, and Russian, so any parent in the world can use it."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://claude.ai/public/artifacts/39782821-060f-4f27-ad9a-e7bf2cb4f6f1" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 18 — Umida (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620032.png" alt="Umida" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 18 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Umida</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"My dream is to establish a premium, contemporary Uzbek Halal restaurant in South Korea named &quot;Halal Food.&quot; I want to create a trusted culinary hub where Muslim students, expats, and global travelers can enjoy authentic, high-quality Uzbek dishes like Osh, Narin, and Manti with absolute confidence in"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://claude.ai/public/artifacts/d673eff6-75e9-4243-99e6-7967adaee698" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 30 — Harshit (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620049.png" alt="Harshit" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 30 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Harshit</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"I have tourist find tourist places"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://cdn.hailuoai.video/moss/prod/2026-05-26-12/video_agent/1779770610772023494-0_61c77bf7.mp4" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 31 — Aryan (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620050.png" alt="Aryan" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 31 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Aryan</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"Helping Indian students to find a job"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://hailuoai.video/share/ai-video/dvmqxnlgZxdo?source-scene=shared&amp;source-media=shared_link" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 17 — Bekzod (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620031.png" alt="Bekzod" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 17 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Bekzod</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"&quot;My dream is simple: everyone deserves an expert in their corner. Right now, a financial advisor costs $400/hr. A lawyer is even more. Most people face their biggest life decisions — buying a home, changing jobs, managing debt — completely alone. That&#x27;s the problem I want to solve.&quot;"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://go.wps.com/a8M4ofQQ8WW2" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 02 — Javkhlan (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620012.png" alt="Javkhlan" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 02 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Javkhlan</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"&quot;Mongolia built the world&#x27;s biggest empire on horseback. Now I&#x27;m building its first digital one.&quot;"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://docs.google.com/presentation/d/1YymGSwgoZwxHBn3elGim7x2yqNky2vBa/edit?usp=drivesdk&amp;ouid=110189878965751207647&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 32 — Ilash (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620052.png" alt="Ilash" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 32 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Ilash</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W14">"My dream is to create Intelligents Only — a premium preparation course platform in Uzbekistan. I want to build a place where the smartest and most motivated students can prepare for university entrance exams, international certificates (IELTS, SAT, GMAT), and future careers using the power of Artifi"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#10b981;color:#fff;vertical-align:middle;">FINAL</span></p><a href="https://ap.wps.com/cms/docs/d/cbCaipV2Xx4IJTHr?sa=601.1304" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 21 — Akmal (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620035.png" alt="Akmal" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 21 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Akmal</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W12">"I want to become an astronaut, travel through the cosmos, and contribute to humanity&#x27;s mission of exploring and understanding the universe beyond our planet."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#94a3b8;color:#fff;vertical-align:middle;">from W12</span></p><a href="https://www.genspark.ai/agents?id=9c0e4f68-1ec5-4bdc-b2d5-e856fdbacf41" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 34 — Nizomjon (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620054.png" alt="Nizomjon" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 34 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Nizomjon</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W12">"I dream of becoming a powerful and influential businessman who builds companies, creates opportunities for others, and leaves a lasting impact on society and the next generation."<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#94a3b8;color:#fff;vertical-align:middle;">from W12</span></p><a href="https://www.genspark.ai/agents?id=93b83919-d426-424d-9cf9-ed6091a36fac" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 01 — Sevinch (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620011.png" alt="Sevinch" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 01 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Sevinch</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W8">"I am an English language teacher and a creative entrepreneur who is deeply passionate about education, beauty, and meaningful self-expression. I have taught more than 50 students of different ages, from young children to adults, both in groups and individually, and I enjoy making"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#fb7185;color:#fff;vertical-align:middle;">from W8</span></p><a href="https://claude.ai/public/artifacts/d51b9958-5d10-4cf8-aba6-e507817c6149" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
+      </article>
+
+
+
+
+
+
+      <!-- Film 12 — Asilbek (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620026.png" alt="Asilbek" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 12 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Asilbek</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W8">"name is Govind Mahendra Dabi, and I am a graduate student deeply passionate about bridging the gap between traditional industry and modern media technology. Growing up, I gained eight years of hands-on professional experience as a salesman, which gave me an intuitive understandin"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#fb7185;color:#fff;vertical-align:middle;">from W8</span></p>
+      </article>
+
+
+
+
+
+
+      <!-- Film 13 — Sarbon (awaiting final) -->
+      <article class="card" >
+        <img class="card-avatar" src="avatars/202620027.png" alt="Sarbon" loading="lazy">
+        <div class="card-num">Film <span class="slash">/</span> 13 </div>
+        <div class="card-speaker">Speaker</div>
+        <div class="card-name">Sarbon</div>
+        <div class="card-talk-label">The Dream</div>
+        <p class="card-dream" data-source="W8">"I&#x27;m sarbon from uzbekistan. I was born in eastern part of the country. I am 22. I do not know, maybe good at intuism and understanding human thoughts out of human limits that brain have"<span style="display:inline-block;margin-left:10px;font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:100px;background:#fb7185;color:#fff;vertical-align:middle;">from W8</span></p><a href="https://drive.google.com/file/d/ai-philosophy-artifact-2026/view?usp=sharing" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:7px 14px;font-size:12px;font-weight:600;border-radius:100px;background:#1e293b;color:#fff;text-decoration:none;">View →</a>
       </article>
 
     </div>
   </section>
-
   <!-- ══════════ FOOTER ══════════ -->
   <footer class="footer">
     <div class="footer-inner">
@@ -1165,12 +1300,18 @@ Open a Pakistani halal restaurant in Korea serving real taste to the Muslim comm
     function injectRatingWidgets() {
       const cards = document.querySelectorAll(".speakers-grid .card");
       cards.forEach((card, idx) => {
-        const talkNum = String(idx + 1).padStart(2, "0");
+        // Derive cardId from .card-num text "Film / 03 of 36" → "ai-03"
+        // This preserves identity across visual reorders.
+        const numEl = card.querySelector(".card-num");
+        let talkNum = String(idx + 1).padStart(2, "0");
+        if (numEl) {
+          const m = numEl.textContent.match(/(\d+)/);
+          if (m) talkNum = m[1].padStart(2, "0");
+        }
         const cardId = `ai-${talkNum}`;
         card.dataset.cardId = cardId;
 
         // Avg badges (two: Theory + Design) next to card-num
-        const numEl = card.querySelector(".card-num");
         if (numEl && !numEl.querySelector(".avg-badges")) {
           const wrap = document.createElement("span");
           wrap.className = "avg-badges";
@@ -1441,14 +1582,23 @@ Open a Pakistani halal restaurant in Korea serving real taste to the Muslim comm
       renderProgressPopup(prog, !!me.is_admin);
     }
     function escp(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+    const WEEK_FORMS = {"1": "https://docs.google.com/forms/d/1NtyKX2DDjE6r4uIIjY_sIHeuLjikPqH63CflOnfY4TI/viewform", "2": "https://docs.google.com/forms/d/1j2ikKPgkcA5nQOpb06rj62LhpFPrfjzcmYVcqqSr6FI/viewform", "3": "https://docs.google.com/forms/d/1kIODR7wtr36g0v5FU8DbnDViOHAjD8k09DIVX64LY6s/viewform", "4": "https://docs.google.com/forms/d/1LlVPznQLbIxSIbp-FZby2mzkWJOJxwEt-eSKnx7BdE4/viewform", "5": "https://docs.google.com/forms/d/163c5_gaywRRaBGoAqDPHIE5zqT7q4Y_kKzPJB0vghWI/viewform", "6": "https://docs.google.com/forms/d/1UGmftfmYkiBW0abOUIHrHSe8SiZmo0kdUNX5pCEcPeg/viewform", "7": "https://docs.google.com/forms/d/1rDEeM_jDHKBOSfbUt00QNhLIrmCkxMbM9sfiib1HskU/viewform", "8": "https://docs.google.com/forms/d/1ST2mExqwyRtCBxIckRPsI51LeWAnhj83Htqf52gm15w/viewform", "9": "https://docs.google.com/forms/d/1DrzWkVo_eHEsAdRBj7zhIxISntuDObdVeK7Y-Pl9ouk/viewform", "10": "https://docs.google.com/forms/d/1AWB2J9BivWt3ZkwTCbD9QYkksx2nJCVbhhGyh-I1Sa0/viewform", "11": "https://docs.google.com/forms/d/1wEXG7L4f-u_9TQckgTriPrkSiQ2FidJxGwlifKcOA-s/viewform", "12": "https://docs.google.com/forms/d/11SMP-mPAXnbFk940IHHm_-kDV8mcyjShstXnGeh_6l0/viewform", "14": "https://docs.google.com/forms/d/1p-mVQEP9qYNjYRXznY6Oagv59bu8Ob_DD4h81W8X6r4/viewform"};
     function renderProgressPopup(p, editable){
       const weeks=p.weeks||[], done=weeks.filter(w=>w.submitted==1).length, tot=weeks.length;
-      const mtx=weeks.map(w=>`<div class="pw ${w.submitted==1?'on':'off'}">W${w.week}<br>${w.submitted==1?'✓':'·'}</div>`).join("");
+      const mtx=weeks.map(w=>{
+          const formUrl = WEEK_FORMS[w.week];
+          const inner = `W${w.week}<br>${w.submitted==1?'✓':'·'}`;
+          return formUrl
+            ? `<a class="pw ${w.submitted==1?'on':'off'}" href="${formUrl}" target="_blank" rel="noopener" title="Open W${w.week} form">${inner}</a>`
+            : `<div class="pw ${w.submitted==1?'on':'off'}">${inner}</div>`;
+        }).join("");
       const ov=p.overall_comment||"";
       const ovBody=editable?`<span contenteditable="true" data-t="${p.student_id}" data-w="" onblur="saveProgressComment(this)">${escp(ov)||"— add a comment"}</span>`:(escp(ov)||"No comment yet.");
       const rows=weeks.map(w=>{ const c=w.comment||"", miss=w.submitted!=1;
         const body=editable?`<span contenteditable="true" data-t="${p.student_id}" data-w="${w.week}" onblur="saveProgressComment(this)">${escp(c)||"—"}</span>`:(escp(c)||"—");
-        return `<div class="prow ${miss?'miss':''}"><b>W${w.week}</b>${body}</div>`; }).join("");
+        const formUrl = WEEK_FORMS[w.week];
+        const formBtn = formUrl ? `<a class="wf-btn" href="${formUrl}" target="_blank" rel="noopener" title="Open W${w.week} form">Form ↗</a>` : '';
+        return `<div class="prow ${miss?'miss':''}"><b>W${w.week}</b>${body}${formBtn}</div>`; }).join("");
       document.getElementById("progressBody").innerHTML=
         `<div class="ph"><div class="pn">${escp(p.name||p.student_id)}</div><div class="pr">${done}/${tot} weeks</div></div>
          <div class="pmtx">${mtx}</div><div class="pov"><div class="t">Overall</div>${ovBody}</div><div>${rows}</div>`;
