@@ -1434,6 +1434,7 @@ I want consumers to make more conscious fashion choices without feeling that the
           const pr=await fetch(`${API}/admin/progress`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({studentId:me.id,email:me.email})});
           const pd=await pr.json(); ADMIN_PROGRESS={}; if(pd.ok) pd.students.forEach(s=>ADMIN_PROGRESS[s.student_id]=s);
           document.querySelectorAll(".speakers-grid .card").forEach(card=>{ const sid=d.map[card.dataset.cardId]; if(sid) addAssignBtn(card,sid); });
+          setupAdminPhotos();
         } else if(d.myCard){
           const card=document.querySelector('.card[data-card-id="'+d.myCard+'"]');
           if(card){ card.classList.add("self-card"); addAssignBtn(card, me.id); }
@@ -1444,6 +1445,29 @@ I want consumers to make more conscious fashion choices without feeling that the
       if(card.querySelector(".assign-btn")) return;
       const b=document.createElement("button"); b.className="assign-btn"; b.textContent="View progress";
       b.onclick=()=>openProgress(sid); card.appendChild(b);
+    }
+    const PHOTO_CACHE={};
+    function setupAdminPhotos(){
+      document.querySelectorAll(".speakers-grid .card-avatar").forEach(av=>{
+        const m=(av.getAttribute("src")||"").match(/avatars\/(\d+)\.png/);
+        if(!m || av.dataset.photoReady) return;
+        av.dataset.photoReady="1"; const sid=m[1];
+        const wrap=document.createElement("span");
+        wrap.style.cssText="position:relative;display:block;max-width:180px;margin:0 0 18px 0;cursor:zoom-in";
+        av.parentNode.insertBefore(wrap,av); wrap.appendChild(av); av.style.margin="0";
+        const ov=document.createElement("img");
+        ov.style.cssText="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;opacity:0;transition:opacity .2s;pointer-events:none;background:#fff";
+        wrap.appendChild(ov);
+        const badge=document.createElement("span"); badge.textContent="real photo";
+        badge.style.cssText="position:absolute;top:7px;right:7px;font:600 9px 'JetBrains Mono',monospace;letter-spacing:.06em;background:rgba(0,0,0,.62);color:#fff;padding:2px 8px;border-radius:100px;opacity:0;transition:.2s;pointer-events:none";
+        wrap.appendChild(badge);
+        wrap.addEventListener("mouseenter", async ()=>{
+          if(PHOTO_CACHE[sid]===undefined){ PHOTO_CACHE[sid]=null;
+            try{ const r=await fetch(`${API}/admin/photo`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({studentId:me.id,email:me.email,sid})}); const d=await r.json(); PHOTO_CACHE[sid]=d.photo||null; }catch(e){} }
+          if(PHOTO_CACHE[sid]){ ov.src=PHOTO_CACHE[sid]; ov.style.opacity="1"; badge.style.opacity="1"; }
+        });
+        wrap.addEventListener("mouseleave", ()=>{ ov.style.opacity="0"; badge.style.opacity="0"; });
+      });
     }
     async function openProgress(sid){
       let prog;
