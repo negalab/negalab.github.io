@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation in AI · SMIT · Fall 2026</title>
+  <meta name="description" content="AI-based Business Process Automation — one automation every week, for your own work. SMIT IGS e-Business, Fall 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-dark: #0a0a0a; --bg-mid: #141414; --bg-card: #ffffff;
+      --ink: #ededed; --ink-dim: #999; --ink-card: #1a1a1a;
+      --accent: #c96442; --accent-bright: #e88058; --gold: #d4af37;
+      --green: #16a34a; --amber: #d97706;
+      --line: rgba(255,255,255,0.08); --line-card: #ececec;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg-dark); color: var(--ink);
+      font-family: 'Inter', -apple-system, sans-serif; font-weight: 300;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ── AUTH BAR ── */
+    .auth-bar {
+      position: fixed; top: 14px; right: 16px; z-index: 60;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(20,20,20,.85); backdrop-filter: blur(8px);
+      border: 1px solid var(--line); border-radius: 100px;
+      padding: 8px 16px; font-size: 12.5px;
+    }
+    .admin-badge { font-family:'JetBrains Mono',monospace; font-size: 9px; letter-spacing:.1em; background: var(--accent); color:#fff; padding: 3px 8px; border-radius: 100px; font-weight: 600; }
+    .auth-bar button.link { background:none; border:none; color:var(--ink-dim); cursor:pointer; font-size:12px; font-family:inherit; }
+    .auth-bar button.link:hover { color: var(--accent-bright); }
+
+    /* ── HERO ── */
+    .hero { min-height: 78vh; display:flex; flex-direction:column; justify-content:center; padding: 96px 6vw 48px; position:relative; }
+    .hero-eyebrow { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-bright); margin-bottom: 26px; }
+    .hero-title { font-family:'Fraunces',serif; font-weight:800; font-size:clamp(56px,10vw,132px); line-height:.98; letter-spacing:-.02em; color:#fff; }
+    .hero-title .em { font-style: italic; color: var(--accent); }
+    .hero-sub { max-width: 620px; margin-top: 30px; font-size: clamp(16px,1.8vw,19px); color:#c9c9c9; }
+    .hero-sub em { color:#fff; font-style: italic; }
+    .hero-meta { display:flex; flex-wrap:wrap; gap: 34px 56px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .hero-meta .label { display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:6px; }
+    .hero-meta .value { font-size: 15px; font-weight: 500; color:#eee; }
+
+    /* ── SECTION SHELL ── */
+    section.band { padding: 72px 6vw; border-top: 1px solid var(--line); }
+    .band-eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-bright); margin-bottom: 12px; }
+    .band-title { font-family:'Fraunces',serif; font-weight:700; font-size:clamp(28px,4vw,44px); color:#fff; margin-bottom: 26px; }
+
+    /* ── THIS WEEK ── */
+    .week-card { background: var(--bg-mid); border:1px solid var(--line); border-radius: 18px; padding: 34px 38px; max-width: 900px; }
+    .week-num { font-family:'JetBrains Mono',monospace; font-size: 12px; letter-spacing:.16em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .week-name { font-family:'Fraunces',serif; font-size: clamp(24px,3vw,34px); font-weight: 700; color:#fff; margin-bottom: 20px; }
+    .today-lines { border-left: 3px solid var(--accent); padding: 4px 20px; margin-bottom: 24px; }
+    .today-lines p { font-size: 15.5px; margin: 4px 0; color:#ddd; }
+    .today-lines b { color: var(--accent-bright); font-weight: 600; }
+    .week-links { display:flex; flex-wrap:wrap; gap: 12px; margin-bottom: 26px; }
+    .week-links a { font-size: 13px; color:#ddd; border:1px solid var(--line); padding: 8px 16px; border-radius: 100px; text-decoration: none; }
+    .week-links a:hover { border-color: var(--accent); color:#fff; }
+    .btn-primary {
+      display:inline-block; background: var(--accent); color:#fff; border:none; cursor:pointer;
+      font-family:inherit; font-size: 15px; font-weight: 600; padding: 14px 34px; border-radius: 100px;
+      transition: background .15s;
+    }
+    .btn-primary:hover { background: var(--accent-bright); }
+    .btn-primary:disabled { opacity:.5; cursor: default; }
+    .week-note { font-size: 12.5px; color: var(--ink-dim); margin-top: 14px; }
+
+    /* ── BOARD ── */
+    .board-wrap { overflow-x: auto; border:1px solid var(--line); border-radius: 14px; background: var(--bg-mid); }
+    table.board { border-collapse: collapse; width: 100%; min-width: 860px; font-size: 12.5px; }
+    .board th, .board td { padding: 7px 8px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
+    .board th { font-family:'JetBrains Mono',monospace; font-size: 10px; letter-spacing:.08em; color: var(--ink-dim); text-transform: uppercase; position: sticky; top: 0; background: var(--bg-mid); }
+    .board td.name, .board th.name { text-align: left; position: sticky; left: 0; background: var(--bg-mid); font-weight: 500; color:#ddd; max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+    .board td.c { color: #3a3a3a; }
+    .board td.c.on { color: var(--green); font-weight: 700; cursor: pointer; }
+    .board td.c.late { color: var(--amber); font-weight: 700; cursor: pointer; }
+    .board td.c.on:hover, .board td.c.late:hover { background: rgba(201,100,66,.12); }
+    .board-legend { font-size: 12px; color: var(--ink-dim); margin-top: 12px; }
+    .board-legend b { color: var(--green); } .board-legend .l { color: var(--amber); font-weight:700; }
+
+    /* ── STUDENTS GRID ── */
+    .speakers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+    .card {
+      background: var(--bg-card); color: var(--ink-card);
+      border-radius: 18px; padding: 20px; position: relative;
+      display: flex; flex-direction: column; min-height: 240px;
+    }
+    .card-avatar { width: 100%; max-width: 180px; border-radius: 14px; margin-bottom: 14px; background:#f5f1e8; }
+    .card-num { font-family:'JetBrains Mono',monospace; font-size: 10.5px; letter-spacing:.1em; color:#8a8a8a; text-transform: uppercase; margin-bottom: 6px; }
+    .card-num .slash { color: var(--accent); }
+    .card-name { font-family:'Fraunces',serif; font-weight: 700; font-size: 17px; line-height: 1.25; margin-bottom: 8px; }
+    .card-field { font-size: 12.5px; color: #666; font-style: italic; flex: 1; }
+    .card.self-card { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .assign-btn {
+      margin-top: 12px; align-self: flex-start;
+      background:#1a1a1a; color:#fff; border:none; cursor:pointer; font-family:inherit;
+      font-size: 11.5px; font-weight: 600; padding: 8px 16px; border-radius: 100px;
+    }
+    .assign-btn:hover { background: var(--accent); }
+
+    /* ── MODALS ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,.72);
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal {
+      background: #fff; color: var(--ink-card); border-radius: 20px;
+      padding: 34px; width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto;
+    }
+    .modal h3 { font-family:'Fraunces',serif; font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+    .modal .sub { font-size: 13.5px; color:#777; margin-bottom: 22px; }
+    .modal label { display:block; font-size: 12px; font-weight: 600; letter-spacing:.04em; color:#555; margin: 14px 0 6px; text-transform: uppercase; }
+    .modal input[type=text], .modal input[type=email], .modal textarea, .modal select {
+      width: 100%; border: 1.5px solid #ddd; border-radius: 10px; padding: 12px 14px;
+      font-family: inherit; font-size: 15px; color: var(--ink-card);
+    }
+    .modal textarea { min-height: 92px; resize: vertical; }
+    .modal input:focus, .modal textarea:focus, .modal select:focus { outline: none; border-color: var(--accent); }
+    .modal-btn {
+      margin-top: 22px; width: 100%; background: var(--accent); color: #fff; border: none; cursor: pointer;
+      font-family: inherit; font-size: 15.5px; font-weight: 600; padding: 14px; border-radius: 100px;
+    }
+    .modal-btn:hover { background: var(--accent-bright); }
+    .modal-btn:disabled { opacity:.55; cursor: default; }
+    .modal .err { color: #dc2626; font-size: 13px; margin-top: 12px; min-height: 18px; }
+    .modal-close { position: absolute; top: 14px; right: 18px; background:none; border:none; font-size: 22px; color:#999; cursor:pointer; }
+    .modal-shell { position: relative; }
+
+    /* progress popup */
+    .prog-modal .modal { max-width: 560px; }
+    .ph { display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 14px; }
+    .pn { font-family:'Fraunces',serif; font-weight:700; font-size: 20px; }
+    .pr { font-family:'JetBrains Mono',monospace; font-size: 12px; color: var(--accent); }
+    .pmtx { display:flex; flex-wrap:wrap; gap: 6px; margin-bottom: 16px; }
+    .pw { font-family:'JetBrains Mono',monospace; font-size: 10px; text-align:center; line-height:1.3; padding: 5px 0; width: 34px; border-radius: 8px; background:#f3f3f3; color:#999; }
+    .pw.on { background: #dcfce7; color: #15803d; font-weight: 700; }
+    .pov { background:#faf7f2; border-radius: 10px; padding: 12px 14px; font-size: 13.5px; margin-bottom: 14px; }
+    .pov .t { font-size: 10.5px; font-weight: 700; letter-spacing:.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .prow { display:flex; gap: 10px; align-items:baseline; font-size: 13.5px; padding: 7px 4px; border-bottom: 1px solid #f0f0f0; }
+    .prow b { font-family:'JetBrains Mono',monospace; font-size: 11px; color:#888; min-width: 32px; }
+    .prow.miss b { color:#d97706; }
+    .prow span[contenteditable] { outline: none; border-bottom: 1px dashed #ddd; min-width: 60px; }
+
+    /* peek popup (board cell) */
+    .peek-link { display:inline-block; margin-top: 14px; background:#1a1a1a; color:#fff; text-decoration:none; font-size: 13px; font-weight:600; padding: 10px 20px; border-radius: 100px; }
+    .peek-review { font-size: 15px; color:#333; margin-top: 8px; line-height: 1.6; }
+
+    /* ── AI CHAT ── */
+    #aiFab {
+      position: fixed; right: 20px; bottom: 20px; z-index: 70;
+      background: var(--accent); color:#fff; border:none; cursor:pointer;
+      font-family: inherit; font-weight: 700; font-size: 14.5px;
+      padding: 15px 24px; border-radius: 100px; box-shadow: 0 12px 32px rgba(201,100,66,.4);
+    }
+    #aiFab:hover { background: var(--accent-bright); }
+    #aiPanel {
+      position: fixed; right: 20px; bottom: 20px; z-index: 75;
+      width: min(400px, calc(100vw - 40px)); height: min(560px, calc(100vh - 80px));
+      background: #fff; color: var(--ink-card); border-radius: 20px;
+      display: none; flex-direction: column; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.5);
+    }
+    #aiPanel header { background: #1a1a1a; color:#fff; padding: 14px 18px; display:flex; justify-content:space-between; align-items:center; }
+    #aiPanel header .t { font-weight: 700; font-size: 14.5px; }
+    #aiPanel header .q { font-family:'JetBrains Mono',monospace; font-size: 10.5px; color:#aaa; }
+    #aiPanel header button { background:none; border:none; color:#999; font-size: 20px; cursor:pointer; }
+    #aiMsgs { flex:1; overflow-y:auto; padding: 16px; display:flex; flex-direction:column; gap: 10px; background:#faf9f7; }
+    .ai-m { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.55; white-space: pre-wrap; }
+    .ai-m.user { align-self: flex-end; background: var(--accent); color:#fff; border-bottom-right-radius: 4px; }
+    .ai-m.bot { align-self: flex-start; background: #fff; border: 1px solid #eee; border-bottom-left-radius: 4px; }
+    .ai-m.bot.thinking { color:#999; font-style: italic; }
+    #aiForm { display:flex; gap: 8px; padding: 12px; border-top: 1px solid #eee; background:#fff; }
+    #aiInput { flex:1; border: 1.5px solid #ddd; border-radius: 100px; padding: 11px 16px; font-family:inherit; font-size: 14px; }
+    #aiInput:focus { outline:none; border-color: var(--accent); }
+    #aiSend { background: var(--accent); border:none; color:#fff; font-weight:700; font-size:14px; padding: 0 20px; border-radius: 100px; cursor:pointer; }
+
+    /* footer */
+    footer { padding: 44px 6vw 60px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-dim); display:flex; flex-wrap:wrap; gap: 8px 28px; }
+
+    .toast {
+      position: fixed; top: 62px; right: 16px; z-index: 99; color:#fff; padding: 12px 20px;
+      border-radius: 100px; font-size: 13.5px; font-weight: 500; box-shadow: 0 12px 24px rgba(0,0,0,.35);
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top: 80px; min-height: 60vh; }
+      section.band { padding: 52px 5vw; }
+      .week-card { padding: 26px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- auth -->
+  <button id="signInBtn" class="auth-bar" onclick="openLogin()" style="cursor:pointer;display:none;font-family:inherit;color:#c96442;font-weight:600;border:1px solid rgba(201,100,66,.4);">Sign in</button>
+  <div id="authBar" class="auth-bar" style="display:none;">
+    <span id="authName"></span>
+    <button class="link" onclick="signOut()">Sign out</button>
+  </div>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="hero-eyebrow">SMIT · IGS e-Business · Fall 2026</div>
+    <h1 class="hero-title">Automation<br><span class="em">in AI</span></h1>
+    <p class="hero-sub">
+      One automation every week — <em>for your own work</em>. Not a course about software menus: you pick your field, and by week 15 a working system is running for you.
+    </p>
+    <div class="hero-meta">
+      <div><span class="label">When</span><span class="value">Wednesdays 12:00–14:50</span></div>
+      <div><span class="label">Where</span><span class="value">E401 → PC Labs · SMIT, DMC</span></div>
+      <div><span class="label">Course</span><span class="value">AI-based Business Process Automation (eBENG3008)</span></div>
+      <div><span class="label">Professor</span><span class="value">DY Kwon</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ THIS WEEK ══════════ -->
+  <section class="band" id="thisweek">
+    <div class="band-eyebrow">This Week</div>
+    <div class="week-card">
+      <div class="week-num" id="wkNum">Week 1 · of 15</div>
+      <div class="week-name" id="wkName">Getting Started</div>
+      <div class="today-lines">
+        <p><b>Today you build:</b> <span id="wkBuild"></span></p>
+        <p><b>Today you submit:</b> <span id="wkSubmit"></span></p>
+      </div>
+      <div class="week-links" id="wkLinks"></div>
+      <button class="btn-primary" onclick="openSubmit()">Submit this week ✓</button>
+      <p class="week-note">Submitting during class = attendance. The system records the time by itself.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ STATUS BOARD ══════════ -->
+  <section class="band" id="board">
+    <div class="band-eyebrow">Status Board</div>
+    <h2 class="band-title">Who has submitted</h2>
+    <div class="board-wrap"><table class="board" id="boardTable"><tbody><tr><td style="padding:20px;color:#777;">Loading…</td></tr></tbody></table></div>
+    <p class="board-legend"><b>✓</b> submitted in class &nbsp;·&nbsp; <span class="l">L</span> late &nbsp;·&nbsp; click a mark to see what they built</p>
+  </section>
+
+  <!-- ══════════ STUDENTS ══════════ -->
+  <section class="band" id="students">
+    <div class="band-eyebrow">The Class</div>
+    <h2 class="band-title">44 students, 44 fields</h2>
+    <div class="speakers-grid">
+      <article class="card" data-card-id="card-bpa-001" data-name="Bobur">
+        <img class="card-avatar" src="avatars/202509001.png" alt="Bobur" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 01 <span class="of">of 44</span></div>
+        <div class="card-name">Bobur</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-002" data-name="Daurov Dilshod">
+        <img class="card-avatar" src="avatars/202509002.png" alt="Daurov Dilshod" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 02 <span class="of">of 44</span></div>
+        <div class="card-name">Daurov Dilshod</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-003" data-name="Kodirjon">
+        <img class="card-avatar" src="avatars/202509003.png" alt="Kodirjon" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 03 <span class="of">of 44</span></div>
+        <div class="card-name">Kodirjon</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-004" data-name="Azam">
+        <img class="card-avatar" src="avatars/202509004.png" alt="Azam" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 04 <span class="of">of 44</span></div>
+        <div class="card-name">Azam</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-005" data-name="Vu Thi Phuong Thanh">
+        <img class="card-avatar" src="avatars/202509008.png" alt="Vu Thi Phuong Thanh" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 05 <span class="of">of 44</span></div>
+        <div class="card-name">Vu Thi Phuong Thanh</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-006" data-name="Asadullo">
+        <img class="card-avatar" src="avatars/202509012.png" alt="Asadullo" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 06 <span class="of">of 44</span></div>
+        <div class="card-name">Asadullo</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-007" data-name="Shamshieva Dilnavoz Bakhtiyor Kizi">
+        <img class="card-avatar" src="avatars/202509014.png" alt="Shamshieva Dilnavoz Bakhtiyor Kizi" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 07 <span class="of">of 44</span></div>
+        <div class="card-name">Shamshieva Dilnavoz Bakhtiyor Kizi</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-008" data-name="Vi Hai Viet">
+        <img class="card-avatar" src="avatars/202509023.png" alt="Vi Hai Viet" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 08 <span class="of">of 44</span></div>
+        <div class="card-name">Vi Hai Viet</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-009" data-name="Abdullaeva Ugiloy">
+        <img class="card-avatar" src="avatars/202509030.png" alt="Abdullaeva Ugiloy" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 09 <span class="of">of 44</span></div>
+        <div class="card-name">Abdullaeva Ugiloy</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-010" data-name="Kambarov Bekzod">
+        <img class="card-avatar" src="avatars/202509031.png" alt="Kambarov Bekzod" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 10 <span class="of">of 44</span></div>
+        <div class="card-name">Kambarov Bekzod</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-011" data-name="Jumakulov Alisher">
+        <img class="card-avatar" src="avatars/202509032.png" alt="Jumakulov Alisher" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 11 <span class="of">of 44</span></div>
+        <div class="card-name">Jumakulov Alisher</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-012" data-name="Gairhe Sumina">
+        <img class="card-avatar" src="avatars/202509033.png" alt="Gairhe Sumina" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 12 <span class="of">of 44</span></div>
+        <div class="card-name">Gairhe Sumina</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-013" data-name="Shrestha Pukar">
+        <img class="card-avatar" src="avatars/202509034.png" alt="Shrestha Pukar" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 13 <span class="of">of 44</span></div>
+        <div class="card-name">Shrestha Pukar</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-014" data-name="Tamang Anju">
+        <img class="card-avatar" src="avatars/202509037.png" alt="Tamang Anju" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 14 <span class="of">of 44</span></div>
+        <div class="card-name">Tamang Anju</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-015" data-name="Karki Newton">
+        <img class="card-avatar" src="avatars/202509038.png" alt="Karki Newton" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 15 <span class="of">of 44</span></div>
+        <div class="card-name">Karki Newton</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-016" data-name="Rai Eliza">
+        <img class="card-avatar" src="avatars/202509039.png" alt="Rai Eliza" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 16 <span class="of">of 44</span></div>
+        <div class="card-name">Rai Eliza</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-017" data-name="Lama Dawa Tashi">
+        <img class="card-avatar" src="avatars/202509042.png" alt="Lama Dawa Tashi" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 17 <span class="of">of 44</span></div>
+        <div class="card-name">Lama Dawa Tashi</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-018" data-name="Bantha Ananta">
+        <img class="card-avatar" src="avatars/202509043.png" alt="Bantha Ananta" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 18 <span class="of">of 44</span></div>
+        <div class="card-name">Bantha Ananta</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-019" data-name="Ramesh">
+        <img class="card-avatar" src="avatars/202509044.png" alt="Ramesh" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 19 <span class="of">of 44</span></div>
+        <div class="card-name">Ramesh</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-020" data-name="Shrivastav Anjali">
+        <img class="card-avatar" src="avatars/202509045.png" alt="Shrivastav Anjali" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 20 <span class="of">of 44</span></div>
+        <div class="card-name">Shrivastav Anjali</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-021" data-name="Urokov Fayoziddin">
+        <img class="card-avatar" src="avatars/202509047.png" alt="Urokov Fayoziddin" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 21 <span class="of">of 44</span></div>
+        <div class="card-name">Urokov Fayoziddin</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-022" data-name="Darjee Dipesh">
+        <img class="card-avatar" src="avatars/202509049.png" alt="Darjee Dipesh" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 22 <span class="of">of 44</span></div>
+        <div class="card-name">Darjee Dipesh</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-023" data-name="Urolov Diyorbek">
+        <img class="card-avatar" src="avatars/202509050.png" alt="Urolov Diyorbek" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 23 <span class="of">of 44</span></div>
+        <div class="card-name">Urolov Diyorbek</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-024" data-name="Mahatra Sandeep">
+        <img class="card-avatar" src="avatars/202509054.png" alt="Mahatra Sandeep" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 24 <span class="of">of 44</span></div>
+        <div class="card-name">Mahatra Sandeep</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-025" data-name="Ale Jin Kumari">
+        <img class="card-avatar" src="avatars/202509057.png" alt="Ale Jin Kumari" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 25 <span class="of">of 44</span></div>
+        <div class="card-name">Ale Jin Kumari</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-026" data-name="Tayyab Muhammad Bin">
+        <img class="card-avatar" src="avatars/202509058.png" alt="Tayyab Muhammad Bin" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 26 <span class="of">of 44</span></div>
+        <div class="card-name">Tayyab Muhammad Bin</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-027" data-name="Aryal Pradeep">
+        <img class="card-avatar" src="avatars/202509059.png" alt="Aryal Pradeep" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 27 <span class="of">of 44</span></div>
+        <div class="card-name">Aryal Pradeep</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-028" data-name="Gurung Bhabin">
+        <img class="card-avatar" src="avatars/202509061.png" alt="Gurung Bhabin" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 28 <span class="of">of 44</span></div>
+        <div class="card-name">Gurung Bhabin</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-029" data-name="Puran">
+        <img class="card-avatar" src="avatars/202509062.png" alt="Puran" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 29 <span class="of">of 44</span></div>
+        <div class="card-name">Puran</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-030" data-name="Muhammad Ahsan">
+        <img class="card-avatar" src="avatars/202509063.png" alt="Muhammad Ahsan" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 30 <span class="of">of 44</span></div>
+        <div class="card-name">Muhammad Ahsan</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-031" data-name="Ghale Sonee">
+        <img class="card-avatar" src="avatars/202509064.png" alt="Ghale Sonee" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 31 <span class="of">of 44</span></div>
+        <div class="card-name">Ghale Sonee</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-032" data-name="Tamang Dan">
+        <img class="card-avatar" src="avatars/202509065.png" alt="Tamang Dan" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 32 <span class="of">of 44</span></div>
+        <div class="card-name">Tamang Dan</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-033" data-name="Bam Suresh">
+        <img class="card-avatar" src="avatars/202509066.png" alt="Bam Suresh" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 33 <span class="of">of 44</span></div>
+        <div class="card-name">Bam Suresh</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-034" data-name="Tiwari Sushmita">
+        <img class="card-avatar" src="avatars/202509067.png" alt="Tiwari Sushmita" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 34 <span class="of">of 44</span></div>
+        <div class="card-name">Tiwari Sushmita</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-035" data-name="Subba Pratik">
+        <img class="card-avatar" src="avatars/202509068.png" alt="Subba Pratik" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 35 <span class="of">of 44</span></div>
+        <div class="card-name">Subba Pratik</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-036" data-name="Rawal Kamlesh">
+        <img class="card-avatar" src="avatars/202509071.png" alt="Rawal Kamlesh" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 36 <span class="of">of 44</span></div>
+        <div class="card-name">Rawal Kamlesh</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-037" data-name="Murodova Asal">
+        <img class="card-avatar" src="avatars/202509072.png" alt="Murodova Asal" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 37 <span class="of">of 44</span></div>
+        <div class="card-name">Murodova Asal</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-038" data-name="Khayrullaev Shokhboz">
+        <img class="card-avatar" src="avatars/202509073.png" alt="Khayrullaev Shokhboz" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 38 <span class="of">of 44</span></div>
+        <div class="card-name">Khayrullaev Shokhboz</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-039" data-name="Neupane Bibek">
+        <img class="card-avatar" src="avatars/202509074.png" alt="Neupane Bibek" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 39 <span class="of">of 44</span></div>
+        <div class="card-name">Neupane Bibek</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-040" data-name="Norov Shakhzod">
+        <img class="card-avatar" src="avatars/202509077.png" alt="Norov Shakhzod" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 40 <span class="of">of 44</span></div>
+        <div class="card-name">Norov Shakhzod</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-041" data-name="Turakulov Jasur">
+        <img class="card-avatar" src="avatars/202509078.png" alt="Turakulov Jasur" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 41 <span class="of">of 44</span></div>
+        <div class="card-name">Turakulov Jasur</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-042" data-name="Dusmatova Dilnoza">
+        <img class="card-avatar" src="avatars/202509080.png" alt="Dusmatova Dilnoza" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 42 <span class="of">of 44</span></div>
+        <div class="card-name">Dusmatova Dilnoza</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-043" data-name="Asilbek">
+        <img class="card-avatar" src="avatars/202620026.png" alt="Asilbek" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 43 <span class="of">of 44</span></div>
+        <div class="card-name">Asilbek</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+      <article class="card" data-card-id="card-bpa-044" data-name="Sarbon">
+        <img class="card-avatar" src="avatars/202620027.png" alt="Sarbon" loading="lazy">
+        <div class="card-num">Student <span class="slash">/</span> 44 <span class="of">of 44</span></div>
+        <div class="card-name">Sarbon</div>
+        <div class="card-field" data-role="field">field — coming in Week 1</div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <span>Automation in AI · eBENG3008 · SMIT IGS e-Business · Fall 2026</span>
+    <span>Wednesdays 12:00–14:50 · E401 + PC Labs</span>
+    <span class="mono">negalab.github.io/automation-in-ai</span>
+  </footer>
+
+  <!-- ══════════ LOGIN MODAL ══════════ -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal modal-shell">
+      <button class="modal-close" onclick="document.getElementById('loginModal').style.display='none'">×</button>
+      <h3>Sign in</h3>
+      <p class="sub">First time: your email locks to your student ID. Use your own.</p>
+      <label>Student ID</label>
+      <input type="text" id="loginId" placeholder="2025090xx" autocomplete="off">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="you@gmail.com" autocomplete="off">
+      <button class="modal-btn" id="loginBtn" onclick="signIn()">Continue</button>
+      <div class="err" id="loginError"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ SUBMIT MODAL ══════════ -->
+  <div id="submitModal" class="modal-overlay">
+    <div class="modal modal-shell">
+      <button class="modal-close" onclick="document.getElementById('submitModal').style.display='none'">×</button>
+      <h3>Submit — <span id="smWeek">Week 1</span></h3>
+      <p class="sub" id="smWhat"></p>
+      <label>Week</label>
+      <select id="smWeekSel"></select>
+      <label>What you built — one line</label>
+      <textarea id="smReview" maxlength="1000" placeholder="One or two sentences."></textarea>
+      <label>Link (optional)</label>
+      <input type="text" id="smLink" placeholder="https://…">
+      <button class="modal-btn" id="smBtn" onclick="doSubmit()">Submit ✓</button>
+      <div class="err" id="smError"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ PROGRESS MODAL ══════════ -->
+  <div id="progressModal" class="modal-overlay prog-modal">
+    <div class="modal modal-shell">
+      <button class="modal-close" onclick="closeProgress()">×</button>
+      <div id="progressBody"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ PEEK MODAL (board cell) ══════════ -->
+  <div id="peekModal" class="modal-overlay">
+    <div class="modal modal-shell">
+      <button class="modal-close" onclick="document.getElementById('peekModal').style.display='none'">×</button>
+      <div id="peekBody"></div>
+    </div>
+  </div>
+
+  <!-- ══════════ AI CHAT ══════════ -->
+  <button id="aiFab" onclick="openAi()">✳ Ask AI</button>
+  <div id="aiPanel">
+    <header>
+      <div><div class="t">AI Assistant</div><div class="q" id="aiQuota"></div></div>
+      <button onclick="closeAi()">×</button>
+    </header>
+    <div id="aiMsgs"></div>
+    <form id="aiForm" onsubmit="return sendAi(event)">
+      <input id="aiInput" placeholder="Ask in easy English…" autocomplete="off">
+      <button id="aiSend" type="submit">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const API = "https://dream-to-website-api.dykwon-248.workers.dev";
+    const PAGE = "automation-in-ai";
+    const COHORT = "bpa-fall-2026";
+    let me = null;
+
+    // ── Weekly plan (professor edits this block each week; W1 class day = 2026-09-02) ──
+    const WEEK1_DATE = new Date("2026-09-02T00:00:00+09:00");
+    const WEEKS = {
+      1: {
+        name: "Getting Started",
+        build: "your seat, your accounts, and your task list.",
+        submit: "your field in one line + 3 repetitive tasks.",
+        links: [],   // {label, url} — video & tutorial links appear here when registered
+      },
+    };
+    function currentWeek() {
+      const diff = Math.floor((Date.now() - WEEK1_DATE.getTime()) / (7 * 24 * 3600 * 1000)) + 1;
+      return Math.min(15, Math.max(1, diff));
+    }
+
+    // ── Boot ──
+    document.addEventListener("DOMContentLoaded", () => {
+      const stored = localStorage.getItem("dtw_me");
+      if (stored) { try { me = JSON.parse(stored); } catch (e) { me = null; } }
+      if (me && me.id) onLogin(); else showSignIn();
+      ["loginId", "loginEmail"].forEach(id => {
+        document.getElementById(id).addEventListener("keydown", e => { if (e.key === "Enter") signIn(); });
+      });
+      renderThisWeek();
+      loadBoard();
+    });
+
+    function renderThisWeek() {
+      const w = currentWeek();
+      const info = WEEKS[w] || { name: "Week " + w, build: "—", submit: "—", links: [] };
+      document.getElementById("wkNum").textContent = `Week ${w} · of 15`;
+      document.getElementById("wkName").textContent = info.name;
+      document.getElementById("wkBuild").textContent = info.build;
+      document.getElementById("wkSubmit").textContent = info.submit;
+      const linksEl = document.getElementById("wkLinks");
+      linksEl.innerHTML = "";
+      (info.links || []).forEach(l => {
+        const a = document.createElement("a");
+        a.href = l.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = l.label;
+        linksEl.appendChild(a);
+      });
+    }
+
+    // ── Login (same allowlist + TOFU email binding as spring) ──
+    function openLogin() { document.getElementById("loginModal").style.display = "flex"; }
+    function showSignIn() { const b = document.getElementById("signInBtn"); if (b) b.style.display = "flex"; }
+    async function signIn() {
+      const idEl = document.getElementById("loginId"), emailEl = document.getElementById("loginEmail");
+      const btn = document.getElementById("loginBtn"), err = document.getElementById("loginError");
+      const id = idEl.value.trim(), email = emailEl.value.trim().toLowerCase();
+      err.textContent = "";
+      if (!id) { err.textContent = "Please enter your student ID."; return; }
+      if (!email) { err.textContent = "Please enter your email."; return; }
+      btn.disabled = true; btn.textContent = "Checking…";
+      try {
+        const r = await fetch(`${API}/login`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: id, email }) });
+        const data = await r.json();
+        if (!r.ok) { err.textContent = data.message || data.error || "Login failed."; btn.disabled = false; btn.textContent = "Continue"; return; }
+        me = data.student;
+        localStorage.setItem("dtw_me", JSON.stringify(me));
+        onLogin();
+        if (data.first_time) toast(`✓ Welcome, ${me.name}. Email locked to this student ID.`, "#16a34a");
+      } catch (e) {
+        err.textContent = "Network error: " + e.message; btn.disabled = false; btn.textContent = "Continue";
+      }
+    }
+    function signOut() { localStorage.removeItem("dtw_me"); location.reload(); }
+    function onLogin() {
+      document.getElementById("loginModal").style.display = "none";
+      const sb = document.getElementById("signInBtn"); if (sb) sb.style.display = "none";
+      showAuthBar(); setupProgressButtons();
+    }
+    function showAuthBar() {
+      const bar = document.getElementById("authBar");
+      document.getElementById("authName").textContent = me.email ? `${me.name} · ${me.email}` : me.name;
+      bar.querySelectorAll(".admin-badge").forEach(b => b.remove());
+      if (me.is_admin) {
+        const badge = document.createElement("span");
+        badge.className = "admin-badge"; badge.textContent = "PROFESSOR";
+        bar.insertBefore(badge, bar.firstChild);
+      }
+      bar.style.display = "flex";
+    }
+    function toast(msg, bg) {
+      const t = document.createElement("div");
+      t.className = "toast"; t.style.background = bg || "#1a1a1a"; t.textContent = msg;
+      document.body.appendChild(t); setTimeout(() => t.remove(), 5000);
+    }
+
+    // ── Submit ──
+    function openSubmit() {
+      if (!me) { openLogin(); return; }
+      const w = currentWeek();
+      const sel = document.getElementById("smWeekSel");
+      sel.innerHTML = "";
+      for (let i = 1; i <= 15; i++) {
+        const o = document.createElement("option");
+        o.value = i; o.textContent = `Week ${i}` + (i === w ? " (this week)" : "");
+        if (i === w) o.selected = true;
+        sel.appendChild(o);
+      }
+      sel.onchange = () => syncSubmitLabels(parseInt(sel.value, 10));
+      syncSubmitLabels(w);
+      document.getElementById("smError").textContent = "";
+      document.getElementById("submitModal").style.display = "flex";
+    }
+    function syncSubmitLabels(w) {
+      document.getElementById("smWeek").textContent = `Week ${w}`;
+      const info = WEEKS[w];
+      document.getElementById("smWhat").textContent = info ? `Submit: ${info.submit}` : "";
+    }
+    async function doSubmit() {
+      const btn = document.getElementById("smBtn"), err = document.getElementById("smError");
+      const week = parseInt(document.getElementById("smWeekSel").value, 10);
+      const review = document.getElementById("smReview").value.trim();
+      const link = document.getElementById("smLink").value.trim();
+      err.textContent = "";
+      if (!review && !link) { err.textContent = "Write one line about what you built."; return; }
+      btn.disabled = true; btn.textContent = "Submitting…";
+      try {
+        const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link }) });
+        const d = await r.json();
+        btn.disabled = false; btn.textContent = "Submit ✓";
+        if (!r.ok) { err.textContent = d.message || d.error || "Submit failed."; return; }
+        document.getElementById("submitModal").style.display = "none";
+        toast(d.status === "present" ? `✓ Submitted — Week ${week}. You are marked present.` : `✓ Submitted — Week ${week} (late).`, d.status === "present" ? "#16a34a" : "#d97706");
+        loadBoard();
+      } catch (e) {
+        btn.disabled = false; btn.textContent = "Submit ✓"; err.textContent = "Network error: " + e.message;
+      }
+    }
+
+    // ── Status board ──
+    let BOARD = [];
+    async function loadBoard() {
+      try {
+        const r = await fetch(`${API}/submissions?cohort=${COHORT}`);
+        const d = await r.json();
+        if (!d.ok) return;
+        BOARD = d.board;
+        renderBoard();
+        fillCardFields();
+      } catch (e) {}
+    }
+    function esc(s) { return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+    function renderBoard() {
+      const wMax = 15;
+      let html = "<thead><tr><th class='name'>Name</th>";
+      for (let i = 1; i <= wMax; i++) html += `<th>W${i}</th>`;
+      html += "</tr></thead><tbody>";
+      BOARD.forEach((s, ri) => {
+        const map = {};
+        s.weeks.forEach(w => map[w.week] = w);
+        html += `<tr><td class='name'>${esc(s.name)}</td>`;
+        for (let i = 1; i <= wMax; i++) {
+          const w = map[i];
+          if (!w) { html += "<td class='c'>·</td>"; continue; }
+          const cls = w.status === "late" ? "late" : "on";
+          const mark = w.status === "late" ? "L" : "✓";
+          html += `<td class='c ${cls}' onclick='peek(${ri},${i})'>${mark}</td>`;
+        }
+        html += "</tr>";
+      });
+      html += "</tbody>";
+      document.getElementById("boardTable").innerHTML = html;
+    }
+    function peek(ri, week) {
+      const s = BOARD[ri]; if (!s) return;
+      const w = s.weeks.find(x => x.week === week); if (!w) return;
+      let html = `<h3>${esc(s.name)} — Week ${week}</h3>`;
+      if (w.review) html += `<p class="peek-review">"${esc(w.review)}"</p>`;
+      if (w.link) html += `<a class="peek-link" href="${esc(w.link)}" target="_blank" rel="noopener">Open what they built ↗</a>`;
+      document.getElementById("peekBody").innerHTML = html;
+      document.getElementById("peekModal").style.display = "flex";
+    }
+    // Card grid: show each student's Week-1 field line under their name once submitted.
+    function fillCardFields() {
+      const byName = {};
+      BOARD.forEach(s => { const w1 = s.weeks.find(x => x.week === 1); if (w1 && w1.review) byName[s.name] = w1.review; });
+      document.querySelectorAll(".speakers-grid .card").forEach(card => {
+        const nm = card.dataset.name;
+        const f = card.querySelector('[data-role="field"]');
+        if (nm && byName[nm] && f) f.textContent = "“" + byName[nm].slice(0, 120) + "”";
+      });
+    }
+
+    // ── Progress buttons (same flow as spring: cards-map + my-progress / admin) ──
+    let ADMIN_PROGRESS = null;
+    async function setupProgressButtons() {
+      try {
+        const r = await fetch(`${API}/cards-map`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, page: PAGE }) });
+        const d = await r.json(); if (!d.ok) return;
+        if (d.admin) {
+          const pr = await fetch(`${API}/admin/progress`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email }) });
+          const pd = await pr.json(); ADMIN_PROGRESS = {}; if (pd.ok) pd.students.forEach(s => ADMIN_PROGRESS[s.student_id] = s);
+          document.querySelectorAll(".speakers-grid .card").forEach(card => {
+            const sid = d.map[card.dataset.cardId]; if (sid) addAssignBtn(card, sid);
+          });
+        } else if (d.myCard) {
+          const card = document.querySelector('.card[data-card-id="' + d.myCard + '"]');
+          if (card) { card.classList.add("self-card"); addAssignBtn(card, me.id); }
+        }
+      } catch (e) {}
+    }
+    function addAssignBtn(card, sid) {
+      if (card.querySelector(".assign-btn")) return;
+      const b = document.createElement("button");
+      b.className = "assign-btn"; b.textContent = "View progress";
+      b.onclick = () => openProgress(sid); card.appendChild(b);
+    }
+    async function openProgress(sid) {
+      let prog;
+      if (me.is_admin && ADMIN_PROGRESS && ADMIN_PROGRESS[sid]) { prog = ADMIN_PROGRESS[sid]; }
+      else {
+        const r = await fetch(`${API}/my-progress`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email }) });
+        const d = await r.json(); if (!d.ok) { alert(d.message || "Cannot load progress."); return; }
+        prog = d.progress;
+      }
+      renderProgressPopup(prog, !!me.is_admin);
+    }
+    function renderProgressPopup(p, editable) {
+      const weeks = p.weeks || [], done = weeks.filter(w => w.submitted == 1).length;
+      const mtx = weeks.map(w => `<div class="pw ${w.submitted == 1 ? 'on' : ''}">W${w.week}<br>${w.submitted == 1 ? '✓' : '·'}</div>`).join("");
+      const ov = p.overall_comment || "";
+      const ovBody = editable ? `<span contenteditable="true" data-t="${p.student_id}" data-w="" onblur="saveProgressComment(this)">${esc(ov) || "— add a comment"}</span>` : (esc(ov) || "No comment yet.");
+      const rows = weeks.map(w => {
+        const c = w.comment || "", miss = w.submitted != 1;
+        const body = editable ? `<span contenteditable="true" data-t="${p.student_id}" data-w="${w.week}" onblur="saveProgressComment(this)">${esc(c) || "—"}</span>` : (esc(c) || "—");
+        return `<div class="prow ${miss ? 'miss' : ''}"><b>W${w.week}</b>${body}</div>`;
+      }).join("");
+      document.getElementById("progressBody").innerHTML =
+        `<div class="ph"><div class="pn">${esc(p.name || p.student_id)}</div><div class="pr">${done} weeks submitted</div></div>
+         <div class="pmtx">${mtx}</div><div class="pov"><div class="t">Overall</div>${ovBody}</div><div>${rows}</div>`;
+      document.getElementById("progressModal").style.display = "flex";
+    }
+    function closeProgress() { document.getElementById("progressModal").style.display = "none"; }
+    async function saveProgressComment(el) {
+      try {
+        await fetch(`${API}/admin/comment`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, target: el.dataset.t, week: el.dataset.w === "" ? null : parseInt(el.dataset.w, 10), comment: el.textContent.trim() }) });
+        el.style.color = "#2a9d4a"; setTimeout(() => { el.style.color = ""; }, 1200);
+        if (ADMIN_PROGRESS && ADMIN_PROGRESS[el.dataset.t]) {
+          const s = ADMIN_PROGRESS[el.dataset.t];
+          if (el.dataset.w === "") { s.overall_comment = el.textContent.trim(); }
+          else { const w = s.weeks.find(x => x.week == parseInt(el.dataset.w, 10)); if (w) w.comment = el.textContent.trim(); }
+        }
+      } catch (e) {}
+    }
+
+    // ── AI assistant ──
+    const AI_HISTORY = [];
+    function openAi() {
+      if (!me) { openLogin(); return; }
+      document.getElementById("aiFab").style.display = "none";
+      document.getElementById("aiPanel").style.display = "flex";
+      if (!AI_HISTORY.length) addAiMsg("bot", "Hi! I am the AI assistant for Automation in AI. Stuck in Make? Not sure what to submit? Ask me in easy English.");
+      document.getElementById("aiInput").focus();
+    }
+    function closeAi() {
+      document.getElementById("aiPanel").style.display = "none";
+      document.getElementById("aiFab").style.display = "block";
+    }
+    function addAiMsg(kind, text) {
+      const m = document.createElement("div");
+      m.className = "ai-m " + (kind === "user" ? "user" : "bot");
+      m.textContent = text;
+      document.getElementById("aiMsgs").appendChild(m);
+      m.scrollIntoView({ behavior: "smooth", block: "end" });
+      return m;
+    }
+    async function sendAi(e) {
+      e.preventDefault();
+      const input = document.getElementById("aiInput");
+      const msg = input.value.trim(); if (!msg) return false;
+      input.value = "";
+      addAiMsg("user", msg);
+      const thinking = addAiMsg("bot", "…thinking");
+      thinking.classList.add("thinking");
+      try {
+        const r = await fetch(`${API}/ai-chat`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, message: msg, history: AI_HISTORY.slice(-10) }) });
+        const d = await r.json();
+        thinking.remove();
+        if (!r.ok) { addAiMsg("bot", d.message || "Something went wrong. Try again."); return false; }
+        addAiMsg("bot", d.answer);
+        AI_HISTORY.push({ role: "user", content: msg }, { role: "assistant", content: d.answer });
+        document.getElementById("aiQuota").textContent = `${d.used}/${d.limit} questions today`;
+      } catch (err) {
+        thinking.remove();
+        addAiMsg("bot", "Network error. Check your connection and try again.");
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
