@@ -235,6 +235,25 @@
     </div>
   </section>
 
+  <!-- ══════════ 15-WEEK PLAN ══════════ -->
+  <section class="band" id="plan">
+    <div class="band-eyebrow">The Semester</div>
+    <h2 class="band-title">15 weeks, one system</h2>
+    <p style="max-width:640px;color:#bbb;font-size:14.5px;margin:-10px 0 24px;">
+      Every week has the same rhythm: <b style="color:#fff;">WATCH</b> a short video before class ·
+      <b style="color:#fff;">BUILD</b> it in the lab, with your own field as material ·
+      <b style="color:#fff;">SUBMIT</b> here before you leave (plus one hand-drawn A4 flow on paper).
+      The <span style="color:var(--accent-bright);">Core</span> task alone is full score — every tutorial ends
+      with an <span style="color:var(--gold);">Advanced</span> section for those who want more.
+    </p>
+    <div class="board-wrap">
+      <table class="board" id="planTable" style="min-width:720px;">
+        <thead><tr><th style="width:52px;">Week</th><th class="name" style="position:static;">You learn</th><th class="name" style="position:static;">You build &amp; submit (Core)</th></tr></thead>
+        <tbody id="planBody"></tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- ══════════ STATUS BOARD ══════════ -->
   <section class="band" id="board">
     <div class="band-eyebrow">Status Board</div>
@@ -591,13 +610,23 @@
 
     // ── Weekly plan (professor edits this block each week; W1 class day = 2026-09-02) ──
     const WEEK1_DATE = new Date("2026-09-02T00:00:00+09:00");
+    // One entry per week. `links` gets the WATCH video + tutorial when registered.
     const WEEKS = {
-      1: {
-        name: "Getting Started",
-        build: "your seat, your accounts, and your task list.",
-        submit: "your field in one line + 3 repetitive tasks.",
-        links: [],   // {label, url} — video & tutorial links appear here when registered
-      },
+      1:  { name: "Getting Started",            build: "your seat, your accounts, and your task list.",                         submit: "your field in one line + 3 repetitive tasks.", links: [] },
+      2:  { name: "Make Basics — Trigger & Action", build: "your first automation in Make.",                                    submit: "the easiest task from your list, automated — link + one line.", links: [] },
+      3:  { name: "Connecting Apps",            build: "an automation with more than one app, plus a condition or filter.",     submit: "one task from your field that needs a condition — link + one line.", links: [] },
+      4:  { name: "Forms → Spreadsheet · Talk 1", build: "a Google Form that fills a spreadsheet by itself.",                   submit: "your order/request intake, automated — and your 1-minute field talk.", links: [] },
+      5:  { name: "Email Automation",           build: "an email that sends itself.",                                           submit: "one automatic reply from your field — link + one line.", links: [] },
+      6:  { name: "AI Inside Your Automation",  build: "a ChatGPT/Claude step inside your Make scenario.",                      submit: "AI writing your customer reply — link + one line.", links: [] },
+      7:  { name: "Project 1 · Peer Test",      build: "one complete automation combining weeks 2–6.",                          submit: "your project link — and test your partner's automation.", links: [] },
+      8:  { name: "Midterm Presentations",      build: "nothing new — you present.",                                            submit: "your 2-minute demo: one automation, running live.", links: [] },
+      9:  { name: "Project 2 · Peer Test",      build: "the same skills on a different task from your field.",                  submit: "your project link — and test your partner's automation.", links: [] },
+      10: { name: "Notion Basics",              build: "a Notion space for your business data.",                                submit: "your Notion page link + one line.", links: [] },
+      11: { name: "Notion Automation",          build: "data flowing into Notion by itself, through Make.",                     submit: "your Notion automation — link + one line.", links: [] },
+      12: { name: "Project 3 · Peer Test",      build: "a bigger automation with several steps.",                               submit: "your project link — and test your partner's automation.", links: [] },
+      13: { name: "Design Your System",         build: "a one-page plan: every automation your field needs.",                   submit: "your design proposal — link + one line.", links: [] },
+      14: { name: "Build Your System",          build: "the system you designed last week.",                                    submit: "your working system — link + one line.", links: [] },
+      15: { name: "Final Presentations",        build: "nothing new — you present.",                                            submit: "your 3-minute demo: your whole automation system.", links: [] },
     };
     function currentWeek() {
       const diff = Math.floor((Date.now() - WEEK1_DATE.getTime()) / (7 * 24 * 3600 * 1000)) + 1;
@@ -613,8 +642,22 @@
         document.getElementById(id).addEventListener("keydown", e => { if (e.key === "Enter") signIn(); });
       });
       renderThisWeek();
+      renderPlan();
       loadBoard();
     });
+
+    function renderPlan() {
+      const cw = currentWeek();
+      let html = "";
+      for (let i = 1; i <= 15; i++) {
+        const w = WEEKS[i];
+        const hi = i === cw ? " style='background:rgba(201,100,66,.10);'" : "";
+        html += `<tr${hi}><td class="mono" style="color:${i === cw ? 'var(--accent-bright)' : 'var(--gold)'};font-size:11px;">W${i}</td>` +
+          `<td class="name" style="position:static;white-space:normal;">${w.name}</td>` +
+          `<td class="name" style="position:static;white-space:normal;color:#aaa;">${w.build} <span style="color:#777;">→ submit:</span> ${w.submit}</td></tr>`;
+      }
+      document.getElementById("planBody").innerHTML = html;
+    }
 
     function renderThisWeek() {
       const w = currentWeek();
@@ -782,7 +825,7 @@
         const r = await fetch(`${API}/cards-map`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, page: PAGE }) });
         const d = await r.json(); if (!d.ok) return;
         if (d.admin) {
-          const pr = await fetch(`${API}/admin/progress`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email }) });
+          const pr = await fetch(`${API}/admin/progress`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, cohort: COHORT }) });
           const pd = await pr.json(); ADMIN_PROGRESS = {}; if (pd.ok) pd.students.forEach(s => ADMIN_PROGRESS[s.student_id] = s);
           document.querySelectorAll(".speakers-grid .card").forEach(card => {
             const sid = d.map[card.dataset.cardId]; if (sid) addAssignBtn(card, sid);
@@ -803,7 +846,7 @@
       let prog;
       if (me.is_admin && ADMIN_PROGRESS && ADMIN_PROGRESS[sid]) { prog = ADMIN_PROGRESS[sid]; }
       else {
-        const r = await fetch(`${API}/my-progress`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email }) });
+        const r = await fetch(`${API}/my-progress`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, cohort: COHORT }) });
         const d = await r.json(); if (!d.ok) { alert(d.message || "Cannot load progress."); return; }
         prog = d.progress;
       }
@@ -811,7 +854,10 @@
     }
     function renderProgressPopup(p, editable) {
       const weeks = p.weeks || [], done = weeks.filter(w => w.submitted == 1).length;
-      const mtx = weeks.map(w => `<div class="pw ${w.submitted == 1 ? 'on' : ''}">W${w.week}<br>${w.submitted == 1 ? '✓' : '·'}</div>`).join("");
+      const mtx = weeks.map(w => {
+        const late = w.status === "late";
+        return `<div class="pw ${w.submitted == 1 ? 'on' : ''}" ${late ? 'style="background:#fef3c7;color:#b45309;"' : ''}>W${w.week}<br>${w.submitted == 1 ? (late ? 'L' : '✓') : '·'}</div>`;
+      }).join("");
       const ov = p.overall_comment || "";
       const ovBody = editable ? `<span contenteditable="true" data-t="${p.student_id}" data-w="" onblur="saveProgressComment(this)">${esc(ov) || "— add a comment"}</span>` : (esc(ov) || "No comment yet.");
       const rows = weeks.map(w => {
@@ -827,7 +873,7 @@
     function closeProgress() { document.getElementById("progressModal").style.display = "none"; }
     async function saveProgressComment(el) {
       try {
-        await fetch(`${API}/admin/comment`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, target: el.dataset.t, week: el.dataset.w === "" ? null : parseInt(el.dataset.w, 10), comment: el.textContent.trim() }) });
+        await fetch(`${API}/admin/comment`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, target: el.dataset.t, week: el.dataset.w === "" ? null : parseInt(el.dataset.w, 10), comment: el.textContent.trim(), cohort: COHORT }) });
         el.style.color = "#2a9d4a"; setTimeout(() => { el.style.color = ""; }, 1200);
         if (ADMIN_PROGRESS && ADMIN_PROGRESS[el.dataset.t]) {
           const s = ADMIN_PROGRESS[el.dataset.t];
