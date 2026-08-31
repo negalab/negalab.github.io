@@ -11,6 +11,7 @@ const WEEKS = {
     build: "your seat, your accounts, and your task list.",
     submit: "your field in one line + 3 repetitive tasks.",
     video: "",
+    coach: "Help the student name their field (track A, B or C) and find 3 concrete repetitive tasks they really do by hand. Ask about their week; refuse vague answers like 'marketing' — push to 'answering the same size question on Instagram'.",
     links: [],
     tutorial: `
       <h4>What is automation?</h4>
@@ -46,6 +47,7 @@ const WEEKS = {
     build: "your first automation in Make.",
     submit: "the easiest task from your list, automated — link + one line.",
     video: "",
+    coach: "Help them pick the EASIEST task from their Week-1 list and describe it as one Trigger and one Action in plain words before they build it in Make.",
     links: [],
     tutorial: `
       <h4>Two words for the whole semester</h4>
@@ -76,6 +78,7 @@ const WEEKS = {
     build: "an automation with more than one app, plus a condition.",
     submit: "one task from your field that needs a condition — link + one line.",
     video: "",
+    coach: "Help them find one task that has a real rule ('only urgent', 'only over 50,000') and phrase the filter condition precisely.",
     links: [],
     tutorial: `
       <h4>Not every row is the same</h4>
@@ -104,6 +107,7 @@ const WEEKS = {
     build: "a Google Form that fills a spreadsheet by itself.",
     submit: "your intake form, automated — and your 1-minute field talk.",
     video: "",
+    coach: "Help them design their intake form: who fills it, which 2-3 questions, what happens after. Also help them rehearse their 1-minute field talk.",
     links: [],
     tutorial: `
       <h4>Today two things happen</h4>
@@ -132,6 +136,7 @@ const WEEKS = {
     build: "an email that sends itself.",
     submit: "one automatic reply from your field — link + one line.",
     video: "",
+    coach: "Help them find the message they send most often and draft the reply template together, with the mapped fields marked.",
     links: [],
     tutorial: `
       <h4>The task everyone repeats</h4>
@@ -160,6 +165,7 @@ const WEEKS = {
     build: "an AI step inside your Make scenario.",
     submit: "AI writing your customer reply — link + one line.",
     video: "",
+    coach: "Help them write the AI prompt for their auto-reply: role, tone, what to never promise. Test it against 2-3 fake customer messages in the chat.",
     links: [],
     tutorial: `
       <h4>From template to thinking</h4>
@@ -186,6 +192,7 @@ const WEEKS = {
     build: "one complete automation combining weeks 2–6.",
     submit: "your project link — and your test of a partner's automation.",
     video: "",
+    coach: "Help them decide which pieces from weeks 2-6 combine into one complete flow, and define 'done' for it. Remind them peer feedback is part of the task.",
     links: [],
     tutorial: `
       <h4>Put it together</h4>
@@ -211,6 +218,7 @@ const WEEKS = {
     build: "nothing new — you present.",
     submit: "your 2-minute demo link, before class starts.",
     video: "",
+    coach: "Rehearse the 2-minute midterm demo: 20s field, 70s live trigger, 30s what it saves. Time it in the chat.",
     links: [],
     tutorial: `
       <h4>Two minutes, running live</h4>
@@ -233,6 +241,7 @@ const WEEKS = {
     build: "the same skills on a different task from your field.",
     submit: "your project link — and your test of a partner's automation.",
     video: "",
+    coach: "Help them pick task #2 from their list and apply one piece of peer feedback from Project 1.",
     links: [],
     tutorial: `
       <h4>Second lap</h4>
@@ -256,6 +265,7 @@ const WEEKS = {
     build: "a Notion space for your business data.",
     submit: "your Notion page link + one line.",
     video: "",
+    coach: "Help them decide what data their field needs organized and name the Notion columns (Name, Status options, Date, Note).",
     links: [],
     tutorial: `
       <h4>Where your data lives</h4>
@@ -281,6 +291,7 @@ const WEEKS = {
     build: "data flowing into Notion by itself, through Make.",
     submit: "your Notion automation — link + one line.",
     video: "",
+    coach: "Help them map their form fields to Notion columns and decide what Status a new card should start with.",
     links: [],
     tutorial: `
       <h4>Close the loop</h4>
@@ -306,6 +317,7 @@ const WEEKS = {
     build: "a bigger automation with several steps.",
     submit: "your project link — and your test of a partner's automation.",
     video: "",
+    coach: "Help them choose their most valuable flow and list its steps: trigger, router rule, and every action. Failure cases too.",
     links: [],
     tutorial: `
       <h4>The full chain</h4>
@@ -330,6 +342,7 @@ const WEEKS = {
     build: "a one-page plan: every automation your field needs.",
     submit: "your design proposal — link + one line.",
     video: "",
+    coach: "Help them write the system map: every repetitive task, marked done/next/later, and one line per planned automation. The test: someone else could build it.",
     links: [],
     tutorial: `
       <h4>From pieces to a system</h4>
@@ -355,6 +368,7 @@ const WEEKS = {
     build: "the system you designed last week.",
     submit: "your working system — link + one line.",
     video: "",
+    coach: "Help them prioritize: which planned item is highest value, and what is the smallest version that actually runs today.",
     links: [],
     tutorial: `
       <h4>Building day</h4>
@@ -379,6 +393,7 @@ const WEEKS = {
     build: "nothing new — you present.",
     submit: "your 3-minute demo link, before class starts.",
     video: "",
+    coach: "Rehearse the 3-minute final demo and sharpen the one sentence: why this system deserves attention (or money).",
     links: [],
     tutorial: `
       <h4>Three minutes, your whole system</h4>
