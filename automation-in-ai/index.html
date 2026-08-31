@@ -184,6 +184,23 @@
     /* footer */
     footer { padding: 44px 6vw 60px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-dim); display:flex; flex-wrap:wrap; gap: 8px 28px; }
 
+    /* week page tutorial content */
+    .wk-tutorial { border-top: 1px solid #eee; padding-top: 18px; }
+    .wk-tutorial h4 { font-family:'Fraunces',serif; font-size: 17px; font-weight: 700; margin: 20px 0 8px; color:#1a1a1a; }
+    .wk-tutorial h4:first-child { margin-top: 0; }
+    .wk-tutorial p { font-size: 14.5px; color:#444; margin-bottom: 10px; line-height: 1.65; }
+    .wk-tutorial ol { padding-left: 22px; margin-bottom: 12px; }
+    .wk-tutorial li { font-size: 14.5px; color:#444; margin-bottom: 8px; line-height: 1.6; }
+    .wk-tutorial a { color: var(--accent); }
+    .wk-tutorial b { color:#1a1a1a; }
+    .wm-videobox { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; border:1px solid #e5e5e5; }
+    .wm-videobox iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .wm-novideo { background:#faf7f2; border:1px dashed #ddd; border-radius:12px; padding:14px 18px; font-size:13px; color:#888; }
+    .wm-mysub { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:12px; padding:12px 16px; font-size:13.5px; color:#166534; }
+    .wm-mysub.late { background:#fffbeb; border-color:#fde68a; color:#92400e; }
+    .plan-row { cursor: pointer; }
+    .plan-row:hover td { background: rgba(201,100,66,.08); }
+
     .toast {
       position: fixed; top: 62px; right: 16px; z-index: 99; color:#fff; padding: 12px 20px;
       border-radius: 100px; font-size: 13.5px; font-weight: 500; box-shadow: 0 12px 24px rgba(0,0,0,.35);
@@ -230,8 +247,9 @@
         <p><b>Today you submit:</b> <span id="wkSubmit"></span></p>
       </div>
       <div class="week-links" id="wkLinks"></div>
-      <button class="btn-primary" onclick="openSubmit()">Submit this week ✓</button>
-      <p class="week-note">Submitting during class = attendance. The system records the time by itself.</p>
+      <button class="btn-primary" onclick="openWeek(currentWeek())">Open this week's page →</button>
+      <button class="btn-primary" style="background:transparent;border:1px solid var(--line);margin-left:10px;" onclick="openSubmit()">Submit ✓</button>
+      <p class="week-note">Submitting during class = attendance. The system records the time by itself. Already submitted? Open it again to edit — your attendance stays.</p>
     </div>
   </section>
 
@@ -580,6 +598,23 @@
     </div>
   </div>
 
+  <!-- ══════════ WEEK PAGE MODAL ══════════ -->
+  <div id="weekModal" class="modal-overlay">
+    <div class="modal modal-shell" style="max-width:760px;">
+      <button class="modal-close" onclick="closeWeek()">×</button>
+      <div class="week-num" id="wmNum" style="margin-top:2px;"></div>
+      <h3 id="wmName" style="font-size:28px;"></h3>
+      <div class="today-lines" style="border-left-color:var(--accent);margin:16px 0 20px;">
+        <p style="color:#333;"><b style="color:var(--accent);">You build:</b> <span id="wmBuild"></span></p>
+        <p style="color:#333;"><b style="color:var(--accent);">You submit:</b> <span id="wmSubmit"></span></p>
+      </div>
+      <div id="wmVideo" style="margin-bottom:20px;"></div>
+      <div id="wmMySub" style="margin-bottom:16px;"></div>
+      <button class="btn-primary" id="wmSubmitBtn" style="margin-bottom:22px;">Submit this week ✓</button>
+      <div id="wmTutorial" class="wk-tutorial"></div>
+    </div>
+  </div>
+
   <!-- ══════════ PEEK MODAL (board cell) ══════════ -->
   <div id="peekModal" class="modal-overlay">
     <div class="modal modal-shell">
@@ -602,6 +637,7 @@
     </form>
   </div>
 
+  <script src="weeks.js"></script>
   <script>
     const API = "https://dream-to-website-api.dykwon-248.workers.dev";
     const PAGE = "automation-in-ai";
@@ -609,25 +645,7 @@
     let me = null;
 
     // ── Weekly plan (professor edits this block each week; W1 class day = 2026-09-02) ──
-    const WEEK1_DATE = new Date("2026-09-02T00:00:00+09:00");
-    // One entry per week. `links` gets the WATCH video + tutorial when registered.
-    const WEEKS = {
-      1:  { name: "Getting Started",            build: "your seat, your accounts, and your task list.",                         submit: "your field in one line + 3 repetitive tasks.", links: [] },
-      2:  { name: "Make Basics — Trigger & Action", build: "your first automation in Make.",                                    submit: "the easiest task from your list, automated — link + one line.", links: [] },
-      3:  { name: "Connecting Apps",            build: "an automation with more than one app, plus a condition or filter.",     submit: "one task from your field that needs a condition — link + one line.", links: [] },
-      4:  { name: "Forms → Spreadsheet · Talk 1", build: "a Google Form that fills a spreadsheet by itself.",                   submit: "your order/request intake, automated — and your 1-minute field talk.", links: [] },
-      5:  { name: "Email Automation",           build: "an email that sends itself.",                                           submit: "one automatic reply from your field — link + one line.", links: [] },
-      6:  { name: "AI Inside Your Automation",  build: "a ChatGPT/Claude step inside your Make scenario.",                      submit: "AI writing your customer reply — link + one line.", links: [] },
-      7:  { name: "Project 1 · Peer Test",      build: "one complete automation combining weeks 2–6.",                          submit: "your project link — and test your partner's automation.", links: [] },
-      8:  { name: "Midterm Presentations",      build: "nothing new — you present.",                                            submit: "your 2-minute demo: one automation, running live.", links: [] },
-      9:  { name: "Project 2 · Peer Test",      build: "the same skills on a different task from your field.",                  submit: "your project link — and test your partner's automation.", links: [] },
-      10: { name: "Notion Basics",              build: "a Notion space for your business data.",                                submit: "your Notion page link + one line.", links: [] },
-      11: { name: "Notion Automation",          build: "data flowing into Notion by itself, through Make.",                     submit: "your Notion automation — link + one line.", links: [] },
-      12: { name: "Project 3 · Peer Test",      build: "a bigger automation with several steps.",                               submit: "your project link — and test your partner's automation.", links: [] },
-      13: { name: "Design Your System",         build: "a one-page plan: every automation your field needs.",                   submit: "your design proposal — link + one line.", links: [] },
-      14: { name: "Build Your System",          build: "the system you designed last week.",                                    submit: "your working system — link + one line.", links: [] },
-      15: { name: "Final Presentations",        build: "nothing new — you present.",                                            submit: "your 3-minute demo: your whole automation system.", links: [] },
-    };
+    // WEEKS + WEEK1_DATE live in weeks.js — one entry per week, with the full tutorial HTML.
     function currentWeek() {
       const diff = Math.floor((Date.now() - WEEK1_DATE.getTime()) / (7 * 24 * 3600 * 1000)) + 1;
       return Math.min(15, Math.max(1, diff));
@@ -644,6 +662,8 @@
       renderThisWeek();
       renderPlan();
       loadBoard();
+      const m = (location.hash || "").match(/^#week-(\d{1,2})$/);
+      if (m) openWeek(parseInt(m[1], 10));
     });
 
     function renderPlan() {
@@ -652,11 +672,51 @@
       for (let i = 1; i <= 15; i++) {
         const w = WEEKS[i];
         const hi = i === cw ? " style='background:rgba(201,100,66,.10);'" : "";
-        html += `<tr${hi}><td class="mono" style="color:${i === cw ? 'var(--accent-bright)' : 'var(--gold)'};font-size:11px;">W${i}</td>` +
-          `<td class="name" style="position:static;white-space:normal;">${w.name}</td>` +
+        html += `<tr class="plan-row" onclick="openWeek(${i})"${hi}><td class="mono" style="color:${i === cw ? 'var(--accent-bright)' : 'var(--gold)'};font-size:11px;">W${i}</td>` +
+          `<td class="name" style="position:static;white-space:normal;">${w.name} <span style="color:#666;font-size:11px;">↗</span></td>` +
           `<td class="name" style="position:static;white-space:normal;color:#aaa;">${w.build} <span style="color:#777;">→ submit:</span> ${w.submit}</td></tr>`;
       }
       document.getElementById("planBody").innerHTML = html;
+    }
+
+    // ── Week page ──
+    let MY_SUBS = {};
+    async function loadMySubs() {
+      if (!me) return;
+      try {
+        const r = await fetch(`${API}/my-progress`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, cohort: COHORT }) });
+        const d = await r.json();
+        if (d.ok) { MY_SUBS = {}; (d.progress.weeks || []).forEach(w => { if (w.submitted) MY_SUBS[w.week] = w; }); }
+      } catch (e) {}
+    }
+    function openWeek(w) {
+      const info = WEEKS[w]; if (!info) return;
+      document.getElementById("wmNum").textContent = `Week ${w} · of 15` + (w === currentWeek() ? " · this week" : "");
+      document.getElementById("wmName").textContent = info.name;
+      document.getElementById("wmBuild").textContent = info.build;
+      document.getElementById("wmSubmit").textContent = info.submit;
+      const v = document.getElementById("wmVideo");
+      v.innerHTML = info.video
+        ? `<div class="wm-videobox"><iframe src="${info.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Week ${w} video"></iframe></div>`
+        : `<div class="wm-novideo">▶ WATCH video for this week — coming before class. Check back here.</div>`;
+      renderWmMySub(w);
+      const btn = document.getElementById("wmSubmitBtn");
+      btn.textContent = MY_SUBS[w] ? "Edit my submission ✎" : "Submit this week ✓";
+      btn.onclick = () => { closeWeek(); openSubmit(w); };
+      document.getElementById("wmTutorial").innerHTML = info.tutorial || "";
+      document.getElementById("weekModal").style.display = "flex";
+      history.replaceState(null, "", "#week-" + w);
+    }
+    function renderWmMySub(w) {
+      const el = document.getElementById("wmMySub");
+      const s = MY_SUBS[w];
+      if (!me || !s) { el.innerHTML = ""; return; }
+      const late = s.status === "late";
+      el.innerHTML = `<div class="wm-mysub ${late ? 'late' : ''}"><b>Your submission (${late ? 'late' : 'present'}):</b> ${esc(s.review || "")}${s.link ? ` · <a href="${esc(s.link)}" target="_blank" rel="noopener">link</a>` : ""}</div>`;
+    }
+    function closeWeek() {
+      document.getElementById("weekModal").style.display = "none";
+      history.replaceState(null, "", " ");
     }
 
     function renderThisWeek() {
@@ -702,7 +762,7 @@
     function onLogin() {
       document.getElementById("loginModal").style.display = "none";
       const sb = document.getElementById("signInBtn"); if (sb) sb.style.display = "none";
-      showAuthBar(); setupProgressButtons();
+      showAuthBar(); setupProgressButtons(); loadMySubs();
     }
     function showAuthBar() {
       const bar = document.getElementById("authBar");
@@ -722,14 +782,15 @@
     }
 
     // ── Submit ──
-    function openSubmit() {
+    function openSubmit(weekArg) {
       if (!me) { openLogin(); return; }
-      const w = currentWeek();
+      const w = weekArg || currentWeek();
+      const cw = currentWeek();
       const sel = document.getElementById("smWeekSel");
       sel.innerHTML = "";
       for (let i = 1; i <= 15; i++) {
         const o = document.createElement("option");
-        o.value = i; o.textContent = `Week ${i}` + (i === w ? " (this week)" : "");
+        o.value = i; o.textContent = `Week ${i}` + (i === cw ? " (this week)" : "");
         if (i === w) o.selected = true;
         sel.appendChild(o);
       }
@@ -741,7 +802,12 @@
     function syncSubmitLabels(w) {
       document.getElementById("smWeek").textContent = `Week ${w}`;
       const info = WEEKS[w];
-      document.getElementById("smWhat").textContent = info ? `Submit: ${info.submit}` : "";
+      const s = MY_SUBS[w];
+      const note = s ? (s.status === "present" ? " — you already submitted (present); editing keeps your attendance." : " — you already submitted (late); you can still edit.") : "";
+      document.getElementById("smWhat").textContent = (info ? `Submit: ${info.submit}` : "") + note;
+      document.getElementById("smReview").value = s && s.review ? s.review : "";
+      document.getElementById("smLink").value = s && s.link ? s.link : "";
+      document.getElementById("smBtn").textContent = s ? "Update ✓" : "Submit ✓";
     }
     async function doSubmit() {
       const btn = document.getElementById("smBtn"), err = document.getElementById("smError");
@@ -757,7 +823,8 @@
         btn.disabled = false; btn.textContent = "Submit ✓";
         if (!r.ok) { err.textContent = d.message || d.error || "Submit failed."; return; }
         document.getElementById("submitModal").style.display = "none";
-        toast(d.status === "present" ? `✓ Submitted — Week ${week}. You are marked present.` : `✓ Submitted — Week ${week} (late).`, d.status === "present" ? "#16a34a" : "#d97706");
+        toast(d.status === "present" ? `✓ Saved — Week ${week}. You are marked present.` : `✓ Saved — Week ${week} (late submission).`, d.status === "present" ? "#16a34a" : "#d97706");
+        await loadMySubs();
         loadBoard();
       } catch (e) {
         btn.disabled = false; btn.textContent = "Submit ✓"; err.textContent = "Network error: " + e.message;
