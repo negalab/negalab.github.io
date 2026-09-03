@@ -261,54 +261,73 @@ const WEEKS = {
   },
 
   10: {
-    name: "Notion Basics",
-    build: "a Notion space for your business data.",
-    submit: "your Notion page link + one line.",
+    name: "Notion — Your Business Data",
+    build: "a Notion space for your field, and data flowing into it by itself.",
+    submit: "your Notion page + the automation that fills it — link + one line.",
     video: "",
-    coach: "Help them decide what data their field needs organized and name the Notion columns (Name, Status options, Date, Note).",
+    coach: "Two things in one week: help them name the Notion columns their field actually needs (Name, Status options, Date, Note), then map their form fields into those columns through Make. If they are slow, the Notion page alone is enough — the automation can come next week.",
     links: [],
     tutorial: `
       <h4>Where your data lives</h4>
-      <p>Sheets hold rows. <b>Notion</b> holds your whole field: orders, customers, notes, plans — in one place you actually want to open. Today: Notion itself. Next week: Make fills it automatically.</p>
-      <h4>Core steps</h4>
+      <p>Sheets hold rows. <b>Notion</b> holds your whole field — orders, customers, notes, plans — in one place you actually want to open.
+      Today you build it <i>and</i> make it fill itself.</p>
+      <h4>Part 1 — build the space (30 min)</h4>
       <ol>
         <li>Go to <b>notion.com</b> → sign up free (Google account is fine).</li>
         <li>New page → name it after your field ("Bobur's Shop", "My Job Search").</li>
         <li>Inside, type <b>/database</b> → choose <b>Table</b>.</li>
-        <li>Make the columns match your field: Name · Status (use the <i>Select</i> type: new / doing / done) · Date · Note.</li>
-        <li>Add five real entries from your field by hand — feel what belongs in each column.</li>
-        <li>Try two views: click <b>+ Add a view</b> → <b>Board</b>, grouped by Status. Same data, kanban board.</li>
-        <li>Click <b>Share</b> → copy the link → that is your submission.</li>
+        <li>Columns that match your field: Name · Status (<i>Select</i> type: new / doing / done) · Date · Note.</li>
+        <li>Add three real entries by hand — feel what belongs in each column.</li>
+        <li><b>+ Add a view</b> → <b>Board</b>, grouped by Status. Same data, kanban board.</li>
       </ol>
+      <h4>Part 2 — make it fill itself (40 min)</h4>
+      <ol>
+        <li>In Make, open your form scenario → add <b>Notion → Create a Database Item</b>.</li>
+        <li>Connect Notion — give access only to the page you just made.</li>
+        <li>Map the form answers into the columns: name → Name, request → Note, Status → "new".</li>
+        <li>Run once → submit a test form → watch the card appear in the table <i>and</i> the Board.</li>
+        <li>Turn the scenario off.</li>
+      </ol>
+      <p>Your flow is now: form → sheet → email reply → Notion card. Four apps, zero hands.</p>
+      <h4>Make it yours</h4>
+      <p>Build the page you would actually open every morning. That is the difference between homework and a tool.</p>
       <h4>Advanced</h4>
-      <p>Add a second database ("Customers") and a <b>Relation</b> column connecting the two.
-      Guide: <a href="https://www.notion.com/help" target="_blank" rel="noopener">notion.com/help</a> — search "relations".</p>
+      <p>Reverse direction: Notion trigger <b>Watch Database Items</b> — drag a card to "done", and Make emails the customer.</p>
     `,
   },
 
   11: {
-    name: "Notion Automation",
-    build: "data flowing into Notion by itself, through Make.",
-    submit: "your Notion automation — link + one line.",
+    name: "AI Coding Day — say it, and it exists",
+    build: "one small working tool of your own, made by describing it in one sentence.",
+    submit: "your tool — link + the sentence you used.",
     video: "",
-    coach: "Help them map their form fields to Notion columns and decide what Status a new card should start with.",
+    coach: "Their tool will fail because the sentence is vague, not because the tool is broken. Push them to name three things: who uses it, what they see on screen, what happens when they press the button. Never write the sentence for them — ask the missing question instead.",
     links: [],
     tutorial: `
-      <h4>Close the loop</h4>
-      <p>Week 4: form fills a sheet. Today: the same event also creates a card in your Notion — your field updates itself while you sleep.</p>
+      <h4>Today is different</h4>
+      <p>No Make. No modules. Today you tell a computer what you want <b>in one sentence</b>, and it builds it.
+      This is a whole day — the only one like it this semester.</p>
+      <h4>What coding became</h4>
+      <p>Coding is giving a computer instructions. It always was. The old way: you wrote those instructions in the computer's language, and that took years to learn.
+      The new way: you write them in <b>your language</b>. So the hard part moved — from grammar to <b>knowing what you want</b>.</p>
+      <blockquote>The clearer your picture, the better the machine builds it.</blockquote>
       <h4>Core steps</h4>
       <ol>
-        <li>In Make, open your form scenario → add a module: <b>Notion → Create a Database Item</b>.</li>
-        <li>Connect Notion (Make asks you to give access — allow only the page you made last week).</li>
-        <li>Map form answers into the Notion columns: name → Name, request → Note, Status → "new".</li>
-        <li>Run once → submit a test form → watch the card appear in your Notion table <i>and</i> the Board view.</li>
-        <li>Now your flow is: form → sheet → email reply → Notion card. Four apps, zero hands.</li>
-        <li>Turn the scenario off.</li>
+        <li>Pick <b>one small thing</b> your field needs. Not a whole website — one tool. A price calculator. A booking form. A checklist that remembers.</li>
+        <li>Write <b>one sentence</b> that answers three questions: <b>who uses it</b>, <b>what they see</b>, <b>what happens when they press the button</b>.</li>
+        <li>Paste the sentence into Claude (or ChatGPT). Wait. Something appears — press it, use it.</li>
+        <li><b>Fix the sentence, not the tool.</b> If it came out wrong, your picture had a hole. Find the hole, write it in, run again.</li>
+        <li>Submit the working thing <i>and</i> the sentence that made it.</li>
       </ol>
-      <h4>Make it yours</h4>
-      <p>Which view of your field do you want to open every morning? Build the Notion page you would actually check — that is the difference between homework and a tool.</p>
+      <h4>Vague vs clear</h4>
+      <p><b>Vague</b> — "make a useful website for my shop." Nobody knows what that is, including the AI.</p>
+      <p><b>Clear</b> — "Make a one-page site where a customer types their name and menu choice, the order appears in a list below, and when the owner clicks Done the order disappears from the list."</p>
+      <p>Not longer — <b>no empty spaces</b>. That is the difference.</p>
+      <h4>Why this belongs in an automation course</h4>
+      <p>Week 6 asked you: which step needs judgment? Today asks: what exactly do you want?
+      Both are the same muscle — <b>seeing clearly</b>. Tools change every year. That does not.</p>
       <h4>Advanced</h4>
-      <p>Reverse direction: Notion trigger <b>Watch Database Items</b> — when you drag a card to "done", Make sends the customer a "finished" email.</p>
+      <p>Connect today's tool to your Make scenario — when someone uses it, a row appears in your sheet, and your automation takes over from there.</p>
     `,
   },
 
