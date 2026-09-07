@@ -50,7 +50,7 @@ const WEEKS = {
 
   2: {
     name: "The Class System — and a taste of Make",
-    build: "nothing yet. Today you set up your two accounts and watch one automation run.",
+    build: "nothing yet. Today you set up your two accounts, learn to read the Make screen, and name your business.",
     submit: "an interview with the AI assistant: who you are, what business you think about, and which part of it you would automate. Talk to it in your own language; it writes the submission for you.",
     video: "",
     coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Week 2 is a setup and demo week: the student is NOT building anything in Make today, so do not give them build steps unless they ask. Your job this week is the interview below, and helping anyone who cannot sign in to the class site or create a Make account.",
@@ -76,13 +76,21 @@ const WEEKS = {
         <li><b>Submit</b> — you talk to the AI assistant. There is never a blank form to fill.</li>
         <li><b>Your progress</b> — a row of weeks with a ✓ when you submitted. You only ever see your own.</li>
       </ul>
-      <h4>Two words for the whole semester</h4>
-      <p>A <b>Trigger</b> is the event that starts an automation ("a new row appears").
-      An <b>Action</b> is what happens next ("send me an email"). The sentence you will say all semester:
-      <b>"When ___ happens, do ___."</b></p>
-      <p>Today's example, which the professor builds on the screen while you watch:
-      a Google Sheet with two columns &rarr; Make watches it &rarr; an email arrives. A row appears and the rest happens by itself.
-      <b>Next week you build exactly this, with your own material.</b></p>
+      <h4>Reading Make — everything is a node</h4>
+      <p>Click <b>Create a new scenario</b>: an empty canvas and one big <b>+</b>.
+      A <b>node</b> is one box that does one job — <i>Google Sheets &middot; Watch New Rows</i> is a node, <i>Gmail &middot; Send an email</i> is another.
+      A line between them means the first hands its result to the second. <b>An automation is nodes on a line.</b> That is all it ever is.</p>
+      <p>Three kinds: a <b>Trigger</b> waits for something to happen and always sits first &middot; an <b>Action</b> does something &middot; a <b>Filter</b> lets some things through.
+      One trigger per scenario, at the front. The sentence you will say all semester: <b>"When ___ happens, do ___."</b></p>
+      <h4>The screen — find these six</h4>
+      <p><b>1</b> the big + (search by <i>app</i> name, not by what you want) &middot; <b>2</b> click a node and its settings open on the right &middot;
+      <b>3</b> Connection — the link to your Google account, made once and reused &middot; <b>4</b> Run once, to test by hand &middot;
+      <b>5</b> the switch bottom-left: ON means it runs by itself, <b>keep it OFF</b> &middot; <b>6</b> History at the bottom, where you see every run and what failed.</p>
+      <p><b>Finding those six is today's work in Make.</b> Do not build anything yet — there is nothing to submit from it.</p>
+      <h4>From next week — Project 1</h4>
+      <p>You make a <b>Google Form</b> that introduces your business and asks people what they think, you share it, and an automation watches it:
+      every new answer lands in your sheet and Make tells you. Your first automation is not a toy — <b>it brings you feedback on your own idea</b>.
+      That is why the question below matters. Think of one question you actually want to ask people.</p>
       <h4>Submit — by talking to the AI assistant</h4>
       <p>Open this week's page and press the orange button, then type <b>start</b>.
       It interviews you with four questions, one at a time, and writes the submission for you:</p>
@@ -118,60 +126,84 @@ const WEEKS = {
   },
 
   3: {
-    name: "Connecting Apps — Conditions & Filters",
-    build: "an automation with more than one app, plus a condition.",
-    submit: "one task from your field that needs a condition — link + one line.",
+    name: "Project 1 — Your business, and what people say",
+    build: "a Google Form about your business, and the automation that watches it.",
+    submit: "your form link + one line about what you are asking people.",
     video: "",
-    coach: "Help them find one task that has a real rule ('only urgent', 'only over 50,000') and phrase the filter condition precisely.",
+    coach: "This is the first week students build in Make. The project: a Google Form that introduces their business and asks people what they think, feeding a Google Sheet, with a Make scenario that notifies them when a new answer arrives. Keep it to ONE trigger and ONE action — no conditions yet, that is next week. The most common failure is the Google connection: tell them to remove it and connect again. If a student has not decided their business yet, help them name one in two minutes from what they already do, then move on — the form matters more than a perfect idea.",
     links: [],
     tutorial: `
-      <h4>Not every row is the same</h4>
-      <p>Real work has rules: "only urgent orders", "only amounts over 50,000", "only emails with an attachment".
-      In Make, a rule between two modules is called a <b>Filter</b>.</p>
-      <h4>Core steps</h4>
+      <h4>Project 1 — one thing, in three steps</h4>
+      <p>Your first automation is not a toy. It brings you <b>real feedback on your own business idea</b>, from real people.</p>
       <ol>
-        <li>Open your Week-2 scenario (or copy it: scenario menu → <b>Clone</b>).</li>
-        <li>Add a column to your sheet: <b>Status</b> (write "urgent" or "normal" in each row).</li>
-        <li>Click the <b>wrench on the line</b> between the two modules → <b>Set up a filter</b>.</li>
-        <li>Condition: <b>Status</b> — <i>equal to</i> — <b>urgent</b>. Label it "Only urgent".</li>
-        <li>Run once → add one "urgent" row and one "normal" row → only the urgent one sends an email.</li>
-        <li>Now add a second app: after Gmail, add <b>Google Sheets → Add a Row</b> to a separate "Urgent log" sheet. Three modules, two apps, one rule.</li>
-        <li>Turn the scenario off.</li>
+        <li>A <b>Google Form</b> — you introduce your business and ask people what they think.</li>
+        <li>You <b>share it</b> — classmates, friends, family.</li>
+        <li>An <b>automation watches it</b> — every new answer lands in your sheet, and Make tells you the moment one arrives.</li>
       </ol>
-      <h4>Make it yours</h4>
-      <p>What is the real rule in your field? Late payments? Orders over a size? Deadlines this week? Build that rule as the filter — that is your submission.</p>
-      <h4>Advanced</h4>
-      <p>Try a <b>Router</b> (right-click the line → Add a router): urgent rows → email, normal rows → just log.
-      Docs: <a href="https://help.make.com" target="_blank" rel="noopener">help.make.com</a> — search "filter" and "router".</p>
+      <h4>Step 1 — the form</h4>
+      <p>Go to <b>forms.google.com</b> → blank form. Keep it short — people stop at question six.</p>
+      <ul>
+        <li>A title and two or three lines that say <b>what your business is</b>. This part is advertising, not a survey.</li>
+        <li><b>3–5 questions.</b> Ask what you actually want to know: would you use this, what would you pay, what is missing, what stops you.</li>
+        <li>Mix one rating question (1–5) with one open text question. Numbers are easy to read, sentences tell you why.</li>
+      </ul>
+      <p>In the form, open <b>Responses</b> → the green sheet icon → <b>Create a new spreadsheet</b>. Every answer now lands there by itself.</p>
+      <h4>Step 2 — the automation</h4>
+      <ol>
+        <li>In Make, <b>Create a new scenario</b> → the big <b>+</b> → search <b>Google Sheets</b> → <b>Watch New Rows</b>. This is your <b>Trigger</b>.</li>
+        <li><b>Connect</b> your Google account, pick the spreadsheet your form created, and pick the tab.</li>
+        <li>Click the <b>+</b> on the right → search <b>Gmail</b> → <b>Send an email</b>. Put your own address in "To". This is your <b>Action</b>.</li>
+        <li>In the email body, click the blue fields from the left panel to drop the answers in. That is <b>mapping</b> — carrying a value from one node to the next.</li>
+        <li><b>Run once</b> → fill in your own form → watch the email arrive.</li>
+        <li><b>Turn the scenario OFF</b> when you finish testing. Free Make = 1,000 operations a month.</li>
+      </ol>
+      <h4>Step 3 — share it and watch</h4>
+      <p>Send the form link to your KakaoTalk group, your friends, your family. Ten answers is already useful. You will read them next week.</p>
+      <h4>Submit</h4>
+      <p>Talk to the AI assistant as usual: give your <b>form link</b> and <b>one line</b> about what you are asking people and why.
+      Also draw it on the A4: <b>Form → Sheet → Email</b>, three boxes and two arrows.</p>
+      <h4>Stuck?</h4>
+      <p>Ask <b>3 people around you</b> first. Almost every problem this week is the <b>Google connection</b> — remove it in Make and connect again; it works the second time.
+      Then: red paper up on your monitor.</p>
+      <h4>Advanced — finished early?</h4>
+      <p>One Trigger can feed more than one Action. Add a second Action after the email — <b>Google Sheets → Add a Row</b> into a second sheet called <i>Log</i>, so every answer is emailed <i>and</i> recorded separately.</p>
     `,
   },
 
   4: {
-    name: "Forms → Spreadsheet · Field Talk 1",
-    build: "a Google Form that fills a spreadsheet by itself.",
-    submit: "your intake form, automated — and your 1-minute field talk.",
+    name: "Conditions & Filters · Field Talk 1",
+    build: "a filter on your form answers — so you only hear about the ones that matter.",
+    submit: "your automation with a condition — link + one line. Plus your 1-minute field talk.",
     video: "",
-    coach: "Help them design their intake form: who fills it, which 2-3 questions, what happens after. Also help them rehearse their 1-minute field talk.",
+    coach: "Two things this week. (1) Field Talk: each group presents, one minute per person — help them say their business in one sentence, not read a script. (2) Conditions: add a Filter between the trigger and the action of the Project 1 scenario, so the email only fires when the answer meets a condition — a low rating, a specific choice, a non-empty comment. Keep it to ONE condition. If a student has no form answers yet, they can fill their own form a few times to test.",
     links: [],
     tutorial: `
-      <h4>Today two things happen</h4>
-      <p>① You automate the front door of your field — where orders, requests, or applications come in.
-      ② <b>Everyone stands up for 1 minute</b>: your field, one line, and the one task you most want to automate. Timer on screen. No exceptions.</p>
-      <h4>Core steps</h4>
+      <h4>Why a filter</h4>
+      <p>Last week every answer sent you an email. With fifty answers that is fifty emails, and you stop reading them.
+      A <b>filter</b> sits between two nodes and lets only some things through. Now you hear about the answers that matter.</p>
+      <h4>Add one condition</h4>
       <ol>
-        <li>Go to <b>forms.google.com</b> → new form. Title it for your field ("Order form", "Booking request", "Contact me").</li>
-        <li>Add 2–3 questions: name, what they want, contact.</li>
-        <li>In the form's <b>Responses</b> tab → click the green sheet icon → <b>Link to Sheets</b>. Now every answer becomes a row, by itself.</li>
-        <li>In Make: <b>Google Sheets → Watch New Rows</b> on that response sheet → <b>Gmail → Send an email</b> to yourself: "New request from …".</li>
-        <li>Open your form on your phone → submit a test answer → watch the row appear and the email arrive.</li>
-        <li>Turn the scenario off after testing.</li>
+        <li>Open your Project 1 scenario. Click the <b>line</b> between the two nodes — a wrench appears → <b>Set up a filter</b>.</li>
+        <li>Give the filter a name you will understand later: <i>"only unhappy answers"</i>.</li>
+        <li>Pick the field from the left panel, choose the operator, type the value. For example:
+          rating <b>less than</b> 3 · comment <b>is not empty</b> · choice <b>equals</b> "I would pay for this".</li>
+        <li><b>Run once</b> and test both ways — one answer that passes, one that does not. Watch which one reaches the email.</li>
       </ol>
-      <h4>Your 1-minute talk</h4>
-      <p>Three sentences are enough: <i>"I do ___ for ___. Every week I repeat ___. I want to automate ___."</i>
-      Say it, sit down. This is graded (4 points) — speaking it out loud makes your field real.</p>
-      <h4>Advanced</h4>
-      <p>Send a confirmation email <b>to the person who filled the form</b> — map their email answer into Gmail "To".
-      Careful: test with your own address first.</p>
+      <p><b>One condition is enough this week.</b> You can add more later; two conditions at once is where people get lost.</p>
+      <h4>Field Talk 1 — one minute per person</h4>
+      <p>Your group comes up together. Each person says, in about a minute:</p>
+      <ul>
+        <li><b>What your business is</b> — one sentence.</li>
+        <li><b>What you asked people</b> — and what surprised you in their answers.</li>
+        <li><b>What you would automate next.</b></li>
+      </ul>
+      <p>No slides. Do not read from your phone. The point is to say your own business out loud in front of people — that is the skill.</p>
+      <h4>Submit</h4>
+      <p>Talk to the AI assistant: give your <b>scenario link</b> and <b>one line</b> saying what your filter lets through and why you chose it.
+      On the A4, draw the same picture as last week with the filter in the middle: <b>Form → Sheet → [filter] → Email</b>.</p>
+      <h4>Stuck?</h4>
+      <p>The filter never passes anything? Check that you picked the field from the <b>left panel</b> and did not type the field name by hand.
+      Check the operator — <i>text</i> operators and <i>number</i> operators are different lists.</p>
     `,
   },
 
