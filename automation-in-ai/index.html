@@ -718,7 +718,7 @@
   </div>
 
   <!-- ══════════ AI CHAT ══════════ -->
-  <button id="aiFab" onclick="openAi()">✳ Ask AI</button>
+  <button id="aiFab" onclick="openAi()">✳ Stuck? Ask AI</button>
   <div id="aiPanel">
     <header>
       <div><div class="t">AI Assistant</div><div class="q" id="aiQuota"></div></div>
@@ -749,11 +749,12 @@
     // 제출이 없는 주차 — weeks.js 의 noSubmit 표시 하나가 정한다.
     // 여기 한 곳만 보고 제출 단추·진도 표·현황판이 모두 따라간다.
     function noSubmitWeek(w) { return !!(WEEKS[w] && WEEKS[w].noSubmit); }
-    // 인터뷰 주차에는 채팅이 곧 과제다. 단추 이름이 그렇게 말해야 학생이 어디로 갈지 안다.
+    // 문을 둘로 가른다 (작가 2026-09-07 「오른쪽 Ask AI는 없애야 하는거 아니야?」).
+    // 제출하는 문은 주차 페이지 안에 하나뿐이다. 떠 있는 이 단추는 막혔을 때 묻는 문이다.
+    // 실습 중 학생은 Make 화면에 있다가 돌아오므로 이 단추가 남아 있어야 한 번에 묻는다.
     function updateAiFab() {
       const fab = document.getElementById("aiFab"); if (!fab) return;
-      const wi = WEEKS[currentWeek()] || {};
-      fab.textContent = (wi.interview && wi.interview.length) ? "✳ Submit — talk to AI" : "✳ Ask AI";
+      fab.textContent = "✳ Stuck? Ask AI";
     }
     const DAY_MS = 24 * 3600 * 1000;
     function weekOpensAt(w) { return WEEK1_DATE.getTime() + (w - 1) * 7 * DAY_MS - DAY_MS; }
@@ -1136,10 +1137,16 @@
       document.getElementById("aiPanel").style.display = "flex";
       if (!AI_HISTORY.length) {
         const wi = WEEKS[AI_WEEK] || {};
-        addAiMsg("bot", wi.interview && wi.interview.length
-          // 인터뷰 주차 — 조교가 먼저 말을 건다. 학생이 무엇을 해야 하는지 묻지 않아도 되게.
-          ? "Hi! This week your assignment is an interview with me — four questions, and I write the submission for you.\n\n**Write in your own language if you want.** Nepali, Uzbek, Vietnamese, Urdu, Korean — anything. I will answer in the same language.\n\nType \"start\" when you are ready. (Stuck in Make instead? Just ask me that.)"
-          : "Hi! I am the AI assistant for Automation in AI. Stuck in Make? Not sure what to submit? Ask me — in English or in your own language.");
+        const iv = wi.interview && wi.interview.length;
+        // 어느 문으로 들어왔는지에 따라 첫 말이 다르다.
+        // week 이 넘어왔다 = 주차 페이지의 제출 단추 · 안 넘어왔다 = 떠 있는 「Stuck?」 단추
+        const fromWeekPage = !!parseInt(week, 10);
+        addAiMsg("bot",
+          iv && fromWeekPage
+            ? `Hi! Week ${AI_WEEK} — your assignment is an interview with me. Four questions, and I write the submission for you.\n\n**Write in your own language if you want.** Nepali, Uzbek, Vietnamese, Urdu, Korean — anything. I answer in the same language.\n\nType "start" when you are ready.`
+            : iv
+              ? `Hi! Stuck in Make? Tell me where you are and I will give you the next click.\n\nWrite in your own language if you like.\n\n(Ready to submit Week ${AI_WEEK} instead? Type "start" and I will interview you.)`
+              : "Hi! Stuck in Make? Tell me where you are and I will give you the next click. Write in English or in your own language.");
       }
       document.getElementById("aiInput").focus();
     }
