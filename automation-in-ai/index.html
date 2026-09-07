@@ -696,6 +696,7 @@
       <div id="wmVideo" style="margin-bottom:20px;"></div>
       <div id="wmMySub" style="margin-bottom:16px;"></div>
       <button class="btn-primary" id="wmSubmitBtn" style="margin-bottom:22px;">Submit this week ✓</button>
+      <div id="wmLinks" class="week-links" style="margin-top:18px;"></div>
       <div id="wmTutorial" class="wk-tutorial"></div>
     </div>
   </div>
@@ -735,6 +736,18 @@
       const diff = Math.floor((Date.now() - WEEK1_DATE.getTime()) / (7 * 24 * 3600 * 1000)) + 1;
       return Math.min(15, Math.max(1, diff));
     }
+    // 하루 전날 공개 (작가 2026-09-07). 아직 안 지난 주차는 열리지 않는다.
+    // 교수(is_admin)는 언제나 전부 볼 수 있다 — 다음 주 자료를 미리 확인해야 한다.
+    const DAY_MS = 24 * 3600 * 1000;
+    function weekOpensAt(w) { return WEEK1_DATE.getTime() + (w - 1) * 7 * DAY_MS - DAY_MS; }
+    function weekIsOpen(w) {
+      if (me && me.is_admin) return true;
+      return Date.now() >= weekOpensAt(w);
+    }
+    function weekOpenLabel(w) {
+      const d = new Date(weekOpensAt(w));
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
 
     // ── Boot ──
     document.addEventListener("DOMContentLoaded", () => {
@@ -755,10 +768,15 @@
       let html = "";
       for (let i = 1; i <= 15; i++) {
         const w = WEEKS[i];
-        const hi = i === cw ? " style='background:rgba(201,100,66,.10);'" : "";
-        html += `<tr class="plan-row" onclick="openWeek(${i})"${hi}><td class="mono" style="color:${i === cw ? 'var(--accent-bright)' : 'var(--gold)'};font-size:11px;">W${i}</td>` +
-          `<td class="name" style="position:static;white-space:normal;">${w.name} <span style="color:#666;font-size:11px;">↗</span></td>` +
-          `<td class="name" style="position:static;white-space:normal;color:#aaa;">${w.build} <span style="color:#777;">→ submit:</span> ${w.submit}</td></tr>`;
+        const open = weekIsOpen(i);
+        const hi = i === cw ? " style='background:rgba(201,100,66,.10);'" : (open ? "" : " style='opacity:.42;'");
+        const click = open ? ` onclick="openWeek(${i})"` : ` onclick="lockedWeek(${i})" style="cursor:default;${open ? '' : 'opacity:.42;'}"`;
+        html += `<tr class="plan-row"${open ? click + hi : click}><td class="mono" style="color:${i === cw ? 'var(--accent-bright)' : 'var(--gold)'};font-size:11px;">W${i}</td>` +
+          `<td class="name" style="position:static;white-space:normal;">${w.name} ` +
+          (open ? `<span style="color:#666;font-size:11px;">↗</span>` : `<span style="color:#777;font-size:11px;">🔒 opens ${weekOpenLabel(i)}</span>`) + `</td>` +
+          `<td class="name" style="position:static;white-space:normal;color:#aaa;">` +
+          (open ? `${w.build} <span style="color:#777;">→ submit:</span> ${w.submit}` : `<span style="color:#777;">Opens the day before class.</span>`) +
+          `</td></tr>`;
       }
       document.getElementById("planBody").innerHTML = html;
     }
@@ -773,8 +791,12 @@
         if (d.ok) { MY_SUBS = {}; (d.progress.weeks || []).forEach(w => { if (w.submitted) MY_SUBS[w.week] = w; }); }
       } catch (e) {}
     }
+    function lockedWeek(w) {
+      toast(`Week ${w} opens ${weekOpenLabel(w)} — the day before that class.`, "#b45309");
+    }
     function openWeek(w) {
       const info = WEEKS[w]; if (!info) return;
+      if (!weekIsOpen(w)) { lockedWeek(w); return; }
       document.getElementById("wmNum").textContent = `Week ${w} · of 15` + (w === currentWeek() ? " · this week" : "");
       document.getElementById("wmName").textContent = info.name;
       document.getElementById("wmBuild").textContent = info.build;
@@ -787,6 +809,11 @@
       const btn = document.getElementById("wmSubmitBtn");
       btn.textContent = MY_SUBS[w] ? "Edit my submission ✎" : "Submit this week ✓";
       btn.onclick = () => { closeWeek(); openSubmit(w); };
+      // 그 주차 자료(슬라이드·종이 PDF). 수업이 끝나면 캠프가 여기에 올린다.
+      const wl = document.getElementById("wmLinks");
+      wl.innerHTML = (info.links || []).map(l =>
+        `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("");
+      wl.style.display = (info.links && info.links.length) ? "flex" : "none";
       document.getElementById("wmTutorial").innerHTML = info.tutorial || "";
       document.getElementById("weekModal").style.display = "flex";
       history.replaceState(null, "", "#week-" + w);
@@ -846,6 +873,7 @@
       document.getElementById("loginModal").style.display = "none";
       const sb = document.getElementById("signInBtn"); if (sb) sb.style.display = "none";
       showAuthBar(); setupProgressButtons(); loadMySubs(); loadBoard();
+      renderPlan(); renderThisWeek();  // 교수는 잠긴 주차도 보인다 — 로그인 뒤 표를 다시 그린다
     }
     function showAuthBar() {
       const bar = document.getElementById("authBar");
@@ -1018,9 +1046,21 @@
         const body = editable ? `<span contenteditable="true" data-t="${p.student_id}" data-w="${w.week}" onblur="saveProgressComment(this)">${esc(c) || "—"}</span>` : (esc(c) || "—");
         return `<div class="prow ${miss ? 'miss' : ''}"><b>W${w.week}</b>${body}</div>`;
       }).join("");
+      // 연락처는 교수(editable)에게만. 학생 화면에는 절대 나가지 않는다.
+      // roster_email = 학사 명단의 주소(늘 있다). email = 학생이 로그인하며 묶은 주소(로그인한 사람만 있다).
+      // 둘이 다르면 둘 다 보여 준다 — 어느 쪽으로 연락해야 닿는지가 갈리기 때문이다.
+      const mail = a => `<a href="mailto:${esc(a)}" style="color:var(--accent-bright);text-decoration:none;">${esc(a)}</a>`;
+      const rm = p.roster_email || "", bm = p.email || "";
+      const contact = editable
+        ? `<div class="pov"><div class="t">Contact · ID ${esc(p.student_id)}${bm ? "" : " · not signed in yet"}</div>` +
+          (rm ? mail(rm) : '<span style="color:#999;">no email on file</span>') +
+          (bm && bm.toLowerCase() !== rm.toLowerCase() ? ` <span style="color:#999;">· signed in as</span> ${mail(bm)}` : "") +
+          (p.phone ? ` &nbsp;·&nbsp; <a href="tel:${esc(p.phone)}" style="color:var(--accent-bright);text-decoration:none;">${esc(p.phone)}</a>` : "") +
+          `</div>`
+        : "";
       document.getElementById("progressBody").innerHTML =
         `<div class="ph"><div class="pn">${esc(p.name || p.student_id)}</div><div class="pr">${done} weeks submitted</div></div>
-         <div class="pmtx">${mtx}</div><div class="pov"><div class="t">Overall</div>${ovBody}</div><div>${rows}</div>`;
+         <div class="pmtx">${mtx}</div>${contact}<div class="pov"><div class="t">Overall</div>${ovBody}</div><div>${rows}</div>`;
       document.getElementById("progressModal").style.display = "flex";
     }
     function closeProgress() { document.getElementById("progressModal").style.display = "none"; }

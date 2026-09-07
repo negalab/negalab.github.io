@@ -7,37 +7,42 @@ const WEEK1_DATE = new Date("2026-09-02T00:00:00+09:00");
 
 const WEEKS = {
   1: {
-    name: "Getting Started",
-    build: "your seat and your task list.",
-    submit: "nothing — Week 1 had no submission. Submissions start in Week 2.",
+    name: "Getting Started — Introduction",
+    build: "nothing. Week 1 was the introduction: what automation is, and how this course runs.",
+    submit: "nothing. Week 1 had no assignment. Submissions start in Week 2.",
     video: "",
-    coach: "Help the student name their field (track A, B or C) and find 3 concrete repetitive tasks they really do by hand. Ask about their week; refuse vague answers like 'marketing' — push to 'answering the same size question on Instagram'.",
-    links: [],
+    coach: "Week 1 was an introduction only — no assignment, no login, no submission. If the student asks what they missed, give them the short version: automation means the computer does a repetitive task for you; this course builds one automation every week for the student's own field; the three tracks are A (work I do now), B (work I want to do), C (my work and study). Then tell them the only preparation for Week 2: bring a Google account and think of ONE repetitive task they do by hand. Do not ask them for a list of three tasks — that was never assigned.",
+    links: [
+      { label: "Week 1 slides (PDF)", url: "materials/W01_Slides.pdf" },
+      { label: "Week 1 handout (PDF)", url: "materials/W01_Handout.pdf" },
+    ],
     tutorial: `
+      <h4>Week 1 was the introduction — there was no assignment</h4>
+      <p>No homework, no login, no submission. We sat in E401 and talked about what this course is.
+      If you missed it, here is the whole thing in one minute.</p>
       <h4>What is automation?</h4>
       <p><b>Automation</b> = the computer does a repetitive task for you, so you do not do it by hand.
-      This semester you build one automation every week — for your own work. After 15 weeks, a working system is running for you.</p>
-      <h4>Core steps — do these today</h4>
-      <ol>
-        <li><b>Your seat</b> — write your name on a post-it and stick it on your monitor. This is your seat for the whole semester.</li>
-        <li><b>Turn on the computer</b> — open the Chrome browser. Problem? Put the red paper on top of your monitor.</li>
-        <li><b>Join the class chat</b> — scan the KakaoTalk QR from the paper tutorial. Announcements live there.</li>
-        <li><b>You are here</b> — you already found this website. Sign in with your <b>student ID</b> and <b>the email address the school has for you</b>. First time: that email locks to your ID, so use your own.</li>
-        <li><b>Create your Make account</b> — go to <b>make.com</b> → <i>Get started free</i> → sign up with your Google account. Make is our main tool: it connects apps so they work by themselves.</li>
-        <li><b>Your field, one line</b> — pick one track:
-          <b>A.</b> work I do now (family shop, side job, online selling) ·
-          <b>B.</b> work I want to do (a business idea) ·
-          <b>C.</b> my work &amp; study (job applications, deadlines, documents).
-          Then write one line: <i>"I do ___ for ___."</i></li>
-        <li><b>Three repetitive tasks</b> — write 3 tasks you do again and again by hand.
-          Examples: answering the same customer question · copying orders into a list · tracking application deadlines.</li>
-      </ol>
-      <p><b>Week 1 had no submission.</b> Keep your one line and your 3 tasks — you bring them to Week 2, and that is where submitting starts. Submitting in class = attendance, from Week 2 on.</p>
-      <h4>No idea for a field?</h4>
-      <p>Borrow one and change it later: small online shop · tutoring · delivery · café · clothes reselling · photography · translation · travel guide · importing goods from your country · running an SNS account.</p>
-      <h4>Advanced — want more this week?</h4>
-      <p>See what automation looks like in a real business before we build one.
-      Free lessons: <a href="https://academy.make.com" target="_blank" rel="noopener">academy.make.com</a> ·
+      Instead of hiring a person for repetitive work, you set up a computer to do it. The four steps are the same either way:
+      prepare the work, give the instructions, check the process, check the result. Only <i>who does the work</i> changes.</p>
+      <h4>Two kinds of automation</h4>
+      <p><b>Computer automation</b> follows a fixed rule and gives the same result every time — send the same reminder every Monday at 9am.
+      <b>AI automation</b> needs judgment — read 100 different messages and write a different reply to each.
+      Calculation, rules, copying &rarr; just a computer. Reading, writing, deciding &rarr; you need AI.</p>
+      <h4>How this course runs</h4>
+      <p>This is not a course about memorizing software menus. <b>You pick your own field</b>, and every week you automate
+      one repetitive task from that field. After 15 weeks you have a working system, not a finished assignment.</p>
+      <p>Three tracks, all equal, and you can change any time:
+      <b>A.</b> work I do now (family shop, side job, online selling) &middot;
+      <b>B.</b> work I want to do (a business idea) &middot;
+      <b>C.</b> my work &amp; study (job applications, deadlines, documents).
+      <b>Track C is not lower</b> — about half of every class starts there.</p>
+      <p>Our tools are <b>Make.com</b> and <b>Notion</b>. Both free. No coding, not even a little.</p>
+      <h4>The only thing to bring to Week 2</h4>
+      <p>Your <b>Google account</b>, and <b>one repetitive task</b> you want to stop doing by hand. Think about that one task — that is the whole preparation.</p>
+      <p>Nothing in mind? Borrow a field and change it later: small online shop &middot; tutoring &middot; delivery &middot; caf&eacute; &middot; clothes reselling &middot; photography &middot; translation &middot; travel guide &middot; importing goods from your country &middot; running an SNS account.</p>
+      <h4>Curious before Week 2?</h4>
+      <p>See what automation looks like in a real business.
+      Free lessons: <a href="https://academy.make.com" target="_blank" rel="noopener">academy.make.com</a> &middot;
       the official Make channel on YouTube — start with the <i>What is Make?</i> video.</p>
     `,
   },
@@ -45,9 +50,9 @@ const WEEKS = {
   2: {
     name: "Make Basics — Trigger & Action",
     build: "your first automation in Make.",
-    submit: "the easiest task from your list, automated — link + one line.",
+    submit: "one repetitive task from your field, automated — link + one line.",
     video: "",
-    coach: "Help them pick the EASIEST task from their Week-1 list and describe it as one Trigger and one Action in plain words before they build it in Make.",
+    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Instead help them name their field in one line and find ONE easy repetitive task they really do by hand, then have them say it as one Trigger and one Action in plain words before they build it in Make. Refuse vague answers like 'marketing' — push to 'answering the same size question on Instagram'.",
     links: [],
     tutorial: `
       <h4>Two words for the whole semester</h4>
