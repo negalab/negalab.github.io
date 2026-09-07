@@ -7,6 +7,7 @@ const WEEK1_DATE = new Date("2026-09-02T00:00:00+09:00");
 
 const WEEKS = {
   1: {
+    noSubmit: true,   // 1주차는 제출이 없다 — 인트로만 했다 (작가 2026-09-07)
     name: "Getting Started — Introduction",
     build: "nothing. Week 1 was the introduction: what automation is, and how this course runs.",
     submit: "nothing. Week 1 had no assignment. Submissions start in Week 2.",

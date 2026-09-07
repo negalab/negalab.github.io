@@ -738,6 +738,9 @@
     }
     // 하루 전날 공개 (작가 2026-09-07). 아직 안 지난 주차는 열리지 않는다.
     // 교수(is_admin)는 언제나 전부 볼 수 있다 — 다음 주 자료를 미리 확인해야 한다.
+    // 제출이 없는 주차 — weeks.js 의 noSubmit 표시 하나가 정한다.
+    // 여기 한 곳만 보고 제출 단추·진도 표·현황판이 모두 따라간다.
+    function noSubmitWeek(w) { return !!(WEEKS[w] && WEEKS[w].noSubmit); }
     const DAY_MS = 24 * 3600 * 1000;
     function weekOpensAt(w) { return WEEK1_DATE.getTime() + (w - 1) * 7 * DAY_MS - DAY_MS; }
     function weekIsOpen(w) {
@@ -806,9 +809,15 @@
         ? `<div class="wm-videobox"><iframe src="${info.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Week ${w} video"></iframe></div>`
         : `<div class="wm-novideo">▶ WATCH video for this week — coming before class. Check back here.</div>`;
       renderWmMySub(w);
+      // 제출이 없는 주차는 제출 단추를 아예 안 보여 준다 (W1 = 인트로만, 작가 2026-09-07)
       const btn = document.getElementById("wmSubmitBtn");
-      btn.textContent = MY_SUBS[w] ? "Edit my submission ✎" : "Submit this week ✓";
-      btn.onclick = () => { closeWeek(); openSubmit(w); };
+      if (noSubmitWeek(w)) {
+        btn.style.display = "none";
+      } else {
+        btn.style.display = "";
+        btn.textContent = MY_SUBS[w] ? "Edit my submission ✎" : "Submit this week ✓";
+        btn.onclick = () => { closeWeek(); openSubmit(w); };
+      }
       // 그 주차 자료(슬라이드·종이 PDF). 수업이 끝나면 캠프가 여기에 올린다.
       const wl = document.getElementById("wmLinks");
       wl.innerHTML = (info.links || []).map(l =>
@@ -897,9 +906,11 @@
       if (!me) { openLogin(); return; }
       const w = weekArg || currentWeek();
       const cw = currentWeek();
+      if (noSubmitWeek(w)) { toast(`Week ${w} has no assignment — nothing to submit.`, "#b45309"); return; }
       const sel = document.getElementById("smWeekSel");
       sel.innerHTML = "";
       for (let i = 1; i <= 15; i++) {
+        if (noSubmitWeek(i)) continue;   // 제출이 없는 주차는 고를 수 없다
         const o = document.createElement("option");
         o.value = i; o.textContent = `Week ${i}` + (i === cw ? " (this week)" : "");
         if (i === w) o.selected = true;
@@ -967,6 +978,8 @@
         s.weeks.forEach(w => map[w.week] = w);
         html += `<tr><td class='name'>${esc(s.name)}</td>`;
         for (let i = 1; i <= wMax; i++) {
+          // 제출이 없는 주차는 빈칸이 아니라 「—」다. 안 낸 학생처럼 보이면 안 된다.
+          if (noSubmitWeek(i)) { html += "<td class='c' style='opacity:.35;'>—</td>"; continue; }
           const w = map[i];
           if (!w) { html += "<td class='c'>·</td>"; continue; }
           const cls = w.status === "late" ? "late" : "on";
@@ -1033,8 +1046,11 @@
       renderProgressPopup(prog, !!me.is_admin);
     }
     function renderProgressPopup(p, editable) {
+      // 제출이 없는 주차는 셈에서 빼고 「—」로 그린다. 안 낸 것이 아니라 낼 것이 없었다.
       const weeks = p.weeks || [], done = weeks.filter(w => w.submitted == 1).length;
+      const askable = weeks.filter(w => !noSubmitWeek(w.week)).length;
       const mtx = weeks.map(w => {
+        if (noSubmitWeek(w.week)) return `<div class="pw" style="opacity:.4;">W${w.week}<br>—</div>`;
         // Late marks are professor-only (작가 지시 2026-08-31 "지각은 숨겨라") — students see a plain ✓.
         const late = editable && w.status === "late";
         return `<div class="pw ${w.submitted == 1 ? 'on' : ''}" ${late ? 'style="background:#fef3c7;color:#b45309;"' : ''}>W${w.week}<br>${w.submitted == 1 ? (late ? 'L' : '✓') : '·'}</div>`;
@@ -1042,6 +1058,9 @@
       const ov = p.overall_comment || "";
       const ovBody = editable ? `<span contenteditable="true" data-t="${p.student_id}" data-w="" onblur="saveProgressComment(this)">${esc(ov) || "— add a comment"}</span>` : (esc(ov) || "No comment yet.");
       const rows = weeks.map(w => {
+        if (noSubmitWeek(w.week)) {
+          return `<div class="prow" style="opacity:.5;"><b>W${w.week}</b><span style="color:#999;">no assignment — introduction only</span></div>`;
+        }
         const c = w.comment || "", miss = w.submitted != 1;
         const body = editable ? `<span contenteditable="true" data-t="${p.student_id}" data-w="${w.week}" onblur="saveProgressComment(this)">${esc(c) || "—"}</span>` : (esc(c) || "—");
         return `<div class="prow ${miss ? 'miss' : ''}"><b>W${w.week}</b>${body}</div>`;
@@ -1061,6 +1080,7 @@
       document.getElementById("progressBody").innerHTML =
         `<div class="ph"><div class="pn">${esc(p.name || p.student_id)}</div><div class="pr">${done} weeks submitted</div></div>
          <div class="pmtx">${mtx}</div>${contact}<div class="pov"><div class="t">Overall</div>${ovBody}</div><div>${rows}</div>`;
+      document.querySelector("#progressBody .pr").textContent = `${done} of ${askable} weeks submitted`;
       document.getElementById("progressModal").style.display = "flex";
     }
     function closeProgress() { document.getElementById("progressModal").style.display = "none"; }
