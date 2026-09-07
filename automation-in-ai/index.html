@@ -698,6 +698,11 @@
       </div>
       <div id="wmVideo" style="margin-bottom:20px;"></div>
       <div id="wmMySub" style="margin-bottom:16px;"></div>
+      <button class="btn-primary" id="wmAiBtn" style="margin-bottom:10px;display:none;">✳ Submit — talk to the AI assistant</button>
+      <div id="wmAiNote" style="display:none;font-size:12.5px;color:#888;margin-bottom:18px;line-height:1.6;">
+        It interviews you and writes the submission for you. <b style="color:#ddd;">Write in your own language.</b>
+        <a href="#" onclick="openSubmitFromWeek();return false;" style="color:#888;text-decoration:underline;">Or type it myself</a>
+      </div>
       <button class="btn-primary" id="wmSubmitBtn" style="margin-bottom:22px;">Submit this week ✓</button>
       <div id="wmLinks" class="week-links" style="margin-top:18px;"></div>
       <div id="wmTutorial" class="wk-tutorial"></div>
@@ -819,14 +824,25 @@
         : `<div class="wm-novideo">▶ WATCH video for this week — coming before class. Check back here.</div>`;
       renderWmMySub(w);
       // 제출이 없는 주차는 제출 단추를 아예 안 보여 준다 (W1 = 인트로만, 작가 2026-09-07)
+      // 인터뷰 주차는 채팅이 제출하는 자리라 그 주차 페이지 안에서 연다
+      // (작가 2026-09-07 「주차별 페이지로 들어가야 하는거 아니야??」).
       const btn = document.getElementById("wmSubmitBtn");
-      if (noSubmitWeek(w)) {
-        btn.style.display = "none";
+      const aiBtn = document.getElementById("wmAiBtn"), aiNote = document.getElementById("wmAiNote");
+      const iv = !noSubmitWeek(w) && info.interview && info.interview.length;
+      aiBtn.style.display = iv ? "" : "none";
+      aiNote.style.display = iv ? "" : "none";
+      if (iv) {
+        aiBtn.textContent = MY_SUBS[w] ? "✳ Change my submission — talk to the AI" : "✳ Submit — talk to the AI assistant";
+        aiBtn.onclick = () => { closeWeek(); openAi(w); };
+      }
+      if (noSubmitWeek(w) || iv) {
+        btn.style.display = "none";   // 인터뷰 주차는 위의 조용한 링크로만 직접 입력한다
       } else {
         btn.style.display = "";
         btn.textContent = MY_SUBS[w] ? "Edit my submission ✎" : "Submit this week ✓";
         btn.onclick = () => { closeWeek(); openSubmit(w); };
       }
+      WEEK_OPEN = w;   // 「Or type it myself」 가 어느 주차인지 알아야 한다
       // 그 주차 자료(슬라이드·종이 PDF). 수업이 끝나면 캠프가 여기에 올린다.
       const wl = document.getElementById("wmLinks");
       wl.innerHTML = (info.links || []).map(l =>
@@ -1107,12 +1123,19 @@
 
     // ── AI assistant ──
     const AI_HISTORY = [];
-    function openAi() {
+    let AI_WEEK = null;    // 채팅이 지금 어느 주차를 위한 것인가
+    let WEEK_OPEN = null;  // 지금 열려 있는 주차 페이지
+    function openSubmitFromWeek() { closeWeek(); openSubmit(WEEK_OPEN || currentWeek()); }
+    function openAi(week) {
       if (!me) { openLogin(); return; }
+      // 채팅은 「오늘 몇 주차인가」가 아니라 「학생이 연 주차」를 따른다.
+      const want = parseInt(week, 10) || currentWeek();
+      if (AI_WEEK !== null && AI_WEEK !== want) { AI_HISTORY.length = 0; document.getElementById("aiMsgs").innerHTML = ""; }
+      AI_WEEK = want;
       document.getElementById("aiFab").style.display = "none";
       document.getElementById("aiPanel").style.display = "flex";
       if (!AI_HISTORY.length) {
-        const wi = WEEKS[currentWeek()] || {};
+        const wi = WEEKS[AI_WEEK] || {};
         addAiMsg("bot", wi.interview && wi.interview.length
           // 인터뷰 주차 — 조교가 먼저 말을 건다. 학생이 무엇을 해야 하는지 묻지 않아도 되게.
           ? "Hi! This week your assignment is an interview with me — four questions, and I write the submission for you.\n\n**Write in your own language if you want.** Nepali, Uzbek, Vietnamese, Urdu, Korean — anything. I will answer in the same language.\n\nType \"start\" when you are ready. (Stuck in Make instead? Just ask me that.)"
@@ -1140,7 +1163,7 @@
       addAiMsg("user", msg);
       const thinking = addAiMsg("bot", "…thinking");
       thinking.classList.add("thinking");
-      const cw = currentWeek();
+      const cw = AI_WEEK || currentWeek();   // 학생이 연 주차를 따른다
       const wi = WEEKS[cw] || {};
       try {
         const r = await fetch(`${API}/ai-chat`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
