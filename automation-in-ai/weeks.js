@@ -49,11 +49,11 @@ const WEEKS = {
   },
 
   2: {
-    name: "Make Basics — Trigger & Action",
-    build: "your first automation in Make — and your own field, in words.",
+    name: "The Class System — and a taste of Make",
+    build: "nothing yet. Today you set up your two accounts and watch one automation run.",
     submit: "an interview with the AI assistant: who you are, what business you think about, and which part of it you would automate. Talk to it in your own language; it writes the submission for you.",
     video: "",
-    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. This week you run the interview below and then submit for them. Separately, if they are stuck inside Make, help them: one Trigger, one Action, then mapping.",
+    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Week 2 is a setup and demo week: the student is NOT building anything in Make today, so do not give them build steps unless they ask. Your job this week is the interview below, and helping anyone who cannot sign in to the class site or create a Make account.",
     interview: [
       "Introduce yourself. Where are you from, what are you studying, and what do you do outside class?",
       "What kind of student are you? How do you like to work and learn — alone or with people, planning first or trying first?",
@@ -62,30 +62,29 @@ const WEEKS = {
     ],
     links: [],
     tutorial: `
-      <h4>Two words for the whole semester</h4>
-      <p>Every automation has two parts. A <b>Trigger</b> — the event that starts it ("a new row appears").
-      An <b>Action</b> — what happens next ("send me an email"). Today you connect one Trigger to one Action.</p>
-      <p>Say the sentence before you build it: <b>"When ___ happens, do ___."</b>
-      If you cannot say it out loud, do not open Make yet.</p>
-      <h4>First — your two accounts</h4>
+      <h4>Today is setup day — you do not build anything yet</h4>
+      <p>You get two accounts working, you watch one automation run, and you answer four questions.
+      <b>Next week you build your own.</b> Today the only goal is that every one of you can get in the door.</p>
+      <h4>Your two accounts</h4>
       <ol>
         <li><b>This website</b> — sign in with your <b>student ID</b> (9 digits) and <b>the email address the school has for you</b>, the one you gave at admission. The first sign-in locks that email to your ID, so use your real one. Wrong email? Tell the professor — it takes ten seconds to unlock.</li>
-        <li><b>Make</b> — go to <b>make.com</b> → <i>Get started free</i> → sign up <b>with Google</b>. No Google account? Sign up with your email address instead; it works exactly the same.</li>
+        <li><b>Make</b> — go to <b>make.com</b> → <i>Get started free</i> → sign up <b>with Google</b>. No Google account? Sign up with your email address instead; it works exactly the same. Nothing to build in it today.</li>
       </ol>
-      <h4>Core steps</h4>
-      <ol>
-        <li>Make a Google Sheet with two columns: <b>Task</b> and <b>Note</b>. This sheet stands for your field's list (orders, applications, requests).</li>
-        <li>In Make, click <b>Create a new scenario</b>.</li>
-        <li>Click the big <b>+</b> → search <b>Google Sheets</b> → choose <b>Watch New Rows</b>. Connect your Google account and pick your sheet. This is your Trigger.</li>
-        <li>Click <b>+</b> after it → search <b>Gmail</b> → choose <b>Send an email</b>. Put your own address in "To". This is your Action.</li>
-        <li>In the email body, click the small colored panels to insert the row data (Task, Note). This is called <b>mapping</b> — data from one app flowing into another.</li>
-        <li>Click <b>Run once</b> → add a new row to your sheet → watch the email arrive.</li>
-        <li><b>Turn the scenario OFF</b> when you finish (free plan = 1,000 runs per month — save them).</li>
-      </ol>
-      <h4>Make it yours</h4>
-      <p>Rename the sheet columns to match your field: "Order / Customer", "Company / Deadline". Same automation, your material. That is what you submit.</p>
+      <h4>What lives on this site</h4>
+      <ul>
+        <li><b>This week</b> — the task and the tutorial. Later weeks stay locked until the day before their class.</li>
+        <li><b>Submit</b> — you talk to the AI assistant. There is never a blank form to fill.</li>
+        <li><b>Your progress</b> — a row of weeks with a ✓ when you submitted. You only ever see your own.</li>
+      </ul>
+      <h4>Two words for the whole semester</h4>
+      <p>A <b>Trigger</b> is the event that starts an automation ("a new row appears").
+      An <b>Action</b> is what happens next ("send me an email"). The sentence you will say all semester:
+      <b>"When ___ happens, do ___."</b></p>
+      <p>Today's example, which the professor builds on the screen while you watch:
+      a Google Sheet with two columns &rarr; Make watches it &rarr; an email arrives. A row appears and the rest happens by itself.
+      <b>Next week you build exactly this, with your own material.</b></p>
       <h4>Submit — by talking to the AI assistant</h4>
-      <p>This week you do not fill a form. Open the <b>AI assistant</b> (bottom right) and type <b>start</b>.
+      <p>Open this week's page and press the orange button, then type <b>start</b>.
       It interviews you with four questions, one at a time, and writes the submission for you:</p>
       <ol>
         <li><b>Introduce yourself</b> — where you are from, what you study, what you do outside class.</li>
@@ -95,26 +94,26 @@ const WEEKS = {
       </ol>
       <p><b>Write in your own language.</b> Nepali, Uzbek, Vietnamese, Urdu, Korean — the assistant answers in the same language and writes the submission in your language and in English.
       At the end it shows a draft: <b>nothing is recorded until you press Submit.</b> Something wrong? Keep talking and it rewrites.</p>
-      <p>Made your Make automation work? Give the link when it asks. Did not finish it? That is fine — <b>the interview is the assignment.</b>
+      <p>Questions 3 and 4 decide your whole semester — from now on you automate one repetitive task <b>from your own field</b>, every week.
       Submitting during class = attendance, and you can fix it later and keep the attendance.
       Also draw it by hand on the A4 paper: one box for the Trigger, one box for the Action, an arrow between them.</p>
       <p class="note">The assistant runs during class hours only.</p>
-      <h4>What gets recorded</h4>
-      <p>Your submissions, the time you sent them, and <b>your chats with the AI assistant</b> are saved.
-      The professor reads them to improve the class — if many of you get stuck on the same step, that step is taught again the next week.
-      Nobody else sees them, and never other students. Please do not type passwords or bank details anywhere on this site.</p>
+      <h4>No idea for a field?</h4>
+      <p>Borrow one and change it later: small online shop &middot; tutoring &middot; delivery &middot; caf&eacute; &middot; clothes reselling &middot; photography &middot; translation &middot; travel guide &middot; importing goods from your country &middot; running an SNS account.
+      <b>A</b> work I do now &middot; <b>B</b> work I want to do &middot; <b>C</b> my work &amp; study — all equal, and <b>C is not lower</b>.</p>
       <h4>Stuck?</h4>
-      <p>Ask <b>3 people around you</b> first — someone next to you just solved it. Most problems are the Google connection: remove it and connect again, it usually works the second time. Then: red paper up on your monitor.</p>
+      <p>Ask <b>3 people around you</b> first. Cannot sign in? Put the red paper on top of your monitor and the professor comes to you. Or ask the assistant right here.</p>
       <h4>Also starting this week — form your own group</h4>
       <p>From Week 4 we present in groups, and when you are stuck you ask your group first.
       <b>You choose your own group and there is no fixed size</b> — three people, six people, up to you. Same country, same language, same table: whatever helps you actually help each other. Nobody is assigned.</p>
       <p>When your group is set, <b>one person posts it in the KakaoTalk group</b> — a group name, then everyone's student ID and name. One message per group, not per person.
-      The professor then posts the list of all groups in the chat, so you can see who is where and pick one. Nobody is left out for not knowing where to go — if you have no group, look at the list and say where you want to go.</p>
+      The professor then posts the list of all groups in the chat, so you can see who is where and pick one. Nobody is left out for not knowing where to go.</p>
       <p>No hurry: you have until <b>Week 4 or 5</b>, and you can move until then.
-      <b>Building and submitting stay yours.</b> You still automate your own field every week, you still submit your own link and your own line, and attendance is still yours alone. A group is for presenting and for helping — not for building one thing together.</p>
-      <h4>Advanced</h4>
-      <p>Add a third module after Gmail — for example Google Sheets <i>Add a Row</i> to a second "log" sheet.
-      Learn how modules pass data: <a href="https://academy.make.com" target="_blank" rel="noopener">Make Academy — Foundation course</a>.</p>
+      <b>Building and submitting stay yours.</b> A group is for presenting and for helping — not for building one thing together.</p>
+      <h4>What gets recorded</h4>
+      <p>Your submissions, the time you sent them, and <b>your chats with the AI assistant</b> are saved.
+      The professor reads them to improve the class — if many of you get stuck on the same step, that step is taught again the next week.
+      Nobody else sees them, and never other students. Please do not type passwords or bank details anywhere on this site.</p>
     `,
   },
 
