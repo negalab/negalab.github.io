@@ -78,6 +78,13 @@ const WEEKS = {
       Also draw it by hand on the A4 paper: one box for the Trigger, one box for the Action, an arrow between them.</p>
       <h4>Stuck?</h4>
       <p>Ask <b>3 people around you</b> first — someone next to you just solved it. Most problems are the Google connection: remove it and connect again, it usually works the second time. Then: red paper up on your monitor.</p>
+      <h4>Also starting this week — form your own group</h4>
+      <p>From Week 4 we present in groups, and when you are stuck you ask your group first.
+      <b>You choose your own group and there is no fixed size</b> — three people, six people, up to you. Same country, same language, same table: whatever helps you actually help each other. Nobody is assigned.</p>
+      <p>When your group is set, <b>one person posts it in the KakaoTalk group</b> — a group name, then everyone's student ID and name. One message per group, not per person.
+      The professor then posts the list of all groups in the chat, so you can see who is where and pick one. Nobody is left out for not knowing where to go — if you have no group, look at the list and say where you want to go.</p>
+      <p>No hurry: you have until <b>Week 4 or 5</b>, and you can move until then.
+      <b>Building and submitting stay yours.</b> You still automate your own field every week, you still submit your own link and your own line, and attendance is still yours alone. A group is for presenting and for helping — not for building one thing together.</p>
       <h4>Advanced</h4>
       <p>Add a third module after Gmail — for example Google Sheets <i>Add a Row</i> to a second "log" sheet.
       Learn how modules pass data: <a href="https://academy.make.com" target="_blank" rel="noopener">Make Academy — Foundation course</a>.</p>
