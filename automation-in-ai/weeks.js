@@ -99,6 +99,10 @@ const WEEKS = {
       Submitting during class = attendance, and you can fix it later and keep the attendance.
       Also draw it by hand on the A4 paper: one box for the Trigger, one box for the Action, an arrow between them.</p>
       <p class="note">The assistant runs during class hours only.</p>
+      <h4>What gets recorded</h4>
+      <p>Your submissions, the time you sent them, and <b>your chats with the AI assistant</b> are saved.
+      The professor reads them to improve the class — if many of you get stuck on the same step, that step is taught again the next week.
+      Nobody else sees them, and never other students. Please do not type passwords or bank details anywhere on this site.</p>
       <h4>Stuck?</h4>
       <p>Ask <b>3 people around you</b> first — someone next to you just solved it. Most problems are the Google connection: remove it and connect again, it usually works the second time. Then: red paper up on your monitor.</p>
       <h4>Also starting this week — form your own group</h4>
