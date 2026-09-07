@@ -8,8 +8,8 @@ const WEEK1_DATE = new Date("2026-09-02T00:00:00+09:00");
 const WEEKS = {
   1: {
     name: "Getting Started",
-    build: "your seat, your accounts, and your task list.",
-    submit: "your field in one line + 3 repetitive tasks.",
+    build: "your seat and your task list.",
+    submit: "nothing — Week 1 had no submission. Submissions start in Week 2.",
     video: "",
     coach: "Help the student name their field (track A, B or C) and find 3 concrete repetitive tasks they really do by hand. Ask about their week; refuse vague answers like 'marketing' — push to 'answering the same size question on Instagram'.",
     links: [],
@@ -22,7 +22,7 @@ const WEEKS = {
         <li><b>Your seat</b> — write your name on a post-it and stick it on your monitor. This is your seat for the whole semester.</li>
         <li><b>Turn on the computer</b> — open the Chrome browser. Problem? Put the red paper on top of your monitor.</li>
         <li><b>Join the class chat</b> — scan the KakaoTalk QR from the paper tutorial. Announcements live there.</li>
-        <li><b>You are here</b> — you already found this website. Sign in with your student ID + your email. First time: your email locks to your ID, so use your own.</li>
+        <li><b>You are here</b> — you already found this website. Sign in with your <b>student ID</b> and <b>the email address the school has for you</b>. First time: that email locks to your ID, so use your own.</li>
         <li><b>Create your Make account</b> — go to <b>make.com</b> → <i>Get started free</i> → sign up with your Google account. Make is our main tool: it connects apps so they work by themselves.</li>
         <li><b>Your field, one line</b> — pick one track:
           <b>A.</b> work I do now (family shop, side job, online selling) ·
@@ -32,7 +32,7 @@ const WEEKS = {
         <li><b>Three repetitive tasks</b> — write 3 tasks you do again and again by hand.
           Examples: answering the same customer question · copying orders into a list · tracking application deadlines.</li>
       </ol>
-      <p><b>Now press "Submit this week"</b> and type your one line + 3 tasks. Done — that is today. Submitting in class = attendance.</p>
+      <p><b>Week 1 had no submission.</b> Keep your one line and your 3 tasks — you bring them to Week 2, and that is where submitting starts. Submitting in class = attendance, from Week 2 on.</p>
       <h4>No idea for a field?</h4>
       <p>Borrow one and change it later: small online shop · tutoring · delivery · café · clothes reselling · photography · translation · travel guide · importing goods from your country · running an SNS account.</p>
       <h4>Advanced — want more this week?</h4>
@@ -53,10 +53,17 @@ const WEEKS = {
       <h4>Two words for the whole semester</h4>
       <p>Every automation has two parts. A <b>Trigger</b> — the event that starts it ("a new row appears").
       An <b>Action</b> — what happens next ("send me an email"). Today you connect one Trigger to one Action.</p>
+      <p>Say the sentence before you build it: <b>"When ___ happens, do ___."</b>
+      If you cannot say it out loud, do not open Make yet.</p>
+      <h4>First — your two accounts</h4>
+      <ol>
+        <li><b>This website</b> — sign in with your <b>student ID</b> (9 digits) and <b>the email address the school has for you</b>, the one you gave at admission. The first sign-in locks that email to your ID, so use your real one. Wrong email? Tell the professor — it takes ten seconds to unlock.</li>
+        <li><b>Make</b> — go to <b>make.com</b> → <i>Get started free</i> → sign up <b>with Google</b>. No Google account? Sign up with your email address instead; it works exactly the same.</li>
+      </ol>
       <h4>Core steps</h4>
       <ol>
         <li>Make a Google Sheet with two columns: <b>Task</b> and <b>Note</b>. This sheet stands for your field's list (orders, applications, requests).</li>
-        <li>Sign in at <b>make.com</b> → click <b>Create a new scenario</b>.</li>
+        <li>In Make, click <b>Create a new scenario</b>.</li>
         <li>Click the big <b>+</b> → search <b>Google Sheets</b> → choose <b>Watch New Rows</b>. Connect your Google account and pick your sheet. This is your Trigger.</li>
         <li>Click <b>+</b> after it → search <b>Gmail</b> → choose <b>Send an email</b>. Put your own address in "To". This is your Action.</li>
         <li>In the email body, click the small colored panels to insert the row data (Task, Note). This is called <b>mapping</b> — data from one app flowing into another.</li>
@@ -65,8 +72,12 @@ const WEEKS = {
       </ol>
       <h4>Make it yours</h4>
       <p>Rename the sheet columns to match your field: "Order / Customer", "Company / Deadline". Same automation, your material. That is what you submit.</p>
+      <h4>Submit before you leave</h4>
+      <p>Press <b>Submit this week</b> and give a <b>link</b> (your Make scenario or your Sheet, made shareable) and <b>one line</b> saying what you automated.
+      Submitting during class = attendance. You can fix your submission later and keep the attendance.
+      Also draw it by hand on the A4 paper: one box for the Trigger, one box for the Action, an arrow between them.</p>
       <h4>Stuck?</h4>
-      <p>Most problems are the Google connection. Remove the connection and connect again. Then: red paper up, or ask 3 neighbors first.</p>
+      <p>Ask <b>3 people around you</b> first — someone next to you just solved it. Most problems are the Google connection: remove it and connect again, it usually works the second time. Then: red paper up on your monitor.</p>
       <h4>Advanced</h4>
       <p>Add a third module after Gmail — for example Google Sheets <i>Add a Row</i> to a second "log" sheet.
       Learn how modules pass data: <a href="https://academy.make.com" target="_blank" rel="noopener">Make Academy — Foundation course</a>.</p>
