@@ -1102,7 +1102,13 @@
       if (!me) { openLogin(); return; }
       document.getElementById("aiFab").style.display = "none";
       document.getElementById("aiPanel").style.display = "flex";
-      if (!AI_HISTORY.length) addAiMsg("bot", "Hi! I am the AI assistant for Automation in AI. Stuck in Make? Not sure what to submit? Ask me in easy English.");
+      if (!AI_HISTORY.length) {
+        const wi = WEEKS[currentWeek()] || {};
+        addAiMsg("bot", wi.interview && wi.interview.length
+          // 인터뷰 주차 — 조교가 먼저 말을 건다. 학생이 무엇을 해야 하는지 묻지 않아도 되게.
+          ? "Hi! This week your assignment is an interview with me — four questions, and I write the submission for you.\n\n**Write in your own language if you want.** Nepali, Uzbek, Vietnamese, Urdu, Korean — anything. I will answer in the same language.\n\nType \"start\" when you are ready. (Stuck in Make instead? Just ask me that.)"
+          : "Hi! I am the AI assistant for Automation in AI. Stuck in Make? Not sure what to submit? Ask me — in English or in your own language.");
+      }
       document.getElementById("aiInput").focus();
     }
     function closeAi() {
@@ -1130,7 +1136,7 @@
       try {
         const r = await fetch(`${API}/ai-chat`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
           studentId: me.id, email: me.email, message: msg, history: AI_HISTORY.slice(-10),
-          weekContext: { week: cw, build: wi.build || "", submit: wi.submit || "", coach: wi.coach || "" },
+          weekContext: { week: cw, build: wi.build || "", submit: wi.submit || "", coach: wi.coach || "", interview: wi.interview || null },
         }) });
         const d = await r.json();
         thinking.remove();

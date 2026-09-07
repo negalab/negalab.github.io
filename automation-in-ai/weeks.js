@@ -50,10 +50,16 @@ const WEEKS = {
 
   2: {
     name: "Make Basics — Trigger & Action",
-    build: "your first automation in Make.",
-    submit: "one repetitive task from your field, automated — link + one line.",
+    build: "your first automation in Make — and your own field, in words.",
+    submit: "an interview with the AI assistant: who you are, what business you think about, and which part of it you would automate. Talk to it in your own language; it writes the submission for you.",
     video: "",
-    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Instead help them name their field in one line and find ONE easy repetitive task they really do by hand, then have them say it as one Trigger and one Action in plain words before they build it in Make. Refuse vague answers like 'marketing' — push to 'answering the same size question on Instagram'.",
+    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. This week you run the interview below and then submit for them. Separately, if they are stuck inside Make, help them: one Trigger, one Action, then mapping.",
+    interview: [
+      "Introduce yourself. Where are you from, what are you studying, and what do you do outside class?",
+      "What kind of student are you? How do you like to work and learn — alone or with people, planning first or trying first?",
+      "What business are you thinking about? It can be work you already do, an idea you want to start, or your own studying and job hunting. One or two sentences.",
+      "In that business, which part would you automate? Name one thing you do again and again by hand, and say why it is boring or slow.",
+    ],
     links: [],
     tutorial: `
       <h4>Two words for the whole semester</h4>
@@ -78,10 +84,21 @@ const WEEKS = {
       </ol>
       <h4>Make it yours</h4>
       <p>Rename the sheet columns to match your field: "Order / Customer", "Company / Deadline". Same automation, your material. That is what you submit.</p>
-      <h4>Submit before you leave</h4>
-      <p>Press <b>Submit this week</b> and give a <b>link</b> (your Make scenario or your Sheet, made shareable) and <b>one line</b> saying what you automated.
-      Submitting during class = attendance. You can fix your submission later and keep the attendance.
+      <h4>Submit — by talking to the AI assistant</h4>
+      <p>This week you do not fill a form. Open the <b>AI assistant</b> (bottom right) and type <b>start</b>.
+      It interviews you with four questions, one at a time, and writes the submission for you:</p>
+      <ol>
+        <li><b>Introduce yourself</b> — where you are from, what you study, what you do outside class.</li>
+        <li><b>What kind of student are you?</b> — alone or with people, plan first or try first.</li>
+        <li><b>What business are you thinking about?</b> — work you already do, an idea you want to start, or your own studying and job hunting.</li>
+        <li><b>Which part would you automate?</b> — one thing you do again and again by hand, and why it is slow.</li>
+      </ol>
+      <p><b>Write in your own language.</b> Nepali, Uzbek, Vietnamese, Urdu, Korean — the assistant answers in the same language and writes the submission in your language and in English.
+      At the end it shows a draft: <b>nothing is recorded until you press Submit.</b> Something wrong? Keep talking and it rewrites.</p>
+      <p>Made your Make automation work? Give the link when it asks. Did not finish it? That is fine — <b>the interview is the assignment.</b>
+      Submitting during class = attendance, and you can fix it later and keep the attendance.
       Also draw it by hand on the A4 paper: one box for the Trigger, one box for the Action, an arrow between them.</p>
+      <p class="note">The assistant runs during class hours only.</p>
       <h4>Stuck?</h4>
       <p>Ask <b>3 people around you</b> first — someone next to you just solved it. Most problems are the Google connection: remove it and connect again, it usually works the second time. Then: red paper up on your monitor.</p>
       <h4>Also starting this week — form your own group</h4>
