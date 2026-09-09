@@ -50,36 +50,32 @@ const WEEKS = {
 
   2: {
     name: "Your class website, and your business",
-    build: "nothing. Today you sign in, and you answer four questions about your business.",
+    build: "nothing. Today you sign in, and you answer three questions about your business.",
     submit: "an interview with the AI assistant — who you are, what business you are thinking about, and which part of it you would automate. Talk to it in your own language.",
     video: "",
-    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Week 2 is the website and the four questions ONLY. The student is NOT building anything in Make today — if they ask about Make, tell them to create the free account and stop there; we open it properly in Week 3. Do not bring up groups: that is Week 3. Your job this week is the interview below, explaining what each question is FOR when they ask, and helping anyone who cannot sign in.",
+    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Week 2 is the website and the three questions ONLY. The student is NOT building anything in Make today — if they ask about Make, tell them to create the free account and stop there; we open it properly in Week 3. Do not bring up groups: that is Week 3. Your job this week is the interview below, explaining what each question is FOR when they ask, and helping anyone who cannot sign in.",
     interview: [
       "Introduce yourself. Where are you from, what are you studying, and what do you do outside class?",
-      "What kind of student are you? How do you like to work and learn — alone or with people, planning first or trying first?",
       "What business are you thinking about? It can be work you already do, an idea you want to start, or your own studying and job hunting. One or two sentences.",
       "In that business, which part would you automate? Name one thing you do again and again by hand, and say why it is boring or slow.",
     ],
     links: [],
     tutorial: `
       <h4>Today you do two things</h4>
-      <p><b>Sign in to this website.</b> And <b>answer four questions about your business.</b>
+      <p><b>Sign in to this website.</b> And <b>answer three questions about your business.</b>
       No building today — for Make you only create a free account, and we open it properly next week.</p>
       <h4>Signing in</h4>
       <p>Your <b>student ID</b> (9 digits) and <b>the email address the school has for you</b> — the one you gave at admission, not a new one.
-      The first sign-in locks that email to your ID so nobody else can use it. Wrong email? Tell the professor — ten seconds to unlock.</p>
+      The first sign-in locks that email to your ID so nobody else can use it. Wrong email? Raise your hand — ten seconds to unlock.</p>
       <p>Everything for this class lives here: every week's task and tutorial, your submissions, and your attendance.
       Later weeks stay locked until the day before their class. <b>Submitting during class is your attendance</b> — nothing separate, no name calling.
       You can fix your submission later and keep the attendance.</p>
       <h4>Submit by talking — and what each question is for</h4>
-      <p>You do not fill a form. Press the button above, type <b>start</b>, and the assistant asks four questions, one at a time.</p>
+      <p>You do not fill a form. Press the button above, type <b>start</b>, and the assistant asks three questions, one at a time.</p>
       <ol>
         <li><b>Introduce yourself</b> — where you are from, what you study, what you do outside class.<br>
         <i>Why:</i> a whole class of you and one professor — this is how he learns who is in the room.
         <i>Feeds:</i> next week you form your own groups, and people find each other through what you write here.</li>
-        <li><b>What kind of student are you?</b> — alone or with people, plan first or try first.<br>
-        <i>Why:</i> neither is better, but they get stuck differently and need different help.
-        <i>Feeds:</i> you stop getting the wrong kind of help in the lab.</li>
         <li><b>What business are you thinking about?</b> — <b>the one that matters most.</b><br>
         <i>Why:</i> every week for fifteen weeks you automate something from it — a form about it in Week 3, emails that answer themselves in Week 5, a working system in Week 15. You are not automating the professor's example; you are automating your own thing.<br>
         <i>Three ways to answer:</i> <b>A</b> work I do now (family shop, side job, online selling) &middot; <b>B</b> work I want to do (an idea you have been thinking about) &middot; <b>C</b> my work &amp; study (job applications, deadlines, documents).
@@ -99,7 +95,7 @@ const WEEKS = {
       <p><b>Project 1</b> — you make a Google Form that introduces your business and asks people what they think, you share it, and an automation watches it and tells you when an answer arrives.
       Your first automation is not a toy: it brings you feedback on your own idea. We also form groups next week — nothing to do about it today.</p>
       <h4>Stuck?</h4>
-      <p>Ask <b>3 people around you</b> first. Cannot sign in? Put the red paper on top of your monitor and the professor comes to you. Or ask the assistant right here.</p>
+      <p>Ask <b>3 people around you</b> first. Cannot sign in? Raise your hand and the professor comes to you. Or ask the assistant right here.</p>
       <h4>What gets recorded</h4>
       <p>Your submissions, the time you sent them, and <b>your chats with the AI assistant</b> are saved.
       The professor reads them to improve the class — if many of you get stuck on the same step, that step is taught again the next week.
@@ -146,7 +142,7 @@ const WEEKS = {
       Also draw it on the A4: <b>Form → Sheet → Email</b>, three boxes and two arrows.</p>
       <h4>Stuck?</h4>
       <p>Ask <b>3 people around you</b> first. Almost every problem this week is the <b>Google connection</b> — remove it in Make and connect again; it works the second time.
-      Then: red paper up on your monitor.</p>
+      Then raise your hand.</p>
       <h4>Advanced — finished early?</h4>
       <p>One Trigger can feed more than one Action. Add a second Action after the email — <b>Google Sheets → Add a Row</b> into a second sheet called <i>Log</i>, so every answer is emailed <i>and</i> recorded separately.</p>
     `,
