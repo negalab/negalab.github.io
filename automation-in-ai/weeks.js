@@ -49,11 +49,11 @@ const WEEKS = {
   },
 
   2: {
-    name: "The Class System — and a taste of Make",
-    build: "nothing yet. Today you set up your two accounts, learn to read the Make screen, and name your business.",
-    submit: "an interview with the AI assistant: who you are, what business you think about, and which part of it you would automate. Talk to it in your own language; it writes the submission for you.",
+    name: "Your class website, and your business",
+    build: "nothing. Today you sign in, and you answer four questions about your business.",
+    submit: "an interview with the AI assistant — who you are, what business you are thinking about, and which part of it you would automate. Talk to it in your own language.",
     video: "",
-    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Week 2 is a setup and demo week: the student is NOT building anything in Make today, so do not give them build steps unless they ask. Your job this week is the interview below, and helping anyone who cannot sign in to the class site or create a Make account.",
+    coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Week 2 is the website and the four questions ONLY. The student is NOT building anything in Make today — if they ask about Make, tell them to create the free account and stop there; we open it properly in Week 3. Do not bring up groups: that is Week 3. Your job this week is the interview below, explaining what each question is FOR when they ask, and helping anyone who cannot sign in.",
     interview: [
       "Introduce yourself. Where are you from, what are you studying, and what do you do outside class?",
       "What kind of student are you? How do you like to work and learn — alone or with people, planning first or trying first?",
@@ -62,62 +62,44 @@ const WEEKS = {
     ],
     links: [],
     tutorial: `
-      <h4>Today is setup day — you do not build anything yet</h4>
-      <p>You get two accounts working, you watch one automation run, and you answer four questions.
-      <b>Next week you build your own.</b> Today the only goal is that every one of you can get in the door.</p>
-      <h4>Your two accounts</h4>
+      <h4>Today you do two things</h4>
+      <p><b>Sign in to this website.</b> And <b>answer four questions about your business.</b>
+      No building today — for Make you only create a free account, and we open it properly next week.</p>
+      <h4>Signing in</h4>
+      <p>Your <b>student ID</b> (9 digits) and <b>the email address the school has for you</b> — the one you gave at admission, not a new one.
+      The first sign-in locks that email to your ID so nobody else can use it. Wrong email? Tell the professor — ten seconds to unlock.</p>
+      <p>Everything for this class lives here: every week's task and tutorial, your submissions, and your attendance.
+      Later weeks stay locked until the day before their class. <b>Submitting during class is your attendance</b> — nothing separate, no name calling.
+      You can fix your submission later and keep the attendance.</p>
+      <h4>Submit by talking — and what each question is for</h4>
+      <p>You do not fill a form. Press the button above, type <b>start</b>, and the assistant asks four questions, one at a time.</p>
       <ol>
-        <li><b>This website</b> — sign in with your <b>student ID</b> (9 digits) and <b>the email address the school has for you</b>, the one you gave at admission. The first sign-in locks that email to your ID, so use your real one. Wrong email? Tell the professor — it takes ten seconds to unlock.</li>
-        <li><b>Make</b> — go to <b>make.com</b> → <i>Get started free</i> → sign up <b>with Google</b>. No Google account? Sign up with your email address instead; it works exactly the same. Nothing to build in it today.</li>
+        <li><b>Introduce yourself</b> — where you are from, what you study, what you do outside class.<br>
+        <i>Why:</i> fifty-seven of you and one professor — this is how he learns who is in the room.
+        <i>Feeds:</i> next week you form your own groups, and people find each other through what you write here.</li>
+        <li><b>What kind of student are you?</b> — alone or with people, plan first or try first.<br>
+        <i>Why:</i> neither is better, but they get stuck differently and need different help.
+        <i>Feeds:</i> you stop getting the wrong kind of help in the lab.</li>
+        <li><b>What business are you thinking about?</b> — <b>the one that matters most.</b><br>
+        <i>Why:</i> every week for fifteen weeks you automate something from it — a form about it in Week 3, emails that answer themselves in Week 5, a working system in Week 15. You are not automating the professor's example; you are automating your own thing.<br>
+        <i>Three ways to answer:</i> <b>A</b> work I do now (family shop, side job, online selling) &middot; <b>B</b> work I want to do (an idea you have been thinking about) &middot; <b>C</b> my work &amp; study (job applications, deadlines, documents).
+        <b>C is not lower</b> — about half of every class starts there, and a visa deadline is a real repetitive task. You can change any time, but you need one today.</li>
+        <li><b>Which part would you automate?</b> — one thing you do again and again by hand, and why it is slow.<br>
+        <i>Why:</i> automation only works on repetitive work. If it happens once, there is nothing to automate.
+        <i>Feeds:</i> this becomes the first thing you build, so pick the easiest one — you have fourteen more weeks.<br>
+        <i>Good:</i> "copying orders into a sheet, every day." <i>Not yet:</i> "grow my business." If you cannot say when it happens and what you do with your hands, it is not ready.</li>
       </ol>
-      <h4>What lives on this site</h4>
-      <ul>
-        <li><b>This week</b> — the task and the tutorial. Later weeks stay locked until the day before their class.</li>
-        <li><b>Submit</b> — you talk to the AI assistant. There is never a blank form to fill.</li>
-        <li><b>Your progress</b> — a row of weeks with a ✓ when you submitted. You only ever see your own.</li>
-      </ul>
-      <h4>Reading Make — everything is a node</h4>
-      <p>Click <b>Create a new scenario</b>: an empty canvas and one big <b>+</b>.
-      A <b>node</b> is one box that does one job — <i>Google Sheets &middot; Watch New Rows</i> is a node, <i>Gmail &middot; Send an email</i> is another.
-      A line between them means the first hands its result to the second. <b>An automation is nodes on a line.</b> That is all it ever is.</p>
-      <p>Three kinds: a <b>Trigger</b> waits for something to happen and always sits first &middot; an <b>Action</b> does something &middot; a <b>Filter</b> lets some things through.
-      One trigger per scenario, at the front. The sentence you will say all semester: <b>"When ___ happens, do ___."</b></p>
-      <h4>The screen — find these six</h4>
-      <p><b>1</b> the big + (search by <i>app</i> name, not by what you want) &middot; <b>2</b> click a node and its settings open on the right &middot;
-      <b>3</b> Connection — the link to your Google account, made once and reused &middot; <b>4</b> Run once, to test by hand &middot;
-      <b>5</b> the switch bottom-left: ON means it runs by itself, <b>keep it OFF</b> &middot; <b>6</b> History at the bottom, where you see every run and what failed.</p>
-      <p><b>Finding those six is today's work in Make.</b> Do not build anything yet — there is nothing to submit from it.</p>
-      <h4>From next week — Project 1</h4>
-      <p>You make a <b>Google Form</b> that introduces your business and asks people what they think, you share it, and an automation watches it:
-      every new answer lands in your sheet and Make tells you. Your first automation is not a toy — <b>it brings you feedback on your own idea</b>.
-      That is why the question below matters. Think of one question you actually want to ask people.</p>
-      <h4>Submit — by talking to the AI assistant</h4>
-      <p>Open this week's page and press the orange button, then type <b>start</b>.
-      It interviews you with four questions, one at a time, and writes the submission for you:</p>
-      <ol>
-        <li><b>Introduce yourself</b> — where you are from, what you study, what you do outside class.</li>
-        <li><b>What kind of student are you?</b> — alone or with people, plan first or try first.</li>
-        <li><b>What business are you thinking about?</b> — work you already do, an idea you want to start, or your own studying and job hunting.</li>
-        <li><b>Which part would you automate?</b> — one thing you do again and again by hand, and why it is slow.</li>
-      </ol>
-      <p><b>Write in your own language.</b> Nepali, Uzbek, Vietnamese, Urdu, Korean — the assistant answers in the same language and writes the submission in your language and in English.
+      <p><b>Write in your own language.</b> Nepali, Uzbek, Vietnamese, Urdu, Korean — the assistant answers in the same language and writes your submission in your language and in English. Do not lose your meaning to your English.
       At the end it shows a draft: <b>nothing is recorded until you press Submit.</b> Something wrong? Keep talking and it rewrites.</p>
-      <p>Questions 3 and 4 decide your whole semester — from now on you automate one repetitive task <b>from your own field</b>, every week.
-      Submitting during class = attendance, and you can fix it later and keep the attendance.
-      Also draw it by hand on the A4 paper: one box for the Trigger, one box for the Action, an arrow between them.</p>
       <p class="note">The assistant runs during class hours only.</p>
-      <h4>No idea for a field?</h4>
-      <p>Borrow one and change it later: small online shop &middot; tutoring &middot; delivery &middot; caf&eacute; &middot; clothes reselling &middot; photography &middot; translation &middot; travel guide &middot; importing goods from your country &middot; running an SNS account.
-      <b>A</b> work I do now &middot; <b>B</b> work I want to do &middot; <b>C</b> my work &amp; study — all equal, and <b>C is not lower</b>.</p>
+      <h4>Make — the account only</h4>
+      <p>Go to <b>make.com</b> &rarr; <i>Get started free</i> &rarr; sign up <b>with Google</b>. No Google account? Sign up with your email address instead; it works exactly the same.
+      That is all Make needs from you today. We open it properly next week.</p>
+      <h4>Next week</h4>
+      <p><b>Project 1</b> — you make a Google Form that introduces your business and asks people what they think, you share it, and an automation watches it and tells you when an answer arrives.
+      Your first automation is not a toy: it brings you feedback on your own idea. We also form groups next week — nothing to do about it today.</p>
       <h4>Stuck?</h4>
       <p>Ask <b>3 people around you</b> first. Cannot sign in? Put the red paper on top of your monitor and the professor comes to you. Or ask the assistant right here.</p>
-      <h4>Also starting this week — form your own group</h4>
-      <p>From Week 4 we present in groups, and when you are stuck you ask your group first.
-      <b>You choose your own group and there is no fixed size</b> — three people, six people, up to you. Same country, same language, same table: whatever helps you actually help each other. Nobody is assigned.</p>
-      <p>When your group is set, <b>one person posts it in the KakaoTalk group</b> — a group name, then everyone's student ID and name. One message per group, not per person.
-      The professor then posts the list of all groups in the chat, so you can see who is where and pick one. Nobody is left out for not knowing where to go.</p>
-      <p>No hurry: you have until <b>Week 4 or 5</b>, and you can move until then.
-      <b>Building and submitting stay yours.</b> A group is for presenting and for helping — not for building one thing together.</p>
       <h4>What gets recorded</h4>
       <p>Your submissions, the time you sent them, and <b>your chats with the AI assistant</b> are saved.
       The professor reads them to improve the class — if many of you get stuck on the same step, that step is taught again the next week.
