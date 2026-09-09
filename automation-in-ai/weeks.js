@@ -75,7 +75,7 @@ const WEEKS = {
       <p>You do not fill a form. Press the button above, type <b>start</b>, and the assistant asks four questions, one at a time.</p>
       <ol>
         <li><b>Introduce yourself</b> — where you are from, what you study, what you do outside class.<br>
-        <i>Why:</i> fifty-seven of you and one professor — this is how he learns who is in the room.
+        <i>Why:</i> a whole class of you and one professor — this is how he learns who is in the room.
         <i>Feeds:</i> next week you form your own groups, and people find each other through what you write here.</li>
         <li><b>What kind of student are you?</b> — alone or with people, plan first or try first.<br>
         <i>Why:</i> neither is better, but they get stuck differently and need different help.
