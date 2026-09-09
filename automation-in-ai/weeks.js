@@ -54,12 +54,15 @@ const WEEKS = {
     submit: "an interview with the AI assistant — who you are, what business you are thinking about, and which part of it you would automate. Talk to it in your own language.",
     video: "",
     coach: "Week 1 was an introduction with no assignment, so the student has NO written list — never ask them for one. Week 2 is the website and the three questions ONLY. The student is NOT building anything in Make today — if they ask about Make, tell them to create the free account and stop there; we open it properly in Week 3. Do not bring up groups: that is Week 3. Your job this week is the interview below, explaining what each question is FOR when they ask, and helping anyone who cannot sign in.",
+    links: [
+      { label: "Week 2 slides (PDF)", url: "materials/W02_Slides.pdf" },
+      { label: "Week 2 handout (PDF)", url: "materials/W02_Handout.pdf" },
+    ],
     interview: [
       "Introduce yourself. Where are you from, what are you studying, and what do you do outside class?",
       "What business are you thinking about? It can be work you already do, an idea you want to start, or your own studying and job hunting. One or two sentences.",
       "In that business, which part would you automate? Name one thing you do again and again by hand, and say why it is boring or slow.",
     ],
-    links: [],
     tutorial: `
       <h4>Today you do two things</h4>
       <p><b>Sign in to this website.</b> And <b>answer three questions about your business.</b>
