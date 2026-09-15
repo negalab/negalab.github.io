@@ -123,6 +123,14 @@ const WEEKS = {
       "Paste the link to your response spreadsheet. In the form open Responses → the green sheet icon, then copy the address of the sheet. Set Share → Anyone with the link → Viewer, so the professor can open it.",
       "Introduce your business in ONE sentence — what it is, and who it is for. This sentence goes on the class gallery with your name and character, and the whole school can see it.",
     ],
+    // 직접 입력 창의 칸 제목 — 2번 물음은 조교에게 하는 지시라 학생에게 그대로 보이면 안 된다 (2026-09-16)
+    interviewLabels: [
+      "Your Google account email",
+      "Your business idea, and your 4–5 survey questions",
+      "Your Google Form link",
+      "Your response spreadsheet link (shared: Anyone with the link → Viewer)",
+      "Your business in ONE sentence",
+    ],
     tutorial: `
       <h4>Project 1 — before you automate, you ask</h4>
       <p>Before Make touches anything, you need real people's answers about your idea. This week is only that

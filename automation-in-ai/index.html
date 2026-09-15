@@ -624,10 +624,8 @@
       <p class="sub" id="smWhat"></p>
       <label>Week</label>
       <select id="smWeekSel"></select>
-      <label>What you built — one line</label>
-      <textarea id="smReview" maxlength="1000" placeholder="One or two sentences."></textarea>
-      <label>Link (optional)</label>
-      <input type="text" id="smLink" placeholder="https://…">
+      <!-- 2026-09-16 작가 「제출 형식이 안맞는다」 — 칸은 그 주차 인터뷰 물음 수만큼 syncSubmitLabels 가 만든다 -->
+      <div id="smFields"></div>
       <button class="modal-btn" id="smBtn" onclick="doSubmit()">Submit ✓</button>
       <div class="err" id="smError"></div>
     </div>
@@ -910,17 +908,40 @@
       const s = MY_SUBS[w];
       const note = s ? " — you already submitted; you can edit and save again." : "";
       document.getElementById("smWhat").textContent = (info ? `Submit: ${info.submit}` : "") + note;
-      document.getElementById("smReview").value = s && s.review ? s.review : "";
-      document.getElementById("smLink").value = s && s.link ? s.link : "";
+      const box = document.getElementById("smFields"); box.innerHTML = "";
+      const qs = (info && info.interview) || [];
+      if (qs.length) {
+        const labels = info.interviewLabels || qs;
+        qs.forEach((q, i) => {
+          const lb = document.createElement("label"); lb.textContent = `${i + 1}. ${labels[i] || q}`;
+          const ta = document.createElement("textarea"); ta.id = "smQ" + i; ta.maxLength = 700; ta.rows = 2;
+          box.appendChild(lb); box.appendChild(ta);
+        });
+      } else {
+        box.innerHTML = '<label>What you built — one line</label><textarea id="smReview" maxlength="1000" placeholder="One or two sentences."></textarea><label>Link (optional)</label><input type="text" id="smLink" placeholder="https://…">';
+        document.getElementById("smReview").value = s && s.review ? s.review : "";
+        document.getElementById("smLink").value = s && s.link ? s.link : "";
+      }
       document.getElementById("smBtn").textContent = s ? "Update ✓" : "Submit ✓";
     }
     async function doSubmit() {
       const btn = document.getElementById("smBtn"), err = document.getElementById("smError");
       const week = parseInt(document.getElementById("smWeekSel").value, 10);
-      const review = document.getElementById("smReview").value.trim();
-      const link = document.getElementById("smLink").value.trim();
+      const info = WEEKS[week] || {}; const qs = info.interview || [];
+      let review, link;
       err.textContent = "";
-      if (!review && !link) { err.textContent = "Write one line about what you built."; return; }
+      if (qs.length) {
+        const labels = info.interviewLabels || qs;
+        const answers = qs.map((q, i) => ((document.getElementById("smQ" + i) || {}).value || "").trim());
+        const missing = answers.findIndex(a => !a);
+        if (missing >= 0) { err.textContent = `Answer question ${missing + 1} too.`; return; }
+        review = answers.map((a, i) => `${i + 1}. ${labels[i] || qs[i]}\n${a}`).join("\n\n");
+        link = (review.match(/https?:\/\/\S+/) || [""])[0];
+      } else {
+        review = document.getElementById("smReview").value.trim();
+        link = document.getElementById("smLink").value.trim();
+        if (!review && !link) { err.textContent = "Write one line about what you built."; return; }
+      }
       btn.disabled = true; btn.textContent = "Submitting…";
       try {
         const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link }) });
