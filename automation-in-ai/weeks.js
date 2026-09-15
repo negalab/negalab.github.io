@@ -118,6 +118,7 @@ const WEEKS = {
     ],
     interview: [
       "Which Google account are you using for this project? Type the email address. Next week Make connects to this same account, so keep using it.",
+      "Your business idea: read back what the student told you in Week 2 (it is in their earlier submissions) and ask them to confirm or change it — if there is nothing on record, ask for it in one or two sentences. Then let's design your survey together: 4–5 questions that ask what people have ALREADY experienced — the problem, how they solve it now, how often and how much it bothers them (1–5), what they would pay per month, and who they are. Write your questions here; I will help you make each one about the past, not an opinion.",
       "Paste the link to your Google Form. In the form, press Send → the link icon → Copy.",
       "Paste the link to your response spreadsheet. In the form open Responses → the green sheet icon, then copy the address of the sheet. Set Share → Anyone with the link → Viewer, so the professor can open it.",
       "Introduce your business in ONE sentence — what it is, and who it is for. This sentence goes on the class gallery with your name and character, and the whole school can see it.",
