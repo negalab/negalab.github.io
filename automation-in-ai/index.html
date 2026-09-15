@@ -259,7 +259,7 @@
       </div>
       <div class="week-links" id="wkLinks"></div>
       <button class="btn-primary" onclick="openWeek(currentWeek())">Open this week's page →</button>
-      <button class="btn-primary" style="background:transparent;border:1px solid var(--line);margin-left:10px;" onclick="openSubmit()">Submit ✓</button>
+      <!-- 2026-09-16 작가 「항상 챗팅으로 제출하자 submit 버튼 없어도 될거 같다」 — 첫 화면 Submit 단추를 뺐다. 제출은 주차 페이지 안 AI 대화로만 -->
       <p class="week-note">Submitting during class = attendance. The system records the time by itself. Already submitted? Open it again to edit — your attendance stays.</p>
     </div>
   </section>
@@ -656,7 +656,6 @@
       <button class="btn-primary" id="wmAiBtn" style="margin-bottom:10px;display:none;">✳ Submit — talk to the AI assistant</button>
       <div id="wmAiNote" style="display:none;font-size:12.5px;color:#888;margin-bottom:18px;line-height:1.6;">
         It interviews you and writes the submission for you. <b style="color:#ddd;">Write in your own language.</b>
-        <a href="#" onclick="openSubmitFromWeek();return false;" style="color:#888;text-decoration:underline;">Or type it myself</a>
       </div>
       <button class="btn-primary" id="wmSubmitBtn" style="margin-bottom:22px;">Submit this week ✓</button>
       <div id="wmLinks" class="week-links" style="margin-top:18px;"></div>
