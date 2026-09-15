@@ -107,47 +107,60 @@ const WEEKS = {
   },
 
   3: {
-    name: "Project 1 — Your business, and what people say",
-    build: "a Google Form about your business, and the automation that watches it.",
-    submit: "your form link + one line about what you are asking people.",
+    name: "Project 1 — Your business idea, and what people think",
+    build: "a Google account you can point to, a short survey, a Google Form that collects it, and a one-line pitch.",
+    submit: "your Google account email, your form link, your response sheet link, and a one-line business intro.",
     video: "",
-    coach: "This is the first week students build in Make. The project: a Google Form that introduces their business and asks people what they think, feeding a Google Sheet, with a Make scenario that notifies them when a new answer arrives. Keep it to ONE trigger and ONE action — no conditions yet, that is next week. The most common failure is the Google connection: tell them to remove it and connect again. If a student has not decided their business yet, help them name one in two minutes from what they already do, then move on — the form matters more than a perfect idea.",
-    links: [],
+    coach: "This week has NO Make — the professor demos ONE module in Make at the front of the room, students do not open Make at all this week. Make starts for students next week, using the SAME Google account each student submits today, so getting the Google account right this week matters more than usual. (1) First confirm which Google account (email) they will use for their business form — this is one of the four things they submit. (2) Talk through their business idea and help design 4-5 survey questions in the early-stage-validation style — ask what people have ALREADY experienced, not opinions ('have you faced this' not 'would you like this'); cover: the problem, their current fix, how often/how much it bothers them, what they'd pay, who they are. (3) Help build the Google Form at forms.google.com (signed into that same account) with those questions. (4) Tell them: Responses → green sheet icon → Create a new spreadsheet, then submit one test answer themselves so a row appears. (5) Write ONE confident sentence introducing their business — this line, their name, and their character photo go on next week's public gallery page with a QR to their form, visible to the whole school, so make it real, not a placeholder. (6) Close by telling them: this same Google Form becomes a MODULE next week in Make, opened with the same Google account. If a student has no business idea yet, help them name one in two minutes from what they already do — the form matters more than a perfect idea.",
+    links: [
+      { label: "Week 3 slides (PDF)", url: "materials/W03_Slides.pdf" },
+      { label: "Week 3 handout (PDF)", url: "materials/W03_Handout.pdf" },
+    ],
     tutorial: `
-      <h4>Project 1 — one thing, in three steps</h4>
-      <p>Your first automation is not a toy. It brings you <b>real feedback on your own business idea</b>, from real people.</p>
+      <h4>Project 1 — before you automate, you ask</h4>
+      <p>Before Make touches anything, you need real people's answers about your idea. This week is only that
+      — and no Make. The professor opens Make and places one module at the front of the room, just so you
+      see what a module looks like. You do not open Make yourself this week.</p>
       <ol>
-        <li>A <b>Google Form</b> — you introduce your business and ask people what they think.</li>
-        <li>You <b>share it</b> — classmates, friends, family.</li>
-        <li>An <b>automation watches it</b> — every new answer lands in your sheet, and Make tells you the moment one arrives.</li>
+        <li>Sign into the <b>Google account</b> you will use for this project — and keep using it.</li>
+        <li>Design <b>4–5 questions</b> that ask about real experience, not opinions.</li>
+        <li>Build the <b>Google Form</b> and connect a <b>spreadsheet</b>.</li>
+        <li>Write <b>one sentence</b> that introduces your business.</li>
       </ol>
-      <h4>Step 1 — the form</h4>
-      <p>Go to <b>forms.google.com</b> → blank form. Keep it short — people stop at question six.</p>
+      <h4>Step 0 — pick your Google account, and keep it</h4>
+      <p>Whichever Google account you sign into <b>forms.google.com</b> with today is the account Make will
+      connect to <b>next week</b>. Picking one now and sticking with it means no surprises next week —
+      that is why it is one of the things you submit today.</p>
+      <h4>Step 1 — design the questions (talk to the AI assistant first)</h4>
+      <p>Good early surveys ask what people have <b>already</b> done, not what they <i>would</i> do. Cover these five:</p>
       <ul>
-        <li>A title and two or three lines that say <b>what your business is</b>. This part is advertising, not a survey.</li>
-        <li><b>3–5 questions.</b> Ask what you actually want to know: would you use this, what would you pay, what is missing, what stops you.</li>
-        <li>Mix one rating question (1–5) with one open text question. Numbers are easy to read, sentences tell you why.</li>
+        <li><b>Problem</b> — have they faced this situation?</li>
+        <li><b>Current fix</b> — how do they solve it now? Do they pay for anything already?</li>
+        <li><b>Size</b> — how often does it happen, how much does it bother them (1–5)?</li>
+        <li><b>Price</b> — if this were solved for them, what would they pay per month?</li>
+        <li><b>Who</b> — one or two lines about who is answering.</li>
       </ul>
-      <p>In the form, open <b>Responses</b> → the green sheet icon → <b>Create a new spreadsheet</b>. Every answer now lands there by itself.</p>
-      <h4>Step 2 — the automation</h4>
-      <ol>
-        <li>In Make, <b>Create a new scenario</b> → the big <b>+</b> → search <b>Google Sheets</b> → <b>Watch New Rows</b>. This is your <b>Trigger</b>.</li>
-        <li><b>Connect</b> your Google account, pick the spreadsheet your form created, and pick the tab.</li>
-        <li>Click the <b>+</b> on the right → search <b>Gmail</b> → <b>Send an email</b>. Put your own address in "To". This is your <b>Action</b>.</li>
-        <li>In the email body, click the blue fields from the left panel to drop the answers in. That is <b>mapping</b> — carrying a value from one node to the next.</li>
-        <li><b>Run once</b> → fill in your own form → watch the email arrive.</li>
-        <li><b>Turn the scenario OFF</b> when you finish testing. Free Make = 1,000 operations a month.</li>
-      </ol>
-      <h4>Step 3 — share it and watch</h4>
-      <p>Send the form link to your KakaoTalk group, your friends, your family. Ten answers is already useful. You will read them next week.</p>
+      <h4>Step 2 — the form</h4>
+      <p>Go to <b>forms.google.com</b> → blank form. Keep it short — people stop at question six.
+      A title, two or three lines on what your business is, then your 4–5 questions. Mix one rating (1–5)
+      with open text.</p>
+      <p>Open <b>Responses</b> → the green sheet icon → <b>Create a new spreadsheet</b>.</p>
+      <h4>Step 3 — test it yourself</h4>
+      <p>Fill in your own form once and submit. Open the spreadsheet — a new row appeared, by itself.
+      <b>That is automation, before Make ever touches it.</b></p>
+      <h4>Looking ahead — your form becomes a module, and it goes public</h4>
+      <p>Next week, this exact Google Form becomes a <b>module</b> — the first piece of a Make scenario.
+      And starting next week, your name, your character, and your one-line business pitch appear on a
+      class gallery page with a QR code to your form — open to the whole school, not just this class.
+      Write your one line like people you don't know will read it, because they will.</p>
       <h4>Submit</h4>
-      <p>Talk to the AI assistant as usual: give your <b>form link</b> and <b>one line</b> about what you are asking people and why.
-      Also draw it on the A4: <b>Form → Sheet → Email</b>, three boxes and two arrows.</p>
+      <p>Talk to the AI assistant, then give four things: your <b>Google account email</b>, your <b>form link</b>,
+      your <b>response sheet link</b>, and your <b>one-line business intro</b>.</p>
       <h4>Stuck?</h4>
-      <p>Ask <b>3 people around you</b> first. Almost every problem this week is the <b>Google connection</b> — remove it in Make and connect again; it works the second time.
-      Then raise your hand.</p>
-      <h4>Advanced — finished early?</h4>
-      <p>One Trigger can feed more than one Action. Add a second Action after the email — <b>Google Sheets → Add a Row</b> into a second sheet called <i>Log</i>, so every answer is emailed <i>and</i> recorded separately.</p>
+      <p>Ask <b>3 people around you</b> first. Then raise your hand.</p>
+      <h4>Finished early?</h4>
+      <p>Share your form link with 3 more people right now — KakaoTalk, friends, family. Real answers
+      before next week make a better scenario to build.</p>
     `,
   },
 
