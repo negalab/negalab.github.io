@@ -1101,7 +1101,7 @@
         const fromWeekPage = !!parseInt(week, 10);
         addAiMsg("bot",
           iv && fromWeekPage
-            ? `Hi! Week ${AI_WEEK} — your assignment is an interview with me. ${iv} question${iv === 1 ? "" : "s"}, and I write the submission for you.\n\n**Write in your own language if you want.** Nepali, Uzbek, Vietnamese, Urdu, Korean — anything. I answer in the same language.\n\nType "start" when you are ready.`
+            ? `Hi! Week ${AI_WEEK} — your assignment is an interview with me. ${iv} question${iv === 1 ? "" : "s"}, and I write the submission for you.\n\nWrite in your own language if you want. Nepali, Uzbek, Vietnamese, Urdu, Korean — anything. I answer in the same language.\n\nType "start" when you are ready.`
             : iv
               ? `Hi! Stuck in Make? Tell me where you are and I will give you the next click.\n\nWrite in your own language if you like.\n\n(Ready to submit Week ${AI_WEEK} instead? Type "start" and I will interview you.)`
               : "Hi! Stuck in Make? Tell me where you are and I will give you the next click. Write in English or in your own language.");
@@ -1132,7 +1132,7 @@
       const wi = WEEKS[cw] || {};
       try {
         const r = await fetch(`${API}/ai-chat`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-          studentId: me.id, email: me.email, message: msg, history: AI_HISTORY.slice(-10),
+          studentId: me.id, email: me.email, message: msg, history: AI_HISTORY.slice(-40),
           weekContext: { week: cw, build: wi.build || "", submit: wi.submit || "", coach: wi.coach || "", interview: wi.interview || null },
         }) });
         const d = await r.json();
