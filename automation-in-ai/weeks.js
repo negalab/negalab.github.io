@@ -116,6 +116,12 @@ const WEEKS = {
       { label: "Week 3 slides (PDF)", url: "materials/W03_Slides.pdf" },
       { label: "Week 3 handout (PDF)", url: "materials/W03_Handout.pdf" },
     ],
+    interview: [
+      "Which Google account are you using for this project? Type the email address. Next week Make connects to this same account, so keep using it.",
+      "Paste the link to your Google Form. In the form, press Send → the link icon → Copy.",
+      "Paste the link to your response spreadsheet. In the form open Responses → the green sheet icon, then copy the address of the sheet. Set Share → Anyone with the link → Viewer, so the professor can open it.",
+      "Introduce your business in ONE sentence — what it is, and who it is for. This sentence goes on the class gallery with your name and character, and the whole school can see it.",
+    ],
     tutorial: `
       <h4>Project 1 — before you automate, you ask</h4>
       <p>Before Make touches anything, you need real people's answers about your idea. This week is only that
