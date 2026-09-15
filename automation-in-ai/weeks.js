@@ -177,6 +177,11 @@ const WEEKS = {
     video: "",
     coach: "Two things this week. (1) Field Talk: each group presents, one minute per person — help them say their business in one sentence, not read a script. (2) Conditions: add a Filter between the trigger and the action of the Project 1 scenario, so the email only fires when the answer meets a condition — a low rating, a specific choice, a non-empty comment. Keep it to ONE condition. If a student has no form answers yet, they can fill their own form a few times to test.",
     links: [],
+    interview: [
+      "Which condition did you put between the trigger and the action? Say it in plain words — which answers get through, and which do not.",
+      "Paste the link to your scenario, or a link to a screenshot of it.",
+      "In one or two sentences, what did you say in your 1-minute field talk?",
+    ],
     tutorial: `
       <h4>Why a filter</h4>
       <p>Last week every answer sent you an email. With fifty answers that is fifty emails, and you stop reading them.
@@ -214,6 +219,11 @@ const WEEKS = {
     video: "",
     coach: "Help them find the message they send most often and draft the reply template together, with the mapped fields marked.",
     links: [],
+    interview: [
+      "Which message do you send again and again in your field? Describe it in one or two sentences.",
+      "Paste the link to your scenario, or a link to a screenshot of the email it sent.",
+      "In one line: what does this automatic email save you?",
+    ],
     tutorial: `
       <h4>The task everyone repeats</h4>
       <p>Answering the same message again and again — every shop, every freelancer, every job-seeker knows it.
@@ -243,6 +253,11 @@ const WEEKS = {
     video: "",
     coach: "Help them write the AI prompt for their auto-reply: role, tone, what to never promise. Test it against 2-3 fake customer messages in the chat.",
     links: [],
+    interview: [
+      "What does the AI step do in your scenario? Paste the prompt you gave it.",
+      "Paste a link to one reply the AI wrote, or a screenshot of it.",
+      "What did the AI get wrong the first time, and how did you change the prompt?",
+    ],
     tutorial: `
       <h4>From template to thinking</h4>
       <p>Last week your reply was a fixed template. Today an <b>AI writes each reply</b> — reading what the person asked, answering in your voice. This is where "Automation" meets "AI".</p>
@@ -270,6 +285,11 @@ const WEEKS = {
     video: "",
     coach: "Help them decide which pieces from weeks 2-6 combine into one complete flow, and define 'done' for it. Remind them peer feedback is part of the task.",
     links: [],
+    interview: [
+      "Paste the link to your Project 1.",
+      "Whose automation did you test? Say their name and what happened when you triggered it.",
+      "Say one piece of feedback you gave, and one piece you received.",
+    ],
     tutorial: `
       <h4>Put it together</h4>
       <p>You now know: Trigger &amp; Action · filters · forms → sheets · email · AI. Today you build <b>one complete flow for your field</b>, start to finish.</p>
@@ -296,6 +316,11 @@ const WEEKS = {
     video: "",
     coach: "Rehearse the 2-minute midterm demo: 20s field, 70s live trigger, 30s what it saves. Time it in the chat.",
     links: [],
+    interview: [
+      "Paste the link to your 2-minute demo.",
+      "In one sentence: what does your automation do, and for whom?",
+      "What was the hardest part to show live?",
+    ],
     tutorial: `
       <h4>Two minutes, running live</h4>
       <p>Everyone presents. Timer on screen — at 2:00 the mic moves on. No exceptions, no slides needed.</p>
@@ -319,6 +344,11 @@ const WEEKS = {
     video: "",
     coach: "Help them pick task #2 from their list and apply one piece of peer feedback from Project 1.",
     links: [],
+    interview: [
+      "Which second task from your field did you automate, and why that one?",
+      "Paste the link to your Project 2.",
+      "Whose automation did you test, and what one thing would you change in it?",
+    ],
     tutorial: `
       <h4>Second lap</h4>
       <p>Take your task list from Week 1. Pick a <b>different</b> repetitive task — and automate it. You will be surprised how fast the second one goes.</p>
@@ -343,6 +373,11 @@ const WEEKS = {
     video: "",
     coach: "Two things in one week: help them name the Notion columns their field actually needs (Name, Status options, Date, Note), then map their form fields into those columns through Make. If they are slow, the Notion page alone is enough — the automation can come next week.",
     links: [],
+    interview: [
+      "Paste the link to your Notion page.",
+      "What fills that page by itself? Name the trigger and the data it brings in.",
+      "In one line: what do you no longer have to type by hand?",
+    ],
     tutorial: `
       <h4>Where your data lives</h4>
       <p>Sheets hold rows. <b>Notion</b> holds your whole field — orders, customers, notes, plans — in one place you actually want to open.
@@ -379,6 +414,11 @@ const WEEKS = {
     video: "",
     coach: "Their tool will fail because the sentence is vague, not because the tool is broken. Push them to name three things: who uses it, what they see on screen, what happens when they press the button. Never write the sentence for them — ask the missing question instead.",
     links: [],
+    interview: [
+      "Paste the link to your tool.",
+      "Paste the exact sentence you used to describe it.",
+      "What did you have to change after the first try?",
+    ],
     tutorial: `
       <h4>Today is different</h4>
       <p>No Make. No modules. Today you tell a computer what you want <b>in one sentence</b>, and it builds it.
@@ -414,6 +454,11 @@ const WEEKS = {
     video: "",
     coach: "Help them choose their most valuable flow and list its steps: trigger, router rule, and every action. Failure cases too.",
     links: [],
+    interview: [
+      "Paste the link to your Project 3.",
+      "List the steps of your automation in order, one line each.",
+      "Whose automation did you test, and what broke when you tried it?",
+    ],
     tutorial: `
       <h4>The full chain</h4>
       <p>Your last practice project before the final. Use everything: form → AI → sheet + Notion + email, with a Router splitting paths. This one should look like a small product.</p>
@@ -439,6 +484,11 @@ const WEEKS = {
     video: "",
     coach: "Help them write the system map: every repetitive task, marked done/next/later, and one line per planned automation. The test: someone else could build it.",
     links: [],
+    interview: [
+      "Paste the link to your one-page design.",
+      "List every automation your field needs, one line each.",
+      "Which one will you build first next week, and why?",
+    ],
     tutorial: `
       <h4>From pieces to a system</h4>
       <p>You have built five or six automations. Today you <b>design the whole machine</b>: what should your field run by itself when the semester ends?</p>
@@ -465,6 +515,11 @@ const WEEKS = {
     video: "",
     coach: "Help them prioritize: which planned item is highest value, and what is the smallest version that actually runs today.",
     links: [],
+    interview: [
+      "Paste the link to your working system.",
+      "Which parts of last week's design did you build, and which did you leave out?",
+      "In one line: what does your system now do without you?",
+    ],
     tutorial: `
       <h4>Building day</h4>
       <p>The whole class is one long lab. You have your plan — today you make the 🔜 items real.</p>
@@ -490,6 +545,11 @@ const WEEKS = {
     video: "",
     coach: "Rehearse the 3-minute final demo and sharpen the one sentence: why this system deserves attention (or money).",
     links: [],
+    interview: [
+      "Paste the link to your 3-minute demo.",
+      "In one sentence: what does your system do, and for whom?",
+      "Look back at your answer in Week 2. What changed in your business idea?",
+    ],
     tutorial: `
       <h4>Three minutes, your whole system</h4>
       <p>The last stand-up. Timer on screen, order posted here, demo runs from the professor's PC — <b>submit your link before class</b>.</p>
