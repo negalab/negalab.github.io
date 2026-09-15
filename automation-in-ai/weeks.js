@@ -180,169 +180,113 @@ const WEEKS = {
   },
 
   4: {
-    name: "Conditions & Filters · Field Talk 1",
-    build: "a filter on your form answers — so you only hear about the ones that matter.",
-    submit: "your automation with a condition — link + one line. Plus your 1-minute field talk.",
+    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
+    name: "Make, first connection — a daily summary of your answers",
+    build: "your first Make scenario: once a day it collects the new answers from your form's sheet and emails you one summary.",
+    submit: "your scenario (a link or a screenshot) and one line on what your answers say so far.",
     video: "",
-    coach: "Two things this week. (1) Field Talk: each group presents, one minute per person — help them say their business in one sentence, not read a script. (2) Conditions: add a Filter between the trigger and the action of the Project 1 scenario, so the email only fires when the answer meets a condition — a low rating, a specific choice, a non-empty comment. Keep it to ONE condition. If a student has no form answers yet, they can fill their own form a few times to test.",
+    coach: "This is the first week students open Make. Build ONE scenario on the response sheet from Week 3: Google Sheets (watch or search the new rows) → a text aggregator that joins the rows → Gmail 'Send an email' to themselves, scheduled once a day. In class press 'Run once' — free Make only runs on a schedule. Use the same Google account the student submitted in Week 3. The business matters as much as Make: ask what the answers so far say about their idea and what they would change. If a Google connection fails, write down the exact error and tell them to ask the professor — do not invent workarounds.",
     links: [],
     interview: [
-      "Which condition did you put between the trigger and the action? Say it in plain words — which answers get through, and which do not.",
-      "Paste the link to your scenario, or a link to a screenshot of it.",
-      "In one or two sentences, what did you say in your 1-minute field talk?",
+      "Which Google account did you connect in Make? Is it the same one you used for your Week 3 form?",
+      "Paste a link or a screenshot of your scenario, and say in one line what each module does.",
+      "What do the answers you have so far say about your business idea? Name one thing you will change or keep.",
     ],
     tutorial: `
-      <h4>Why a filter</h4>
-      <p>Last week every answer sent you an email. With fifty answers that is fifty emails, and you stop reading them.
-      A <b>filter</b> sits between two nodes and lets only some things through. Now you hear about the answers that matter.</p>
-      <h4>Add one condition</h4>
-      <ol>
-        <li>Open your Project 1 scenario. Click the <b>line</b> between the two nodes — a wrench appears → <b>Set up a filter</b>.</li>
-        <li>Give the filter a name you will understand later: <i>"only unhappy answers"</i>.</li>
-        <li>Pick the field from the left panel, choose the operator, type the value. For example:
-          rating <b>less than</b> 3 · comment <b>is not empty</b> · choice <b>equals</b> "I would pay for this".</li>
-        <li><b>Run once</b> and test both ways — one answer that passes, one that does not. Watch which one reaches the email.</li>
-      </ol>
-      <p><b>One condition is enough this week.</b> You can add more later; two conditions at once is where people get lost.</p>
-      <h4>Field Talk 1 — one minute per person</h4>
-      <p>Your group comes up together. Each person says, in about a minute:</p>
-      <ul>
-        <li><b>What your business is</b> — one sentence.</li>
-        <li><b>What you asked people</b> — and what surprised you in their answers.</li>
-        <li><b>What you would automate next.</b></li>
-      </ul>
-      <p>No slides. Do not read from your phone. The point is to say your own business out loud in front of people — that is the skill.</p>
-      <h4>Submit</h4>
-      <p>Talk to the AI assistant: give your <b>scenario link</b> and <b>one line</b> saying what your filter lets through and why you chose it.
-      On the A4, draw the same picture as last week with the filter in the middle: <b>Form → Sheet → [filter] → Email</b>.</p>
-      <h4>Stuck?</h4>
-      <p>The filter never passes anything? Check that you picked the field from the <b>left panel</b> and did not type the field name by hand.
-      Check the operator — <i>text</i> operators and <i>number</i> operators are different lists.</p>
+      <h4>Week 4 — your form starts working for you</h4>
+      <p>Last week you built a form and a sheet. This week Make reads that sheet <b>once a day</b> and sends you <b>one email</b> with all the new answers.</p>
+      <p>You use the <b>same Google account</b> you submitted in Week 3.</p>
+      <h4>And your business grows</h4>
+      <p>Read your first answers. What do people say? Decide one thing to change or keep in your idea.</p>
+      <p><i>The full step-by-step guide opens the day before class.</i></p>
     `,
   },
 
   5: {
-    name: "Email Automation",
-    build: "an email that sends itself.",
-    submit: "one automatic reply from your field — link + one line.",
+    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
+    name: "AI writes your business report",
+    build: "an AI step that reads your answers and writes a short report on your business idea.",
+    submit: "your report and one line on what you will change in your business because of it.",
     video: "",
-    coach: "Help them find the message they send most often and draft the reply template together, with the mapped fields marked.",
+    coach: "Week 5 adds AI to the Week 4 scenario: the collected answers go to an AI module that writes a short report — what people said, the patterns, what to change. The business grows here: help the student read the report critically and decide one real change to their idea. Do not claim things the answers do not show.",
     links: [],
     interview: [
-      "Which message do you send again and again in your field? Describe it in one or two sentences.",
-      "Paste the link to your scenario, or a link to a screenshot of the email it sent.",
-      "In one line: what does this automatic email save you?",
+      "Paste the report the AI wrote, or a link to it.",
+      "What did the AI get right about your answers, and what did it miss?",
+      "Because of this report, what is one thing you will change in your business idea?",
     ],
     tutorial: `
-      <h4>The task everyone repeats</h4>
-      <p>Answering the same message again and again — every shop, every freelancer, every job-seeker knows it.
-      Today the reply writes and sends itself.</p>
-      <h4>Core steps</h4>
-      <ol>
-        <li>Take your Week-4 scenario (form → sheet → email to you).</li>
-        <li>Change the last module: Gmail <b>Send an email</b> → "To" = the <b>email answer from the form</b> (map it).</li>
-        <li>Write a warm template: "Hi [name], thank you! We received your [request]. We will reply within one day."
-          Map [name] and [request] from the row.</li>
-        <li>Test with your own email as the customer. Read what arrives — would you be happy to receive it?</li>
-        <li>Extra Action: add <b>Google Sheets → Update a Row</b> to mark Status = "replied". One trigger, two actions.</li>
-        <li>Turn the scenario off.</li>
-      </ol>
-      <h4>Make it yours</h4>
-      <p>What message do you send most often in your field? A price list? Directions? "Your order shipped"? An application follow-up? Automate that exact one.</p>
-      <h4>Advanced</h4>
-      <p>Explore Gmail's <b>Watch Emails</b> trigger: when a mail with a certain label arrives, Make can act on it.
-      Search "Gmail" at <a href="https://help.make.com" target="_blank" rel="noopener">help.make.com</a>.</p>
+      <h4>Week 5 — AI reads your answers</h4>
+      <p>Your daily summary goes to an <b>AI step</b>. It writes a short <b>report</b>: what people said, what repeats, what to change.</p>
+      <h4>And your business grows</h4>
+      <p>Do not just keep the report. Read it, disagree with it where it is wrong, and change one real thing in your idea.</p>
+      <p><i>The full step-by-step guide opens the day before class.</i></p>
     `,
   },
 
   6: {
-    name: "AI Inside Your Automation",
-    build: "an AI step inside your Make scenario.",
-    submit: "AI writing your customer reply — link + one line.",
+    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
+    name: "Pre-registration — let people sign up",
+    build: "a pre-registration form for your business, so interested people can leave their contact before you launch.",
+    submit: "your pre-registration form link and how many sign-ups you want by Week 8.",
     video: "",
-    coach: "Help them write the AI prompt for their auto-reply: role, tone, what to never promise. Test it against 2-3 fake customer messages in the chat.",
+    coach: "Week 6 turns the idea into something people can join: a pre-registration form (name, contact, what they want) connected to Make, so every sign-up is recorded and the student is told. The survey asked 'is this a real problem?' — pre-registration asks 'will you sign up?'. Help them write a clear promise in one or two sentences at the top of the form.",
     links: [],
     interview: [
-      "What does the AI step do in your scenario? Paste the prompt you gave it.",
-      "Paste a link to one reply the AI wrote, or a screenshot of it.",
-      "What did the AI get wrong the first time, and how did you change the prompt?",
+      "What does your pre-registration form promise people, in one or two sentences?",
+      "Paste the link to your pre-registration form.",
+      "How many sign-ups do you want by Week 8, and where will you share the form?",
     ],
     tutorial: `
-      <h4>From template to thinking</h4>
-      <p>Last week your reply was a fixed template. Today an <b>AI writes each reply</b> — reading what the person asked, answering in your voice. This is where "Automation" meets "AI".</p>
-      <h4>Core steps</h4>
-      <ol>
-        <li>Open your Week-5 scenario.</li>
-        <li>Between the Trigger and Gmail, add an <b>AI module</b> (we set up the class key together in the lab — do not buy anything yourself).</li>
-        <li>Write the AI instruction (the <b>prompt</b>): "You reply for [your field]. Be short, warm, easy English. The customer wrote: [map the form answer]."</li>
-        <li>Map the AI's output text into the Gmail body.</li>
-        <li>Test with three different fake requests. Read every reply — does it sound like you? Fix the prompt, not the reply.</li>
-        <li>Turn the scenario off.</li>
-      </ol>
-      <h4>One warning</h4>
-      <p>Never let AI send money-related or promise-related answers without checking. In real business, AI drafts — you decide what auto-sends.</p>
-      <h4>Advanced</h4>
-      <p>Ask the AI for two outputs at once: a reply <i>and</i> a one-word category (order / question / complaint).
-      Route by category with a Router — different answers for different kinds of mail.</p>
+      <h4>Week 6 — from 'is it real?' to 'will you join?'</h4>
+      <p>Your survey asked if the problem is real. Now you ask people to <b>sign up</b> before you launch.</p>
+      <p>Every sign-up is recorded by Make, and you hear about it.</p>
+      <h4>And your business grows</h4>
+      <p>Write the promise at the top of the form. One or two sentences a stranger understands.</p>
+      <p><i>The full step-by-step guide opens the day before class.</i></p>
     `,
   },
 
   7: {
-    name: "Project 1 · Peer Test",
-    build: "one complete automation combining weeks 2–6.",
-    submit: "your project link — and your test of a partner's automation.",
+    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
+    name: "Your business page — connect everything",
+    build: "a simple page for your business that links your survey, your pre-registration form, and your automation.",
+    submit: "your business page link and a short list of what is connected to what.",
     video: "",
-    coach: "Help them decide which pieces from weeks 2-6 combine into one complete flow, and define 'done' for it. Remind them peer feedback is part of the task.",
+    coach: "Week 7 builds one page that presents the business and connects the pieces made so far: the survey, the pre-registration form, the daily summary and the AI report. Keep the tool simple and free. Help them write the page for a stranger: what it is, who it is for, how to join. Check that every link opens without signing in.",
     links: [],
     interview: [
-      "Paste the link to your Project 1.",
-      "Whose automation did you test? Say their name and what happened when you triggered it.",
-      "Say one piece of feedback you gave, and one piece you received.",
+      "Paste the link to your business page.",
+      "List what is connected: which form, which scenario, which report — one line each.",
+      "Read your page as a stranger would. Which sentence makes someone sign up?",
     ],
     tutorial: `
-      <h4>Put it together</h4>
-      <p>You now know: Trigger &amp; Action · filters · forms → sheets · email · AI. Today you build <b>one complete flow for your field</b>, start to finish.</p>
-      <h4>Core steps</h4>
-      <ol>
-        <li>Choose one real flow: request comes in → gets recorded → gets answered.</li>
-        <li>Build it: Form → Sheet → (Filter) → AI reply → Gmail → mark as done.</li>
-        <li>Test it yourself three times with different inputs.</li>
-        <li>Submit your form's public link here — your partner needs to use it.</li>
-      </ol>
-      <h4>Peer test (20 minutes, in class)</h4>
-      <p>The site assigns you a partner. Open their link and <b>really use it</b> — fill their form, watch what happens. Then answer three questions on their submission:
-      ① Did it work? ② Is it useful for their field, 1–5? ③ One suggestion.
-      Automation is honest: it runs or it does not. <b>Leaving feedback is part of this week's task.</b></p>
-      <h4>Advanced</h4>
-      <p>Add error handling: what happens when someone leaves the email field empty? Add a filter so the scenario does not crash.</p>
+      <h4>Week 7 — one page, everything connected</h4>
+      <p>Make one simple page for your business. From that page people reach your <b>survey</b> and your <b>pre-registration form</b>, and behind it your <b>automation</b> keeps running.</p>
+      <h4>And your business grows</h4>
+      <p>Write the page for a stranger: what it is, who it is for, how to join. Open every link without signing in.</p>
+      <p><i>The full step-by-step guide opens the day before class.</i></p>
     `,
   },
 
   8: {
-    name: "Midterm Presentations",
-    build: "nothing new — you present.",
-    submit: "your 2-minute demo link, before class starts.",
+    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
+    name: "Exhibition & presentation",
+    build: "nothing new — you show your business and the automation behind it.",
+    submit: "the link people will open at the exhibition, and what you will show in your presentation.",
     video: "",
-    coach: "Rehearse the 2-minute midterm demo: 20s field, 70s live trigger, 30s what it saves. Time it in the chat.",
+    coach: "Week 8 is the exhibition and presentation. Students show the business as it has grown since Week 2: the idea, what people said, the AI report, the pre-registration, the page, and the automation behind it. Help them rehearse a short, honest story: what changed because of the data. The time per person is set by the professor.",
     links: [],
     interview: [
-      "Paste the link to your 2-minute demo.",
-      "In one sentence: what does your automation do, and for whom?",
-      "What was the hardest part to show live?",
+      "Paste the link people will open at the exhibition.",
+      "In three short lines: what your business was in Week 2, what changed, and why.",
+      "What will you show live — which automation runs in front of people?",
     ],
     tutorial: `
-      <h4>Two minutes, running live</h4>
-      <p>Everyone presents. Timer on screen — at 2:00 the mic moves on. No exceptions, no slides needed.</p>
-      <h4>How to structure 2 minutes</h4>
-      <ol>
-        <li><b>0:00–0:20</b> — your field, one line. What task you automated.</li>
-        <li><b>0:20–1:30</b> — <b>trigger it live</b>: fill your form on the screen, let everyone watch the row appear and the reply arrive.</li>
-        <li><b>1:30–2:00</b> — one sentence: what this saves you every week.</li>
-      </ol>
-      <h4>Rules</h4>
-      <p>Your demo runs from the professor's PC — <b>submit your link here before class starts</b>. Presentation order is posted on this site. Two people before your turn, wait in the front row. Questions go to comments on your submission, not out loud.</p>
-      <h4>If your automation is broken</h4>
-      <p>Present anyway: show the scenario, explain where it stops, say what you tried. An honest broken demo scores better than no demo.</p>
+      <h4>Week 8 — show what grew</h4>
+      <p>You show your business as it is now, and how it got here: the idea, what people said, the AI report, the sign-ups, the page, and the automation behind it.</p>
+      <p>Tell it as a short, honest story: what changed because of the answers.</p>
+      <p><i>The exhibition details open the day before class.</i></p>
     `,
   },
 
