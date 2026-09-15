@@ -1107,6 +1107,21 @@
       }
       document.getElementById("aiInput").focus();
     }
+    // 2026-09-16 작가 「가자」 — 제출은 AI 대화로만, 다만 조교가 답을 못 하는 순간(오류·하루 한도·네트워크)에만 직접 입력 길을 연다.
+    // 수업 시간 밖(outside_class)에는 열지 않는다 — 조교를 수업 시간에만 연 뜻이 없어진다.
+    function addAiFallback() {
+      if (!AI_WEEK || noSubmitWeek(AI_WEEK)) return;
+      const m = document.createElement("div");
+      m.className = "ai-m bot";
+      m.appendChild(document.createTextNode("The assistant cannot answer right now, so you can still submit by typing it yourself: "));
+      const a = document.createElement("a");
+      a.href = "#"; a.textContent = "Type my Week " + AI_WEEK + " submission";
+      a.style.textDecoration = "underline";
+      a.onclick = (ev) => { ev.preventDefault(); closeAi(); openSubmit(AI_WEEK); };
+      m.appendChild(a);
+      document.getElementById("aiMsgs").appendChild(m);
+      m.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
     function closeAi() {
       document.getElementById("aiPanel").style.display = "none";
       document.getElementById("aiFab").style.display = "block";
@@ -1136,7 +1151,7 @@
         }) });
         const d = await r.json();
         thinking.remove();
-        if (!r.ok) { addAiMsg("bot", d.message || "Something went wrong. Try again."); return false; }
+        if (!r.ok) { addAiMsg("bot", d.message || "Something went wrong. Try again."); if (d.error === "ai_upstream" || d.error === "limit" || r.status >= 500) addAiFallback(); return false; }
         if (d.answer) addAiMsg("bot", d.answer);
         AI_HISTORY.push({ role: "user", content: msg }, { role: "assistant", content: d.answer || "" });
         if (d.proposal && d.proposal.week && d.proposal.review) renderAiProposal(d.proposal);
@@ -1144,6 +1159,7 @@
       } catch (err) {
         thinking.remove();
         addAiMsg("bot", "Network error. Check your connection and try again.");
+        addAiFallback();
       }
       return false;
     }
