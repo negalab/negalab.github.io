@@ -180,12 +180,12 @@ const WEEKS = {
   },
 
   4: {
-    // 2026-09-16 작가 확정 「W4 지메일 나에게 요약 이메일 하루에 한번」 · 공통 주제 「나를 자동화 한다」(09-17) — 2026-09-22 캠프 BPA-W4 가 다시 씀: 점 2개 먼저(시트 → 메일) 돌려 보고 가운데 모으는 점 · 마지막 한 줄 · 대화창은 글자만 받아 스크린숏 대신 받은 메일을 붙여 넣는다
-    name: "Make, first connection — a daily summary of your answers",
-    build: "your first Make scenario: once a day it reads the new answers in your Week 3 sheet and emails you one summary — with a last line that is only yours.",
-    submit: "four things — your Google account, the email Make sent you, one thing your answers made you change or keep, and your last line.",
+    // 2026-09-16 작가 「W4 지메일 나에게 요약 이메일 하루에 한번」 · 공통 주제 「나를 자동화 한다」(09-17) — 2026-09-22 사부님 실측으로 다시 짬: 빈 시나리오 · 점 2개(시트 → 새 Gmail, 모으는 점은 W5) · Content 는 글자 + 물음 블록 + <br> · 받는 사람에 smit.ai.lab@gmail.com(사부님이 과제를 받아 확인) · 제출은 「메일 받았나 · 추가했나」로 판단 · 폰에서는 구글 허락 창이 안 눌려 연결은 PC 에서
+    name: "Make, first connection — your answers, emailed to you",
+    build: "your first Make scenario: Google Sheets → Gmail. Every new answer in your Week 3 sheet arrives as a readable email — to you and to the professor — checked once a day.",
+    submit: "three things — did the email arrive, did you add smit.ai.lab@gmail.com, and one thing the answers tell you about your business.",
     video: "",
-    coach: "Week 4: students open Make for the first time. Theme 'Automate yourself': automation protects your best hour, and the design is not finished until you decide what goes into the time it gives back; thinking comes from exercise, good places and good friends, so the student goes inside the automation. Remind them in a plain sentence when it fits, with one easy question from their own life. Most use make.com in the phone browser (the Make app only runs scenarios). Build from ZERO on the Week 3 response sheet with the SAME Google account — not the template (its Gmail module is old; personal @gmail accounts get 'restricted scopes'). Scenarios → + Create a new scenario → Google Sheets 'Watch New Rows' (Search by path, My Drive, their spreadsheet, sheet 'Form Responses 1', headers Yes) → + → a NEW Gmail 'Send an email': To their own address, Subject, Content = one question (not the [bundle] block — that sends the row as code). Connecting each account is the most important step: Create a connection → Sign in with Google → same account → tick every box → Continue; Gmail needs its own connection. On '403 — Method doesn't allow unregistered callers': (1) Credentials → delete that connection → create it again; (2) if choosing the file fails, Search Method → Enter manually → Spreadsheet ID (between /d/ and /edit); (3) still stuck on the phone → connect on the PC. On 'restricted scopes': delete that Gmail module, add Gmail again from +. Before Run once: right-click the Sheets module → Choose where to start → All → Save, or it finds nothing. Run once gives one email per answer — too many; then right-click the dots between them → Add a module → Tools → Text aggregator (source Google Sheets; Text = the questions ending with <br>, because the body is Raw HTML) and put its Text in Content, with one last line under it that is only theirs: one thing for their body or one person to contact today. Schedule: toolbar 'Every 15 minutes' → Every day → Save → Activate scenario (each check costs a credit). No AI in it on purpose; next week AI goes in one place. Ask what the answers say about their idea and one thing they will change or keep. The chat takes text only: ask them to paste the subject and first lines of the email Make sent. Make's own lessons teach the same build (help.make.com/create-your-first-scenario, help.make.com/expand-your-scenario). If a connection still fails, ask for the exact error and send them to the professor — do not invent workarounds.",
+    coach: "Week 4: students open Make for the first time. Theme 'Automate yourself': automation protects your best hour, and the design is not finished until you decide what goes into the time it gives back; thinking comes from exercise, good places and good friends. Remind them in a plain sentence when it fits, with one easy question from their own life. Build from ZERO, TWO modules only (the Text aggregator is next week): Scenarios → + Create a new scenario → Google Sheets 'Watch New Rows' (Search by path, My Drive, their Week 3 spreadsheet, sheet 'Form Responses 1', headers Yes) → + → a NEW Gmail 'Send an email' — not the template, whose Gmail module is old ('restricted scopes' for personal @gmail). To: their own address, then Add recipient smit.ai.lab@gmail.com (the professor receives it and checks the work). Subject: 'W4 · name · New answer'. Content: for each question a short label, the question block, then <br> (Body type is Raw HTML, so Enter makes no new line); not the [bundle] block, which sends the row as code; their last line at the bottom (one thing for their body or one person to contact today). Connecting each account is the most important step: Create a connection → Sign in with Google → same account → tick every box → Continue; Gmail needs its own connection. Make the connections on the PC: on a phone Google's permission window is hard to confirm, which gives '403 — Method doesn't allow unregistered callers' → Credentials → delete that connection → make it again on the PC; the phone then uses it. Before Run once: right-click the Sheets module → Choose where to start → All → Save. A second Run once sends nothing unless there is a new row — to test again, fill in their own form once more. Schedule: toolbar 'Every 15 minutes' → Every day → Save → Activate scenario (each check costs a credit). No AI inside on purpose. Submission is judged by two facts: the email arrived (ask them to paste its subject and first lines) and smit.ai.lab@gmail.com is a recipient (if not, add it and Run once again). Then ask one thing the answers tell them about their business. If a connection still fails, ask for the exact error and send them to the professor — do not invent workarounds.",
     links: [
       { label: "Week 4 slides (PDF)", url: "materials/W04_Slides.pdf" },
       { label: "Week 4 handout (PDF)", url: "materials/W04_Handout.pdf" },
@@ -196,35 +196,35 @@ const WEEKS = {
       { label: "Make help — connect Gmail", url: "https://apps.make.com/google-email" },
     ],
     interview: [
-      "Which Google account did you connect in Make? Type the email address. Is it the same one you used for your Week 3 form?",
-      "Paste the email Make sent you — the subject and the first lines. Then say in one line what each of your modules does.",
-      "Read the answers in that email. What do they say about your business idea? Read back the student's Week 3 business idea from their earlier submissions if it is there (only what is written), then ask: name one thing you will change, or keep.",
-      "What did you put in the last line of your email — one thing for your body, or one person to contact today? Why that one?",
+      "Did the email from Make arrive in your Gmail? Paste its subject and the first lines.",
+      "Did you add smit.ai.lab@gmail.com as a second recipient? If not, add it now and press Run once again (fill in your form once more first, so there is a new row).",
+      "Read that email. What is one thing the answers tell you about your business idea — one thing you will change, or keep?",
     ],
     // 직접 입력 창의 칸 제목 — 3번 물음에 조교에게 하는 지시가 섞여 있어 학생에게는 따로 보인다
     interviewLabels: [
-      "Your Google account email (the one connected in Make)",
-      "The email Make sent you (subject and first lines), and what each module does",
-      "What your answers say — one thing you will change or keep",
-      "Your last line, and why",
+      "The email Make sent you — its subject and first lines",
+      "Did you add smit.ai.lab@gmail.com as a recipient? (yes / no)",
+      "One thing the answers tell you about your business",
     ],
     tutorial: `
       <h4>Week 4 — automate yourself</h4>
-      <p>Once a day, Make reads the new answers in your Week 3 sheet and sends <b>you</b> one summary email. Use the <b>same Google account</b> as last week. On your phone, open make.com in the <b>browser</b>.</p>
+      <p>Once a day, Make checks your Week 3 sheet and emails <b>you</b> every new answer — and the professor too. Use the <b>same Google account</b> as last week. On your phone, open make.com in the <b>browser</b>.</p>
       <h4>Step 1 — start from zero</h4>
-      <p>☰ → <b>Scenarios</b> → <b>+ Create a new scenario</b> → the big <b>+</b> → <b>Google Sheets</b> → <b>Watch New Rows</b>. <b>Not the template</b> — its Gmail point is an old one that personal Gmail accounts cannot connect.</p>
-      <h4>Step 2 — connect each account (the most important step)</h4>
-      <p><b>Add</b> → <b>Sign in with Google</b> → the same account → <b>tick every box</b> → <b>Continue</b>. Gmail needs <b>its own</b> connection — do it again when you add Gmail.</p>
-      <p><b>403 "Method doesn't allow unregistered callers"?</b> ☰ → Credentials → delete that connection → make it again. Choosing the file still fails? In the editor, Search Method → Enter manually → paste the Spreadsheet ID — the part of your sheet address between /d/ and /edit. Still stuck on the phone? Connect on the PC.</p>
-      <h4>Step 3 — the second point, run once</h4>
-      <p>Sheets: your Week 3 spreadsheet, sheet <b>Form Responses 1</b>, headers Yes → Save. Then the small <b>+</b> → <b>Gmail</b> → <b>Send an email</b> (always add it new): To your own address, Subject New answers, <b>Content</b>: click one question — not the <b>[bundle]</b> block, which sends the row as code → Save. Right-click the Sheets point → <b>Choose where to start</b> → <b>All</b> → Save — or it only finds new rows. Then <b>Run once</b> — one email per answer. Too many.</p>
-      <h4>Step 4 — the point in the middle, your last line, the clock</h4>
-      <p>Right-click the dots between them → <b>Add a module</b> → <b>Tools</b> → <b>Text aggregator</b> (source Google Sheets; Text: the questions, then type <b>&lt;br&gt;</b> at the end so each answer gets its own line) and put its <b>Text</b> in <b>Content</b>. Under it, type one line that is only yours: one thing for your body, or one person to contact today.</p>
+      <p>☰ → <b>Scenarios</b> → <b>+ Create a new scenario</b> → the big <b>+</b> → <b>Google Sheets</b> → <b>Watch New Rows</b>. Search by path · My Drive · your Week 3 spreadsheet · sheet <b>Form Responses 1</b> · headers Yes → Save. <b>Not the template</b> — its Gmail point is old and personal Gmail accounts cannot connect it.</p>
+      <h4>Step 2 — connect each account (on the PC)</h4>
+      <p><b>Create a connection</b> → <b>Sign in with Google</b> → the same account → <b>tick every box</b> → <b>Continue</b>. Gmail needs <b>its own</b> connection.</p>
+      <p><b>Do the connections on the PC.</b> On a phone, Google's permission window is hard to confirm and you get <b>403 "Method doesn't allow unregistered callers"</b>. Then ☰ → Credentials → delete that connection → make it again on the PC. Your phone uses it after that.</p>
+      <h4>Step 3 — an email to you, and to the professor</h4>
+      <p>The small <b>+</b> → <b>Gmail</b> → <b>Send an email</b> (always add it new). To: your own address → Add recipient → <b>smit.ai.lab@gmail.com</b>. Subject: <b>W4 · your name · New answer</b>.</p>
+      <p><b>Content</b>: for each question, type a label → click the question block → type <b>&lt;br&gt;</b>. Not the <b>[bundle]</b> block — it sends the row as code. At the bottom, your last line: one thing for your body, or one person to contact today.</p>
+      <h4>Step 4 — run it, test again, set the clock</h4>
+      <p>Right-click the Sheets point → <b>Choose where to start</b> → <b>All</b> → Save. <b>Run once</b> — one email for each answer.</p>
+      <p>Run once again and nothing comes? Make sends <b>only new rows</b>. Fill in your own form once more → Run once.</p>
       <p>In the toolbar, tap <b>Every 15 minutes</b> → <b>Every day</b> → a time → <b>Save</b> → <b>Activate scenario</b>. Not every 15 minutes: every check uses a credit, even when nothing is new.</p>
       <h4>Make's own lessons</h4>
-      <p>Make teaches the same build: <b>Create your first scenario</b> (a new Google Sheets row → a message, ten steps) and <b>Expand your scenario</b> (Step 6 gathers many rows into one with a Text aggregator). Links are below.</p>
+      <p>Make teaches the same build: <b>Create your first scenario</b> (a new Google Sheets row → a message, ten steps). <b>Expand your scenario</b> gathers many rows into one with a Text aggregator — that is next week. Links are below.</p>
       <h4>Stuck?</h4>
-      <p>"Restricted scopes with @gmail.com"? That is an old Gmail point — delete it and add Gmail again from the +. No rows → wrong account, or an empty row in your sheet. No email → check Spam. Ask <b>3 people around you</b> first. Then raise your hand.</p>
+      <p>"Restricted scopes with @gmail.com"? That is an old Gmail point — delete it and add Gmail again from the +. No rows → wrong account, or an empty row in your sheet. No email → check Spam, or add a new row. Ask <b>3 people around you</b> first. Then raise your hand.</p>
     `,
   },
 
