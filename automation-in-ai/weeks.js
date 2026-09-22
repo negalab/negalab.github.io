@@ -209,7 +209,7 @@ const WEEKS = {
       "Connection → \"Create a connection\" → \"Sign in with Google\" → same account → tick every box → Continue.",
       "To: type your own Gmail address. Then \"Add recipient\" → smit.ai.lab@gmail.com.",
       "Subject: W4 · your name · New answer. It must start with W4, or the submission is not accepted.",
-      "Content, part 1: click inside the Content box. A panel opens with green blocks — one for each question in your sheet, each ending with a letter: (B), (C), (D)… Column A is the time, so your first question is (B). Do you see them?",
+      "Content, part 1: click inside the Content box. A panel opens on the LEFT with green blocks — one for each question in your sheet, each ending with a letter: (B), (C), (D)… Column A is the time, so your first question is (B). Do you see them?",
       "Content, part 2: I write the whole text for you — your own Week 3 questions, each with its letter (assistant: write it now from their Week 3 questions — first line <b>New answer</b><br>, then one line per question: a short label, a colon, (B), <br>; next (C), and so on; send it as plain text they can copy). Copy all of it, click in Content, and paste.",
       "Content, part 3: swap each letter for its block. Select (B) and delete it, leave the cursor right there, and click the green block that ends with (B). Do the same for (C), (D)… Never the top block [bundle] — it sends the row as code. Then Save.",
       "Press \"Run once\" (bottom left). Open your Gmail — did the email arrive? If nothing came: fill in your form once more (a new row), then Run once again.",
