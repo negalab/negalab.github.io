@@ -180,25 +180,42 @@ const WEEKS = {
   },
 
   4: {
-    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
+    // 2026-09-16 작가 확정 「W4 지메일 나에게 요약 이메일 하루에 한번」 · 공통 주제 「나를 자동화 한다」(09-17) — 2026-09-22 캠프 BPA-W4 가 다시 씀: 점 2개 먼저(시트 → 메일) 돌려 보고 가운데 모으는 점 · 마지막 한 줄 · 대화창은 글자만 받아 스크린숏 대신 받은 메일을 붙여 넣는다
     name: "Make, first connection — a daily summary of your answers",
-    build: "your first Make scenario: once a day it collects the new answers from your form's sheet and emails you one summary.",
-    submit: "your scenario (a link or a screenshot) and one line on what your answers say so far.",
+    build: "your first Make scenario: once a day it reads the new answers in your Week 3 sheet and emails you one summary — with a last line that is only yours.",
+    submit: "four things — your Google account, the email Make sent you, one thing your answers made you change or keep, and your last line.",
     video: "",
-    coach: "This is the first week students open Make. Build ONE scenario on the response sheet from Week 3: Google Sheets (watch or search the new rows) → a text aggregator that joins the rows → Gmail 'Send an email' to themselves, scheduled once a day. In class press 'Run once' — free Make only runs on a schedule. Use the same Google account the student submitted in Week 3. The business matters as much as Make: ask what the answers so far say about their idea and what they would change. If a Google connection fails, write down the exact error and tell them to ask the professor — do not invent workarounds.",
-    links: [],
+    coach: "Week 4 is the first week students open Make. Theme of the day: 'Automate yourself' — automation protects your best hour, and the design is not finished until you decide what goes into the time it gives back. AI runs on your own thinking, and thinking comes from exercise, good places and good friends, so the student goes inside the automation. Remind them of this in one or two plain sentences when it fits, and ask one easy question from their own life (for example: when is your best hour? what will you do with the time?) — do not lecture. The build, on the Week 3 response sheet, with the SAME Google account the student submitted in Week 3: first TWO modules — Google Sheets 'Watch New Rows' (sheet 'Form Responses 1', table contains headers: Yes; if Make asks where to start, choose All) → Gmail 'Send an email' to their own address. 'Run once' gives one email per answer — too many. Then put Tools → 'Text aggregator' between them (source module: Google Sheets, row separator: New row, text: the answer columns) and map the aggregator's Text into the Gmail body, so all answers arrive in ONE email. Under the answers the student types one last line that is only theirs: one thing for their body, or one person to contact today. Schedule: Every day at a time they choose, Save, turn the scenario ON. Not every 15 minutes: each check costs one credit even when nothing is new — 2,880 a month against the free 1,000; once a day is 30. There is no AI in this scenario on purpose; next week AI goes in one place (a short report). The business matters as much as Make: ask what the answers say about their idea and one thing they will change or keep. The chat takes text only, no screenshots: ask them to paste the subject and first lines of the email Make sent. Common problems: the Google sign-in pop-up is blocked (allow pop-ups for make.com); no rows (wrong Google account, or an empty row in the sheet — Make stops at an empty row); no email (Spam folder, or Run once was never pressed). If a connection fails, ask for the exact error and tell them to ask the professor — do not invent workarounds.",
+    links: [
+      { label: "Week 4 slides (PDF)", url: "materials/W04_Slides.pdf" },
+      { label: "Week 4 handout (PDF)", url: "materials/W04_Handout.pdf" },
+    ],
     interview: [
-      "Which Google account did you connect in Make? Is it the same one you used for your Week 3 form?",
-      "Paste a link or a screenshot of your scenario, and say in one line what each module does.",
-      "What do the answers you have so far say about your business idea? Name one thing you will change or keep.",
+      "Which Google account did you connect in Make? Type the email address. Is it the same one you used for your Week 3 form?",
+      "Paste the email Make sent you — the subject and the first lines. Then say in one line what each of your modules does.",
+      "Read the answers in that email. What do they say about your business idea? Read back the student's Week 3 business idea from their earlier submissions if it is there (only what is written), then ask: name one thing you will change, or keep.",
+      "What did you put in the last line of your email — one thing for your body, or one person to contact today? Why that one?",
+    ],
+    // 직접 입력 창의 칸 제목 — 3번 물음에 조교에게 하는 지시가 섞여 있어 학생에게는 따로 보인다
+    interviewLabels: [
+      "Your Google account email (the one connected in Make)",
+      "The email Make sent you (subject and first lines), and what each module does",
+      "What your answers say — one thing you will change or keep",
+      "Your last line, and why",
     ],
     tutorial: `
-      <h4>Week 4 — your form starts working for you</h4>
-      <p>Last week you built a form and a sheet. This week Make reads that sheet <b>once a day</b> and sends you <b>one email</b> with all the new answers.</p>
-      <p>You use the <b>same Google account</b> you submitted in Week 3.</p>
-      <h4>And your business grows</h4>
-      <p>Read your first answers. What do people say? Decide one thing to change or keep in your idea.</p>
-      <p><i>The full step-by-step guide opens the day before class.</i></p>
+      <h4>Week 4 — automate yourself</h4>
+      <p>Once a day, Make reads the new answers in your Week 3 sheet and sends <b>you</b> one summary email. Use the <b>same Google account</b> as last week.</p>
+      <h4>Step 1 — two points first</h4>
+      <p><b>make.com</b> → Create a new scenario → <b>+</b> → <b>Google Sheets</b> → <b>Watch New Rows</b>. Sign in with Google. Pick your spreadsheet and the sheet <b>Form Responses 1</b>. Table contains headers: <b>Yes</b>. If Make asks where to start, choose <b>All</b>.</p>
+      <p>The small <b>+</b> → <b>Gmail</b> → <b>Send an email</b>. To: your own address. Subject: New answers. Body: one column. Press <b>Run once</b> — one email per answer. Too many.</p>
+      <h4>Step 2 — the point in the middle</h4>
+      <p>Between them, add <b>Tools</b> → <b>Text aggregator</b>. Source module: Google Sheets. Row separator: New row. Text: the columns you want to read. In Gmail's Body, pick the aggregator's <b>Text</b>. Run once again — one email.</p>
+      <h4>Step 3 — your last line, and the clock</h4>
+      <p>Under the answers, type one line that is only yours: one thing for your body, or one person to contact today.</p>
+      <p>Schedule (the clock icon) → <b>Every day</b> → a time → <b>Save</b> → turn it <b>ON</b>. Not every 15 minutes: every check uses a credit, even when nothing is new.</p>
+      <h4>Stuck?</h4>
+      <p>Sign-in window does not open → allow pop-ups for make.com. No rows → wrong account, or an empty row in your sheet. No email → check Spam. Ask <b>3 people around you</b> first. Then raise your hand.</p>
     `,
   },
 
