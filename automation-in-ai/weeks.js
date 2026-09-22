@@ -195,6 +195,25 @@ const WEEKS = {
       { label: "Make help — connect Google Sheets", url: "https://apps.make.com/google-sheets" },
       { label: "Make help — connect Gmail", url: "https://apps.make.com/google-email" },
     ],
+    // 2026-09-22 사부님 시험 대화 「채팅 답변이 이상하다. 날 아주 천천히 가이드를 해야한다」 — 인터뷰 전에 만드는 길을 한 걸음씩
+    greet: "Hi! Week 4 — I will build it with you, one small step at a time, and write your submission at the end.\n\nWrite in your own language if you want. Nepali, Uzbek, Vietnamese, Urdu, Korean — anything.\n\nSay hi to start. If anything is unclear, just type ?",
+    guide: [
+      "Where are you? You must be at a PC Lab computer for the connections (connecting Google does not work on a phone). Open your Week 3 response sheet in another tab — is there at least one answer row?",
+      "Go to make.com and sign in with the SAME Google account you used for your Week 3 form.",
+      "Left menu (or ☰) → Scenarios → \"+ Create a new scenario\".",
+      "Click the big + in the middle → search \"Google Sheets\" → choose \"Watch New Rows\".",
+      "Connection → \"Create a connection\" → \"Sign in with Google\" → choose the same account → tick EVERY box → Continue.",
+      "Search Method: Search by path · Drive: My Drive · Spreadsheet: your Week 3 sheet · Sheet Name: Form Responses 1 · Table contains headers: Yes → Save.",
+      "If a \"Choose where to start\" window appears, choose All → OK. If not: right-click the Sheets circle → Choose where to start → All → Save.",
+      "Click the small + on the right side of the Sheets circle → search \"Gmail\" → \"Send an email\". Always add it new like this — never from a template.",
+      "Connection → \"Create a connection\" → \"Sign in with Google\" → same account → tick every box → Continue.",
+      "To: type your own Gmail address. Then \"Add recipient\" → smit.ai.lab@gmail.com.",
+      "Subject: W4 · your name · New answer. It must start with W4, or the submission is not accepted.",
+      "Content: for each question, type a short label → click the green question block → type <br>. Do not use the [bundle] block. At the very bottom, your last line: one thing for your body, or one person to contact today. Then Save.",
+      "Press \"Run once\" (bottom left). Open your Gmail — did the email arrive? If nothing came: fill in your form once more (a new row), then Run once again.",
+      "Set the clock: in the toolbar tap \"Every 15 minutes\" → Every day → pick a time → Save → \"Activate scenario\".",
+      "Now the submission: type the Gmail address you connected in Make — the server checks the professor's inbox — then the three interview questions."
+    ],
     interview: [
       "Did the email from Make arrive in your Gmail? Type the Gmail address you connected in Make (the one that sent it), and paste the subject and the first lines.",
       "Did you add smit.ai.lab@gmail.com as a second recipient, and does your Subject start with W4 (W4 · your name · New answer)? If not, fix both, fill in your form once more (a new row) and press Run once again.",
