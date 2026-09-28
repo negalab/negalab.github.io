@@ -253,24 +253,114 @@ const WEEKS = {
   },
 
   5: {
-    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
-    name: "AI writes your business report",
-    build: "an AI step that reads your answers and writes a short report on your business idea.",
-    submit: "your report and one line on what you will change in your business because of it.",
+    // 2026-09-28 사부님 판정 — 「값 블락을 가지고 오고 그걸 텍스트로 연결해서 하나의 텍스트로 하는 걸 어려워 한다. 이 부분을 잘 설명해줘야 한다」 · 「AI별로 모두 소개하고 데모하고 실습은 하지만 Gemini 를 사용하도록 하자」
+    // W4 실측: Content 매핑 한 걸음에 1인 7턴, 지메일까지 온 24명 중 시계까지 간 학생은 13명. 그래서 W5 는 매핑이 앞머리다.
+    name: "Values travel — and an AI reads your answers",
+    build: "two more points in last week's scenario: one gathers every answer into a single text, and an AI reads it and writes a short report on your business.",
+    submit: "the report the AI wrote, what it got right and missed, and one thing you will change in your business.",
     video: "",
-    coach: "Week 5 adds AI to the Week 4 scenario: the collected answers go to an AI module that writes a short report — what people said, the patterns, what to change. The business grows here: help the student read the report critically and decide one real change to their idea. Do not claim things the answers do not show.",
-    links: [],
+    coach: "Week 5. The real lesson is MAPPING — taking a value from the point before and dropping it into your own text. Last week this one step cost most students seven messages, so go slowly and never assume they know it. Follow GUIDE MODE, one step per message. THE SAME MOVE HAPPENS FOUR TIMES and the student should hear that: (1) Gmail Content from Sheets — last week, review only; (2) the Text aggregator's Text box, from Sheets; (3) the AI's prompt, from THE AGGREGATOR; (4) Gmail Content again, from THE AI. Each time the block comes from a different point — say which point, every time. THREE FAILURES TO WATCH FOR: typing the letters instead of clicking the block; clicking the top [bundle] block; pressing Enter instead of typing a <br>. NOT FINISHED WEEK 4? Do not push them forward — help them finish Week 4 first (Sheets Watch New Rows, then a new Gmail from the +, connections on a PC because the Google window does not open on a phone), then continue here. THE BUILD: open last week's scenario; right-click the line between Sheets and Gmail, Add a module, Tools, Text aggregator, Source Module = Google Sheets Watch New Rows; in its Text box write one answer's worth using THIS student's own Week 3 questions (their earlier submission; if missing, ask them to read their sheet's column headers to you — never invent questions and never write 'Question 1'). Each line is a SHORT LABEL taken from their real question, a colon, then the column letter in ROUND brackets exactly like this — Problem: (B) — one line per question; column A is the time so the first question is (B). Write it EXACTLY in that shape, round brackets, never square brackets, because the next step tells them to select '(B)' and the text must match. Give the whole text at once to copy and paste, then have them swap each (B) (C) (D) for the green block ending in the same letter. No &lt;br&gt; is needed here — this text goes to the AI, not to an email. Advanced settings, Row separator = New row. Then the + after it, search 'Simple text prompt', pick a GEMINI model — no API key, no account, no card; a sign-in window means the wrong module. In the prompt box the INSTRUCTION IS TYPED FIRST and ONE BLOCK GOES LAST — write the instruction for them (help a student understand their small business, under 150 words, what people said / what repeats / one thing to change, write simply, do not invent anything not in the answers, AND the line 'Put &lt;br&gt; at the end of every line of your answer.' — this last line matters because Gmail's Content is Raw HTML and without it the whole report arrives as one long line), ending with ANSWERS: and then the aggregator's block named Text. Then Gmail: Content, delete last week's blocks completely, click the AI point's block; Subject must start with W5 (W5 · name · My business report); smit.ai.lab@gmail.com stays in To. Right-click Sheets, Choose where to start, All, Save, Run once. A second Run once sends nothing unless there is a new row. FREE TIER WARNING if they ask or paste anything personal: Google says free-tier text is used to improve its products, so survey answers yes, names and phone and ID numbers no. SUBMISSION: ask for the Gmail address they connected EARLY — last week a student did all the work and was blocked because they never typed it. The server checks the professor's inbox; the draft appears only after ARRIVED with W5 in the subject. Never state inbox counts yourself. If something still fails, ask for the exact words on screen and send them to the professor — do not invent workarounds.",
+    links: [
+      { label: "Week 5 slides (PDF)", url: "materials/W05_Slides.pdf" },
+      { label: "Week 5 handout (PDF)", url: "materials/W05_Handout.pdf" },
+      { label: "Make lesson — Expand your scenario (Step 6: Text aggregator)", url: "https://help.make.com/expand-your-scenario" },
+      { label: "Make help — Simple text prompt (no API key)", url: "https://www.make.com/en/blog/simple-text-prompt-module" },
+      { label: "Google — Gemini API pricing and free tier", url: "https://ai.google.dev/gemini-api/docs/pricing" },
+    ],
+    greet: "Hi! Week 5 — today you learn ONE move, and you use it four times.\n\nThe move: take a value from the point before, and drop it into your own text. That is the thing that was hard last week. We go slowly.\n\nWrite in your own language if you want. Say hi to start, and type ? any time you want a step explained again.",
+    guide: [
+      "First: is your Week 4 scenario finished and running? (Sheets -> Gmail, and an email actually arrived.) Say yes or no — if no, that is completely fine, we finish it together first.",
+      "Open make.com -> Scenarios -> click LAST WEEK'S scenario. We are not making a new one today; we push two new points into the middle of this one.",
+      "Right-click the line between the Sheets circle and the Gmail circle -> \"Add a module\" -> search \"Tools\" -> choose \"Text aggregator\".",
+      "In the Text aggregator, set Source Module to \"Google Sheets - Watch New Rows\". (That answers: whose values am I gathering?)",
+      "Now MAPPING 2 of 4. Click inside the \"Text\" box. A panel opens on the LEFT with green blocks, one per question, each ending in a letter: (B), (C), (D)... Column A is the time. Do you see them?",
+      "I write the whole text for you from your own Week 3 questions (assistant: write it now — one line per question, a short label from their real question, a colon, then the letter in ROUND brackets, exactly like \"Problem: (B)\"; first question is (B); never square brackets, never \"Question 1\"). Copy it all, click in the Text box, paste it.",
+      "Now swap each letter for its block: select (B), delete it, leave the cursor right there, click the green block that ends with (B). Same for (C), (D)... Never the top block [bundle].",
+      "In the same window open \"Advanced settings\" -> set \"Row separator\" to \"New row\" -> OK. Many rows go in, ONE value comes out, named Text.",
+      "Click the + on the right of the Text aggregator -> search \"Simple text prompt\" -> choose it. No account, no API key, no card. If a sign-in window appears, you added the wrong module — go back and search again.",
+      "In Model, choose a GEMINI model from the list. (The list also has ChatGPT and Claude — today everyone uses Gemini so we are all debugging the same thing.)",
+      "Now MAPPING 3 of 4 — the prompt box. The instruction is TYPED FIRST, and ONE BLOCK goes LAST. I write the instruction for you now (assistant: give the full prompt text to copy, ending with the line ANSWERS:).",
+      "Paste that instruction in the prompt box. Then put your cursor at the very end, after ANSWERS:, and click the block named \"Text\" — it is under the Text aggregator group, NOT under Google Sheets. Then OK.",
+      "Now MAPPING 4 of 4. Open your Gmail point -> click in Content -> DELETE everything that is in there from last week -> in the panel find the group for your AI point -> click the block it gives back.",
+      "Subject: W5 · your name · My business report. It must start with W5. And check smit.ai.lab@gmail.com is still in \"To\" as the second recipient.",
+      "Right-click the Sheets circle -> \"Choose where to start\" -> All -> Save. Then press \"Run once\" (bottom left) and open your Gmail. Did the report arrive? If nothing came: answer your own form once more (a new row), then Run once again.",
+      "Save, then \"Activate scenario\" so it keeps running once a day.",
+      "Now the submission. First, type the Gmail address you connected in Make — the server checks the professor's inbox with it. Then I ask you three short questions."
+    ],
     interview: [
-      "Paste the report the AI wrote, or a link to it.",
-      "What did the AI get right about your answers, and what did it miss?",
-      "Because of this report, what is one thing you will change in your business idea?",
+      "Paste the report the AI wrote for you — the whole thing, from the email.",
+      "What did the AI get right about your answers, and what did it miss? You know your answers better than it does.",
+      "Because of this report, what is one thing you will change in your business idea — or one thing you will keep, and why?",
+    ],
+    interviewLabels: [
+      "The report the AI wrote (paste it)",
+      "What it got right, and what it missed",
+      "One thing you will change in your business",
     ],
     tutorial: `
-      <h4>Week 5 — AI reads your answers</h4>
-      <p>Your daily summary goes to an <b>AI step</b>. It writes a short <b>report</b>: what people said, what repeats, what to change.</p>
-      <h4>And your business grows</h4>
-      <p>Do not just keep the report. Read it, disagree with it where it is wrong, and change one real thing in your idea.</p>
-      <p><i>The full step-by-step guide opens the day before class.</i></p>
+      <h4>Week 5 — one move, four times</h4>
+      <p>Every point hands its values to the next one. You take a value from the point before and drop it into
+      your own text. That is the whole skill — and today you use it in <b>four</b> different boxes.</p>
+      <table>
+        <tr><th>#</th><th>The box you click in</th><th>Where the block comes from</th></tr>
+        <tr><td>1</td><td>Gmail &rarr; Content <i>(last week — review)</i></td><td>Google Sheets</td></tr>
+        <tr><td>2</td><td>the gathering point &rarr; Text</td><td>Google Sheets</td></tr>
+        <tr><td>3</td><td>the AI point &rarr; prompt</td><td><b>the gathering point</b></td></tr>
+        <tr><td>4</td><td>Gmail &rarr; Content <i>(replace it)</i></td><td><b>the AI</b></td></tr>
+      </table>
+      <h4>The move itself</h4>
+      <p>Click inside any box of a later point. A panel opens on the <b>left</b>, with the values grouped
+      <b>by the point that made them</b> — the heading tells you where each one came from. Then you
+      <b>mix</b> your words and their values: type <code>Problem:</code> &rarr; <b>click</b> the block
+      <b>(B)</b> &rarr; type <code>&lt;br&gt;</code> &rarr; type <code>They now use:</code> &rarr; click <b>(C)</b>.</p>
+      <p><b>Three ways it breaks.</b> You <b>type</b> "(B)" with the keyboard &rarr; the letters arrive, not the value.
+      You click the top block <b>[bundle]</b> &rarr; the whole row arrives as code. You press <b>Enter</b> &rarr;
+      everything lands on one line; type <code>&lt;br&gt;</code> instead.</p>
+      <h4>Did not finish Week 4?</h4>
+      <p>You are not behind. Put your hand up — someone who finished sits with you for the first 30 minutes.
+      The assistant will also walk you through Week 4 first if you tell it you are not done.</p>
+      <h4>Step 1 — the gathering point</h4>
+      <p>Open <b>last week's scenario</b> (we are not making a new one). <b>Right-click the line</b> between
+      Sheets and Gmail &rarr; <b>Add a module</b> &rarr; <b>Tools</b> &rarr; <b>Text aggregator</b>.
+      Source Module: <b>Google Sheets — Watch New Rows</b>.</p>
+      <p>In its <b>Text</b> box do the move (mapping 2): label, block, label, block. Then
+      <b>Advanced settings &rarr; Row separator: New row</b>. Ten answers go in; <b>one</b> value comes out,
+      named <b>Text</b>. An AI cannot see a pattern across ten separate emails — that is why the answers have
+      to be in one place first.</p>
+      <h4>Step 2 — the AI, with no key and no card</h4>
+      <p>Click the <b>+</b> after it &rarr; search <b>Simple text prompt</b> &rarr; pick a <b>Gemini</b> model.
+      No account, no API key, no credit card. If a sign-in window appears, you added the wrong module.</p>
+      <p><b>Why Gemini?</b> To connect them yourself: <b>ChatGPT</b> wants a card with at least $5 loaded before it
+      answers once &middot; <b>Gemini</b> only wants a Google account and is free &middot; <b>Claude</b> has no free tier.
+      Not because Gemini is best — because every one of you can use it today.</p>
+      <p>In the <b>prompt</b> box the instruction is <b>typed first</b> and <b>one block goes last</b> (mapping 3):
+      who it is helping, under 150 words, three things to cover, and "do not invent anything that is not in the
+      answers." End with <code>ANSWERS:</code> and click the block named <b>Text</b> — under the gathering point,
+      not under the sheet.</p>
+      <h4>Step 3 — into the email, and run it</h4>
+      <p>Gmail &rarr; <b>Content</b> &rarr; delete last week's blocks &rarr; click the block your <b>AI</b> point
+      gives back (mapping 4). Subject: <b>W5 · your name · My business report</b>. Keep
+      <b>smit.ai.lab@gmail.com</b> in To.</p>
+      <p>Right-click Sheets &rarr; <b>Choose where to start &rarr; All</b> &rarr; Save &rarr; <b>Run once</b>.
+      Nothing came? There is no new row — answer your own form once more, then run again.</p>
+      <h4>Before you put anything private in</h4>
+      <p>On the <b>free</b> tier, Google says what you send <b>"is used to improve our products"</b>
+      (on the paid tier it does not). Survey answers about a business idea, yes. Names, phone numbers,
+      ID numbers, anything someone told you privately — no. This is true of every free AI, not only this one.</p>
+      <h4>Check before you submit — all five</h4>
+      <p>&#9744; four points, in order &nbsp;&#9744; the AI's prompt ends with the <b>gathering point's</b> block
+      &nbsp;&#9744; Gmail's Content holds the <b>AI's</b> block and nothing from last week
+      &nbsp;&#9744; Subject starts with <b>W5</b>, and smit.ai.lab@gmail.com is in To
+      &nbsp;&#9744; Run once, and the report arrived in your Gmail</p>
+      <p>The draft does not appear until the professor's inbox shows <b>ARRIVED ✓</b>. No W5 in the Subject = not accepted.</p>
+      <h4>Stuck?</h4>
+      <p>Letters instead of the value &rarr; you typed it; delete and <b>click</b> the block. The AI answers about
+      nothing &rarr; your block went in before the instruction, or not at all. Empty email &rarr; last week's blocks
+      are still in Content. No email &rarr; no new row. Ask <b>3 people around you</b> first, then raise your hand.</p>
+      <h4>Finished early?</h4>
+      <p>Change the instruction and run it again — ask for three bullet points instead of a paragraph, or ask it to
+      name the one question nobody answered well. Same answers, different report. Then share your form with three
+      more people.</p>
     `,
   },
 
