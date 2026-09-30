@@ -409,6 +409,13 @@ const WEEKS = {
       "Save, then make sure the scenario is still active (ON), so it keeps running once a day.",
       "Now the submission. First, type the Gmail address you connected in Make — the server checks the professor's inbox with it. Then I ask you three short questions. (Never paste your key here.)"
     ],
+    // 엑스트라 ⭐ — 2026-10-01 사부님 「앞으로 엑스트라 포인트로 더 갈 학생 몫을 주자」 · 「학생들 캐릭터 위에 별」.
+    // 본 과제를 낸 학생에게만 조교가 권한다(서버가 제출을 확인). 해 오면 「그 화면에서만 보이는 것」을 물어 extras 표에 남긴다.
+    // ▲ 「Generate speech from text」 모듈의 칸 · 파일 모양은 사부님 3분 시험 8번으로 확인한다.
+    extra: {
+      task: "Make your report SPEAK. Same key, same app — no new account. After the Gemini point, right-click the line between Gemini and Gmail -> Add a module -> Google Gemini AI -> Generate speech from text. Put Gemini's answer block in its text box, pick a voice. Then in Gmail open Attachments -> Add item -> take the file from the speech point (file name and data). Run once: the email now carries your report as a sound file. Text-to-speech has a free tier on Google's price page.",
+      check: "Which voice did you pick, and what is the file name of the attachment in the email you received?",
+    },
     interview: [
       "Paste the report Gemini wrote for you — the whole thing, from the email.",
       "Put it next to last week's report from Make's AI. What changed — and which one would you trust for your business, and why?",
@@ -467,9 +474,12 @@ const WEEKS = {
       <p>"API key not valid" &rarr; copy it again. "Quota" or "429" &rarr; wait one minute. No Gemini in the model list &rarr;
       you opened last week's app; search <b>Gemini</b>. One long line &rarr; the <code>&lt;br&gt;</code> sentence is missing.
       Nothing came &rarr; no new row. Ask <b>3 people around you</b> first, then raise your hand.</p>
-      <h4>Finished early?</h4>
-      <p>Switch the model to Flash-Lite and run again — or ask Gemini to write the report in your own language.
-      Same answers, different AI settings, different report.</p>
+      <h4>Finished early? Go further — ⭐ extra</h4>
+      <p><b>Make your report speak.</b> Same key, same app, no new account. After the Gemini point add
+      <b>Google Gemini AI &rarr; Generate speech from text</b>, put Gemini's answer block in it, pick a voice. Then in Gmail
+      <b>Attachments &rarr; Add item</b> and take the file from the speech point. Run once — your report arrives as a sound file.</p>
+      <p>Tell the assistant when it works. It asks you one thing only you can see on your screen. Then a <b>star ★</b>
+      goes on your card on this page. Stars are for going further — the main work is what counts for attendance.</p>
     `,
   },
 
