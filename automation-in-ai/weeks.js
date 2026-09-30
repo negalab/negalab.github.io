@@ -375,25 +375,101 @@ const WEEKS = {
   },
 
   6: {
-    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
-    name: "Pre-registration — let people sign up",
-    build: "a pre-registration form for your business, so interested people can leave their contact before you launch.",
-    submit: "your pre-registration form link and how many sign-ups you want by Week 8.",
+    // 2026-10-01 사부님 판정 — 「다음주는 gemini api를 실습으로 하면서 이미지는 빼고.. 외부 api를 사용해서 추가하는 방법에 대해 알려주자」
+    // 그림은 무료 등급이 없어서 뺐다(구글 가격표 원문 2026-10-01). 글자 모델은 3.x Flash 가 무료. 지도 § W6 · 캠프 _주차/06/_문맥.md
+    // ⚠ coach 는 서버가 2,500자에서 자른다(worker.js 591행) — 이 지시는 2294자
+    name: "Your own key — plug Gemini into Make",
+    build: "last week's scenario, with the borrowed AI swapped for Google Gemini running on your own API key: key, connection, module.",
+    submit: "the report Gemini wrote, how it compares with last week's, and which outside service you would plug in next.",
     video: "",
-    coach: "Week 6 turns the idea into something people can join: a pre-registration form (name, contact, what they want) connected to Make, so every sign-up is recorded and the student is told. The survey asked 'is this a real problem?' — pre-registration asks 'will you sign up?'. Help them write a clear promise in one or two sentences at the top of the form.",
-    links: [],
+    coach: "Week 6. The student swaps last week's borrowed AI (Make's built-in Simple text prompt, where Gemini was NOT in the list) for GOOGLE GEMINI with THEIR OWN API KEY. Teach it as three steps that plug ANY outside service into Make: KEY (made on the service's site), CONNECTION (pasted into Make once), MODULE (pick an action, drop in blocks). Follow GUIDE MODE, one step per message. THE KEY IS A PASSWORD. If a student pastes anything that looks like a key (a long string, often starting AIza) into this chat: never repeat it back, tell them at once to delete it in AI Studio and create a new one, and continue. Never ask them to show you their key. KEY: aistudio.google.com, sign in with a Google account, Get API key, Create API key, copy. If a school account says not available, use a personal Gmail. CONNECTION: in last week's scenario right-click the LINE between the old AI point and Gmail, Add a module, search Gemini, app Google Gemini AI, module Simple text prompt (same name as last week, different app). Create a connection, paste the key into API Key, Save. 'API key not valid' = copied only part of it. MODEL: one with Flash in its name. Never an Image model (no free tier). Do not invent model names; ask what they see. MAPPING (same move as Week 5): copy the whole prompt from the old AI point, paste it into Gemini's prompt, then make sure the last line after ANSWERS: is the green Text block from the gathering point, not letters. Keep the sentence: Put <br> at the end of every line of your answer. Then Gmail Content: delete the old AI block, click Gemini's answer block (ask them the block name they see; do not guess). Subject W6 · name · My Gemini report, smit.ai.lab@gmail.com stays in To. Then right-click the OLD AI point, Delete module; if the line breaks, drag from the gathering point to Gemini. Four points, not five. 'Quota' or '429' = too many runs in a minute, wait one minute. FREE TIER: Google says free-tier text is used to improve its products; survey answers yes, names, phones, ID numbers no. SUBMISSION: ask first for the Gmail address they connected in Make, then the three questions. The draft appears only after ARRIVED with W6 in the subject. If something fails, ask for the exact words on screen and send them to the professor; never invent workarounds.",
+    links: [
+      { label: "Week 6 slides (PDF)", url: "materials/W06_Slides.pdf" },
+      { label: "Week 6 handout (PDF)", url: "materials/W06_Handout.pdf" },
+      { label: "Google AI Studio — make your key", url: "https://aistudio.google.com" },
+      { label: "Make help — Google Gemini AI (connection steps)", url: "https://apps.make.com/gemini-ai" },
+      { label: "Google — Gemini API pricing and free tier", url: "https://ai.google.dev/gemini-api/docs/pricing" },
+    ],
+    greet: "Hi! Week 6 — today the AI in your scenario becomes YOURS.\n\nLast week you borrowed Make's AI. Today you make a key, connect Google Gemini with it, and swap it in. Three steps that work for any outside service: key, connection, module.\n\nOne rule first: your key is a password. Never paste it here.\n\nFirst I check your Week 5. Write in your own language if you want. Say hi to start, and type ? any time you want a step explained again.",
+    guide: [
+      "First, Week 5. (Assistant: the server already told you whether they submitted it — do not ask. If they did NOT, say so kindly, explain that Week 6 changes one point inside the Week 5 scenario, send them to the Week 5 page to finish and submit it, and stop here. If they DID, just confirm their Week 5 scenario still runs and move on.)",
+      "Today: three steps that plug ANY outside service into Make — KEY, CONNECTION, MODULE. We do it once, with Gemini. First the key. Remember: a key is a password. Never paste it into this chat, KakaoTalk or a screenshot.",
+      "Open aistudio.google.com in a new tab and sign in with your Google account. (School account says not available? Use your personal Gmail.)",
+      "Click \"Get API key\" -> \"Create API key\" -> let it make a project if it asks -> click Copy. Keep that tab open until Step 2 is saved.",
+      "Now Make. Open LAST WEEK'S scenario (Scenarios -> click it). We are not making a new one.",
+      "Right-click the LINE between your old AI point (Simple text prompt) and Gmail -> \"Add a module\" -> search \"Gemini\" -> choose the app \"Google Gemini AI\" -> choose \"Simple text prompt\" inside it. Same name as last week, different app — look for Google Gemini AI.",
+      "Connection -> \"Create a connection\" -> paste your key into \"API Key\" -> Save. (\"API key not valid\"? You copied only part of it. Copy again and paste.)",
+      "Model: open the list and choose one with \"Flash\" in its name. Not \"Image\" — image models have no free tier. Tell me which one you picked.",
+      "Mapping, same move as last week. Open your OLD AI point -> select the whole prompt -> copy. Open the Gemini point -> paste it into its prompt box.",
+      "Check the last line after ANSWERS:. It must be a green block named \"Text\" from the gathering point. If you see letters instead, delete them and click the block. And keep the line: Put <br> at the end of every line of your answer.",
+      "Open Gmail -> click in Content -> delete last week's AI block -> in the panel find the group \"Google Gemini AI\" -> click its answer block. Tell me the name you see on that block.",
+      "Subject: W6 · your name · My Gemini report. It must start with W6. And check smit.ai.lab@gmail.com is still in \"To\".",
+      "Right-click the OLD AI point (Make's Simple text prompt) -> \"Delete module\". You should see four points: Sheets, Gather, Gemini, Gmail. If the line broke, drag from the right edge of the gathering point to Gemini.",
+      "Right-click Sheets -> \"Choose where to start\" -> All -> Save -> \"Run once\". Did the report arrive? Nothing came = no new row: answer your own form once more, then Run once again. \"Quota\" or \"429\" = wait one minute.",
+      "Save, then make sure the scenario is still active (ON), so it keeps running once a day.",
+      "Now the submission. First, type the Gmail address you connected in Make — the server checks the professor's inbox with it. Then I ask you three short questions. (Never paste your key here.)"
+    ],
     interview: [
-      "What does your pre-registration form promise people, in one or two sentences?",
-      "Paste the link to your pre-registration form.",
-      "How many sign-ups do you want by Week 8, and where will you share the form?",
+      "Paste the report Gemini wrote for you — the whole thing, from the email.",
+      "Put it next to last week's report from Make's AI. What changed — and which one would you trust for your business, and why?",
+      "Which other outside service would you plug into your business automation next, and what would you want it to do?",
+    ],
+    interviewLabels: [
+      "The report Gemini wrote (paste it)",
+      "Gemini vs last week's AI",
+      "The next service you would plug in",
     ],
     tutorial: `
-      <h4>Week 6 — from 'is it real?' to 'will you join?'</h4>
-      <p>Your survey asked if the problem is real. Now you ask people to <b>sign up</b> before you launch.</p>
-      <p>Every sign-up is recorded by Make, and you hear about it.</p>
-      <h4>And your business grows</h4>
-      <p>Write the promise at the top of the form. One or two sentences a stranger understands.</p>
-      <p><i>The full step-by-step guide opens the day before class.</i></p>
+      <h4>Week 6 — your own key</h4>
+      <p>Last week you <b>borrowed</b> an AI: Make's built-in one, no key, and Gemini was not in its list.
+      Today you plug in <b>your own</b> — Google's Gemini, with a key you make yourself. Same scenario, same
+      four points. <b>One point changes owner.</b></p>
+      <h4>Three steps — for any outside service</h4>
+      <table>
+        <tr><th>#</th><th>Step</th><th>Where</th></tr>
+        <tr><td>1</td><td><b>Key</b> — a password for a machine</td><td>the service's own site (today: Google AI Studio)</td></tr>
+        <tr><td>2</td><td><b>Connection</b> — paste the key once</td><td>Make, "Create a connection"</td></tr>
+        <tr><td>3</td><td><b>Module</b> — pick an action, drop in blocks</td><td>your scenario</td></tr>
+      </table>
+      <p>Gemini is the first. Next week, many more — every one of them is these three steps.</p>
+      <h4>Your key is a password</h4>
+      <p>Anyone who has it can use your account as you. <b>Never</b> paste it into KakaoTalk, the class assistant,
+      a screenshot or an email. It goes in exactly one place: Make's connection box. Leaked? Delete it in AI Studio
+      and make a new one — 30 seconds.</p>
+      <h4>Did not submit Week 5?</h4>
+      <p><b>Do Week 5 first.</b> Today we change one point inside that scenario — there is nothing to change on an
+      empty screen. Everything is on the <b>Week 5 page</b>. <b>Late still counts as attended.</b></p>
+      <h4>Step 1 — make your key</h4>
+      <p><b>aistudio.google.com</b> &rarr; sign in &rarr; <b>Get API key</b> &rarr; <b>Create API key</b> &rarr;
+      let it make a project &rarr; <b>Copy</b>. School account says "not available"? Use your personal Gmail.</p>
+      <h4>Step 2 — connect it</h4>
+      <p>Open <b>last week's scenario</b>. <b>Right-click the line</b> between your old AI point and Gmail &rarr;
+      <b>Add a module</b> &rarr; search <b>Gemini</b> &rarr; app <b>Google Gemini AI</b> &rarr; <b>Simple text prompt</b>
+      (same name as last week, different app). <b>Create a connection</b> &rarr; paste into <b>API Key</b> &rarr; Save.
+      No permission window — it works on a phone too.</p>
+      <p><b>Model:</b> one with <b>Flash</b> in its name. Not <b>Image</b> — image models have no free tier.</p>
+      <h4>Step 3 — the same move, again</h4>
+      <p>Copy the whole prompt from your <b>old</b> AI point, paste it into Gemini's prompt. The last line after
+      <code>ANSWERS:</code> must be the green <b>Text</b> block from the gathering point — letters instead? delete, click
+      the block. Keep <code>Put &lt;br&gt; at the end of every line of your answer.</code></p>
+      <p>Gmail &rarr; <b>Content</b> &rarr; delete last week's AI block &rarr; under <b>Google Gemini AI</b> click its
+      answer block. Subject: <b>W6 · your name · My Gemini report</b>. Keep <b>smit.ai.lab@gmail.com</b> in To.</p>
+      <p><b>Right-click the old AI point &rarr; Delete module.</b> Four points: Sheets, Gather, Gemini, Gmail. Line broke?
+      Drag from the gathering point to Gemini. Then Choose where to start &rarr; All &rarr; Save &rarr; <b>Run once</b>.</p>
+      <h4>Before you put anything private in</h4>
+      <p>Google's price page, free tier: <b>"Used to improve our products — Yes."</b> Survey answers about a business
+      idea, yes. Names, phone numbers, ID numbers — no.</p>
+      <h4>Check before you submit — all five</h4>
+      <p>&#9744; four points: Sheets, Gather, <b>Gemini</b>, Gmail &nbsp;&#9744; Gemini's prompt ends with the <b>Text</b> block
+      &nbsp;&#9744; Content holds <b>Gemini's</b> block only &nbsp;&#9744; Subject starts with <b>W6</b>, smit.ai.lab@gmail.com in To
+      &nbsp;&#9744; Run once, and the report arrived</p>
+      <h4>Stuck?</h4>
+      <p>"API key not valid" &rarr; copy it again. "Quota" or "429" &rarr; wait one minute. No Gemini in the model list &rarr;
+      you opened last week's app; search <b>Gemini</b>. One long line &rarr; the <code>&lt;br&gt;</code> sentence is missing.
+      Nothing came &rarr; no new row. Ask <b>3 people around you</b> first, then raise your hand.</p>
+      <h4>Finished early?</h4>
+      <p>Switch the model to Flash-Lite and run again — or ask Gemini to write the report in your own language.
+      Same answers, different AI settings, different report.</p>
     `,
   },
 
