@@ -479,7 +479,7 @@ const WEEKS = {
       <b>Google Gemini AI &rarr; Generate speech from text</b>, put Gemini's answer block in it, pick a voice. Then in Gmail
       <b>Attachments &rarr; Add item</b> and take the file from the speech point. Run once — your report arrives as a sound file.</p>
       <p>Tell the assistant when it works. It asks you one thing only you can see on your screen. Then a <b>star ★</b>
-      goes on your card on this page. <b>A star is an extra point</b> for going further. Attendance still comes from the main work.</p>
+      goes on your card on this page — <b>not a grade, just a well done</b> for going further. Attendance comes from the main work.</p>
     `,
   },
 
