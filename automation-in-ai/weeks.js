@@ -375,128 +375,100 @@ const WEEKS = {
   },
 
   6: {
-    // 2026-10-01 사부님 판정 — 「다음주는 gemini api를 실습으로 하면서 이미지는 빼고.. 외부 api를 사용해서 추가하는 방법에 대해 알려주자」
-    // 그림은 무료 등급이 없어서 뺐다(구글 가격표 원문 2026-10-01). 지도 § W6 · 캠프 _주차/06/_문맥.md
-    // 2026-10-07 새벽 — 사부님 3분 시험(화면 11장 + 대화 기록)으로 전부 화면대로 다시 썼다:
-    //   · 자기 열쇠가 들어가는 모듈은 「Generate a response」다. 「Simple text prompt」는 Google Gemini AI 앱 안에 있어도
-    //     연결 칸이 없고 Make 토큰으로 돈다(Make 도움말 「no other setup required」 · 무료 플랜은 2.5 Flash 만) — 지난주와 같은 것
-    //   · AI Studio 에는 「Get API key」 글자 단추가 없다 — 왼쪽 아래 열쇠 아이콘 → API Keys → Create API key → 이름 + 프로젝트 → Create key → Copy key
-    //   · 열쇠는 AQ. 로 시작한다(AIza 아님) · 지메일 패널의 제미나이 블록은 「Result」(Simple text prompt 기준)
-    //   · 새 구글 계정은 프로젝트도 열쇠도 못 만든다(「permission」) — 콘솔을 한 번 열면 프로젝트는 생기지만 열쇠 권한은 그래도 없었다 → 갈림길
-    //   · W5 가 꼭 7일 전이라 지메일 점에 주황 「reauthorize your connection」 띠가 뜬다
-    // ⚠ coach 는 서버가 5,000자에서 자른다 · 가이드 걸음은 700자(worker.js — 10-07 에 2,500 → 5,000 · 400 → 700)
-    name: "Your own key — plug Gemini into Make",
-    build: "last week's scenario, with the borrowed AI swapped for Google Gemini running on your own API key: key, connection, module.",
-    submit: "the report Gemini wrote, how it compares with last week's, and which outside service you would plug in next.",
+    // 2026-10-07 01:10 사부님 — 방향 바꿈 「열쇠는 빼라 … 구글 제미나이로 변경하는 연습을 1차 하고(복습, 계정 없이) …
+    //   구글 드라이브에 폴더 만들고 거기에 저장 … 구글 문서로 변환까지 … 지메일에 해당 구글 문서를 첨부 … pdf 로 하자」
+    //   「아까 우리가 시행착오 거친 경험을 토대로 제대로 준비하고 학생들 받는 문서가 이쁘게 보이도록 … 최소한의 내용으로」
+    // 왜 열쇠를 뺐나 — 새 구글 계정은 AI Studio 에서도 클라우드 콘솔에서도 열쇠를 못 만든다(「permission」, 10-07 00:40 실측). 44명 중 새 계정이 여럿이다.
+    // 화면 실측(사부님 3분 시험 10-06 밤 ~ 10-07 새벽) — Google Gemini AI → Simple text prompt: Model(무료 플랜은 Gemini 2.5 Flash 뿐) · Text prompt, 연결 칸 없음 ·
+    //   지메일 패널의 제미나이 블록은 「Result」 · Google Drive → Create a File from Text: Connection · Choose a Drive · New Text File Location(폴더, + 로 새 폴더) ·
+    //   File Name · File Content · Convert the File to Google Docs Document Yes/No · 출력은 File ID · Name · Mime Type · Web View Link … (파일 속은 없다 → Docs 「Download a Document」로 PDF)
+    // ⚠ coach 는 서버가 5,000자에서 자른다 · 가이드 걸음은 700자
+    name: "Swap the AI, save a Doc, attach a PDF",
+    build: "last week's scenario with Google Gemini in place of Make's AI, the report saved as a Google Doc in a Drive folder, and the PDF attached to the email.",
+    submit: "the first lines of the PDF you received, where the report lives in your Drive, and what changed since last week.",
     video: "",
-    coach: "Week 6. The student swaps last week's borrowed AI (Make AI Toolkit, Simple Text Prompt) for GOOGLE GEMINI running on THEIR OWN API KEY. Teach it as three steps that plug ANY outside service into Make: KEY, CONNECTION, MODULE. Follow GUIDE MODE, one step per message. WEEK 5 FIRST: read PREVIOUS WEEK CHECK and never ask about Week 5. NOT submitted: say so in your FIRST reply, kindly, send them to the Week 5 page, do not start Week 6. Submitted: one short line, then the guide. THE KEY IS A PASSWORD. Google's keys start with AQ. (older ones AIza). If a student pastes anything that looks like a key: never repeat it, tell them to delete it in AI Studio and make a new one, continue. Never ask to see a key. KEY, what the screen really shows: aistudio.google.com, sign in, the small KEY ICON at the bottom of the left menu (or Dashboard, API Keys), then CREATE API KEY at the top right. A box opens: 'Name your key' (any name) and 'Choose an imported project'. Then CREATE KEY, then 'API key details', then COPY KEY. KEY CANNOT BE MADE ('Unable to create API key', 'cannot create a Google Cloud project', 'permission'): this is Google, not the student. Try in this order, one at a time: (1) open console.cloud.google.com once with the same account, a project appears by itself, go back to AI Studio and press Create API key again and pick that project; (2) still blocked: a private/incognito window with ONLY this Google account signed in; (3) still blocked: Google does not trust a brand-new account yet, use an older Gmail account they have had for a while; (4) no older account: TODAY use Google Gemini AI, Simple text prompt instead (no key, runs on Make's tokens, only Gemini 2.5 Flash on the free plan). They still swap the module and submit, and they bring a key next week. Say clearly that (4) is the no-key road. MODULE: in last week's scenario right-click the LINE between the old AI point (Make AI Toolkit) and Gmail, Add a module, search Gemini, app GOOGLE GEMINI AI. The list shows Upload a file, Generate a response, Generate music, Show more. Pick GENERATE A RESPONSE. Do NOT pick Simple text prompt: it has no Connection box and runs on Make's tokens, that is last week again. CONNECTION: Generate a response opens with a Connection box, Create a connection, paste into API Key, Save. If the student says there is NO Connection box, they opened Simple text prompt: close it and pick Generate a response. 'API key not valid' = copied only part of it. MODEL: one with Flash in its name, never Image. Do not invent model names, ask what they see. The fields of Generate a response may be named differently from what you expect: ask what the student sees and use their words. MAPPING (same move as Week 5): copy the whole prompt from the old AI point into Gemini's prompt/input box; the last line after ANSWERS: must be the green Text block from the gathering point, not letters; keep: Put <br> at the end of every line of your answer. GMAIL: open the Gmail point. If an orange bar says 'reauthorize your connection' (Week 5 was 7 days ago): next to Connection press Reauthorize, sign in, Save, then continue. Click in Content, delete the old AI block, under the group Google Gemini AI click the block that holds the answer (ask its name, do not guess; in the test it was Result). Subject W6 · name · My Gemini report, smit.ai.lab@gmail.com in To. Then Delete module on the OLD AI point; if the line breaks, drag from the gathering point to Gemini. Four points, not five. RUN: right-click Sheets, Choose where to start, All or pick a row, Save, Run once; nothing came = no new row, fill the form again. FREE TIER: free-tier text is used by Google to improve its products; no names, phones, ID numbers. SUBMISSION: first ask the Gmail address they connected in Make, then the three questions. The draft appears only after ARRIVED with W6 in the subject. After the server says Recorded, never offer the draft again unless they ask to change an answer. EXTRA is speech only: if they ask for an image extra, say images are not free with Gemini and are not this week's extra; the speech extra is. If something fails, ask for the exact words on screen and send them to the professor; never invent workarounds.",
+    coach: "Week 6. No key, no new account this week. Three moves inside LAST WEEK'S scenario: (1) swap Make's AI for GOOGLE GEMINI AI, Simple text prompt (review — the module changes, nothing else); (2) save Gemini's report as a GOOGLE DOC in a Drive folder; (3) download that Doc as a PDF and ATTACH it to the email. Six points at the end: Sheets, Gather, Gemini, Drive, Docs, Gmail. Follow GUIDE MODE, one step per message. WEEK 5 FIRST: read PREVIOUS WEEK CHECK and never ask about Week 5. NOT submitted: say so in your FIRST reply, kindly, send them to the Week 5 page, do not start Week 6. Submitted: one short line, then the guide. THE SCREEN WINS: if what they see differs from a step, ask once what they see and go with it; never argue. Never ask for or accept an API key — this week needs none; if someone pastes one, tell them to delete it in AI Studio. GEMINI: right-click the LINE between the old AI point (Make AI Toolkit) and Gmail, Add a module, search Gemini, app Google Gemini AI, Show more, Simple text prompt. Model: Gemini 2.5 Flash (the only one on the free plan; others say Paid plans only). Text prompt: the NEW prompt from step 5 of the guide, ending with the green Text block from the gathering point. Then Delete module on the old AI point; if the line breaks, drag from the gathering point to Gemini. DRIVE: right-click the line between Gemini and Gmail, Add a module, search Google Drive, Create a File from Text. Connection: Add, sign in with the same Google account as their Gmail, allow (a Google permission window appears; on a phone it may fail — use a computer). Fields: Choose a Drive = My Drive; New Text File Location = click the field and pick or make a folder (the + makes a new folder) named Automation in AI; File Name = W6 report; File Content = click Gemini's Result block; Convert the File to Google Docs Document = Yes. Save. PDF: right-click the line between Drive and Gmail, Add a module, search Google Docs, Download a Document. Document ID = the Drive point's File ID block. Type/format = PDF (ask what the field is called on their screen). Save. GMAIL: open the Gmail point. Orange bar 'reauthorize your connection' (Week 5 was 7 days ago): press Reauthorize, sign in, Save. Content: delete the old AI block, type: Your report is attached. Attachments: Add item; File name = the Docs point's File Name block (or the Drive point's Name block followed by .pdf); Data = the Docs point's Data block. Ask what blocks they see under the Docs point — do not guess names. Subject: W6 · name · My report as PDF; smit.ai.lab@gmail.com in To. RUN: right-click Sheets, Choose where to start, All, Save, Run once. Nothing came = no new row: fill the form again. Then open the email and the PDF, and look in Drive for the folder and the Doc. REPORT SHAPE: the new prompt asks Gemini for plain text — a title line, three headings in capitals, one or two short sentences each, an empty line between sections, no asterisks, no markdown. If the PDF shows asterisks or one long block, the prompt is last week's: paste the new one. SUBMISSION: first ask the Gmail address they connected in Make, then the three questions. The draft appears only after ARRIVED with W6 in the subject. After the server says Recorded, never offer the draft again unless they ask to change an answer. If something fails, ask for the exact words on screen and send them to the professor; never invent workarounds.",
     links: [
       { label: "Week 6 slides (PDF)", url: "materials/W06_Slides.pdf" },
       { label: "Week 6 handout (PDF)", url: "materials/W06_Handout.pdf" },
-      { label: "Google AI Studio — make your key (key icon, bottom left)", url: "https://aistudio.google.com" },
-      { label: "Google Cloud console — if AI Studio cannot make a project", url: "https://console.cloud.google.com" },
-      { label: "Make help — Google Gemini AI (connection steps)", url: "https://apps.make.com/gemini-ai" },
-      { label: "Google — Gemini API pricing and free tier", url: "https://ai.google.dev/gemini-api/docs/pricing" },
+      { label: "Make help — Google Gemini AI", url: "https://apps.make.com/gemini-ai" },
+      { label: "Make help — Google Drive", url: "https://apps.make.com/google-drive" },
+      { label: "Make guide — Google Doc to PDF", url: "https://www.make.com/en/how-to-guides/how-to-convert-google-doc-to-pdf" },
     ],
-    greet: "Hi! Week 6 — today the AI in your scenario becomes YOURS.\n\nLast week you borrowed Make's AI. Today you make a key, connect Google Gemini with it, and swap it in. Three steps that work for any outside service: key, connection, module.\n\nOne rule first: your key is a password. Never paste it here.\n\nFirst I check your Week 5. Write in your own language if you want. Say hi to start, and type ? any time you want a step explained again.",
+    greet: "Hi! Week 6 — three moves inside last week's scenario, nothing new to sign up for.\n\n1. Swap Make's AI for Google Gemini (a review).\n2. Save the report as a Google Doc in a Drive folder.\n3. Attach it to the email as a PDF.\n\nLast week the report came as text inside the email. Today it comes as a file — in your Drive and in the inbox.\n\nFirst I check your Week 5. Write in your own language if you want. Say hi to start, and type ? any time you want a step explained again.",
     guide: [
-      "Week 5 result — you TELL it, you never ask it. (Assistant: this step is not a question. PREVIOUS WEEK CHECK already says whether they submitted Week 5. In your FIRST reply state that result as a fact. NOT submitted: say so kindly, explain that Week 6 changes one point inside the Week 5 scenario, send them to the Week 5 page, and stop. Submitted: say so in one line and go to step 2.)",
-      "Today: three steps that plug ANY outside service into Make — KEY, CONNECTION, MODULE. We do it once, with Gemini. First the key. A key is a password: never paste it into this chat, KakaoTalk or a screenshot.",
-      "Open aistudio.google.com in a new tab and sign in with your Google account. (School account says not available? Use your personal Gmail.)",
-      "In the left menu, at the very bottom, click the small KEY icon (or Dashboard -> API Keys). You land on the \"API Keys\" page. Top right: \"Create API key\". Do you see it?",
-      "Click \"Create API key\". A box opens: \"Name your key\" (type anything, e.g. Make) and \"Choose an imported project\". Then press \"Create key\". Then \"API key details\" opens — press \"Copy key\". Your key starts with AQ. — keep this tab open until the connection is saved.",
-      "KEY WILL NOT COME? (\"Unable to create API key\" / \"cannot create a Google Cloud project\" / \"permission\") — that is Google, not you. Try, in order: (1) open console.cloud.google.com once with the same account — a project appears by itself — then back in AI Studio press Create API key again and pick that project. (2) Still blocked: a private window with ONLY this Google account. (3) Still blocked: Google does not trust a brand-new account yet — use an older Gmail you have had for a while. (4) No older account: today use Google Gemini AI -> Simple text prompt (no key, Make's tokens, Gemini 2.5 Flash only). You still swap the module and submit; bring a key next week.",
-      "Now Make. Open LAST WEEK'S scenario (Scenarios -> click it). We are not making a new one.",
-      "Right-click the LINE between your old AI point (Make AI Toolkit) and Gmail -> \"Add a module\" -> search \"Gemini\" -> click the app \"Google Gemini AI\". You see: Upload a file · Generate a response · Generate music · Show more. Pick \"Generate a response\". (NOT Simple text prompt — that one has no key box and runs on Make's tokens, like last week.)",
-      "The module opens with a Connection box at the top. \"Create a connection\" -> paste your key into \"API Key\" -> Save. (No Connection box at all? You opened Simple text prompt — close it, pick Generate a response. \"API key not valid\"? You copied only part of it. Copy again.)",
-      "Model: open the list and choose one with \"Flash\" in its name. Not \"Image\". Tell me which one you picked, with the exact name you see.",
-      "Mapping, same move as last week. Open your OLD AI point -> select the whole prompt -> copy. Open the Gemini point -> paste it into its prompt box (the big text box — tell me what it is called on your screen).",
-      "Check the last line after ANSWERS:. It must be the green block named \"Text\" from the gathering point. Letters instead? Delete them and click the block. Keep the line: Put <br> at the end of every line of your answer.",
-      "Open the Gmail point. Orange bar \"reauthorize your connection\"? (Week 5 was 7 days ago.) Next to Connection press Reauthorize -> sign in -> Save. Then click in Content -> delete last week's AI block -> in the panel find the group \"Google Gemini AI\" -> click the block that holds the answer. Tell me the name you see on that block.",
-      "Subject: W6 · your name · My Gemini report. It must start with W6. And check smit.ai.lab@gmail.com is still in \"To\".",
-      "Right-click the OLD AI point (Make AI Toolkit) -> \"Delete module\". You should see four points: Sheets, Gather, Gemini, Gmail. If the line broke, drag from the right edge of the gathering point to Gemini.",
-      "Right-click Sheets -> \"Choose where to start\" -> All (or pick a row) -> Save -> \"Run once\". Did the report arrive? Nothing came = no new row: answer your own form once more, then Run once again. \"Quota\" or \"429\" = wait one minute.",
-      "Save, then make sure the scenario is still active (ON), so it keeps running once a day.",
-      "Now the submission. First, type the Gmail address you connected in Make — the server checks the professor's inbox with it. Then I ask you three short questions. (Never paste your key here.)"
+      "Week 5 result — you TELL it, you never ask it. (Assistant: this step is not a question. PREVIOUS WEEK CHECK already says whether they submitted Week 5. In your FIRST reply state that result as a fact. NOT submitted: say so kindly, explain that Week 6 changes points inside the Week 5 scenario, send them to the Week 5 page, and stop. Submitted: say so in one line and go to step 2.)",
+      "Today, three moves inside last week's scenario: swap the AI for Google Gemini (review) -> save the report as a Google Doc in Drive -> attach it to the email as a PDF. No key, no new account. Open LAST WEEK'S scenario (Scenarios -> click it). We are not making a new one.",
+      "Right-click the LINE between your old AI point (Make AI Toolkit) and Gmail -> \"Add a module\" -> search \"Gemini\" -> click the app \"Google Gemini AI\" -> \"Show more\" -> \"Simple text prompt\". A box opens with Model and Text prompt. Do you see it?",
+      "Model: open the list -> \"Gemini 2.5 Flash\" (the only one without \"Paid plans only\"). Pick it.",
+      "Text prompt — paste this NEW prompt, then click the green \"Text\" block from the gathering point at the very end: Analyze the survey answers about my business. Write a short report in PLAIN TEXT: no markdown, no asterisks. Line 1: a title. Then three sections with the headings WHAT CUSTOMERS WANT, WHAT THEY WILL PAY, ONE RECOMMENDATION — each heading on its own line, then one or two short sentences. Leave an empty line between sections. ANSWERS:",
+      "Save. Now right-click the OLD AI point (Make AI Toolkit) -> \"Delete module\". If the line broke, drag from the right edge of the gathering point to Gemini. You should see: Sheets, Gather, Gemini, Gmail.",
+      "Now Drive. Right-click the LINE between Gemini and Gmail -> \"Add a module\" -> search \"Google Drive\" -> \"Create a File from Text\". Connection: \"Add\" -> sign in with the SAME Google account as your Gmail -> allow. (On a phone this window may fail — use the PC.) Do you see the fields Choose a Drive, New Text File Location, File Name, File Content?",
+      "Fill it: Choose a Drive = My Drive. New Text File Location = click the field, press + to make a folder, name it \"Automation in AI\", pick it. File Name = W6 report. File Content = click Gemini's \"Result\" block. Convert the File to Google Docs Document = Yes. Save.",
+      "Now the PDF. Right-click the LINE between Drive and Gmail -> \"Add a module\" -> search \"Google Docs\" -> \"Download a Document\". Document ID = click the Drive point's \"File ID\" block. Format = PDF. Save. Tell me the exact names of the fields you see.",
+      "Open the Gmail point. Orange bar \"reauthorize your connection\"? (Week 5 was 7 days ago.) Press Reauthorize -> sign in -> Save. Then click in Content -> delete last week's AI block -> type: Your report is attached.",
+      "Still in Gmail: Attachments -> \"Add item\". File name = the Docs point's \"File Name\" block (or the Drive point's \"Name\" block, then type .pdf). Data = the Docs point's \"Data\" block. Tell me the names you see under the Docs point.",
+      "Subject: W6 · your name · My report as PDF. It must start with W6. And check smit.ai.lab@gmail.com is still in \"To\". Save.",
+      "Count your points: Sheets, Gather, Gemini, Drive, Docs, Gmail — six. Right-click Sheets -> \"Choose where to start\" -> All -> Save -> \"Run once\". Nothing came = no new row: answer your own form once more, then Run once again.",
+      "Open the email and open the PDF. Then open drive.google.com: the folder \"Automation in AI\" and the Doc \"W6 report\" should be there. Tell me the first line of the PDF.",
+      "Make sure the scenario is still active (ON), so it keeps running once a day.",
+      "Now the submission. First, type the Gmail address you connected in Make — the server checks the professor's inbox with it. Then I ask you three short questions."
     ],
-    // 엑스트라 ⭐ — 2026-10-01 사부님 「앞으로 엑스트라 포인트로 더 갈 학생 몫을 주자」 · 「학생들 캐릭터 위에 별」.
-    // 본 과제를 낸 학생에게만 조교가 권한다(서버가 제출을 확인). 해 오면 「그 화면에서만 보이는 것」을 물어 extras 표에 남긴다.
-    // 「Generate speech from text」는 Google Gemini AI 앱 목록(Show more)에 있다 — 10-07 실측. 칸 · 파일 모양은 아직 못 쟀다 ▲
+    // 엑스트라 ⭐ — 열쇠 없이 되는 것만. 2026-10-07 사부님 「열쇠는 빼라」.
     extra: {
-      task: "Make your report SPEAK. Same key, same app — no new account. After the Gemini point, right-click the line between Gemini and Gmail -> Add a module -> Google Gemini AI -> Show more -> Generate speech from text. Put Gemini's answer block in its text box, pick a voice. Then in Gmail open Attachments -> Add item -> take the file from the speech point (file name and data). Run once: the email now carries your report as a sound file. Text-to-speech has a free tier on Google's price page. (Images are not this week's extra — Gemini's image models have no free tier.)",
-      check: "Which voice did you pick, and what is the file name of the attachment in the email you received?",
+      task: "Put the LINK to your Doc in the email too. In the Gmail point, Content: after \"Your report is attached.\" add a new line and click the Drive point's \"Web View Link\" block. Run once: the email now carries the PDF and a link that opens the Doc in Drive.",
+      check: "What does the link in the email you received start with, and what is the exact file name of the attachment?",
     },
     interview: [
-      "Paste the report Gemini wrote for you — the whole thing, from the email.",
-      "Put it next to last week's report from Make's AI. What changed — and which one would you trust for your business, and why?",
-      "Which other outside service would you plug into your business automation next, and what would you want it to do?",
+      "Open the PDF you received and paste its first three lines — the title and the first heading.",
+      "Where does your report live now? Give the folder name and the file name in your Drive.",
+      "Last week the report was text inside the email. Today it is a file in Drive and a PDF in the inbox. Which is more useful for a business, and why?",
     ],
     interviewLabels: [
-      "The report Gemini wrote (paste it)",
-      "Gemini vs last week's AI",
-      "The next service you would plug in",
+      "First lines of the PDF",
+      "Folder and file name in Drive",
+      "Text in the email vs a file",
     ],
     tutorial: `
-      <h4>Week 6 — your own key</h4>
-      <p>Last week you <b>borrowed</b> an AI: Make's built-in one, no key. Today you plug in <b>your own</b> — Google's Gemini,
-      with a key you make yourself. Same scenario, same four points. <b>One point changes owner.</b></p>
-      <h4>Three steps — for any outside service</h4>
-      <table>
-        <tr><th>#</th><th>Step</th><th>Where</th></tr>
-        <tr><td>1</td><td><b>Key</b> — a password for a machine</td><td>the service's own site (today: Google AI Studio)</td></tr>
-        <tr><td>2</td><td><b>Connection</b> — paste the key once</td><td>Make, "Create a connection"</td></tr>
-        <tr><td>3</td><td><b>Module</b> — pick an action, drop in blocks</td><td>your scenario</td></tr>
-      </table>
-      <p>Gemini is the first. Next week, many more — every one of them is these three steps.</p>
-      <h4>Your key is a password</h4>
-      <p>Anyone who has it can use your account as you. <b>Never</b> paste it into KakaoTalk, the class assistant,
-      a screenshot or an email. It goes in exactly one place: Make's connection box. Leaked? Delete it in AI Studio
-      and make a new one — 30 seconds.</p>
+      <h4>Week 6 — three moves, no key</h4>
+      <p>Last week the report came as <b>text inside the email</b>. Today it comes as a <b>file</b>: a Google Doc in your Drive,
+      and a PDF attached to the email. Nothing new to sign up for — <b>six points</b> at the end:
+      Sheets &rarr; Gather &rarr; <b>Gemini</b> &rarr; <b>Drive</b> &rarr; <b>Docs</b> &rarr; Gmail.</p>
       <h4>Did not submit Week 5?</h4>
-      <p><b>Do Week 5 first.</b> Today we change one point inside that scenario — there is nothing to change on an
+      <p><b>Do Week 5 first.</b> Today we change points inside that scenario — there is nothing to change on an
       empty screen. Everything is on the <b>Week 5 page</b>. <b>Late still counts as attended.</b></p>
-      <h4>Step 1 — make your key</h4>
-      <p><b>aistudio.google.com</b> &rarr; sign in &rarr; the small <b>key icon</b> at the bottom of the left menu (or Dashboard &rarr; API Keys)
-      &rarr; top right <b>Create API key</b> &rarr; name it, choose a project &rarr; <b>Create key</b> &rarr; <b>Copy key</b>. Your key starts with <code>AQ.</code>
-      School account says "not available"? Use your personal Gmail.</p>
-      <p><b>Key will not come?</b> ("Unable to create API key" / "permission") That is Google, not you. In order: ① open
-      <b>console.cloud.google.com</b> once with the same account — a project appears by itself — then back in AI Studio, Create API key, pick that project
-      &nbsp;② a private window with <b>only</b> this account &nbsp;③ Google does not trust a brand-new account yet — use an <b>older Gmail</b>
-      &nbsp;④ no older account: today use <b>Google Gemini AI &rarr; Simple text prompt</b> (no key, Make's tokens, Gemini 2.5 Flash only).
-      You still swap the module and submit. Bring a key next week.</p>
-      <h4>Step 2 — connect it</h4>
-      <p>Open <b>last week's scenario</b>. <b>Right-click the line</b> between your old AI point and Gmail &rarr;
-      <b>Add a module</b> &rarr; search <b>Gemini</b> &rarr; app <b>Google Gemini AI</b> &rarr; <b>Generate a response</b>.
-      <b>Not</b> Simple text prompt — that one has no key box and runs on Make's tokens: last week again.
-      The module opens with a <b>Connection</b> box: <b>Create a connection</b> &rarr; paste into <b>API Key</b> &rarr; Save.
-      No permission window — it works on a phone too.</p>
-      <p><b>Model:</b> one with <b>Flash</b> in its name. Not <b>Image</b> — image models have no free tier.</p>
-      <h4>Step 3 — the same move, again</h4>
-      <p>Copy the whole prompt from your <b>old</b> AI point, paste it into Gemini's prompt box. The last line after
-      <code>ANSWERS:</code> must be the green <b>Text</b> block from the gathering point — letters instead? delete, click
-      the block. Keep <code>Put &lt;br&gt; at the end of every line of your answer.</code></p>
-      <p>Gmail &rarr; orange bar "<b>reauthorize your connection</b>"? Press Reauthorize, sign in, Save. Then <b>Content</b> &rarr; delete last week's
-      AI block &rarr; under <b>Google Gemini AI</b> click the block that holds the answer. Subject: <b>W6 · your name · My Gemini report</b>.
-      Keep <b>smit.ai.lab@gmail.com</b> in To.</p>
-      <p><b>Right-click the old AI point &rarr; Delete module.</b> Four points: Sheets, Gather, Gemini, Gmail. Line broke?
-      Drag from the gathering point to Gemini. Then Choose where to start &rarr; All &rarr; Save &rarr; <b>Run once</b>.</p>
-      <h4>Before you put anything private in</h4>
-      <p>Google's price page, free tier: <b>"Used to improve our products — Yes."</b> Survey answers about a business
-      idea, yes. Names, phone numbers, ID numbers — no.</p>
+      <h4>Move 1 — swap the AI (review)</h4>
+      <p><b>Right-click the line</b> between your old AI point and Gmail &rarr; <b>Add a module</b> &rarr; search <b>Gemini</b> &rarr; app
+      <b>Google Gemini AI</b> &rarr; <b>Show more</b> &rarr; <b>Simple text prompt</b>. Model: <b>Gemini 2.5 Flash</b> (the only free one).
+      Text prompt: the new prompt below, ending with the green <b>Text</b> block. Then <b>right-click the old AI point &rarr; Delete module</b>.</p>
+      <p><code>Analyze the survey answers about my business. Write a short report in PLAIN TEXT: no markdown, no asterisks.
+      Line 1: a title. Then three sections with the headings WHAT CUSTOMERS WANT, WHAT THEY WILL PAY, ONE RECOMMENDATION —
+      each heading on its own line, then one or two short sentences. Leave an empty line between sections. ANSWERS:</code> + the <b>Text</b> block</p>
+      <h4>Move 2 — save it as a Doc</h4>
+      <p>Right-click the line between Gemini and Gmail &rarr; Add a module &rarr; <b>Google Drive &rarr; Create a File from Text</b>.
+      Connection: <b>Add</b> &rarr; same Google account as your Gmail &rarr; allow. Choose a Drive: <b>My Drive</b>.
+      New Text File Location: press <b>+</b>, make a folder <b>Automation in AI</b>. File Name: <b>W6 report</b>.
+      File Content: Gemini's <b>Result</b> block. Convert to Google Docs Document: <b>Yes</b>. Save.</p>
+      <h4>Move 3 — attach it as a PDF</h4>
+      <p>Right-click the line between Drive and Gmail &rarr; Add a module &rarr; <b>Google Docs &rarr; Download a Document</b>.
+      Document ID: the Drive point's <b>File ID</b> block. Format: <b>PDF</b>. Save.</p>
+      <p>Gmail &rarr; orange bar "<b>reauthorize your connection</b>"? Reauthorize &rarr; sign in &rarr; Save. Content: delete last week's AI block,
+      type <i>Your report is attached.</i> <b>Attachments &rarr; Add item</b>: File name = the Docs point's <b>File Name</b> block ·
+      Data = the Docs point's <b>Data</b> block. Subject: <b>W6 · your name · My report as PDF</b>. Keep <b>smit.ai.lab@gmail.com</b> in To.</p>
+      <p>Right-click <b>Sheets</b> &rarr; Choose where to start &rarr; All &rarr; Save &rarr; <b>Run once</b>. Open the email, open the PDF.
+      Look in Drive: the folder and the Doc are there.</p>
       <h4>Check before you submit — all five</h4>
-      <p>&#9744; four points: Sheets, Gather, <b>Gemini</b>, Gmail &nbsp;&#9744; Gemini's prompt ends with the <b>Text</b> block
-      &nbsp;&#9744; Content holds <b>Gemini's</b> block only &nbsp;&#9744; Subject starts with <b>W6</b>, smit.ai.lab@gmail.com in To
-      &nbsp;&#9744; Run once, and the report arrived</p>
+      <p>&#9744; six points: Sheets, Gather, Gemini, Drive, Docs, Gmail &nbsp;&#9744; the PDF opens and shows a title and three headings
+      &nbsp;&#9744; the Doc is in the folder in Drive &nbsp;&#9744; Subject starts with <b>W6</b>, smit.ai.lab@gmail.com in To
+      &nbsp;&#9744; the old AI point is gone</p>
       <h4>Stuck?</h4>
-      <p>"API key not valid" &rarr; copy it again. No Connection box &rarr; you picked Simple text prompt; pick Generate a response.
-      "Quota" or "429" &rarr; wait one minute. Orange bar on Gmail &rarr; Reauthorize. One long line &rarr; the <code>&lt;br&gt;</code> sentence is missing.
+      <p>Drive connection fails on a phone &rarr; use the PC. Orange bar on Gmail &rarr; Reauthorize. The PDF shows asterisks or one long block &rarr;
+      you kept last week's prompt; paste the new one. Attachment is empty &rarr; Data must come from the <b>Docs</b> point, not Drive.
       Nothing came &rarr; no new row. Ask <b>3 people around you</b> first, then raise your hand.</p>
       <h4>Finished early? Go further — ⭐ extra</h4>
-      <p><b>Make your report speak.</b> Same key, same app, no new account. After the Gemini point add
-      <b>Google Gemini AI &rarr; Show more &rarr; Generate speech from text</b>, put Gemini's answer block in it, pick a voice. Then in Gmail
-      <b>Attachments &rarr; Add item</b> and take the file from the speech point. Run once — your report arrives as a sound file.</p>
-      <p>Tell the assistant when it works. It asks you one thing only you can see on your screen. Then a <b>star ★</b>
-      goes on your card on this page — <b>not a grade, just a well done</b> for going further. Attendance comes from the main work.</p>
+      <p>Put the <b>link</b> to your Doc in the email too: in Content, under "Your report is attached.", click the Drive point's
+      <b>Web View Link</b> block. Run once. Tell the assistant — it asks one thing only your screen shows, and a <b>star ★</b> goes on your card.
+      Not a grade, just a well done.</p>
     `,
   },
 
