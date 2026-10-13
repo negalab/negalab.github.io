@@ -474,45 +474,137 @@ const WEEKS = {
   },
 
   7: {
-    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
-    name: "Your business page — connect everything",
-    build: "a simple page for your business that links your survey, your pre-registration form, and your automation.",
-    submit: "your business page link and a short list of what is connected to what.",
+    // 2026-10-14 새벽 BPA-W7 캠프 — 사부님이 직접 템플릿을 짓고 시험(01:00~02:20). 판정 원문:
+    //   「템플릿을 알아보고 그것을 사용해보는 연습」 · 「세상에는 다양한 서비스 들이 있고 … 각각의 서비스 계정과 필요하면 유료계정」 · 「image 생성으로 가자」
+    //   「실제 5명의 동료 학생들에게 공지를 해서 받는 거지.. 그리고 그 메일이 오게」 · 「aggregator 를 쓰고 분석 이미지를 받는게 낫지 않아 그냥 한번」
+    //   「여러개를 합친 통계적인 의미의 이미지를 만들어야 한다」 · 「text aggreator 에 넣는값이 그래서 아주 중요한거야」 · 「run once 로 하라고 choose where to start를 all로」
+    //   「자신의 구글 계정으로 모두 허락하는거 중요하게」 · 「이미지 프롬프트 … 재미를 추구하는 법」
+    // 화면 실측(사부님 캡처 _Drop/BPA 1014 캡쳐.md): HTTP v4 모듈 이름은 「Download a file」(옛 Get a file) · Authentication type No authentication ·
+    //   Choose where to start = Choose manually / All / Since specific ID (From now on 없음) · Gmail Attachments → File 은 동그라미를 눌러야 골라진다
+    // 서버: /image 프롬프트 1500자(10-14 배포 01522330) · 학생 하루 10장 · 반 450장 · INBOX_WEEKS 에 7 · 8
+    name: "Ask 5 classmates — one report, one infographic",
+    build: "a survey for your business, and a scenario from the class template: Sheets → Text aggregator → AI → HTTP (image) → Gmail. All answers become one report with real numbers and one infographic.",
+    submit: "your W7 test email (report + picture), your survey questions and why, and the picture style you chose.",
     video: "",
-    coach: "Week 7 builds one page that presents the business and connects the pieces made so far: the survey, the pre-registration form, the daily summary and the AI report. Keep the tool simple and free. Help them write the page for a stranger: what it is, who it is for, how to join. Check that every link opens without signing in.",
-    links: [],
+    coach: "Week 7. Students copy the CLASS TEMPLATE and make it theirs. Five points: Google Sheets Watch New Rows -> Tools Text aggregator -> Make AI Toolkit Simple Text Prompt -> HTTP Download a file -> Gmail Send an email. Follow GUIDE MODE, one step per message. WEEK 6 FIRST: read PREVIOUS WEEK CHECK and never ask about Week 6. If NOT submitted, today still works: the template does not need the Week 6 scenario — say so in one line and go on (do not send them back). THE SCREEN WINS: never describe a button you have not been told exists. If what they see differs from a step, ask once what they see, word for word, and go with it; never argue. Colours: never name a block colour; say the block's name. KEY IDEAS to explain only when asked or stuck: each sheet row is one bundle; points after Sheets run once per bundle; the Text aggregator joins all bundles into ONE text, so the AI sees everyone and can count ('4 of 5'), and only ONE email comes. Limit = how many new rows one run takes (10). Make remembers the last row it used, so before EVERY Run once: right-click Sheets -> Choose where to start -> All -> Save. ACCOUNTS: the template has no account inside. Google Sheets and Gmail each need Connection -> Add -> sign in with THEIR OWN Google account -> tick every box -> Allow. On a phone this often fails: use the PC. Make AI Toolkit keeps Make's AI Provider (default). HTTP keeps No authentication. Never ask for or accept any key or password. SURVEY: insist on good questions — one thing per question, countable (multiple choice / checkboxes), only what changes a decision; Part 2 picture questions (age group, how to appear, place, mood). Never names, phone numbers, student IDs or photos. Keep asking them to paste their real question list. AGGREGATOR: Source Module = Watch New Rows; Stop processing after an empty aggregation = Yes; Text keeps '--- One customer ---' then a short label + each question block; delete the [Q1 block] placeholders. AI: replace '[ONE SENTENCE ABOUT YOUR BUSINESS]' with a real sentence — the professor's own test failed this way (the email and picture said 'ONE SENTENCE ABOUT YOUR BUSINESS'). Every [BRACKET] must be replaced or deleted; the end of the prompt must be the aggregator's text block only. HTTP: change only &id= to their class-site login ID. The AI's Answer block stays INSIDE encodeURL( ). Bad Request = block outside encodeURL or empty id. Bad Gateway/image_failed = prompt must start with 'Draw ...'. 403 = wrong ID. 429 = 10 images a day used up (resets 09:00 Seoul). FUN PICTURE: help them write 'Draw a [STYLE] showing [WHO] in [WHERE]. Mood: [MOOD]. Use EXACTLY these numbers, do not invent others.' — styles: infographic, 3-panel comic, newspaper front page, weather report, game map, LEGO scene, retro poster. Change one word at a time. GMAIL: recipient 1 = their email, keep smit.ai.lab@gmail.com, Subject must start with W7, Content = the AI's Answer block, Attachments -> File: they must CLICK THE CIRCLE next to 'HTTP - Download a file' (a blue name with an empty circle is not chosen). SAVE before running. TEST: answer their own form twice, All, Run once. Then delete test rows and send the form link to 5 classmates — that is the Week 8 midterm. CHECK THE PICTURE: ask them to count one question by hand and compare with the picture. SUBMISSION: first the Gmail address they connected, then the questions. Never ask again for what they already said. If something fails, ask for the exact words on screen; never invent workarounds.",
+    links: [
+      { label: "CLASS TEMPLATE — open, then Create new scenario from template", url: "https://eu1.make.com/public/shared-scenario/5FQXKKzrnDY/integration-google-sheets-gmail" },
+      { label: "Week 7 tutorial — step by step with screenshots (PDF)", url: "materials/W07_Tutorial.pdf" },
+      { label: "Week 7 slides (PDF)", url: "materials/W07_Slides.pdf" },
+      { label: "Google Forms", url: "https://forms.google.com" },
+    ],
+    greet: "Hi! Week 7 — real people answer your survey this week.\n\n1. Make a Google Form for your business.\n2. Copy the class template and connect YOUR Google account.\n3. Run once: one report with real numbers + one infographic arrive by email.\n\nThen you send your survey to 5 classmates — that is your Week 8 midterm.\n\nWrite in your own language if you want. Say hi to start, and type ? any time you want a step explained again.",
+    guide: [
+      "Week 6 result — you TELL it, you never ask it. (Assistant: PREVIOUS WEEK CHECK already says it. Submitted: one line. NOT submitted: one kind line — today does not need the Week 6 scenario, so continue.)",
+      "Today: a survey -> the class template -> one report + one infographic by email. Open the Week 7 tutorial PDF (Links) next to this chat — every step has a screenshot.",
+      "Make your survey: forms.google.com -> Blank form. Give it a clear title. Part 1: 3-5 questions about your business — one thing per question, mostly multiple choice or checkboxes so answers can be counted. Part 2: questions for the picture (age group, how you want to appear, where you would use it, mood). No names, phone numbers or photos. Paste your question list here when done.",
+      "Connect the form to a sheet: Responses tab -> Link to Sheets -> Create a new spreadsheet. The answers go to a tab called Form Responses 1. Then Publish -> link icon -> Copy responder link and keep it.",
+      "Open the CLASS TEMPLATE (first link in Links) -> \"Create new scenario from template\". You should see five points: Google Sheets, Tools, Make AI Toolkit, HTTP, Gmail. Do you see them?",
+      "Click Google Sheets -> Connection -> \"Add\" -> sign in with YOUR Google account (the one that owns the form) -> tick EVERY box -> Allow. On a phone this often fails — use the PC. Do you see your account name in Connection now?",
+      "Still in Google Sheets: Spreadsheet ID -> pick YOUR form's sheet. Sheet Name -> Form Responses 1. Table contains headers: Yes. Row with headers: A1:Z1. Limit: 10. Save.",
+      "Click Tools (Text aggregator). Source Module: Google Sheets - Watch New Rows [1]. Stop processing after an empty aggregation: tick Yes. Text: keep the first line --- One customer --- , delete the [Q1 block] lines, then under it write a short label and click your question block, one per line. Save.",
+      "Click Make AI Toolkit. Keep Connection = Make's AI Provider. In Text, replace [ONE SENTENCE ABOUT YOUR BUSINESS] with one real sentence about your business. Check the end of the prompt: only the aggregator's text block — delete any leftover words in [brackets]. Save.",
+      "Click HTTP. Keep No authentication. In URL change only the end: &id=YOUR_ID -> &id= your class-site login ID. Keep the Answer block inside encodeURL( ). Want it fun? Change the words after encodeURL( : Draw a [STYLE] showing [WHO] in [WHERE]. Mood: [MOOD]. Use EXACTLY these numbers. Save.",
+      "Click Gmail. Connection -> Add -> YOUR Google account -> tick every box -> Allow. Recipient 1 = your email. Keep smit.ai.lab@gmail.com. Subject: W7 · your name · My business report. Attachments -> File: CLICK THE CIRCLE next to \"HTTP - Download a file\" so it is filled. Save.",
+      "Test: answer your own form twice. Right-click Google Sheets -> \"Choose where to start\" -> All -> Save. Press the Save button at the bottom. Then \"Run once\". Wait about a minute.",
+      "Open your email: one report with STATS (like \"4 of 5\") and one picture attached. Count one question in your sheet by hand — is the number in the picture the same? Tell me what you see.",
+      "Now the submission. First, type the Gmail address you connected in Make — the server checks the professor's inbox with it. Then I ask you three short questions.",
+      "After submitting: delete your 2 test rows in the sheet (keep row 1) and Responses -> Delete all responses in the form. Send your responder link to 5 classmates and answer 5 of theirs. That is your Week 8 midterm."
+    ],
+    extra: {
+      task: "Make the picture fun: rewrite the words before the Answer block in the HTTP URL with a new STYLE (comic strip, newspaper front page, weather report, game map, LEGO scene...). Choose where to start -> All -> Run once. You get a second W7 email with a new picture.",
+      check: "Which style did you write in the URL, word for word, and what is the title text inside the new picture?",
+    },
     interview: [
-      "Paste the link to your business page.",
-      "List what is connected: which form, which scenario, which report — one line each.",
-      "Read your page as a stranger would. Which sentence makes someone sign up?",
+      "Paste your survey questions (all of them). For each one, say in a few words why it is there — what decision it helps you make.",
+      "Paste the STATS lines from the W7 email you received.",
+      "Which picture style did you use, and does the picture show the same numbers as your sheet?",
+    ],
+    interviewLabels: [
+      "Survey questions and why",
+      "STATS from the email",
+      "Picture style and number check",
     ],
     tutorial: `
-      <h4>Week 7 — one page, everything connected</h4>
-      <p>Make one simple page for your business. From that page people reach your <b>survey</b> and your <b>pre-registration form</b>, and behind it your <b>automation</b> keeps running.</p>
-      <h4>And your business grows</h4>
-      <p>Write the page for a stranger: what it is, who it is for, how to join. Open every link without signing in.</p>
-      <p><i>The full step-by-step guide opens the day before class.</i></p>
+      <h4>Week 7 — real people, one report, one picture</h4>
+      <p>Until now you tested with answers you typed yourself. This week your <b>classmates</b> answer your survey, and Make turns all their answers into
+      <b>one report with real numbers</b> ("4 of 5 customers") and <b>one infographic</b>, in one email.</p>
+      <p><b>Five points:</b> Google Sheets (Watch New Rows) &rarr; <b>Text aggregator</b> &rarr; Make AI Toolkit &rarr; <b>HTTP</b> (Download a file — our image server) &rarr; Gmail.</p>
+      <h4>Open the full tutorial</h4>
+      <p>Every step with screenshots: <a href="materials/W07_Tutorial.pdf" target="_blank">Week 7 tutorial (PDF)</a>.
+      The template: <a href="https://eu1.make.com/public/shared-scenario/5FQXKKzrnDY/integration-google-sheets-gmail" target="_blank">open the class template</a> &rarr; <b>Create new scenario from template</b>.</p>
+      <h4>The most important idea</h4>
+      <p>The AI and the picture only see <b>what goes into the Text aggregator</b>. Vague questions give vague answers, and the picture invents numbers.
+      <b>A good survey is the real work.</b> One thing per question · countable answers · only what changes your decision. Never ask names, phone numbers or photos.</p>
+      <h4>Your account, not the professor's</h4>
+      <p>The template has no account inside. <b>Google Sheets</b> and <b>Gmail</b>: Connection &rarr; <b>Add</b> &rarr; your Google account &rarr; <b>tick every box</b> &rarr; Allow. Use the PC.</p>
+      <h4>Three settings</h4>
+      <p><b>Limit 10</b> — how many new rows one run takes. <b>Choose where to start &rarr; All</b> — before every Run once (Make remembers the last row).
+      <b>Save</b> — nothing counts until you press it.</p>
+      <h4>Make the picture fun</h4>
+      <p><code>Draw a [STYLE] showing [WHO] in [WHERE]. Mood: [MOOD]. Use EXACTLY these numbers, do not invent others.</code>
+      Styles: infographic · 3-panel comic · newspaper front page · weather report · game map · LEGO scene · retro poster. Change one word at a time. 10 pictures a day.</p>
+      <h4>Stuck?</h4>
+      <p>No email &rarr; Save? All before Run once? &nbsp;No picture &rarr; Gmail Attachments: click the <b>circle</b>.
+      Bad Request &rarr; Answer block inside encodeURL( ). Bad Gateway &rarr; start the prompt with "Draw ...".
+      "Student ID not found" &rarr; use your class-site login ID. Email says [ONE SENTENCE ABOUT YOUR BUSINESS] &rarr; replace every [bracket].</p>
+      <h4>Then: your midterm starts</h4>
+      <p>Delete your test rows, send your form to <b>5 classmates</b>, answer 5 of theirs. Week 8 has no class — see the Week 8 page.</p>
     `,
   },
 
   8: {
-    // 2026-09-16 작가 확정 W4~W8 — 「W4 지메일 나에게 요약 이메일 하루에 한번 / W5 AI 연결해서 보고서 작성하기 / W6 비지니스 사전신청 받기 / W7 비지니스 페이지 만들기 모두 연결하기 / W8 전시 및 발표」 · 「해당 비지니스가 매주 계속 발전되어야 한다」 — 자세한 튜토리얼은 그 주차 캠프가 쓴다
-    name: "Exhibition & presentation",
-    build: "nothing new — you show your business and the automation behind it.",
-    submit: "the link people will open at the exhibition, and what you will show in your presentation.",
+    // 2026-10-09 사부님(smit 창) 「모두 수업없이 제출로 한다」 · 「BPA도 평소처럼 18시 마감으로 한다」
+    // 2026-10-14 새벽 BPA-W7 캠프 — 중간고사 = 동료 5명 설문 → 보고서 메일 1통(W8) + 세 관점 물음.
+    //   10-07 02:55 「입력 데이터가 의미가 있어야 … AI로 어떻게 의미있는 자료를 … 어떻게 표현해서 가치있게」 · 「구현까지 하면 엑스트라」
+    //   10-14 「실제 5명의 동료 학생들에게 공지를 해서 받는 거지.. 그리고 그 메일이 오게」 · 「설문폼을 제대로 만들고 제대로된 답이 중요」
+    name: "Midterm — 5 classmates, one report",
+    build: "nothing new in class — there is no class. You run your Week 7 scenario on 5 real answers from classmates.",
+    submit: "one W8 email (report + infographic) at smit.ai.lab@gmail.com, and three answers: input, AI, output.",
     video: "",
-    coach: "Week 8 is the exhibition and presentation. Students show the business as it has grown since Week 2: the idea, what people said, the AI report, the pre-registration, the page, and the automation behind it. Help them rehearse a short, honest story: what changed because of the data. The time per person is set by the professor.",
-    links: [],
+    coach: "Week 8 is the MIDTERM. There is NO class on Oct 21; students submit by 18:00. What they submit: (1) their Week 7 scenario run on REAL answers from at least 5 classmates: one email with the report and the infographic, Subject starting with W8, to smit.ai.lab@gmail.com; (2) three answers in this chat — INPUT (why these questions, and what the answers show), AI (what the STATS say and what surprised them), OUTPUT (what they will change in their business, and does the picture show it clearly). The professor's words: 'I will care about your love — what is your love from input, how processed through AI, what kind of love I can get from my email.' Push for real content: ask them to paste their questions and the STATS lines; vague answers get one kind follow-up question. Before running: change the Gmail Subject from W7 to W8; delete test rows; Choose where to start -> All -> Save -> Run once. If fewer than 5 classmates answered, they still run it and say how many answered. Common fixes: no email -> Save, All, at least one row; no picture -> click the circle next to HTTP - Download a file in Gmail Attachments; 429 -> 10 images a day used, try after 09:00 Seoul. They may also submit missing earlier weeks on those week pages. Changing the template to fit their business (new questions, new AI questions, a new picture style, an extra output) earns an extra star — ask what they changed and why. Never invent buttons; ask what they see. Never ask for keys or passwords.",
+    links: [
+      { label: "Week 7 tutorial — the full steps (PDF)", url: "materials/W07_Tutorial.pdf" },
+      { label: "CLASS TEMPLATE", url: "https://eu1.make.com/public/shared-scenario/5FQXKKzrnDY/integration-google-sheets-gmail" },
+    ],
+    greet: "Hi! Week 8 is your midterm — no class today. Submit by 18:00.\n\n1. At least 5 classmates answer your survey.\n2. Change the Gmail Subject to W8, then Choose where to start -> All -> Run once.\n3. One email with your report and infographic reaches smit.ai.lab@gmail.com.\n4. Then three questions here: input, AI, output.\n\nWrite in your own language if you want. Say hi to start.",
+    guide: [
+      "Week 7 result — you TELL it, you never ask it. (Assistant: PREVIOUS WEEK CHECK already says it. NOT submitted: one kind line — they need the Week 7 scenario; send them to the Week 7 page and the tutorial PDF, then come back.)",
+      "How many classmates answered your survey? Open your sheet (Form Responses 1) and count the rows under row 1. Did you delete your own test rows?",
+      "Open your Week 7 scenario. Gmail point -> Subject: change W7 to W8 (W8 · your name · Customer survey report). Keep smit.ai.lab@gmail.com. Save.",
+      "Right-click Google Sheets -> Choose where to start -> All -> Save. Press Save at the bottom. Then Run once.",
+      "Open the email: is the picture attached, and do the STATS count the right number of customers? Count one question in your sheet by hand and compare.",
+      "Now the submission. First, type the Gmail address you connected in Make. Then three questions: input, AI, output."
+    ],
+    extra: {
+      task: "Make the template yours: change the AI's report questions for your business, or the picture style, or add one more output (for example a Google Doc copy in Drive). Run once again with W8 in the subject.",
+      check: "What exactly did you change in the template (the words or the point you added), and what does the new email show that the old one did not?",
+    },
     interview: [
-      "Paste the link people will open at the exhibition.",
-      "In three short lines: what your business was in Week 2, what changed, and why.",
-      "What will you show live — which automation runs in front of people?",
+      "INPUT — Paste your survey questions. Why did you ask these, and how many classmates answered?",
+      "AI — Paste the STATS lines from your W8 email. Which number surprised you, and why?",
+      "OUTPUT — What will you change in your business because of this report? Does the infographic show that clearly?",
+    ],
+    interviewLabels: [
+      "Input — questions and answers",
+      "AI — STATS and surprise",
+      "Output — decision and picture",
     ],
     tutorial: `
-      <h4>Week 8 — show what grew</h4>
-      <p>You show your business as it is now, and how it got here: the idea, what people said, the AI report, the sign-ups, the page, and the automation behind it.</p>
-      <p>Tell it as a short, honest story: what changed because of the answers.</p>
-      <p><i>The exhibition details open the day before class.</i></p>
+      <h4>Week 8 — midterm · no class · submit by Wed Oct 21, 18:00</h4>
+      <p>You do not come to class. You run your Week 7 scenario on <b>real answers from at least 5 classmates</b> and submit here.</p>
+      <h4>Steps</h4>
+      <p>1. At least <b>5 classmates</b> answer your survey (send them your responder link; answer theirs too).<br>
+      2. Delete your own test rows. In Gmail change the Subject to <b>W8 · your name · Customer survey report</b>. Keep <b>smit.ai.lab@gmail.com</b>. Save.<br>
+      3. Right-click Google Sheets &rarr; <b>Choose where to start &rarr; All</b> &rarr; Save &rarr; <b>Run once</b>.<br>
+      4. Check the email: STATS with real counts + the infographic attached. Count one question by hand.<br>
+      5. Talk to the AI assistant here: your Gmail address, then three questions.</p>
+      <h4>The three questions</h4>
+      <p><b>Input</b> — why these questions, how many answered? &nbsp;<b>AI</b> — what do the STATS say, what surprised you?
+      &nbsp;<b>Output</b> — what will you change in your business, and does the picture show it?</p>
+      <h4>Extra ★</h4>
+      <p>Change the template to fit your business — new report questions, a new picture style, or one more output. Tell the assistant what you changed and why.</p>
+      <p>Missed an earlier week? Submit it on that week's page this week too. Full steps: <a href="materials/W07_Tutorial.pdf" target="_blank">Week 7 tutorial (PDF)</a>.</p>
     `,
   },
 
