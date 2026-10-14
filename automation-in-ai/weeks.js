@@ -516,8 +516,13 @@ const WEEKS = {
       check: "Which style did you write in the URL, word for word, and what is the title text inside the new picture?",
     },
     // 2026-10-14 사부님 「과제 제출할때 마지막 질문을 없애라... 이메일 첵크만 하고 그냥 넘어가자」 — 메일이 닿으면 서버가 제출로 적는다(10-07 「메일이 오면 제출」)
-    interview: [],
-    interviewLabels: [],
+    // ⚠ interview 를 비우면 사이트가 채팅 대신 옛 손 제출 양식을 띄운다(10-14 13:06 수업 중 실측) — 물음 하나는 남긴다
+    interview: [
+      "Type the Gmail address you connected in Make. When your W7 email has arrived, you are done.",
+    ],
+    interviewLabels: [
+      "Gmail address",
+    ],
     tutorial: `
       <h4>Week 7 — DATA: meaningful data makes a meaningful picture</h4>
       <p><b>Week 7 is about data</b> — what you collect and what the AI can make of it. <b>Week 8 (midterm) is about people</b> — reaching them and asking honestly. Today you build and practise with your own test answers. Make turns all the answers into
