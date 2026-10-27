@@ -829,6 +829,11 @@
       const s = MY_SUBS[w];
       if (!me || !s) { el.innerHTML = ""; return; }
       el.innerHTML = `<div class="wm-mysub"><b>Your submission ✓</b> ${esc(s.review || "")}${s.link ? ` · <a href="${esc(s.link)}" target="_blank" rel="noopener">link</a>` : ""}</div>`;
+      if (Number(w) === 9 && s.review) {
+        const dl = document.createElement("button"); dl.className = "btn-primary"; dl.style.marginTop = "10px"; dl.textContent = "⬇ Download my idea (PDF)";
+        dl.onclick = () => downloadIdeaPdf(s.review);
+        el.appendChild(dl);
+      }
     }
     function closeWeek() {
       document.getElementById("weekModal").style.display = "none";
@@ -1221,6 +1226,11 @@
           if (!r.ok) { card.querySelector(".apb").innerHTML = `<span style='color:#dc2626;font-size:12px;'>${esc(d.message || "Failed — try the Submit button on the week page.")}</span>`; return; }
           card.querySelector(".apb").innerHTML = "<span style='color:#15803d;font-weight:700;'>✓ Recorded</span>";
           addAiMsg("bot", `Done — Week ${p.week} is submitted. You can edit it any time from the week page.`);
+          if (Number(p.week) === 9) {
+            const dl = document.createElement("button"); dl.className = "ap-yes"; dl.style.marginTop = "8px"; dl.textContent = "⬇ Download my idea (PDF)";
+            dl.onclick = () => downloadIdeaPdf(p.review);
+            card.appendChild(dl);
+          }
           await loadMySubs(); loadBoard();
         } catch (e) {
           card.querySelector(".apb").innerHTML = "<span style='color:#dc2626;font-size:12px;'>Network error — try again.</span>";
@@ -1229,6 +1239,63 @@
       card.querySelector(".ap-no").onclick = () => {
         card.querySelector(".apb").innerHTML = "<span style='color:#999;font-size:12px;'>Okay — keep talking and ask me to submit when you are ready.</span>";
       };
+    }
+
+    // ── W9 · download my idea as a one-page PDF (2026-10-28 사부님 「한페이지 pdf 로 다운받게」 · 「일단 W9에만」) ──
+    // The browser draws the page and the student chooses "Save as PDF" — so any language prints correctly. No name, no ID on the page.
+    function downloadIdeaPdf(review) {
+      const text = String(review || "").trim();
+      if (!text) return;
+      const parts = text.split(/\n?-{2,}\s*English\s*-{2,}\n?/i);
+      const parse = (t) => {
+        const o = { title: "", boxes: [], notes: [] };
+        String(t || "").split("\n").map(x => x.trim()).filter(Boolean).forEach(line => {
+          if (/^\d+\.\s*your mschf/i.test(line)) return;
+          const m = line.match(/^([^:：]{1,40})[:：]\s*(.+)$/);
+          if (m && /^(name|이름)$/i.test(m[1].trim())) { o.title = m[2]; return; }
+          if (m) { o.boxes.push([m[1].trim(), m[2].trim()]); return; }
+          o.notes.push(line.replace(/^\d+\.\s*/, ""));
+        });
+        return o;
+      };
+      const main = parse(parts[0]), eng = parts[1] ? parse(parts[1]) : null;
+      const box = (n, k, v) => `<div class="b"><div class="k"><span>${n}</span>${esc(k)}</div><div class="v">${esc(v)}</div></div>`;
+      const boxes = main.boxes.map((b, i) => box(i + 1, b[0], b[1])).join("");
+      const notes = main.notes.map(n => `<p class="n">${esc(n)}</p>`).join("");
+      const engHtml = eng ? `<div class="en"><div class="et">English</div>${eng.title ? `<p class="n"><b>${esc(eng.title)}</b></p>` : ""}${eng.boxes.map(b => `<p class="n"><b>${esc(b[0])}:</b> ${esc(b[1])}</p>`).join("")}${eng.notes.map(n => `<p class="n">${esc(n)}</p>`).join("")}</div>` : "";
+      const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>My MSCHF idea</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, 'Noto Sans', sans-serif; color: #000; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .page { width: 210mm; min-height: 297mm; max-height: 297mm; padding: 14mm 15mm 10mm; display: flex; flex-direction: column; overflow: hidden; margin: 0 auto; }
+        .eb { font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase; font-weight: 800; }
+        h1 { font-size: 30pt; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin: 4mm 0 3mm; word-break: break-word; }
+        .band { height: 4mm; margin: 2mm 0 6mm; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><rect width='12' height='12' fill='%23fff'/><path d='M-3,3 L3,-3 M0,12 L12,0 M9,15 L15,9' stroke='%23000' stroke-width='3.2'/></svg>"); }
+        .b { border: 2.2px solid #000; margin-bottom: 4mm; }
+        .b .k { background: #000; color: #fff; font-size: 9.5pt; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 1.6mm 3.5mm; }
+        .b .k span { display: inline-block; margin-right: 3mm; background: #fff; color: #000; padding: 0 2mm; }
+        .b .v { font-size: 12.5pt; line-height: 1.4; padding: 3.5mm 4mm 4mm; white-space: pre-wrap; word-break: break-word; }
+        .n { font-size: 10.5pt; line-height: 1.4; margin-bottom: 2mm; }
+        .en { margin-top: 2mm; border-top: 1.5px solid #000; padding-top: 3mm; } .en .et { font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; margin-bottom: 1.5mm; } .en .n { font-size: 9pt; }
+        .ft { margin-top: auto; padding-top: 4mm; font-size: 8pt; color: #555; display: flex; justify-content: space-between; }
+        .bar { position: fixed; top: 0; left: 0; right: 0; background: #000; color: #fff; padding: 10px 14px; font: 600 14px Helvetica, Arial, sans-serif; text-align: center; }
+        .bar button { margin-left: 10px; background: #fff; color: #000; border: 0; padding: 6px 14px; font-weight: 800; border-radius: 99px; cursor: pointer; }
+        @media screen { body { background: #ddd; padding-top: 46px; } .page { background: #fff; margin: 12px auto; box-shadow: 0 2px 10px rgba(0,0,0,.25); } }
+        @media print { .bar { display: none; } .page { margin: 0; } }
+      </style></head><body>
+        <div class="bar">Choose “Save as PDF” in the print window. <button onclick="window.print()">Save as PDF</button></div>
+        <div class="page">
+          <div class="eb">Automation in AI · Week 9 · MSCHF idea</div>
+          <h1>${esc(main.title || "My idea")}</h1>
+          <div class="band"></div>
+          ${boxes}${notes}${engHtml}
+          <div class="ft"><span>SMIT E-BUSINESS · AI-based BPA</span><span>Oct 28, 2026 · One page</span></div>
+        </div>
+        <script>setTimeout(function(){ try { window.print(); } catch (e) {} }, 500);<\/script>
+      </body></html>`;
+      const w = window.open("", "_blank");
+      if (!w) { toast("Allow pop-ups for this site, then press the button again.", "#dc2626"); return; }
+      w.document.open(); w.document.write(html); w.document.close();
     }
   </script>
 </body>
