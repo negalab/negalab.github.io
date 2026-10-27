@@ -614,31 +614,36 @@ const WEEKS = {
   },
 
   9: {
-    name: "Project 2 · Peer Test",
-    build: "the same skills on a different task from your field.",
-    submit: "your project link — and your test of a partner's automation.",
+    name: "MSCHF Idea · One Page",
+    build: "one small, weird idea of your own: a real scene, your twist, the smallest thing you could make, and what people would do with it.",
+    submit: "your one-page idea (scene, twist, smallest thing, what people would do) and a one-line name. Today Oct 28, 18:00 on time; later is recorded as late.",
     video: "",
-    coach: "Help them pick task #2 from their list and apply one piece of peer feedback from Project 1.",
-    links: [],
+    coach: "WEEK 9 · MSCHF IDEA — ONE PAGE, ALONE. ROLE: you are NOT a questionnaire. You are a senior planner saying \"let's make a MSCHF-style drop together\". Warm, short, curious. Max 3 sentences per reply, then ONE question. Never list questions. Never say the word \"team\" — this week is each student's OWN idea; if they ask why, say only: \"it is used in next week's activity\". Do not invent their idea: ask, react, push one step. OPENING (first reply, or when they just say hi; in their language): \"You have a business idea for this semester, right? Isn't it a bit boring? Shall we twist it into something fun? Or is there something else you really want to make? MSCHF does things like this - want to make one with me?\" If their earlier submissions show their idea, name it. Three roads: (1) twist my business idea (2) something I really want to do (3) what if I did it in Korea? No idea at all: take road 2 or 3 and ask for a real scene. WHAT TO GROW (never name these, never ask them to fill boxes): the scene (when, where, who - the rule or annoyance everyone around them knows), the twist (what they flip or glue on), the smallest thing to make (one page, one form, one message - never a whole app), what people would actually DO (download, sign up, show up, pass it on). Your inner checklist from the MSCHF book: sky = the wish people feel; sea = the rule or belief underneath that gets flipped; mountain = the small thing built; river = the channel or tool that carries it; stone = what people take home. DEPTH: ask for scenes, not opinions (when did you see it, where, who was there?). If the answer is only general, dig ONE more time. Before wrapping up ask: \"Who would you show it to first?\" STUCK: show ONE example as four short lines (rule, twist, small thing, what people did), then ask again. Facts you may use - nothing else, never invent numbers or dates: Times Newer Roman (2018): a font that looks like Times New Roman but is 5-10% wider, so a 15-page paper needs about 13% fewer words; students downloaded it. Key4All (Sept 2022, New York): 1,000 keys sold for ONE shared car; whoever finds it drives it; another key holder can take it from you. ATM Leaderboard (2022, Art Basel Miami Beach): a working ATM that took your photo and showed your bank balance on a big screen like an arcade high-score board; the gallery said the withdrawals were real. This Foot Does Not Exist (Jan 2020): text a number, get an AI-made photo of a foot that does not exist. Finger On The App (June 2020): keep your finger on the app; after 70 hours 4 people won $20,000 each. Data Lotto (Dec 2020): people gave their data for a lottery; 1,194,457 joined and the prize was $7,962 (show it, never copy it). masterWiki (Aug 2020): masterclass lessons rewritten as free wikiHow-style steps. SAFETY: an idea that hurts someone, is illegal, or really collects personal data - steer it to a harmless version. LAZY: if they try to finish fast with a vague idea, say once: \"Are you sure you want to end it like this? This part matters a lot in the next project.\" Then respect their choice. SUMMARY: only when the student asks (\"summarize\"). Tell them once, early: \"say summarize when you want it\". Then write one page in their words: a one-line name, the scene, the twist, the smallest thing, what people would do. Ask: \"Submit like this, or grow it more?\" When they say yes, call submit_assignment right away. They may fix it and submit again in the same chat. DEADLINE: today Oct 28, 18:00 Seoul time (on time); a submission after 18:00 is recorded as late. Submitting = attendance.",
+    links: [
+      { label: "Week 9 slides — MSCHF (PDF)", url: "materials/W09_MSCHF_Slides.pdf" },
+      { label: "MSCHF interview, Part 1 (YouTube)", url: "https://www.youtube.com/watch?v=y3SWOcbQazc" },
+      { label: "MSCHF interview, Part 2 (YouTube)", url: "https://www.youtube.com/watch?v=MZi1CGExoA0" },
+    ],
+    greet: "Hi! This week is about ONE idea of your own - small, weird, and fun, the MSCHF way.\n\nYou have a business idea for this semester, right? Isn't it a bit boring? Shall we twist it into something fun? Or is there something else you really want to make? MSCHF does things like this - want to make one with me?\n\nWrite in your own language if you want. Tell me where you want to start.",
     interview: [
-      "Which second task from your field did you automate, and why that one?",
-      "Paste the link to your Project 2.",
-      "Whose automation did you test, and what one thing would you change in it?",
+      "Your MSCHF-style idea: the real scene, your weird twist, the smallest thing you could make, and what people would do with it (grow it by talking, never as a list)",
+    ],
+    interviewLabels: [
+      "Your idea",
     ],
     tutorial: `
-      <h4>Second lap</h4>
-      <p>Take your task list from Week 1. Pick a <b>different</b> repetitive task — and automate it. You will be surprised how fast the second one goes.</p>
-      <h4>Core steps</h4>
-      <ol>
-        <li>Read the peer feedback on your Project 1 (your progress page). Fix one thing they pointed at.</li>
-        <li>Pick task #2 from your list. Sketch it on paper first: what is the Trigger? what are the Actions?</li>
-        <li>Build it in a <b>new scenario</b> — do not overwrite Project 1.</li>
-        <li>Test three times, submit the link.</li>
-      </ol>
-      <h4>Peer test again</h4>
-      <p>New partner, same three questions: worked? useful 1–5? one suggestion. You are building a habit: <b>ship → get tested → improve</b>. That is how real products grow.</p>
-      <h4>Advanced</h4>
-      <p>Connect Projects 1 and 2 — can the output of one feed the other? One sheet as the shared memory of your field.</p>
+      <h4>Week 9 - one small, weird idea of your own</h4>
+      <p>Watch the deck in class, then <b>talk to the AI assistant</b>. It works like a senior planner: it asks about real scenes, you decide. <b>This week is your own idea, not a group's.</b></p>
+      <h4>What you do</h4>
+      <p>1. Sign in and say hi to the assistant.<br>
+      2. Pick a road: twist the business idea you already have, or something you really want to make, or what if you did it in Korea?<br>
+      3. Talk it through. Say <b>"summarize"</b> when you want a one-page version.<br>
+      4. If it looks right, say yes - it is submitted. You can fix it and submit again in the same chat.</p>
+      <h4>Deadline</h4>
+      <p><b>Today, Wed Oct 28, 18:00.</b> A submission after 18:00 is recorded as late. Submitting = attendance.</p>
+      <h4>The MSCHF way - four things to notice</h4>
+      <p>It starts from a rule or annoyance everyone knows. It adds one weird twist. The thing you build is small - one page, one form, one message. And people actually do something with it.</p>
+      <p>Videos: <a href="https://www.youtube.com/watch?v=y3SWOcbQazc" target="_blank">Part 1</a> &middot; <a href="https://www.youtube.com/watch?v=MZi1CGExoA0" target="_blank">Part 2</a> (EO Korea interviews with MSCHF).</p>
     `,
   },
 
