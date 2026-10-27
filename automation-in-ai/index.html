@@ -1258,26 +1258,34 @@
         });
         return o;
       };
-      const main = parse(parts[0]), eng = parts[1] ? parse(parts[1]) : null;
+      // The assistant writes the student's own language first and English under it.
+      // On the page: English on top (everyone can read it), the student's own language at the bottom.
+      const own = parse(parts[0]), eng = parts[1] ? parse(parts[1]) : null;
+      const main = eng || own, bottom = eng ? own : null;
       const box = (n, k, v) => `<div class="b"><div class="k"><span>${n}</span>${esc(k)}</div><div class="v">${esc(v)}</div></div>`;
       const boxes = main.boxes.map((b, i) => box(i + 1, b[0], b[1])).join("");
       const notes = main.notes.map(n => `<p class="n">${esc(n)}</p>`).join("");
-      const engHtml = eng ? `<div class="en"><div class="et">English</div>${eng.title ? `<p class="n"><b>${esc(eng.title)}</b></p>` : ""}${eng.boxes.map(b => `<p class="n"><b>${esc(b[0])}:</b> ${esc(b[1])}</p>`).join("")}${eng.notes.map(n => `<p class="n">${esc(n)}</p>`).join("")}</div>` : "";
+      const ownHtml = bottom ? `<div class="en"><div class="et">In my own language</div>${bottom.title ? `<p class="n"><b>${esc(bottom.title)}</b></p>` : ""}${bottom.boxes.map(b => `<p class="n"><b>${esc(b[0])}:</b> ${esc(b[1])}</p>`).join("")}${bottom.notes.map(n => `<p class="n">${esc(n)}</p>`).join("")}</div>` : "";
+      const who = (typeof me !== "undefined" && me) ? me : {};
+      const avatar = who.id ? new URL("avatars/" + encodeURIComponent(who.id) + ".png", location.href).href : "";
       const html = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>My MSCHF idea</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>
         @page { size: A4; margin: 0; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Helvetica Neue', Helvetica, Arial, 'Noto Sans', sans-serif; color: #000; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        .page { width: 210mm; min-height: 297mm; max-height: 297mm; padding: 14mm 15mm 10mm; display: flex; flex-direction: column; overflow: hidden; margin: 0 auto; }
+        .page { width: 210mm; min-height: 297mm; max-height: 297mm; padding: 13mm 15mm 9mm; display: flex; flex-direction: column; overflow: hidden; margin: 0 auto; }
+        .top { display: flex; justify-content: space-between; align-items: center; gap: 6mm; }
         .eb { font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase; font-weight: 800; }
-        h1 { font-size: 30pt; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin: 4mm 0 3mm; word-break: break-word; }
-        .band { height: 4mm; margin: 2mm 0 6mm; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><rect width='12' height='12' fill='%23fff'/><path d='M-3,3 L3,-3 M0,12 L12,0 M9,15 L15,9' stroke='%23000' stroke-width='3.2'/></svg>"); }
-        .b { border: 2.2px solid #000; margin-bottom: 4mm; }
-        .b .k { background: #000; color: #fff; font-size: 9.5pt; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 1.6mm 3.5mm; }
+        .who { font-size: 13pt; font-weight: 800; margin-top: 1.5mm; }
+        .av { width: 26mm; height: 26mm; object-fit: cover; border: 2px solid #000; border-radius: 4mm; flex-shrink: 0; background: #f5f1e8; }
+        h1 { font-size: 28pt; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin: 4mm 0 3mm; word-break: break-word; }
+        .band { height: 4mm; margin: 2mm 0 5mm; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><rect width='12' height='12' fill='%23fff'/><path d='M-3,3 L3,-3 M0,12 L12,0 M9,15 L15,9' stroke='%23000' stroke-width='3.2'/></svg>"); }
+        .b { border: 2.2px solid #000; margin-bottom: 3.5mm; }
+        .b .k { background: #000; color: #fff; font-size: 9.5pt; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 1.5mm 3.5mm; }
         .b .k span { display: inline-block; margin-right: 3mm; background: #fff; color: #000; padding: 0 2mm; }
-        .b .v { font-size: 12.5pt; line-height: 1.4; padding: 3.5mm 4mm 4mm; white-space: pre-wrap; word-break: break-word; }
+        .b .v { font-size: 12pt; line-height: 1.38; padding: 3mm 4mm 3.5mm; white-space: pre-wrap; word-break: break-word; }
         .n { font-size: 10.5pt; line-height: 1.4; margin-bottom: 2mm; }
-        .en { margin-top: 2mm; border-top: 1.5px solid #000; padding-top: 3mm; } .en .et { font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; margin-bottom: 1.5mm; } .en .n { font-size: 9pt; }
-        .ft { margin-top: auto; padding-top: 4mm; font-size: 8pt; color: #555; display: flex; justify-content: space-between; }
+        .en { margin-top: 1mm; border-top: 1.5px solid #000; padding-top: 3mm; } .en .et { font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; margin-bottom: 1.5mm; } .en .n { font-size: 9.5pt; margin-bottom: 1.2mm; }
+        .ft { margin-top: auto; padding-top: 3mm; font-size: 8pt; color: #555; display: flex; justify-content: space-between; }
         .bar { position: fixed; top: 0; left: 0; right: 0; background: #000; color: #fff; padding: 10px 14px; font: 600 14px Helvetica, Arial, sans-serif; text-align: center; }
         .bar button { margin-left: 10px; background: #fff; color: #000; border: 0; padding: 6px 14px; font-weight: 800; border-radius: 99px; cursor: pointer; }
         @media screen { body { background: #ddd; padding-top: 46px; } .page { background: #fff; margin: 12px auto; box-shadow: 0 2px 10px rgba(0,0,0,.25); } }
@@ -1285,13 +1293,13 @@
       </style></head><body>
         <div class="bar">Choose “Save as PDF” in the print window. <button onclick="window.print()">Save as PDF</button></div>
         <div class="page">
-          <div class="eb">Automation in AI · Week 9 · MSCHF idea</div>
+          <div class="top"><div><div class="eb">Automation in AI · Week 9 · MSCHF idea</div><div class="who">${esc(who.name || "")}</div></div>${avatar ? `<img class="av" src="${esc(avatar)}" alt="" onerror="this.style.display='none'">` : ""}</div>
           <h1>${esc(main.title || "My idea")}</h1>
           <div class="band"></div>
-          ${boxes}${notes}${engHtml}
+          ${boxes}${notes}${ownHtml}
           <div class="ft"><span>SMIT E-BUSINESS · AI-based BPA</span><span>Oct 28, 2026 · One page</span></div>
         </div>
-        <script>setTimeout(function(){ try { window.print(); } catch (e) {} }, 500);<\/script>
+        <script>window.addEventListener("load", function(){ setTimeout(function(){ try { window.print(); } catch (e) {} }, 400); });<\/script>
       </body></html>`;
       const w = window.open("", "_blank");
       if (!w) { toast("Allow pop-ups for this site, then press the button again.", "#dc2626"); return; }
