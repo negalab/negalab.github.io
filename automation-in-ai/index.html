@@ -625,6 +625,7 @@
       <button class="modal-close" onclick="document.getElementById('submitModal').style.display='none'">×</button>
       <h3>Submit — <span id="smWeek">Week 1</span></h3>
       <p class="sub" id="smWhat"></p>
+      <p class="sub" id="smLate" style="display:none;font-size:12px;color:#888;">Supervised Submission. Submitted after the deadline = late, but it still counts as attended.</p>
       <label>Week</label>
       <select id="smWeekSel"></select>
       <!-- 2026-09-16 작가 「제출 형식이 안맞는다」 — 칸은 그 주차 인터뷰 물음 수만큼 syncSubmitLabels 가 만든다 -->
@@ -657,6 +658,10 @@
       <button class="btn-primary" id="wmAiBtn" style="margin-bottom:10px;display:none;">✳ Submit — talk to the AI assistant</button>
       <div id="wmAiNote" style="display:none;font-size:12.5px;color:#888;margin-bottom:18px;line-height:1.6;">
         It interviews you and writes the submission for you. <b style="color:#ddd;">Write in your own language.</b>
+      </div>
+      <div id="wmFormWrap" style="display:none;margin-bottom:18px;">
+        <button class="btn-primary" id="wmFormBtn" style="background:transparent;color:#ddd;border:1.5px solid #888;margin-bottom:6px;">Supervised Submission — open now</button>
+        <div style="font-size:12px;color:#888;line-height:1.5;">The professor opened this window. Submitted after the deadline = late, but it still counts as attended.</div>
       </div>
       <button class="btn-primary" id="wmSubmitBtn" style="margin-bottom:22px;">Submit this week ✓</button>
       <div id="wmLinks" class="week-links" style="margin-top:18px;"></div>
@@ -783,6 +788,23 @@
     function lockedWeek(w) {
       toast(`Week ${w} opens ${weekOpenLabel(w)} — the day before that class.`, "#b45309");
     }
+    // Supervised Submission — 사부님 2026-10-28: 교수가 연 시간에만, 교수 입회 아래 지난 주차를 양식으로 낸다. 열림 여부는 서버가 안다(SUPERVISED_OPEN).
+    let FORM_MODE = false, SUPERVISED = { open: false };
+    async function loadSupervised() {
+      try { const r = await fetch(`${API}/supervised`); const d = await r.json(); SUPERVISED = { open: !!d.open, to: d.to }; }
+      catch (e) { SUPERVISED = { open: false }; }
+      refreshFormBtn();
+    }
+    function formEligible(w) { return !!me && !noSubmitWeek(w) && !MY_SUBS[w] && SUPERVISED.open; }
+    function refreshFormBtn() {
+      const w = WEEK_OPEN, modal = document.getElementById("weekModal");
+      const fw = document.getElementById("wmFormWrap");
+      if (!fw || !modal || modal.style.display === "none" || !w) return;
+      const show = formEligible(w);
+      fw.style.display = show ? "" : "none";
+      if (show) document.getElementById("wmFormBtn").onclick = () => { closeWeek(); openSubmit(w, true); };
+    }
+    setInterval(() => { if (me) loadSupervised(); }, 60000);
     function openWeek(w) {
       const info = WEEKS[w]; if (!info) return;
       if (!weekIsOpen(w)) { lockedWeek(w); return; }
@@ -815,6 +837,8 @@
         btn.onclick = () => { closeWeek(); openSubmit(w); };
       }
       WEEK_OPEN = w;   // 「Or type it myself」 가 어느 주차인지 알아야 한다
+      document.getElementById("wmFormWrap").style.display = "none";
+      loadSupervised();   // 열려 있으면 단추가 뜬다
       // 그 주차 자료(슬라이드·종이 PDF). 수업이 끝나면 캠프가 여기에 올린다.
       const wl = document.getElementById("wmLinks");
       wl.innerHTML = (info.links || []).map(l =>
@@ -904,8 +928,9 @@
     }
 
     // ── Submit ──
-    function openSubmit(weekArg) {
+    function openSubmit(weekArg, form) {
       if (!me) { openLogin(); return; }
+      FORM_MODE = !!form;
       const w = weekArg || currentWeek();
       const cw = currentWeek();
       if (noSubmitWeek(w)) { toast(`Week ${w} has no assignment — nothing to submit.`, "#b45309"); return; }
@@ -913,6 +938,7 @@
       sel.innerHTML = "";
       for (let i = 1; i <= 15; i++) {
         if (noSubmitWeek(i)) continue;   // 제출이 없는 주차는 고를 수 없다
+        if (FORM_MODE && i !== w && !formEligible(i)) continue;   // 양식은 아직 안 낸 주차만
         const o = document.createElement("option");
         o.value = i; o.textContent = `Week ${i}` + (i === cw ? " (this week)" : "");
         if (i === w) o.selected = true;
@@ -921,6 +947,7 @@
       sel.onchange = () => syncSubmitLabels(parseInt(sel.value, 10));
       syncSubmitLabels(w);
       document.getElementById("smError").textContent = "";
+      document.getElementById("smLate").style.display = FORM_MODE ? "" : "none";
       document.getElementById("submitModal").style.display = "flex";
     }
     function syncSubmitLabels(w) {
@@ -935,7 +962,7 @@
         const labels = info.interviewLabels || qs;
         qs.forEach((q, i) => {
           const lb = document.createElement("label"); lb.textContent = `${i + 1}. ${labels[i] || q}`;
-          const ta = document.createElement("textarea"); ta.id = "smQ" + i; ta.maxLength = 700; ta.rows = 2;
+          const ta = document.createElement("textarea"); ta.id = "smQ" + i; ta.maxLength = FORM_MODE ? 1500 : 700; ta.rows = FORM_MODE ? 5 : 2;
           box.appendChild(lb); box.appendChild(ta);
         });
       } else {
@@ -963,9 +990,10 @@
         link = document.getElementById("smLink").value.trim();
         if (!review && !link) { err.textContent = "Write one line about what you built."; return; }
       }
+      if (FORM_MODE) review = "[Supervised]\n" + review;   // 현황판에서 대화 제출과 구별 — 서버는 칸에 적은 글만 받는다
       btn.disabled = true; btn.textContent = "Submitting…";
       try {
-        const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link }) });
+        const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link, supervised: FORM_MODE || undefined }) });
         const d = await r.json();
         btn.disabled = false; btn.textContent = "Submit ✓";
         if (!r.ok) { err.textContent = d.message || d.error || "Submit failed."; return; }
@@ -1250,7 +1278,7 @@
       const parse = (t) => {
         const o = { title: "", boxes: [], notes: [] };
         String(t || "").split("\n").map(x => x.trim()).filter(Boolean).forEach(line => {
-          if (/^\d+\.\s*your mschf/i.test(line)) return;
+          if (/^\d+\.\s*your mschf/i.test(line) || /^\[(supervised|via form)\]$/i.test(line) || /^\d+\.\s*your idea$/i.test(line)) return;
           const m = line.match(/^([^:：]{1,40})[:：]\s*(.+)$/);
           if (m && /^(name|이름)$/i.test(m[1].trim())) { o.title = m[2]; return; }
           if (m) { o.boxes.push([m[1].trim(), m[2].trim()]); return; }
