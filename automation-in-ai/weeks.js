@@ -650,40 +650,42 @@ const WEEKS = {
   },
 
   10: {
-    name: "Rule ○ or AI ★ · Your Automation Flow",
-    build: "the automation part of your own business as a flowchart: one card per step, each marked rule (○) or AI (★), with the ★ pushed down as far as you can.",
-    submit: "your flow: 3-8 steps, each with what happens, its input and output, and a ○ or ★ mark, plus how you turned ★ into ○. Today Nov 4, 18:00 on time; later is recorded as late.",
+    name: "Make Scenario Plan · Rule ○ or AI ★",
+    build: "two parts: (A) your one-page MSCHF-style idea from week 9 — new, or revised — and (B) a Make scenario plan for your own business: one card per module, each marked rule (○) or AI (★), with ★ pushed down.",
+    submit: "(A) your one-page idea (new if you have none, or a better version) + (B) your Make scenario plan: 3-8 modules, each with what happens, input, output, a ○ or ★ mark, and how you turned ★ into ○. Both go on the wall next week. Today Nov 4, 18:00 on time; later is recorded as late.",
     video: "",
-    coach: "WEEK 10 · RULE OR AI — YOUR AUTOMATION FLOW. ROLE: a senior automation planner. Warm, short. Max 3 sentences per reply, then ONE question. Never list questions. Do not invent their business: ask, react, push one step. START: if their earlier submissions show their week-9 idea or business, name it and ask: \"Shall we draw the automation part of this?\" If they have none, ask for one real job in their business that repeats every day. GOAL: a flowchart of 3-8 steps from trigger to end. For each step, grow by talking: what happens, what goes in, what comes out. Then ask them to mark each step: circle (rule: same input gives same output - if/then, list, timer, date, counter, lookup) or star (AI: reads, judges, or writes something new each time; costs money every call; sometimes wrong). Let THEM decide the mark first, then gently test it: \"Could a list, a button, or a number do this instead?\" FOUR WAYS TO TURN STAR INTO CIRCLE: make a list (write 30 answers once, pick); ask a choice, not a sentence (buttons, not free text); use a number (3 stars or less instead of 'sounds angry'); use AI once and keep the result (write it with AI today, reuse it as a rule). IF A STAR MUST STAY: one place only, a small model, and a rule that checks the answer before it goes out. Never push them to zero by force - a star that truly needs judgement is fine if they can say why. Tell them once, early: \"say summarize when you want it\". SUMMARY (only when asked): a table - step number, what happens, input, output, mark (○ or ★), and for each ★ either how it became ○ or why it stays. Then one line: total ○ and ★. Ask: \"Submit like this, or improve it more?\" When they say yes, call submit_assignment right away. They may fix it and submit again. Never say the word team as a task this week; if asked, say teams come later. DEADLINE: today Nov 4, 18:00 Seoul time (on time); after 18:00 is late. Submitting = attendance. Also remind once: if their week-9 one-page idea is not submitted yet, they can submit it on the week 9 page.",
+    coach: "WEEK 10 · RULE OR AI — YOUR AUTOMATION FLOW. ROLE: a senior automation planner. Warm, short. Max 3 sentences per reply, then ONE question. Never list questions. Do not invent their business: ask, react, push one step. START — PART A FIRST: check their earlier submissions. If there is NO week-9 one-page idea, say clearly: \"You still need your one-page idea from week 9. We do it first, here, today — it will be printed and shown on the wall next week, so let's make it good.\" Then grow it like week 9: the scene, the twist, the smallest thing to make, what people would do, and a one-line name. If they HAVE one, show its name and ask: \"This goes on the wall next week. Keep it, or improve it first?\" Revising is welcome. Then PART B. PART B GOAL: a Make scenario plan of 3-8 modules from trigger to end (a module = one dot = one step). For each step, grow by talking: what happens, what goes in, what comes out. Then ask them to mark each step: circle (rule: same input gives same output - if/then, list, timer, date, counter, lookup) or star (AI: reads, judges, or writes something new each time; costs money every call; sometimes wrong). Let THEM decide the mark first, then gently test it: \"Could a list, a button, or a number do this instead?\" FOUR WAYS TO TURN STAR INTO CIRCLE: make a list (write 30 answers once, pick); ask a choice, not a sentence (buttons, not free text); use a number (3 stars or less instead of 'sounds angry'); use AI once and keep the result (write it with AI today, reuse it as a rule). IF A STAR MUST STAY: one place only, a small model, and a rule that checks the answer before it goes out. Never push them to zero by force - a star that truly needs judgement is fine if they can say why. Tell them once, early: \"say summarize when you want it\". SUMMARY (only when asked): first PART A as one page (name, scene, twist, smallest thing, what people would do), then PART B as a table - step number, what happens, input, output, mark (○ or ★), and for each ★ either how it became ○ or why it stays. Then one line: total ○ and ★. Ask: \"Submit like this, or improve it more?\" When they say yes, call submit_assignment right away. They may fix it and submit again. Teams are NOT this week; if asked, say teams form next week at the wall. DEADLINE: today Nov 4, 18:00 Seoul time (on time); after 18:00 is late. Submitting = attendance. Remind once: both parts will be printed and shown on the wall next week (week 11), where classmates give feedback and teams form — so take care.",
     links: [
       { label: "Week 10 slides — Make + Rule ○ or AI ★ (PDF)", url: "materials/W10_Rule_or_AI_Slides.pdf" },
     ],
-    greet: "Hi! This week we take the dots from Make into YOUR business.\n\nPick the automation part of your business - or one job that repeats every day. We'll draw it as steps, then mark each step: ○ rule (free, always right) or ★ AI (costs money every call). Then we try to push the ★ down.\n\nWrite in your own language if you want. What is your business, or which job shall we start with?",
+    greet: "Hi! Two parts today.\n\n(A) Your one-page idea from week 9. Not done yet? We do it first, right here. Done already? You may improve it. It will be printed and shown on the wall next week, so take care.\n\n(B) A Make scenario plan for your own business: each module marked ○ rule (free, always right) or ★ AI (costs money every call). Then we push the ★ down.\n\nWrite in your own language if you want. Shall we start with your one-page idea?",
     interview: [
-      "Your automation flow: 3-8 steps, each with what happens, input, output, and a ○ rule / ★ AI mark - and how you pushed ★ down (grow it by talking)",
+      "(A) Your one-page idea — new or revised — and (B) your Make scenario plan: 3-8 modules, each with what happens, input, output, a ○ / ★ mark, and how you pushed ★ down (grow it by talking)",
     ],
     interviewLabels: [
-      "Your flow",
+      "Idea + Make plan",
     ],
     tutorial: `
-      <h4>Week 10 - rule ○ or AI ★</h4>
-      <p>In class we review Make, then take its dots into <b>your own business</b>. Every step gets one mark: <b>○ rule</b> or <b>★ AI</b>.</p>
+      <h4>Week 10 - Make, then your own scenario plan</h4>
+      <p>In class we go through Make, then take its dots into <b>your own business</b>. Every module gets one mark: <b>○ rule</b> or <b>★ AI</b>.</p>
+      <h4>Two parts to submit today</h4>
+      <p><b>(A) Your one-page idea from week 9.</b> <b>Not submitted yet? You must do it today</b> — the assistant does it with you first. Already done? You may improve it.<br>
+      <b>(B) Your Make scenario plan.</b> 3-8 modules from trigger to end. One card per module: what happens, input, output, and ○ or ★. Then push ★ down.</p>
+      <p><b>Both will be printed and shown on the wall next week.</b> Classmates will read them, give feedback, and teams will form there. Take care.</p>
       <h4>Two kinds of dots</h4>
-      <p><b>○ Rule</b> — same input, same output, every time: if/then, a list, a timer, a date, a counter. <b>$0, always right, you can see inside.</b><br>
+      <p><b>○ Rule</b> — same input, same output: if/then, a list, a timer, a date, a counter. <b>$0, always right, you can see inside.</b><br>
       <b>★ AI</b> — reads, judges, or writes something new each time. <b>Costs money every call, sometimes wrong, a black box.</b></p>
       <h4>Four ways to turn ★ into ○</h4>
       <p>1. Make a list &nbsp; 2. Ask a choice, not a sentence &nbsp; 3. Use a number &nbsp; 4. Use AI once, keep the result</p>
       <h4>What you do</h4>
       <p>1. Sign in and say hi to the assistant.<br>
-      2. Draw your flow: 3-8 steps from start to end. One card per step: what happens, input, output.<br>
-      3. Mark each card ○ or ★, then push ★ down.<br>
-      4. Say <b>"summarize"</b>, check the table, say yes - it is submitted.</p>
-      <h4>The wall</h4>
-      <p>Your week-9 one-page ideas are on the wall. Scan the QR on each, write your name and <b>"I like this idea because…"</b> Give at least 5. No one-page yet? Submit it on the week 9 page - it goes on the wall next week.</p>
+      2. Part A with the assistant (new or revised one-page).<br>
+      3. Part B: your modules, ○ or ★, push ★ down.<br>
+      4. Say <b>"summarize"</b>, check both parts, say yes - it is submitted.</p>
       <h4>Deadline</h4>
       <p><b>Today, Wed Nov 4, 18:00.</b> After 18:00 is recorded as late. Submitting = attendance.</p>
       <h4>Where this goes</h4>
-      <p>W11 your ○/★ flow table goes on the wall · W12-13 build your service in Make, then teams · W14 super app pitch (leader: the super app, every member: own service) · W15 review everything with AI and submit.</p>
+      <p>W11 the wall: your idea + plan, feedback, teams · W12-13 build your service in Make · W14 super app pitch (leader: the super app, every member: own service) · W15 review everything with AI and submit.</p>
     `,
   },
 
