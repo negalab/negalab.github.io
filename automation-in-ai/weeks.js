@@ -692,11 +692,11 @@ const WEEKS = {
   },
 
   11: {
-    name: "The Wall · Feedback · Teams",
-    build: "feedback on at least 5 classmates' one-page ideas and Make plans on the wall, and a team whose services fit together (no size limit).",
-    submit: "your team: team name, members, and one line on how each member's service connects to the others — plus the 5 ideas you gave feedback to. Today Nov 11, 18:00 on time; later is late.",
+    name: "The Wall · Teams · Super App Plan",
+    build: "feedback on at least 5 ideas on the wall, a team whose services fit together (no size limit), and your first super app plan.",
+    submit: "your team and super app plan: super app name + one line + who it is for, leader, members with their service and how it connects (customer moves · data moves · what breaks if removed) — plus the 5 ideas you gave feedback to. Today Nov 11, 18:00 on time; later is late.",
     video: "",
-    coach: "WEEK 11 · THE WALL AND TEAMS. ROLE: a warm team-maker. Max 3 sentences, then ONE question. Today the week-10 papers (one-page idea + Make scenario plan) are on the wall. FIRST: ask which ideas they gave feedback to and what they liked (at least 5). THEN TEAMS: help them find people whose services fit theirs. Teams have NO size limit, but every service must connect in a meaningful way - test each member with three questions: does the customer move between services? does data move (bookings, coins, reviews)? if we remove this service, what breaks? A student alone is fine: then name ONE classmate's service theirs could connect to. Help name the super app (one line: who it is for). Never invent members. SUMMARY (when asked): team name, super app one line, members with their service and how it connects, team leader, the 5 feedback ideas. Ask: submit like this? On yes, call submit_assignment. DEADLINE today Nov 11 18:00 Seoul; after is late. Submitting = attendance.",
+    coach: "WEEK 11 · THE WALL AND TEAMS. ROLE: a warm team-maker. Max 3 sentences, then ONE question. Today the week-10 papers (one-page idea + Make scenario plan) are on the wall. FIRST: ask which ideas they gave feedback to and what they liked (at least 5). THEN TEAMS: help them find people whose services fit theirs. Teams have NO size limit, but every service must connect in a meaningful way - test each member with three questions: does the customer move between services? does data move (bookings, coins, reviews)? if we remove this service, what breaks? A student alone is fine: then name ONE classmate's service theirs could connect to. SUPER APP PLAN (same day as the team): name, one line, who it is for, the leader, and a first sketch of what each service gives the others (marked ○/★). Never invent members. SUMMARY (when asked): team name, super app one line, members with their service and how it connects, team leader, the 5 feedback ideas. Ask: submit like this? On yes, call submit_assignment. DEADLINE today Nov 11 18:00 Seoul; after is late. Submitting = attendance.",
     links: [],
     greet: "Hi! Today is the wall.\n\nWalk, read, scan the QR on each paper and write \"I like this idea because…\" - at least 5. Then find people whose services fit yours. Teams have no size limit - but every service must connect in a meaningful way.\n\nWhich ideas did you like so far?",
     interview: [
@@ -704,7 +704,7 @@ const WEEKS = {
     ],
     interviewLabels: ["Team + feedback"],
     tutorial: `
-      <h4>Week 11 (Nov 11) - the wall, feedback, teams</h4>
+      <h4>Week 11 (Nov 11) - the wall, teams, super app plan</h4>
       <p>Your week-10 papers - one-page idea + Make scenario plan - are on the wall.</p>
       <h4>1. Feedback - at least 5</h4>
       <p>Walk and read. Scan the QR on a paper (open it in the browser where you are signed in to this site) and write <b>"I like this idea because…"</b>. Tick <b>team up</b> if you want to build with that person.</p>
@@ -712,26 +712,28 @@ const WEEKS = {
       <p>Find services that fit yours. Your team will join them into <b>one super app</b>. Check every member with three questions:<br>
       ① Does the customer move from one service to another? ② Does data move (bookings, coins, reviews)? ③ If we remove this service, what breaks?</p>
       <p>Alone is fine - then name one classmate's service yours could connect to.</p>
-      <h4>3. Submit with the assistant</h4>
-      <p>Team name, super app in one line, members and how each connects, the team leader, and your 5 feedback ideas. Today 18:00.</p>
+      <h4>3. Plan the super app - right away</h4>
+      <p>As soon as your team forms: super app name, one line, who it is for, the leader, and a first sketch of what each service gives the others (○ / ★).</p>
+      <h4>4. Submit with the assistant</h4>
+      <p>Super app plan + members and how each connects + your 5 feedback ideas. Every member submits. Today 18:00.</p>
       <h4>Coming</h4>
       <p>W12-13 (Nov 18, 25) build your service in Make · W14 (Dec 2) super app pitch · W15 (Dec 9) review with AI.</p>
     `,
   },
 
   12: {
-    name: "Build Your Service in Make · Part 1",
-    build: "the first working version of YOUR service in Make, following your week-10 plan: trigger first, then the ○ rule modules.",
-    submit: "a screenshot or share link of your Make scenario, which modules run, and what is still missing. Today Nov 18, 18:00 on time; later is late.",
+    name: "Build Your Service + Super App · Part 1",
+    build: "the first working version of YOUR service in Make (trigger first, then the ○ rule modules), and with your team: the super app skeleton - what data each service passes to the others.",
+    submit: "your Make scenario (link or screenshot), which modules run, what is missing - plus your team's super app skeleton: the data each service passes, marked ○ / ★. Today Nov 18, 18:00 on time; later is late.",
     video: "",
-    coach: "WEEK 12 · BUILD YOUR SERVICE IN MAKE (1/2). ROLE: a hands-on Make mentor. Max 3 sentences, then ONE question. Start from their week-10 Make plan (name it if their submissions show it). Build order: trigger module first, run once, then add the ○ rule modules one by one, running after each. For ★ steps: first try the ways to turn them into ○ (a list, a choice, a number, use AI once and keep it); if one must stay, use a small model. Help debug: ask what the module shows after Run once. Free plan limits: keep to one scenario and few runs. Remind: each member's service will be one part of the team's super app - keep inputs/outputs clear so the team can connect them. SUMMARY (when asked): scenario link or screenshot note, modules that run, ★ count, what is missing for next week. On yes, call submit_assignment. DEADLINE today Nov 18 18:00 Seoul.",
+    coach: "WEEK 12 · BUILD YOUR SERVICE IN MAKE (1/2). ROLE: a hands-on Make mentor. Max 3 sentences, then ONE question. Start from their week-10 Make plan (name it if their submissions show it). Build order: trigger module first, run once, then add the ○ rule modules one by one, running after each. For ★ steps: first try the ways to turn them into ○ (a list, a choice, a number, use AI once and keep it); if one must stay, use a small model. Help debug: ask what the module shows after Run once. Free plan limits: keep to one scenario and few runs. TEAM PART (second half of class): the super app skeleton - for each member, what their service gives out (customer, booking, coin, review…) and what it takes in from others; mark each hand-off ○ or ★. Keep inputs/outputs clear so the services can connect. SUMMARY (when asked): own scenario note, modules that run, ★ count, what is missing; then the super app skeleton table. On yes, call submit_assignment. DEADLINE today Nov 18 18:00 Seoul.",
     links: [],
     interview: [
       "Your Make scenario: link or screenshot, which modules run, how many ★, and what is still missing",
     ],
     interviewLabels: ["Make build 1"],
     tutorial: `
-      <h4>Week 12 (Nov 18) - build it, part 1</h4>
+      <h4>Week 12 (Nov 18) - your service + the super app, part 1</h4>
       <p>Open your week-10 worksheet. Build it in Make, <b>one module at a time</b>.</p>
       <ol>
         <li>Trigger first (Webhooks, Google Forms, Sheets…). <b>Run once.</b></li>
@@ -739,12 +741,13 @@ const WEEKS = {
         <li>For each ★: can a list, a choice, or a number do it? If one must stay, use a small model.</li>
         <li>Keep inputs and outputs clear - your team will connect your service to theirs.</li>
       </ol>
-      <p>Submit a link or screenshot, what runs, and what is missing. Today 18:00.</p>
+      <p><b>Second half - with your team:</b> the super app skeleton. For each service: what it gives the others and what it takes in. Mark each hand-off ○ or ★.</p>
+      <p>Submit your scenario (link or screenshot) + the skeleton. Every member submits. Today 18:00.</p>
     `,
   },
 
   13: {
-    name: "Build Part 2 · Connect the Super App",
+    name: "Finish Your Service + Connect the Super App · Part 2",
     build: "your service finished in Make, and with your team: the integration flow that connects every member's service into one super app.",
     submit: "your finished scenario (link or screenshot) + your team's integration flow: which data moves between services, marked ○ / ★. Today Nov 25, 18:00 on time; later is late.",
     video: "",
@@ -781,7 +784,7 @@ const WEEKS = {
   },
 
   15: {
-    name: "Review Everything with AI · Final Submission",
+    name: "Review Your Service + Super App with AI · Final",
     build: "one final portfolio of your semester, reviewed with the AI assistant: what changed, what is missing, what you learned.",
     submit: "your final portfolio: one-page idea, ○/★ Make plan, your Make scenario, your place in the super app, and one paragraph on what you learned. Today Dec 9 - our last class.",
     video: "",
