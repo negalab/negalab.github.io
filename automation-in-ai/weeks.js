@@ -692,161 +692,114 @@ const WEEKS = {
   },
 
   11: {
-    name: "AI Coding Day — say it, and it exists",
-    build: "one small working tool of your own, made by describing it in one sentence.",
-    submit: "your tool — link + the sentence you used.",
+    name: "The Wall · Feedback · Teams",
+    build: "feedback on at least 5 classmates' one-page ideas and Make plans on the wall, and a team whose services fit together (no size limit).",
+    submit: "your team: team name, members, and one line on how each member's service connects to the others — plus the 5 ideas you gave feedback to. Today Nov 11, 18:00 on time; later is late.",
     video: "",
-    coach: "Their tool will fail because the sentence is vague, not because the tool is broken. Push them to name three things: who uses it, what they see on screen, what happens when they press the button. Never write the sentence for them — ask the missing question instead.",
+    coach: "WEEK 11 · THE WALL AND TEAMS. ROLE: a warm team-maker. Max 3 sentences, then ONE question. Today the week-10 papers (one-page idea + Make scenario plan) are on the wall. FIRST: ask which ideas they gave feedback to and what they liked (at least 5). THEN TEAMS: help them find people whose services fit theirs. Teams have NO size limit, but every service must connect in a meaningful way - test each member with three questions: does the customer move between services? does data move (bookings, coins, reviews)? if we remove this service, what breaks? A student alone is fine: then name ONE classmate's service theirs could connect to. Help name the super app (one line: who it is for). Never invent members. SUMMARY (when asked): team name, super app one line, members with their service and how it connects, team leader, the 5 feedback ideas. Ask: submit like this? On yes, call submit_assignment. DEADLINE today Nov 11 18:00 Seoul; after is late. Submitting = attendance.",
     links: [],
+    greet: "Hi! Today is the wall.\n\nWalk, read, scan the QR on each paper and write \"I like this idea because…\" - at least 5. Then find people whose services fit yours. Teams have no size limit - but every service must connect in a meaningful way.\n\nWhich ideas did you like so far?",
     interview: [
-      "Paste the link to your tool.",
-      "Paste the exact sentence you used to describe it.",
-      "What did you have to change after the first try?",
+      "Your team: name, super app in one line, members + how each service connects, leader - and the 5 ideas you gave feedback to",
     ],
+    interviewLabels: ["Team + feedback"],
     tutorial: `
-      <h4>Today is different</h4>
-      <p>No Make. No modules. Today you tell a computer what you want <b>in one sentence</b>, and it builds it.
-      This is a whole day — the only one like it this semester.</p>
-      <h4>What coding became</h4>
-      <p>Coding is giving a computer instructions. It always was. The old way: you wrote those instructions in the computer's language, and that took years to learn.
-      The new way: you write them in <b>your language</b>. So the hard part moved — from grammar to <b>knowing what you want</b>.</p>
-      <blockquote>The clearer your picture, the better the machine builds it.</blockquote>
-      <h4>Core steps</h4>
-      <ol>
-        <li>Pick <b>one small thing</b> your field needs. Not a whole website — one tool. A price calculator. A booking form. A checklist that remembers.</li>
-        <li>Write <b>one sentence</b> that answers three questions: <b>who uses it</b>, <b>what they see</b>, <b>what happens when they press the button</b>.</li>
-        <li>Paste the sentence into Claude (or ChatGPT). Wait. Something appears — press it, use it.</li>
-        <li><b>Fix the sentence, not the tool.</b> If it came out wrong, your picture had a hole. Find the hole, write it in, run again.</li>
-        <li>Submit the working thing <i>and</i> the sentence that made it.</li>
-      </ol>
-      <h4>Vague vs clear</h4>
-      <p><b>Vague</b> — "make a useful website for my shop." Nobody knows what that is, including the AI.</p>
-      <p><b>Clear</b> — "Make a one-page site where a customer types their name and menu choice, the order appears in a list below, and when the owner clicks Done the order disappears from the list."</p>
-      <p>Not longer — <b>no empty spaces</b>. That is the difference.</p>
-      <h4>Why this belongs in an automation course</h4>
-      <p>Week 6 asked you: which step needs judgment? Today asks: what exactly do you want?
-      Both are the same muscle — <b>seeing clearly</b>. Tools change every year. That does not.</p>
-      <h4>Advanced</h4>
-      <p>Connect today's tool to your Make scenario — when someone uses it, a row appears in your sheet, and your automation takes over from there.</p>
+      <h4>Week 11 (Nov 11) - the wall, feedback, teams</h4>
+      <p>Your week-10 papers - one-page idea + Make scenario plan - are on the wall.</p>
+      <h4>1. Feedback - at least 5</h4>
+      <p>Walk and read. Scan the QR on a paper (open it in the browser where you are signed in to this site) and write <b>"I like this idea because…"</b>. Tick <b>team up</b> if you want to build with that person.</p>
+      <h4>2. Teams - no size limit, but meaningful</h4>
+      <p>Find services that fit yours. Your team will join them into <b>one super app</b>. Check every member with three questions:<br>
+      ① Does the customer move from one service to another? ② Does data move (bookings, coins, reviews)? ③ If we remove this service, what breaks?</p>
+      <p>Alone is fine - then name one classmate's service yours could connect to.</p>
+      <h4>3. Submit with the assistant</h4>
+      <p>Team name, super app in one line, members and how each connects, the team leader, and your 5 feedback ideas. Today 18:00.</p>
+      <h4>Coming</h4>
+      <p>W12-13 (Nov 18, 25) build your service in Make · W14 (Dec 2) super app pitch · W15 (Dec 9) review with AI.</p>
     `,
   },
 
   12: {
-    name: "Project 3 · Peer Test",
-    build: "a bigger automation with several steps.",
-    submit: "your project link — and your test of a partner's automation.",
+    name: "Build Your Service in Make · Part 1",
+    build: "the first working version of YOUR service in Make, following your week-10 plan: trigger first, then the ○ rule modules.",
+    submit: "a screenshot or share link of your Make scenario, which modules run, and what is still missing. Today Nov 18, 18:00 on time; later is late.",
     video: "",
-    coach: "Help them choose their most valuable flow and list its steps: trigger, router rule, and every action. Failure cases too.",
+    coach: "WEEK 12 · BUILD YOUR SERVICE IN MAKE (1/2). ROLE: a hands-on Make mentor. Max 3 sentences, then ONE question. Start from their week-10 Make plan (name it if their submissions show it). Build order: trigger module first, run once, then add the ○ rule modules one by one, running after each. For ★ steps: first try the ways to turn them into ○ (a list, a choice, a number, use AI once and keep it); if one must stay, use a small model. Help debug: ask what the module shows after Run once. Free plan limits: keep to one scenario and few runs. Remind: each member's service will be one part of the team's super app - keep inputs/outputs clear so the team can connect them. SUMMARY (when asked): scenario link or screenshot note, modules that run, ★ count, what is missing for next week. On yes, call submit_assignment. DEADLINE today Nov 18 18:00 Seoul.",
     links: [],
     interview: [
-      "Paste the link to your Project 3.",
-      "List the steps of your automation in order, one line each.",
-      "Whose automation did you test, and what broke when you tried it?",
+      "Your Make scenario: link or screenshot, which modules run, how many ★, and what is still missing",
     ],
+    interviewLabels: ["Make build 1"],
     tutorial: `
-      <h4>The full chain</h4>
-      <p>Your last practice project before the final. Use everything: form → AI → sheet + Notion + email, with a Router splitting paths. This one should look like a small product.</p>
-      <h4>Core steps</h4>
+      <h4>Week 12 (Nov 18) - build it, part 1</h4>
+      <p>Open your week-10 worksheet. Build it in Make, <b>one module at a time</b>.</p>
       <ol>
-        <li>Pick the most valuable flow in your field — the one that costs you the most time every week.</li>
-        <li>Draw it on paper first: every Trigger, every Action, every rule. (This drawing is practice for Week 13.)</li>
-        <li>Build with at least 4 modules and 1 Router or Filter.</li>
-        <li>Test the failure cases too: empty answers, wrong email, double submission.</li>
-        <li>Submit the link.</li>
+        <li>Trigger first (Webhooks, Google Forms, Sheets…). <b>Run once.</b></li>
+        <li>Add the ○ rule modules one by one. Run once after each.</li>
+        <li>For each ★: can a list, a choice, or a number do it? If one must stay, use a small model.</li>
+        <li>Keep inputs and outputs clear - your team will connect your service to theirs.</li>
       </ol>
-      <h4>Peer test — final round</h4>
-      <p>Third partner, same three questions. By now you know what good feedback looks like — give the kind you want to receive.</p>
-      <h4>Advanced</h4>
-      <p>Add a daily summary: a scheduled scenario that counts today's new rows and sends you one evening email — "today: 4 orders, 2 urgent".</p>
+      <p>Submit a link or screenshot, what runs, and what is missing. Today 18:00.</p>
     `,
   },
 
   13: {
-    name: "Design Your System",
-    build: "a one-page plan: every automation your field needs.",
-    submit: "your design proposal — link + one line.",
+    name: "Build Part 2 · Connect the Super App",
+    build: "your service finished in Make, and with your team: the integration flow that connects every member's service into one super app.",
+    submit: "your finished scenario (link or screenshot) + your team's integration flow: which data moves between services, marked ○ / ★. Today Nov 25, 18:00 on time; later is late.",
     video: "",
-    coach: "Help them write the system map: every repetitive task, marked done/next/later, and one line per planned automation. The test: someone else could build it.",
+    coach: "WEEK 13 · FINISH AND CONNECT. ROLE: Make mentor and integration planner. Max 3 sentences, then ONE question. PART 1: help them finish their own scenario (what was missing last week). PART 2: the team integration flow - one shared login or customer list, what data passes between services (booking -> coin -> review…), and where one service hands the customer to another. Mark each integration step ○ or ★ and push ★ down. Check the three questions for their own service: customer moves? data moves? what breaks if removed? Also help them plan their 1-minute part of the week-14 pitch. SUMMARY (when asked): own scenario status, the integration flow table with ○/★, their pitch line. On yes, call submit_assignment. DEADLINE today Nov 25 18:00 Seoul.",
     links: [],
     interview: [
-      "Paste the link to your one-page design.",
-      "List every automation your field needs, one line each.",
-      "Which one will you build first next week, and why?",
+      "Your finished scenario + your team's integration flow (data between services, ○ / ★) + your 1-minute pitch line",
     ],
+    interviewLabels: ["Build 2 + super app"],
     tutorial: `
-      <h4>From pieces to a system</h4>
-      <p>You have built five or six automations. Today you <b>design the whole machine</b>: what should your field run by itself when the semester ends?</p>
-      <h4>Core steps — write a one-page plan</h4>
-      <ol>
-        <li>Open a Google Doc or a Notion page. Title: "[Your field] — Automation System".</li>
-        <li><b>Section 1 — My field</b>: three sentences. What, for whom, what repeats.</li>
-        <li><b>Section 2 — The map</b>: list every repetitive task. Mark each: ✅ already automated (which week) · 🔜 will build next week · ⏳ later.</li>
-        <li><b>Section 3 — The build plan</b>: for each 🔜, one line — Trigger → Actions → which apps.</li>
-        <li><b>Section 4 — What it saves</b>: hours per week, honestly counted.</li>
-        <li>Share the link and submit it.</li>
-      </ol>
-      <h4>The test of a good plan</h4>
-      <p>Someone else could build it. If your partner cannot understand a line, it is not designed yet — it is only wished.</p>
-      <h4>Advanced</h4>
-      <p>Add cost: which parts stay on Make's free plan? What would the paid plan cost, and does the saved time pay for it?</p>
+      <h4>Week 13 (Nov 25) - finish, then connect</h4>
+      <p><b>1. Finish your service.</b> Fix what was missing last week. Run it end to end.</p>
+      <p><b>2. Connect with your team.</b> Draw the super app's integration flow: one customer list or login, what data moves between services, where one service hands the customer to the next. Mark each step ○ or ★.</p>
+      <p><b>3. Plan your pitch part.</b> One minute: what your service does, your Make flow, and why the super app needs it.</p>
     `,
   },
 
   14: {
-    name: "Build Your System",
-    build: "the system you designed last week.",
-    submit: "your working system — link + one line.",
+    name: "Super App Pitch",
+    build: "your team's super app pitch: the leader presents the super app, and EVERY member presents their own service.",
+    submit: "your slides or link + one line on what you learned from the questions. Today Dec 2.",
     video: "",
-    coach: "Help them prioritize: which planned item is highest value, and what is the smallest version that actually runs today.",
+    coach: "WEEK 14 · SUPER APP PITCH. ROLE: a calm pitch coach. Max 3 sentences, then ONE question. Rules: every member must come up and present their own service (1 minute); the leader presents the super app (about 3 minutes): name, one line, who it is for, and the integration flow with ○/★. Help them rehearse their own minute: what it does, the Make flow, how it connects (customer moves, data moves, what breaks if removed). After the pitch, help them write one line on the best question they got and their answer. On yes, call submit_assignment.",
     links: [],
     interview: [
-      "Paste the link to your working system.",
-      "Which parts of last week's design did you build, and which did you leave out?",
-      "In one line: what does your system now do without you?",
+      "Your pitch: slides or link, your part, and the best question you got with your answer",
     ],
+    interviewLabels: ["Pitch"],
     tutorial: `
-      <h4>Building day</h4>
-      <p>The whole class is one long lab. You have your plan — today you make the 🔜 items real.</p>
-      <h4>Core steps</h4>
-      <ol>
-        <li>Open your Week-13 plan. Pick the highest-value 🔜 item.</li>
-        <li>Build it. Test it. Mark it ✅ in the plan.</li>
-        <li>Repeat for the next item — as far as you get. Depth beats breadth: two working flows &gt; five broken ones.</li>
-        <li>Connect the pieces: shared sheet, shared Notion, one naming style ("[Field] - order intake", "[Field] - daily summary").</li>
-        <li>Update the plan document so it matches what actually runs — submit the link.</li>
-      </ol>
-      <h4>Prepare for the final</h4>
-      <p>Next week: 3 minutes, everything live. Decide today which flow you will trigger on screen — and test it five times.</p>
-      <h4>Advanced</h4>
-      <p>Turn ON the one scenario your field really uses from now on. Watch the run history for a day. Congratulations — you are in production.</p>
+      <h4>Week 14 (Dec 2) - super app pitch</h4>
+      <p><b>Every member comes up.</b> The leader presents the super app (about 3 min): name, one line, who it is for, and the integration flow with ○ / ★. Then each member presents their own service (1 min): what it does, the Make flow, how it connects.</p>
+      <p>A member who does not present gets no score for their own service.</p>
     `,
   },
 
   15: {
-    name: "Final Presentations",
-    build: "nothing new — you present.",
-    submit: "your 3-minute demo link, before class starts.",
+    name: "Review Everything with AI · Final Submission",
+    build: "one final portfolio of your semester, reviewed with the AI assistant: what changed, what is missing, what you learned.",
+    submit: "your final portfolio: one-page idea, ○/★ Make plan, your Make scenario, your place in the super app, and one paragraph on what you learned. Today Dec 9 - our last class.",
     video: "",
-    coach: "Rehearse the 3-minute final demo and sharpen the one sentence: why this system deserves attention (or money).",
+    coach: "WEEK 15 · FINAL REVIEW (LAST CLASS, DEC 9). ROLE: a reflective reviewer. Max 3 sentences, then ONE question. Use their earlier submissions: list what they handed in by week. Review one by one: how did the week-9 idea change? which ★ are still left and why? what question from the pitch would you answer better now? Let them fill gaps today (a missing week can be added here as part of the portfolio). SUMMARY (when asked): portfolio - one-page idea (latest), Make plan table, scenario link/screenshot, their service's place in the super app, one paragraph 'what I learned'. On yes, call submit_assignment.",
     links: [],
     interview: [
-      "Paste the link to your 3-minute demo.",
-      "In one sentence: what does your system do, and for whom?",
-      "Look back at your answer in Week 2. What changed in your business idea?",
+      "Your final portfolio: latest idea, ○/★ plan, Make scenario, your place in the super app, and what you learned",
     ],
+    interviewLabels: ["Final portfolio"],
     tutorial: `
-      <h4>Three minutes, your whole system</h4>
-      <p>The last stand-up. Timer on screen, order posted here, demo runs from the professor's PC — <b>submit your link before class</b>.</p>
-      <h4>How to structure 3 minutes</h4>
+      <h4>Week 15 (Dec 9) - our last class</h4>
+      <p>Sit with the AI assistant and <b>review your whole semester</b>. It shows what you handed in each week.</p>
       <ol>
-        <li><b>0:00–0:30</b> — your field, and the system map (show your Week-13 plan for ten seconds).</li>
-        <li><b>0:30–2:20</b> — <b>trigger the main flow live</b>. Form in, AI reply out, Notion card appears. Let the machine speak.</li>
-        <li><b>2:20–3:00</b> — what it saves you per week, and the one thing you will automate next.</li>
+        <li>Look back: how did your idea change? Which ★ are still left?</li>
+        <li>Fill what is missing - today is the last chance.</li>
+        <li>Submit one portfolio: idea · ○/★ plan · Make scenario · your place in the super app · what you learned.</li>
       </ol>
-      <h4>What is graded (8 points)</h4>
-      <p>It runs · it fits your real field · you can explain <i>why</i> each piece exists. Polish matters less than truth — a small system that really runs beats a big diagram.</p>
-      <h4>After this course</h4>
-      <p>Your Make account, your Notion, your system — they leave with you. The habit you built — <i>see a repeated task, automate it</i> — is the actual grade. Keep it running.</p>
     `,
   },
+
 };
