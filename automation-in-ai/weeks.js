@@ -687,7 +687,7 @@ const WEEKS = {
       <h4>Deadline</h4>
       <p><b>Today, Wed Nov 4, 18:00.</b> After 18:00 is recorded as late. Submitting = attendance.</p>
       <h4>Where this goes</h4>
-      <p>W11 the wall: your idea + plan, feedback, teams · W12-13 build your service in Make · W14 super app pitch (leader: the super app, every member: own service) · W15 review everything with AI and submit.</p>
+      <p>W11 (Nov 11) the wall: your idea + plan, feedback, teams · W12-13 (Nov 18, 25) build your service in Make · W14 (Dec 2) super app pitch (leader: the super app, every member: own service) · W15 (Dec 9, last class) review everything with AI and submit.</p>
     `,
   },
 
