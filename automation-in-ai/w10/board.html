@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Idea Gallery Board</title><style>
+:root{--ink:#111;--red:#ff3b1f;--bg:#fff;--line:#ddd}
+*{box-sizing:border-box}body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--bg);padding:28px 36px}
+header{display:flex;justify-content:space-between;align-items:end;border-bottom:4px solid var(--ink);padding-bottom:12px}
+h1{font-size:54px;margin:0;letter-spacing:-2px;font-weight:900}.k{display:flex;gap:36px}.k div{text-align:right}.k b{display:block;font-size:48px;color:var(--red);line-height:1}
+.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:36px;margin-top:22px}h2{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin:0 0 10px}
+.row{display:grid;grid-template-columns:44px 52px 1fr 60px;gap:12px;align-items:center;padding:6px 0;border-top:1px solid var(--line)}
+.row img{width:52px;height:52px;object-fit:cover;border:2px solid var(--ink)}.n{font-weight:900;font-size:22px}.bar{height:16px;background:var(--red)}.v{font-weight:900;font-size:26px;text-align:right}
+.tu{padding:8px 0;border-top:1px solid var(--line);font-size:17px}.tu b{color:var(--red)}.done{font-size:15px;line-height:1.8}.err{color:var(--red)}
+</style></head><body>
+<header><h1>Idea Gallery · Live</h1><div class="k"><div><b id="kf">0</b>feedback</div><div><b id="k5">0</b>gave 5+</div><div><b id="kt">0</b>team-ups</div></div></header>
+<div class="grid"><section><h2>Most liked ideas</h2><div id="top"></div></section>
+<section><h2>Let's team up</h2><div id="team"></div><h2 style="margin-top:24px">5+ done</h2><div class="done" id="done"></div></section></div>
+<script>
+const OWNER={"01": "202509002", "02": "202509003", "03": "202509008", "04": "202509011", "05": "202509012", "06": "202509016", "07": "202509031", "08": "202509033", "09": "202509034", "10": "202509035", "11": "202509037", "12": "202509038", "13": "202509039", "14": "202509040", "15": "202509042", "16": "202509049", "17": "202509051", "18": "202509053", "19": "202509056", "20": "202509057", "21": "202509058", "22": "202509059", "23": "202509061", "24": "202509062", "25": "202509064", "26": "202509065", "27": "202509066", "28": "202509067", "29": "202509070", "30": "202509071", "31": "202509073", "32": "202509074", "33": "202509075", "34": "202509078", "35": "202509081", "36": "202509082"};
+const CSV=new URLSearchParams(location.search).get('csv')||""; // ← 시트 「웹에 게시 → CSV」 주소
+function parse(t){const r=[];let row=[],f='',q=false;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c=='"'&&t[i+1]=='"'){f+='"';i++}else if(c=='"')q=false;else f+=c}else if(c=='"')q=true;else if(c==','){row.push(f);f=''}else if(c=='\n'){row.push(f);r.push(row);row=[];f=''}else if(c!='\r')f+=c}if(f||row.length){row.push(f);r.push(row)}return r}
+async function tick(){if(!CSV){top.innerHTML='<p class=err>Add ?csv=… (published sheet CSV)</p>';return}
+ let rows;try{rows=parse(await (await fetch(CSV+(CSV.includes('?')?'&':'?')+'t='+Date.now())).text())}catch(e){return}
+ const h=rows.shift().map(s=>s.trim().toLowerCase()),ix=k=>h.indexOf(k),D=rows.filter(r=>r.length>1).map(r=>({idea:(r[ix('idea')]||'').padStart(2,'0'),name:r[ix('name')]||'',sid:r[ix('student_id')]||'',tu:/yes/i.test(r[ix('team_up')]||''),my:r[ix('my_idea')]||''}));
+ const seen=new Set(),U=D.filter(d=>{const k=d.sid+'|'+d.idea;if(seen.has(k))return false;seen.add(k);return true});
+ const by={};U.forEach(d=>by[d.idea]=(by[d.idea]||0)+1);const top10=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,10),mx=top10[0]?top10[0][1]:1;
+ document.getElementById('top').innerHTML=top10.map(([i,v])=>'<div class=row><span class=n>'+i+'</span><img src="../avatars/'+(OWNER[i]||'x')+'.png" onerror="this.style.visibility=\'hidden\'"><div class=bar style="width:'+(v/mx*100)+'%"></div><span class=v>'+v+'</span></div>').join('');
+ const per={},nm={};U.forEach(d=>{per[d.sid]=(per[d.sid]||0)+1;nm[d.sid]=d.name});const five=Object.keys(per).filter(s=>per[s]>=5);
+ const T=U.filter(d=>d.tu);const esc=s=>s.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+ document.getElementById('team').innerHTML=T.slice(-8).reverse().map(d=>'<div class=tu><b>'+esc(d.name)+'</b> → No.'+d.idea+(d.my?' · “'+esc(d.my)+'”':'')+'</div>').join('');
+ document.getElementById('done').textContent=five.map(s=>nm[s]).join(' · ');
+ kf.textContent=U.length;k5.textContent=five.length;kt.textContent=T.length}
+tick();setInterval(tick,8000);
+</script></body></html>

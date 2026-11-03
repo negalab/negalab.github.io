@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Idea Gallery · Feedback</title><style>
+:root{--ink:#111;--red:#ff3b1f;--bg:#fff;--mute:#666}
+*{box-sizing:border-box}body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--bg);padding:20px 16px 40px;max-width:520px;margin:auto}
+.no{font-size:56px;font-weight:900;line-height:.9;letter-spacing:-2px}.tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:6px 0 18px}.tag b{background:var(--red);color:#fff;padding:1px 6px}
+label{display:block;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin:18px 0 6px}
+input,textarea{width:100%;font:inherit;font-size:16px;padding:12px;border:2px solid var(--ink);border-radius:0}textarea{min-height:96px}
+.chk{display:flex;gap:10px;align-items:center;margin-top:18px;font-weight:700}.chk input{width:22px;height:22px}
+#team{display:none}button{margin-top:22px;width:100%;padding:16px;font:inherit;font-size:18px;font-weight:900;background:var(--ink);color:#fff;border:0}
+.ok{display:none;border:3px solid var(--ink);padding:18px;margin-top:20px}.ok h2{margin:0 0 6px}.cnt{font-size:40px;font-weight:900;color:var(--red)}
+.hint{color:var(--mute);font-size:13px;margin-top:6px}</style></head><body>
+<div class="no" id="no">No.--</div><div class="tag">Automation in AI · W10 · <b>Idea Gallery</b></div>
+<form id="f">
+<label>Your name</label><input name="name" required autocomplete="name">
+<label>Student ID</label><input name="student_id" required inputmode="numeric" pattern="[0-9]{9}" placeholder="2025090xx">
+<label>I like this idea because…</label><textarea name="like" required placeholder="I like this idea because…"></textarea>
+<div class="chk"><input type="checkbox" id="tu" name="team_up" value="yes"><span>I want to team up with this person</span></div>
+<div id="team"><label>My idea is…</label><input name="my_idea" placeholder="My idea is ___, let's team up!"></div>
+<button>Send feedback</button></form>
+<div class="ok" id="ok"><h2>Thank you!</h2>You gave <span class="cnt" id="c">0</span> / 5 feedback today.<div class="hint">Go find the next idea on the wall and scan again.</div></div>
+<script>
+const WEBHOOK = ""; // ← Make 웹훅 주소를 사부님이 가져오기 한 뒤 여기에
+const q=new URLSearchParams(location.search), no=(q.get('idea')||'').padStart(2,'0');
+document.getElementById('no').textContent='No.'+no;
+const tu=document.getElementById('tu');tu.onchange=()=>team.style.display=tu.checked?'block':'none';
+const KEY='w10_sent';let me={};try{me=JSON.parse(localStorage.getItem('w10_me')||'{}')}catch(e){}
+const f=document.getElementById('f');if(me.name){f.name.value=me.name;f.student_id.value=me.sid}
+f.onsubmit=async e=>{e.preventDefault();if(!WEBHOOK){alert('Feedback opens in class on Wed Nov 4. Please try again then.');return}const d=new URLSearchParams(new FormData(f));d.set('idea',no);d.set('at',new Date().toISOString());
+ try{localStorage.setItem('w10_me',JSON.stringify({name:f.name.value,sid:f.student_id.value}))}catch(e){}
+ try{await fetch(WEBHOOK,{method:'POST',mode:'no-cors',body:d})}catch(err){alert('Could not send. Check Wi-Fi and try again.');return}
+ let s=[];try{s=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}if(!s.includes(no))s.push(no);try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}
+ f.style.display='none';ok.style.display='block';c.textContent=s.length};
+</script></body></html>
