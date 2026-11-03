@@ -625,7 +625,17 @@
       <button class="modal-close" onclick="document.getElementById('submitModal').style.display='none'">×</button>
       <h3>Submit — <span id="smWeek">Week 1</span></h3>
       <p class="sub" id="smWhat"></p>
-      <p class="sub" id="smLate" style="display:none;font-size:12px;color:#888;">Supervised Submission. Submitted after the deadline = late, but it still counts as attended.</p>
+      <div class="sub" id="smLate" style="display:none;font-size:12.5px;color:#bbb;line-height:1.55;text-align:left;border:1px solid #555;padding:10px 12px;margin:6px 0 10px;">
+        <b>Catch up a missed week.</b> This semester has one thread: <b>your own business idea</b> (your week-9 one-page). Take this week's lesson and ask: <i>"What does this mean for MY idea?"</i> AI may help you write — but part 4 must be your own thinking.<br><br>
+        <b>Get your code:</b> email <b>smit.ai.lab@gmail.com</b> from the email you sign in with — <b id="smMail"></b> — saying which week(s) you missed and why. You get your own 4-digit code by reply.<br><br>
+        <b>Write in sentences (250–400 words), four parts:</b><br>
+        <b>1. My idea in one line</b> — the same line every time (no week-9 idea yet? do Part A with the week-10 assistant first).<br>
+        <b>2. What this week taught</b> — in your own words, as if to a friend who missed class.<br>
+        <b>3. Applied to my idea</b> — a real scene: who, when, what happens step by step; mark each step ○ rule or ★ AI.<br>
+        <b>4. What I chose and what I threw away — and why.</b> One honest decision. AI cannot write this for you.<br>
+        <b>Last line:</b> where AI helped.<br><br>
+        Recorded as <b>late</b>; it counts as attended. No deadline until the end of the semester.
+      </div>
       <label>Week</label>
       <select id="smWeekSel"></select>
       <!-- 2026-09-16 작가 「제출 형식이 안맞는다」 — 칸은 그 주차 인터뷰 물음 수만큼 syncSubmitLabels 가 만든다 -->
@@ -660,7 +670,7 @@
         It interviews you and writes the submission for you. <b style="color:#ddd;">Write in your own language.</b>
       </div>
       <div id="wmFormWrap" style="display:none;margin-bottom:18px;">
-        <button class="btn-primary" id="wmFormBtn" style="background:transparent;color:#ddd;border:1.5px solid #888;margin-bottom:6px;">Supervised Submission — open now</button>
+        <button class="btn-primary" id="wmFormBtn" style="background:transparent;color:#ddd;border:1.5px solid #888;margin-bottom:6px;">Catch up — missed this week? Get your code by email</button>
         <div style="font-size:12px;color:#888;line-height:1.5;">The professor opened this window. Submitted after the deadline = late, but it still counts as attended.</div>
       </div>
       <button class="btn-primary" id="wmSubmitBtn" style="margin-bottom:22px;">Submit this week ✓</button>
@@ -795,7 +805,7 @@
       catch (e) { SUPERVISED = { open: false }; }
       refreshFormBtn();
     }
-    function formEligible(w) { return !!me && !noSubmitWeek(w) && !MY_SUBS[w] && SUPERVISED.open; }
+    function formEligible(w) { return !!me && !noSubmitWeek(w) && !MY_SUBS[w] && SUPERVISED.open && w < currentWeek() && w !== 9; }   // 11-04: 지난 주차만 · W9 는 W10 Part A 로 받는다
     function refreshFormBtn() {
       const w = WEEK_OPEN, modal = document.getElementById("weekModal");
       const fw = document.getElementById("wmFormWrap");
@@ -947,7 +957,7 @@
       sel.onchange = () => syncSubmitLabels(parseInt(sel.value, 10));
       syncSubmitLabels(w);
       document.getElementById("smError").textContent = "";
-      document.getElementById("smLate").style.display = FORM_MODE ? "" : "none";
+      document.getElementById("smLate").style.display = FORM_MODE ? "" : "none"; if (FORM_MODE) document.getElementById("smMail").textContent = (me && me.email) || "";
       document.getElementById("submitModal").style.display = "flex";
     }
     function syncSubmitLabels(w) {
@@ -990,10 +1000,12 @@
         link = document.getElementById("smLink").value.trim();
         if (!review && !link) { err.textContent = "Write one line about what you built."; return; }
       }
-      if (FORM_MODE) review = "[Supervised]\n" + review;   // 현황판에서 대화 제출과 구별 — 서버는 칸에 적은 글만 받는다
+      if (FORM_MODE) review = "[Supervised]\n" + review;
+      let svCode;
+      if (FORM_MODE) { svCode = (prompt("Your 4-digit catch-up code (from smit.ai.lab@gmail.com):") || "").trim(); if (!/^\d{4}$/.test(svCode)) { err.textContent = "Enter your 4-digit code. Email smit.ai.lab@gmail.com from your sign-in email to get it."; return; } }   // 현황판에서 대화 제출과 구별 — 서버는 칸에 적은 글만 받는다
       btn.disabled = true; btn.textContent = "Submitting…";
       try {
-        const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link, supervised: FORM_MODE || undefined }) });
+        const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link, supervised: FORM_MODE || undefined, code: svCode }) });
         const d = await r.json();
         btn.disabled = false; btn.textContent = "Submit ✓";
         if (!r.ok) { err.textContent = d.message || d.error || "Submit failed."; return; }
