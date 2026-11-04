@@ -625,6 +625,7 @@
       <button class="modal-close" onclick="document.getElementById('submitModal').style.display='none'">×</button>
       <h3>Submit — <span id="smWeek">Week 1</span></h3>
       <p class="sub" id="smWhat"></p>
+      <div id="smCodeWrap" style="display:none;margin:4px 0 10px;"><label style="color:#ffd43b;font-weight:800;">Your 4-digit catch-up code</label><input id="smCode" inputmode="numeric" maxlength="4" placeholder="e.g. 1234" style="font-size:22px;letter-spacing:6px;width:140px;"></div>
       <div class="sub" id="smLate" style="display:none;font-size:12.5px;color:#bbb;line-height:1.55;text-align:left;border:1px solid #555;padding:10px 12px;margin:6px 0 10px;">
         <b>Catch up a missed week.</b> This semester has one thread: <b>your own business idea</b> (your week-9 one-page). Take this week's lesson and ask: <i>"What does this mean for MY idea?"</i> AI may help you write — but part 4 must be your own thinking.<br><br>
         <b>Get your code:</b> email <b>smit.ai.lab@gmail.com</b> from the email you sign in with — <b id="smMail"></b> — saying which week(s) you missed and why. You get your own 4-digit code by reply.<br><br>
@@ -669,9 +670,17 @@
       <div id="wmAiNote" style="display:none;font-size:12.5px;color:#888;margin-bottom:18px;line-height:1.6;">
         It interviews you and writes the submission for you. <b style="color:#ddd;">Write in your own language.</b>
       </div>
-      <div id="wmFormWrap" style="display:none;margin-bottom:18px;">
-        <button class="btn-primary" id="wmFormBtn" style="background:transparent;color:#ddd;border:1.5px solid #888;margin-bottom:6px;">Catch up — missed this week? Get your code by email</button>
-        <div style="font-size:12px;color:#888;line-height:1.5;">The professor opened this window. Submitted after the deadline = late, but it still counts as attended.</div>
+      <div id="wmFormWrap" style="display:none;margin-bottom:22px;border:3px solid #ffd43b;border-radius:10px;padding:16px 16px 12px;background:#2a2410;">
+        <div style="font-size:19px;font-weight:900;color:#ffd43b;margin-bottom:6px;">⚑ Missed this week? Catch up here</div>
+        <div style="font-size:13.5px;color:#eee;line-height:1.6;">
+          <b>Step 1 · Get your own 4-digit code by email.</b><br>
+          Send from your sign-in email: <b id="wmMail" style="color:#ffd43b;"></b><br>
+          <a id="wmMailBtn" class="btn-primary" style="display:inline-block;margin:8px 0 10px;background:#ffd43b;color:#111;text-decoration:none;padding:10px 14px;font-weight:800;" href="#">✉ Write the email to smit.ai.lab@gmail.com</a><br>
+          Say which week you missed and why (one or two lines). <b>The code comes back by reply in a few minutes</b> — check your spam folder too.<br><br>
+          <b>Step 2 · Press the button below</b>, enter your code at the top, and write your catch-up (four parts, explained there).<br>
+          <b>Step 3 · Submit.</b> It is recorded as <b>late</b> and counts as attended. No deadline until the end of the semester.
+        </div>
+        <button class="btn-primary" id="wmFormBtn" style="margin-top:10px;background:#ffd43b;color:#111;font-weight:900;">I have my code → Catch up this week</button>
       </div>
       <button class="btn-primary" id="wmSubmitBtn" style="margin-bottom:22px;">Submit this week ✓</button>
       <div id="wmLinks" class="week-links" style="margin-top:18px;"></div>
@@ -813,6 +822,8 @@
       const show = formEligible(w);
       fw.style.display = show ? "" : "none";
       if (show) document.getElementById("wmFormBtn").onclick = () => { closeWeek(); openSubmit(w, true); };
+      if (show) { const em = (me && me.email) || ""; document.getElementById("wmMail").textContent = em;
+        document.getElementById("wmMailBtn").href = "mailto:smit.ai.lab@gmail.com?subject=" + encodeURIComponent("BPA Catch-up · Week " + w) + "&body=" + encodeURIComponent("Hello Professor,\n\nI missed Week " + w + " because ...\n\nStudent ID: " + (me ? me.id : "") + "\nI would like to catch up. (catch up)\n"); }
     }
     setInterval(() => { if (me) loadSupervised(); }, 60000);
     function openWeek(w) {
@@ -957,7 +968,7 @@
       sel.onchange = () => syncSubmitLabels(parseInt(sel.value, 10));
       syncSubmitLabels(w);
       document.getElementById("smError").textContent = "";
-      document.getElementById("smLate").style.display = FORM_MODE ? "" : "none"; if (FORM_MODE) document.getElementById("smMail").textContent = (me && me.email) || "";
+      document.getElementById("smLate").style.display = FORM_MODE ? "" : "none"; document.getElementById("smCodeWrap").style.display = FORM_MODE ? "" : "none"; if (FORM_MODE) document.getElementById("smMail").textContent = (me && me.email) || "";
       document.getElementById("submitModal").style.display = "flex";
     }
     function syncSubmitLabels(w) {
@@ -1002,7 +1013,7 @@
       }
       if (FORM_MODE) review = "[Supervised]\n" + review;
       let svCode;
-      if (FORM_MODE) { svCode = (prompt("Your 4-digit catch-up code (from smit.ai.lab@gmail.com):") || "").trim(); if (!/^\d{4}$/.test(svCode)) { err.textContent = "Enter your 4-digit code. Email smit.ai.lab@gmail.com from your sign-in email to get it."; return; } }   // 현황판에서 대화 제출과 구별 — 서버는 칸에 적은 글만 받는다
+      if (FORM_MODE) { svCode = (document.getElementById("smCode").value || "").trim(); if (!/^\d{4}$/.test(svCode)) { err.textContent = "Enter your 4-digit code at the top. No code yet? Email smit.ai.lab@gmail.com from your sign-in email."; return; } }   // 현황판에서 대화 제출과 구별 — 서버는 칸에 적은 글만 받는다
       btn.disabled = true; btn.textContent = "Submitting…";
       try {
         const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link, supervised: FORM_MODE || undefined, code: svCode }) });
