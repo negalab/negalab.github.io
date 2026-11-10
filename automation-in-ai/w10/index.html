@@ -20,7 +20,7 @@ input,textarea{width:100%;font:inherit;font-size:16px;padding:12px;border:2px so
 <button>Send feedback</button></form>
 <div class="ok" id="ok"><h2>Thank you!</h2>You gave <span class="cnt" id="c">0</span> / 5 feedback today.<div class="hint">Go find the next idea on the wall and scan again.</div></div>
 <script>
-const WEBHOOK = ""; // ← Make 웹훅 주소를 사부님이 가져오기 한 뒤 여기에
+const API = "https://dream-to-website-api.dykwon-248.workers.dev/idea-feedback"; // 2026-11-11 우리 서버로 받는다
 const q=new URLSearchParams(location.search), no=(q.get('idea')||'').padStart(2,'0');
 document.getElementById('no').textContent='No.'+no;
 const tu=document.getElementById('tu');tu.onchange=()=>team.style.display=tu.checked?'block':'none';
@@ -29,9 +29,10 @@ let site=null;try{site=JSON.parse(localStorage.getItem('dtw_me')||'null')}catch(
 const f=document.getElementById('f');
 if(site&&site.id){f.name.value=site.name||'';f.student_id.value=site.id;who.style.display='none';f.name.required=false;f.student_id.required=false;hi.style.display='block';hi.textContent='Hi, '+(site.name||'')+' ('+site.id+')'}
 else if(me.name){f.name.value=me.name;f.student_id.value=me.sid}
-f.onsubmit=async e=>{e.preventDefault();if(!WEBHOOK){alert('Feedback opens in class on Wed Nov 4. Please try again then.');return}const d=new URLSearchParams(new FormData(f));d.set('idea',no);d.set('at',new Date().toISOString());
+f.onsubmit=async e=>{e.preventDefault();const d=new URLSearchParams(new FormData(f));d.set('idea',no);
  try{localStorage.setItem('w10_me',JSON.stringify({name:f.name.value,sid:f.student_id.value}))}catch(e){}
- try{await fetch(WEBHOOK,{method:'POST',mode:'no-cors',body:d})}catch(err){alert('Could not send. Check Wi-Fi and try again.');return}
- let s=[];try{s=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}if(!s.includes(no))s.push(no);try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}
- f.style.display='none';ok.style.display='block';c.textContent=s.length};
+ const b=f.querySelector('button');b.disabled=true;b.textContent='Sending…';let r;
+ try{const res=await fetch(API,{method:'POST',body:d});r=await res.json();if(!res.ok){alert(r.message||'Could not send. Try again.');b.disabled=false;b.textContent='Send feedback';return}}
+ catch(err){alert('Could not send. Check Wi-Fi and try again.');b.disabled=false;b.textContent='Send feedback';return}
+ f.style.display='none';ok.style.display='block';c.textContent=r.count||1};
 </script></body></html>
