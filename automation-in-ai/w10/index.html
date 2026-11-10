@@ -27,7 +27,7 @@ const tu=document.getElementById('tu');tu.onchange=()=>team.style.display=tu.che
 const KEY='w10_sent';let me={};try{me=JSON.parse(localStorage.getItem('w10_me')||'{}')}catch(e){}
 let site=null;try{site=JSON.parse(localStorage.getItem('dtw_me')||'null')}catch(e){}
 const f=document.getElementById('f');
-if(site&&site.id){f.name.value=site.name||'';f.student_id.value=site.id;who.style.display='none';f.name.required=false;f.student_id.required=false;hi.style.display='block';hi.textContent='Hi, '+(site.name||'')+' ('+site.id+')'}
+if(site&&site.id){f.name.value=site.name||'';f.student_id.value=site.id;who.style.display='none';f.name.required=false;f.student_id.required=false;f.student_id.removeAttribute('pattern');hi.style.display='block';hi.textContent='Hi, '+(site.name||'')+' ('+site.id+')'}
 else if(me.name){f.name.value=me.name;f.student_id.value=me.sid}
 f.onsubmit=async e=>{e.preventDefault();const d=new URLSearchParams(new FormData(f));d.set('idea',no);
  try{localStorage.setItem('w10_me',JSON.stringify({name:f.name.value,sid:f.student_id.value}))}catch(e){}
