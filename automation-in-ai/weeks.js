@@ -692,32 +692,31 @@ const WEEKS = {
   },
 
   11: {
-    name: "The Wall · Teams · Super App Plan",
-    build: "feedback on at least 5 ideas on the wall, a team whose services fit together (no size limit), and your first super app plan.",
-    submit: "your team and super app plan: super app name + one line + who it is for, leader, members with their service and how it connects (customer moves · data moves · what breaks if removed) — plus the 5 ideas you gave feedback to. Today Nov 11, 18:00 on time; later is late.",
+    name: "Team Day · The Wall · Your Team",
+    build: "feedback on at least 5 ideas on the wall, and your team - with classmates, or a team of one.",
+    submit: "your team name, your team leader, your own service in one line, and the 5 ideas you gave feedback to. Today Nov 11, 18:00 on time; later is recorded as late.",
     video: "",
-    coach: "WEEK 11 · THE WALL AND TEAMS. ROLE: a warm team-maker. Max 3 sentences, then ONE question. Today the week-10 papers (one-page idea + Make scenario plan) are on the wall. FIRST: ask which ideas they gave feedback to and what they liked (at least 5). THEN TEAMS: help them find people whose services fit theirs. Teams have NO size limit, but every service must connect in a meaningful way - test each member with three questions: does the customer move between services? does data move (bookings, coins, reviews)? if we remove this service, what breaks? A student alone is fine: then name ONE classmate's service theirs could connect to. SUPER APP PLAN (same day as the team): name, one line, who it is for, the leader, and a first sketch of what each service gives the others (marked ○/★). Never invent members. SUMMARY (when asked): team name, super app one line, members with their service and how it connects, team leader, the 5 feedback ideas. Ask: submit like this? On yes, call submit_assignment. DEADLINE today Nov 11 18:00 Seoul; after is late. Submitting = attendance.",
-    links: [],
-    greet: "Hi! Today is the wall.\n\nWalk, read, scan the QR on each paper and write \"I like this idea because…\" - at least 5. Then find people whose services fit yours. Teams have no size limit - but every service must connect in a meaningful way.\n\nWhich ideas did you like so far?",
+    coach: "WEEK 11 · TEAM DAY. ROLE: a warm senior who is happy for the student. No technical words today - no Make, no modules, no rule or AI marks, no checking how services connect. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling or push for exact facts; wrong is fine. OPENING: \"Congratulations on your new team! Tell me about the people you'll build with.\" Then, one at a time and freely, as the talk goes: \"Why did you choose each other?\" \"If your team's dream comes true, who will smile?\" \"What are you excited to learn from your teammates?\" IF ALONE: say a team of one is a real team and they are their own leader. Ask: \"What dream will you build on your own?\" and \"Is there a classmate's service you'd like to connect with someday?\" If there is none, that is fine - leave it. They can join others later. Never invent members or names. CLOSING: \"I can't wait to see what you build together. Let's write it down.\" Then collect, kindly and briefly: team name, team leader, the student's own service in one line, and the 5 ideas they gave feedback to on the wall (titles or owners are enough). Show these four lines and ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may fix it and submit again. DEADLINE: today Nov 11, 18:00 Seoul time (on time); after 18:00 is late. Submitting = attendance.",
+    links: [
+      { label: "Team formation sheet (PDF)", url: "materials/W11_Team_Formation.pdf" },
+    ],
+    greet: "Congratulations on your new team! Tell me about the people you'll build with.\n\nWorking alone? That's fine too - a team of one is a real team, and you are your own leader.\n\nWrite in your own language if you want.",
     interview: [
-      "Your team: name, super app in one line, members + how each service connects, leader - and the 5 ideas you gave feedback to",
+      "Your team: team name, team leader, your own service in one line - and the 5 ideas you gave feedback to on the wall",
     ],
     interviewLabels: ["Team + feedback"],
     tutorial: `
-      <h4>Week 11 (Nov 11) - the wall, teams, super app plan</h4>
-      <p>Your week-10 papers - one-page idea + Make scenario plan - are on the wall.</p>
-      <h4>1. Feedback - at least 5</h4>
-      <p>Walk and read. Scan the QR on a paper (open it in the browser where you are signed in to this site) and write <b>"I like this idea because…"</b>. Tick <b>team up</b> if you want to build with that person.</p>
-      <h4>2. Teams - no size limit, but meaningful</h4>
-      <p>Find services that fit yours. Your team will join them into <b>one super app</b>. Check every member with three questions:<br>
-      ① Does the customer move from one service to another? ② Does data move (bookings, coins, reviews)? ③ If we remove this service, what breaks?</p>
-      <p>Alone is fine - then name one classmate's service yours could connect to.</p>
-      <h4>3. Plan the super app - right away</h4>
-      <p>As soon as your team forms: super app name, one line, who it is for, the leader, and a first sketch of what each service gives the others (○ / ★).</p>
-      <h4>4. Submit with the assistant</h4>
-      <p>Super app plan + members and how each connects + your 5 feedback ideas. Every member submits. Today 18:00.</p>
-      <h4>Coming</h4>
-      <p>W12-13 (Nov 18, 25) build your service in Make · W14 (Dec 2) super app pitch · W15 (Dec 9) review with AI.</p>
+      <h4>Week 11 (Nov 11) - team day</h4>
+      <p>Your week-10 papers are on the wall. Today you give feedback and form your team.</p>
+      <h4>1. The wall - at least 5 feedbacks</h4>
+      <p>Walk and read. Scan the QR on a paper and write <b>"I like this idea because…"</b>. Give feedback on 5 ideas or more.</p>
+      <h4>2. The team sheet - one paper per team</h4>
+      <p>Team name · team leader (name, student ID) · one line per member: name, student ID, your service in one line, signature · your super app in one line (a working name is fine) · date. Hand it to the professor.</p>
+      <p><b>Working alone is fine.</b> A team of one is a real team - you are your own leader. Fill in the sheet with your name as the leader.</p>
+      <h4>3. Talk with the assistant, then submit</h4>
+      <p>Every member talks with the AI assistant and submits: team name, team leader, your service in one line, your 5 feedbacks. Mistakes are fine.</p>
+      <h4>Deadline</h4>
+      <p><b>Today, Wed Nov 11, 18:00.</b> After 18:00 is recorded as late. Submitting = attendance.</p>
     `,
   },
 
