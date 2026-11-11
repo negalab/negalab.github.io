@@ -628,7 +628,7 @@
       <div id="smCodeWrap" style="display:none;margin:4px 0 10px;"><label style="color:#ffd43b;font-weight:800;">Your 4-digit catch-up code</label><input id="smCode" inputmode="numeric" maxlength="4" placeholder="e.g. 1234" style="font-size:22px;letter-spacing:6px;width:140px;"></div>
       <div class="sub" id="smLate" style="display:none;font-size:12.5px;color:#bbb;line-height:1.55;text-align:left;border:1px solid #555;padding:10px 12px;margin:6px 0 10px;">
         <b>Catch up a missed week.</b> This semester has one thread: <b>your own business idea</b> (your week-9 one-page). Take this week's lesson and ask: <i>"What does this mean for MY idea?"</i> AI may help you write — but part 4 must be your own thinking.<br><br>
-        <b>Get your code:</b> email <b>smit.ai.lab@gmail.com</b> from the email you sign in with — <b id="smMail"></b> — saying which week(s) you missed and why. You get your own 4-digit code by reply.<br><br>
+        <b>Get your code:</b> ask the professor for your own 4-digit code — in class, or by email (<b>smit.ai.lab@gmail.com</b>, from your sign-in email <b id="smMail"></b>). Say which week(s) you missed.<br><br>
         <b>Write in sentences (250–400 words), four parts:</b><br>
         <b>1. My idea in one line</b> — the same line every time (no week-9 idea yet? do Part A with the week-10 assistant first).<br>
         <b>2. What this week taught</b> — in your own words, as if to a friend who missed class.<br>
@@ -673,10 +673,10 @@
       <div id="wmFormWrap" style="display:none;margin-bottom:22px;border:3px solid #ffd43b;border-radius:10px;padding:16px 16px 12px;background:#2a2410;">
         <div style="font-size:19px;font-weight:900;color:#ffd43b;margin-bottom:6px;">⚑ Missed this week? Catch up here</div>
         <div style="font-size:13.5px;color:#eee;line-height:1.6;">
-          <b>Step 1 · Get your own 4-digit code by email.</b><br>
+          <b>Step 1 · Ask the professor for your own 4-digit code.</b> In class is fastest.<br>
           Send from your sign-in email: <b id="wmMail" style="color:#ffd43b;"></b><br>
           <a id="wmMailBtn" class="btn-primary" style="display:inline-block;margin:8px 0 10px;background:#ffd43b;color:#111;text-decoration:none;padding:10px 14px;font-weight:800;" href="#">✉ Write the email to smit.ai.lab@gmail.com</a><br>
-          Say which week you missed and why (one or two lines). <b>The code comes back by reply in a few minutes</b> — check your spam folder too.<br><br>
+          Or email, from your sign-in email, which week you missed. The professor sends your code back.<br><br>
           <b>Step 2 · Press the button below</b>, enter your code at the top, and write your catch-up (four parts, explained there).<br>
           <b>Step 3 · Submit.</b> It is recorded as <b>late</b> and counts as attended. No deadline until the end of the semester.
         </div>
@@ -1013,7 +1013,7 @@
       }
       if (FORM_MODE) review = "[Supervised]\n" + review;
       let svCode;
-      if (FORM_MODE) { svCode = (document.getElementById("smCode").value || "").trim(); if (!/^\d{4}$/.test(svCode)) { err.textContent = "Enter your 4-digit code at the top. No code yet? Email smit.ai.lab@gmail.com from your sign-in email."; return; } }   // 현황판에서 대화 제출과 구별 — 서버는 칸에 적은 글만 받는다
+      if (FORM_MODE) { svCode = (document.getElementById("smCode").value || "").trim(); if (!/^\d{4}$/.test(svCode)) { err.textContent = "Enter your 4-digit code at the top. No code yet? Ask the professor."; return; } }   // 현황판에서 대화 제출과 구별 — 서버는 칸에 적은 글만 받는다
       btn.disabled = true; btn.textContent = "Submitting…";
       try {
         const r = await fetch(`${API}/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email, week, review, link, supervised: FORM_MODE || undefined, code: svCode }) });
