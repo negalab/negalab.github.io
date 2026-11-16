@@ -1,0 +1,266 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Team Mentoring · Automation in AI</title>
+<!-- 2026-11-16 BPA-W12 캠프 — W12~ 팀 멘토링 예약(정한 것 _주차/12/W12_정한것_11-11.md). 서버 /mentor/* (dream-to-website-api). -->
+<style>
+:root{--ink:#111;--red:#ff3b1f;--bg:#fff;--mute:#666;--line:#ddd;--ok:#16a34a;--soft:#f5f5f3}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--bg);padding:20px 16px 60px;max-width:760px;margin:auto;line-height:1.45}
+a{color:var(--ink)}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.top a{font-size:13px;color:var(--mute)}
+h1{font-size:44px;font-weight:900;line-height:.95;letter-spacing:-1.5px;margin:10px 0 6px}
+.tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 0 18px}.tag b{background:var(--red);color:#fff;padding:1px 6px}
+.when{font-size:18px;font-weight:800;margin:0 0 4px}
+.rules{border-top:3px solid var(--ink);border-bottom:1px solid var(--line);padding:12px 0;margin:16px 0;font-size:15px}
+.rules ol{margin:0;padding-left:20px}.rules li{margin:4px 0}
+label{display:block;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin:16px 0 6px}
+input[type=text],input[type=email],input[type=url],input[type=search]{width:100%;font:inherit;font-size:16px;padding:11px;border:2px solid var(--ink);border-radius:0}
+button{font:inherit;font-weight:800;border:0;cursor:pointer}
+.btn{width:100%;margin-top:18px;padding:15px;font-size:17px;background:var(--ink);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.btn2{padding:9px 14px;font-size:14px;background:#fff;border:2px solid var(--ink);color:var(--ink)}
+.hint{color:var(--mute);font-size:13px;margin-top:6px}
+.err{color:var(--red);font-weight:700;margin-top:10px;min-height:1em}
+.card{border:3px solid var(--ink);padding:16px;margin:16px 0}
+.card h2{margin:0 0 6px;font-size:22px}
+.card .big{font-size:34px;font-weight:900;letter-spacing:-1px}
+.warn{background:#fff4f2;border-left:4px solid var(--red);padding:8px 10px;margin-top:10px;font-size:14px}
+.good{color:var(--ok);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+@media(min-width:560px){.grid{grid-template-columns:repeat(6,1fr)}}
+.slot{padding:12px 4px;text-align:center;border:2px solid var(--ink);background:#fff;font-size:16px;font-weight:800}
+.slot small{display:block;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+.slot.taken{background:var(--soft);color:#aaa;border-color:var(--line);cursor:default}
+.slot.past{background:#fff;color:#ccc;border-color:#eee;cursor:default}
+.slot.mine{background:var(--red);border-color:var(--red);color:#fff}
+.slot.pick{outline:4px solid var(--ink);outline-offset:2px}
+.legend{font-size:12px;color:var(--mute)}
+.members{max-height:260px;overflow:auto;border:2px solid var(--ink);border-top:0;padding:4px 0}
+.members label{display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font-size:15px;font-weight:500;color:var(--ink);margin:0;padding:7px 10px;cursor:pointer}
+.members label:hover{background:var(--soft)}
+.members input{width:18px;height:18px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{background:var(--ink);color:#fff;padding:3px 9px;font-size:13px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
+.hide{display:none}
+@media print{.noprint{display:none!important}body{max-width:none}}
+</style></head><body>
+<div class="top noprint"><span class="tag">Automation in AI · <b>Team Mentoring</b></span><a href="../">← Class site</a></div>
+<h1>Team<br>Mentoring</h1>
+<p class="when" id="when">Loading…</p>
+<p class="hint" id="room"></p>
+
+<div class="rules noprint">
+<ol>
+<li><b>The team leader books one slot</b> for the whole team. One team, one slot. First come, first served.</li>
+<li>Each slot: <b>15 minutes</b> with the professor (+5 minutes break). Everyone in the team comes.</li>
+<li><b>Upload your team deck the day before</b> and paste the link here. The professor reads it first. In your slot you get a ✓ — or one or two things to fix.</li>
+<li>Bring: your super app on one page · each member's Make scenario · your deck.</li>
+<li>Waiting for your slot? Polish your materials with the AI assistant on the class site.</li>
+<li><b>Your booked time = your attendance.</b></li>
+</ol>
+</div>
+
+<!-- sign in -->
+<div id="signin" class="card hide">
+<h2>Sign in</h2>
+<div class="hint">Same as the class site: your student ID + the email you used there.</div>
+<label>Student ID</label><input type="text" id="sid" inputmode="numeric" autocomplete="username">
+<label>Email</label><input type="email" id="sem" autocomplete="email">
+<button class="btn" id="sbtn">Continue</button>
+<div class="err" id="serr"></div>
+</div>
+
+<div id="app" class="hide">
+  <div class="hint noprint" id="hello"></div>
+  <div id="mine"></div>
+  <div id="admin" class="hide">
+    <div class="row noprint">
+      <select id="acoh" class="btn2"><option value="bpa-fall-2026">bpa-fall-2026</option><option value="bpa-test">bpa-test</option></select>
+      <button class="btn2" id="arel">Reload</button>
+      <button class="btn2" onclick="print()">Print</button>
+    </div>
+    <h3 style="margin:16px 0 0">Schedule — professor view <span id="acount" class="hint"></span></h3>
+    <table><thead><tr><th>Time</th><th>Team</th><th>Leader · members</th><th>Deck</th><th class="noprint">Met</th><th class="noprint"></th></tr></thead><tbody id="atab"></tbody></table>
+  </div>
+
+  <div id="pickWrap" class="noprint">
+    <h3 id="gridTitle" style="margin:22px 0 0">Pick a free time</h3>
+    <div class="grid" id="grid"></div>
+    <div class="legend">White = free · Grey = taken · <span style="color:var(--red);font-weight:800">Red = your team</span></div>
+  </div>
+
+  <div id="form" class="card hide noprint">
+    <h2 id="formTitle">Book</h2>
+    <div class="big" id="formTime"></div>
+    <label>Team name</label><input type="text" id="team" maxlength="60" placeholder="Our team">
+    <label>Team members (not you)</label>
+    <input type="search" id="msearch" placeholder="Type a name to find a classmate…">
+    <div class="members" id="mlist"></div>
+    <div class="chips" id="chips"></div>
+    <div class="hint">A team of one? Pick nobody — you are your own leader.</div>
+    <label>Team deck link</label><input type="url" id="deck" placeholder="https://docs.google.com/… or https://drive.google.com/…">
+    <div class="hint">You can add it later — by the day before your slot. Google Drive: Share → <b>Anyone with the link</b> → Viewer.</div>
+    <button class="btn" id="save">Book this slot</button>
+    <div class="err" id="ferr"></div>
+  </div>
+
+</div>
+
+<p class="hint noprint" style="margin-top:28px"><a href="#" id="out">Sign out</a></p>
+
+<script>
+const API = (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).get("api")) || "https://dream-to-website-api.dykwon-248.workers.dev"; // 로컬 시험만 ?api=
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+let me = null; try { me = JSON.parse(localStorage.getItem("dtw_me") || "null"); } catch (e) {}
+let S = null, pick = null, chosen = new Set();
+
+async function call(path, extra) {
+  const body = Object.assign({ studentId: me.id, email: me.email }, extra || {});
+  if (me.is_admin) body.cohort = $("acoh").value;
+  const r = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const d = await r.json().catch(() => ({ message: "Server error. Try again." }));
+  if (r.status === 401) { localStorage.removeItem("dtw_me"); me = null; boot(); }
+  return { ok: r.ok, d };
+}
+
+async function signIn() {
+  const id = $("sid").value.trim(), email = $("sem").value.trim().toLowerCase();
+  $("serr").textContent = "";
+  if (!id || !email) { $("serr").textContent = "Enter your student ID and email."; return; }
+  $("sbtn").disabled = true; $("sbtn").textContent = "Checking…";
+  try {
+    const r = await fetch(API + "/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: id, email }) });
+    const d = await r.json();
+    if (!r.ok) { $("serr").textContent = d.message || "Sign-in failed."; return; }
+    me = d.student; localStorage.setItem("dtw_me", JSON.stringify(me)); boot();
+  } catch (e) { $("serr").textContent = "Network error. Check Wi-Fi."; }
+  finally { $("sbtn").disabled = false; $("sbtn").textContent = "Continue"; }
+}
+
+function fmtDay(day) {
+  return new Date(day + "T12:00:00+09:00").toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", timeZone: "Asia/Seoul" });
+}
+
+function render() {
+  if (S.closed) { $("when").textContent = "No mentoring day is open right now."; $("pickWrap").classList.add("hide"); return; }
+  $("when").textContent = `Week ${S.week} · ${fmtDay(S.day)} · 12:00–18:00`;
+  $("room").textContent = S.room;
+  $("hello").textContent = `Signed in as ${S.me.name} (${S.me.id})`;
+  const m = S.mine, lead = S.i_am_leader;
+
+  // my booking
+  if (m) {
+    const deck = m.deck_url
+      ? `<a href="${esc(m.deck_url)}" target="_blank" rel="noopener">Open deck ↗</a>` + (m.deck_ok === 0 ? `<div class="warn">The professor <b>can't open</b> this link. In Google Drive: Share → <b>Anyone with the link</b> → Viewer. Then save again.</div>` : m.deck_ok === 1 ? ` <span class="good">✓ opens</span>` : "")
+      : `<div class="warn">No deck link yet. ${lead ? "Add it below — by the day before your slot." : "Ask your leader to add it."}</div>`;
+    $("mine").innerHTML = `<div class="card"><h2>${esc(m.team_name)}</h2>
+      <div class="big">${esc(m.start)}</div>
+      <div>${esc(fmtDay(S.day))} · ${esc(S.room)} · ${S.len_min} min</div>
+      <p style="margin:10px 0 4px"><b>Leader:</b> ${esc(m.leader.name)}${m.members.length ? ` · <b>Members:</b> ${m.members.map(x => esc(x.name)).join(", ")}` : " · team of one"}</p>
+      ${deck}
+      ${lead ? `<div class="row noprint"><button class="btn2" id="edit">Edit team / deck</button><button class="btn2" id="cancel">Cancel booking</button></div>
+      <div class="hint">To move to another time, tap a free slot below.</div>` : `<div class="hint">Only your leader (${esc(m.leader.name)}) can change this booking.</div>`}</div>`;
+    if (lead) { $("edit").onclick = () => openForm(m.slot_no); $("cancel").onclick = cancel; }
+  } else $("mine").innerHTML = S.me.is_admin ? "" : `<div class="card"><h2>Your team has no slot yet</h2>Team leader: pick a free time below. Team member: your leader books for you — you'll see it here.</div>`;
+
+  // grid
+  const canPick = !m || lead;
+  $("gridTitle").textContent = m ? (lead ? "Move to another time" : "All times") : "Pick a free time";
+  $("grid").innerHTML = S.slots.map(s => {
+    const cls = s.mine ? "mine" : s.past ? "past" : s.taken ? "taken" : "";
+    const sub = s.mine ? "yours" : s.past ? "passed" : s.taken ? "taken" : "free";
+    return `<button class="slot ${cls} ${pick === s.no ? "pick" : ""}" data-n="${s.no}" ${(!canPick || s.taken || s.past) && !s.mine ? "disabled" : ""}>${s.start}<small>${sub}</small></button>`;
+  }).join("");
+  $("grid").querySelectorAll("button:not([disabled])").forEach(b => b.onclick = () => openForm(Number(b.dataset.n)));
+
+  // admin
+  if (S.me.is_admin) {
+    $("admin").classList.remove("hide");
+    const all = S.all || [];
+    $("acount").textContent = `· ${all.length} / ${S.slots.length} booked`;
+    const byNo = Object.fromEntries(all.map(r => [r.slot_no, r]));
+    $("atab").innerHTML = S.slots.map(s => {
+      const r = byNo[s.no];
+      if (!r) return `<tr><td>${s.start}</td><td colspan="5" class="hint">—</td></tr>`;
+      const deck = r.deck_url ? `<a href="${esc(r.deck_url)}" target="_blank" rel="noopener">open</a>${r.deck_ok === 0 ? " ⚠ private" : r.deck_ok === 1 ? " ✓" : ""}` : "<span class='hint'>none</span>";
+      return `<tr><td><b>${s.start}</b></td><td>${esc(r.team_name)}</td><td><b>${esc(r.leader.name)}</b> ${esc(r.leader.id)}${r.members.map(x => `<br>${esc(x.name)} ${esc(x.id)}`).join("")}</td><td>${deck}</td>
+        <td class="noprint"><input type="checkbox" data-met="${s.no}" ${r.met ? "checked" : ""}></td><td class="noprint"><button class="btn2" data-del="${s.no}">✕</button></td></tr>`;
+    }).join("");
+    $("atab").querySelectorAll("[data-met]").forEach(c => c.onchange = async () => { const { d } = await call("/mentor/met", { slot: Number(c.dataset.met), met: c.checked, week: S.week }); if (d.ok) { S = d; render(); } });
+    $("atab").querySelectorAll("[data-del]").forEach(b => b.onclick = async () => {
+      if (!confirm("Remove this booking? The team will lose the slot.")) return;
+      const { d } = await call("/mentor/cancel", { slot: Number(b.dataset.del) }); if (d.ok) { S = d; render(); } else alert(d.message || "Failed");
+    });
+  }
+}
+
+function renderMembers() {
+  const q = $("msearch").value.trim().toLowerCase();
+  const list = S.classmates.filter(c => !q || c.name.toLowerCase().includes(q) || c.student_id.includes(q) || chosen.has(c.student_id));
+  $("mlist").innerHTML = list.map(c => `<label><input type="checkbox" value="${esc(c.student_id)}" ${chosen.has(c.student_id) ? "checked" : ""}>${esc(c.name)} <span class="hint" style="margin:0">${esc(c.student_id)}</span></label>`).join("") || `<div class="hint" style="padding:8px 10px">No match.</div>`;
+  $("mlist").querySelectorAll("input").forEach(i => i.onchange = () => { i.checked ? chosen.add(i.value) : chosen.delete(i.value); renderChips(); });
+  renderChips();
+}
+function renderChips() {
+  const nm = Object.fromEntries(S.classmates.map(c => [c.student_id, c.name]));
+  $("chips").innerHTML = [...chosen].map(id => `<span class="chip">${esc(nm[id] || id)}</span>`).join("");
+}
+
+function openForm(n) {
+  pick = n;
+  const s = S.slots.find(x => x.no === n), m = S.i_am_leader ? S.mine : null;
+  $("formTitle").textContent = m ? (m.slot_no === n ? "Edit your booking" : "Move your booking to") : "Book";
+  $("formTime").textContent = `${s.start}–${s.end}`;
+  $("save").textContent = m ? (m.slot_no === n ? "Save" : "Move here") : "Book this slot";
+  if (m) { $("team").value = m.team_name; $("deck").value = m.deck_url || ""; chosen = new Set(m.members.map(x => x.id)); }
+  else if (!$("form").dataset.touched) { chosen = new Set(); }
+  $("ferr").textContent = ""; $("msearch").value = "";
+  $("form").classList.remove("hide"); renderMembers(); render();
+  $("form").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+async function save() {
+  $("ferr").textContent = "";
+  if (!$("team").value.trim()) { $("ferr").textContent = "Write your team name."; return; }
+  $("save").disabled = true;
+  try {
+    const { ok, d } = await call("/mentor/book", { slot: pick, team_name: $("team").value, members: [...chosen], deck_url: $("deck").value });
+    if (!ok) { $("ferr").textContent = d.message || "Could not save."; if (d.error === "slot_taken") load(); return; }
+    S = d; pick = null; $("form").classList.add("hide"); render(); window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (e) { $("ferr").textContent = "Network error. Try again."; }
+  finally { $("save").disabled = false; }
+}
+
+async function cancel() {
+  if (!confirm("Cancel your team's booking? Another team may take this time.")) return;
+  const { ok, d } = await call("/mentor/cancel");
+  if (!ok) { alert(d.message || "Could not cancel."); return; }
+  S = d; pick = null; $("form").classList.add("hide"); render();
+}
+
+async function load() {
+  try {
+    const { ok, d } = await call("/mentor/slots");
+    if (!ok) { $("when").textContent = d.message || "Could not load."; return; }
+    S = d; render();
+  } catch (e) { $("when").textContent = "Network error. Reload the page."; }
+}
+
+function boot() {
+  if (!me || !me.id || !me.email) { $("signin").classList.remove("hide"); $("app").classList.add("hide"); $("when").textContent = "Sign in to book your team's slot."; return; }
+  $("signin").classList.add("hide"); $("app").classList.remove("hide"); load();
+}
+$("sbtn").onclick = signIn;
+["sid", "sem"].forEach(i => $(i).addEventListener("keydown", e => { if (e.key === "Enter") signIn(); }));
+$("msearch").oninput = renderMembers;
+$("save").onclick = save;
+$("arel").onclick = load; $("acoh").onchange = load;
+$("out").onclick = e => { e.preventDefault(); localStorage.removeItem("dtw_me"); me = null; S = null; boot(); };
+boot();
+</script>
+</body></html>
