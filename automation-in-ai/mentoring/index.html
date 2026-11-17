@@ -89,6 +89,7 @@ th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
 
   <div id="pickWrap" class="noprint">
     <h3 id="gridTitle" style="margin:22px 0 0">Pick a free time</h3>
+    <div id="fullNote"></div>
     <div class="grid" id="grid"></div>
     <div class="legend">White = free · Grey = taken · <span style="color:var(--red);font-weight:800">Red = your team</span><span id="overflow"></span></div>
   </div>
@@ -178,7 +179,8 @@ function render() {
   }).join("");
   $("grid").querySelectorAll("button:not([disabled])").forEach(b => b.onclick = () => openForm(Number(b.dataset.n)));
 
-  $("overflow").textContent = S.overflow ? " · 12:00–15:00 is full, so later times are open." : "";
+  $("overflow").textContent = "";
+  $("fullNote").innerHTML = (S.full && !m) ? `<div class="warn"><b>Today is full.</b> Your team meets the professor ${S.next_day ? "next week, " + esc(fmtDay(S.next_day)) : "on a later day"}. Booking for that day opens after today's mentoring — come back to this page.</div>` : "";
   // admin
   if (S.me.is_admin) {
     $("admin").classList.remove("hide");
