@@ -700,7 +700,7 @@ const WEEKS = {
     links: [
       { label: "Week 11 slides (PDF)", url: "materials/W11_Slides.pdf" },
       { label: "Team formation sheet (PDF)", url: "materials/W11_Team_Formation.pdf" },
-      { label: "▶ Week 12 — book your team mentoring slot", url: "mentoring/" },
+      { label: "▶ Week 12 — book your team pitch mentoring", url: "mentoring/" },
     ],
     greet: "Congratulations on your new team! Tell me about the people you'll build with.\n\nWorking alone? That's fine too - a team of one is a real team, and you are your own leader.\n\nWrite in your own language if you want.",
     interview: [
@@ -723,33 +723,34 @@ const WEEKS = {
   },
 
   12: {
-    name: "Team Mentoring · Our Project, My Role",
-    build: "your team meets the professor for 10 minutes (book one slot), and you write - in your own words - your team project, your role and work plan, and your part in the pitch.",
-    submit: "three things, in your own words: (1) your team project - what you are making, for whom, how your team's services fit together; (2) your role in the team and your work plan until the pitch (Dec 2); (3) your part in the pitch. Today Nov 18, 18:00 on time; later is late.",
+    name: "Pitch Prep · Pitch Mentoring",
+    build: "with your team, the first draft of your Dec 2 pitch - slide order, who says what, timing (leader ~3 min: the super app; each member 1 min: own service) - in your team folder. The professor mentors your pitch in 10 minutes.",
+    submit: "(1) your team's pitch in one line; (2) your own pitch script - what you will say (member 1 min, leader 3 min); (3) what you heard in mentoring and what you will fix by Dec 2 (\"not yet\" is fine). Today Nov 18, 18:00 on time; later is late.",
     video: "",
-    coach: "WEEK 12 · OUR PROJECT, MY ROLE. ROLE: a warm senior who listens. No technical words - no Make, no modules, no rule or AI marks. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling or push for exact facts; rough is fine. Mentoring with the professor may be today or later - never assume it happened; if they mention it, ask what they heard. OPENING: \"Tell me about your team's project - what are you making together?\" Then, one at a time, as the talk goes: who is it for; what each member's service does and how they connect into one app; what YOUR role is in the team; what you will do, and when, until the pitch on Dec 2; and in the pitch, which part YOU will present (the leader presents the whole super app; every member presents their own service). IF A TEAM OF ONE: they are their own leader - ask about their own service, plan, and how they will present it. Never invent members, names, or details. CLOSING: \"Let's write it down.\" Then show three short paragraphs in their own words: 1. Our team project. 2. My role and my plan until Dec 2. 3. My part in the pitch. Ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may fix it and submit again. DEADLINE: today Nov 18, 18:00 Seoul time (on time); after 18:00 is late.",
+    coach: "WEEK 12 · PITCH PREP. Today every team prepares its Dec 2 pitch; the 10-minute pitch mentoring with the professor checks the pitch draft. ROLE: a friendly pitch coach. Simple words - if they use technical words, help them say it so anyone understands. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling; rough is fine. Mentoring may be today or later - never assume it happened; if they mention it, ask what the professor said. PITCH FORMAT (Dec 2): the leader presents the super app in about 3 minutes - name, one line, who it is for, how the members' services connect. Then each member presents their own service in 1 minute - what it does, how it works, why the super app needs it. A member who does not present gets no score for their own service. OPENING: \"Let's get your pitch ready! What is your super app called, and who is it for?\" Then, one at a time: are they the leader or a member; help them build THEIR part as spoken lines - member: what my service does -> how it works (one example) -> why the super app needs it; leader: name -> one line -> who it is for -> how the services connect -> a closing line. Keep a member's part to about 1 minute (~130 words), a leader's to about 3 minutes. Then ask what they heard in mentoring and what they will fix by Dec 2 (\"not yet\" is fine). IF A TEAM OF ONE: they present the whole thing - help with a 3-minute script. Never invent members, names or features. CLOSING: \"Let's write it down.\" Show three short parts: 1. Our pitch in one line. 2. My pitch script (their words, ready to say). 3. Mentoring: what I heard + what I will fix by Dec 2. Ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may fix it and submit again. DEADLINE: today Nov 18, 18:00 Seoul time (on time); after 18:00 is late.",
     links: [
-      { label: "▶ Book your team mentoring slot", url: "mentoring/" },
+      { label: "▶ Book your team pitch mentoring", url: "mentoring/" },
     ],
-    greet: "Tell me about your team's project - what are you making together?\n\nNo technical words needed. Write in your own language if you want.",
+    greet: "Let's get your pitch ready for Dec 2!\n\nWhat is your super app called, and who is it for?\n\nWrite in your own language if you want.",
     interview: [
-      "Our team project, in your own words: what you are making, for whom, and how your team's services fit together",
-      "My role in the team, and my work plan until the pitch (Dec 2)",
-      "My part in the pitch: what I will present",
+      "Our team's pitch in one line: the super app's name and who it is for",
+      "My pitch script: what I will say on Dec 2 (member ~1 min, leader ~3 min)",
+      "Mentoring: what I heard, and what I will fix by Dec 2 (\"not yet\" is fine)",
     ],
-    interviewLabels: ["Our project", "My role + plan", "My pitch part"],
+    interviewLabels: ["Pitch in one line", "My pitch script", "Mentoring + fixes"],
     tutorial: `
-      <h4>Week 12 (Nov 18) - team mentoring, no lecture</h4>
-      <p>Each team meets the professor for <b>10 minutes</b> in the <b>meeting room next to the library</b>, 12:00-15:00. <b>Every team books one slot</b> on the <a href="mentoring/">mentoring page</a> - one person books and adds the members, then any member can change it. First come, first served. If your team meets the professor later, that's fine. <b>Your booked time = attendance.</b></p>
-      <p><b>Team leader: make one team folder in your Google Drive</b>, share it with your members and the professor, and keep your deck and all presentation materials there. Paste the folder link on the mentoring page.</p>
-      <h4>Today's submission - in your own words</h4>
-      <p>Talk with the AI assistant, then submit three short paragraphs. No technical words needed.</p>
+      <h4>Week 12 (Nov 18) - pitch prep, no lecture</h4>
+      <p>Today every team prepares its <b>Dec 2 pitch</b>. The 10-minute <b>pitch mentoring</b> with the professor checks your pitch draft: you get a ✓, or one or two things to fix.</p>
+      <h4>The pitch on Dec 2</h4>
+      <p><b>Leader, about 3 minutes:</b> the super app - name, one line, who it is for, how everyone's services connect. <b>Each member, 1 minute:</b> your own service - what it does, how it works, why the super app needs it. A member who does not present gets no score for their own service.</p>
+      <h4>Today's to-do</h4>
       <ol>
-        <li><b>Our team project</b> - what you are making, for whom, and how your team's services fit together.</li>
-        <li><b>My role and my plan</b> - what you do in the team, and what you will do until the pitch on Dec 2.</li>
-        <li><b>My part in the pitch</b> - what you will present (the leader: the super app; every member: their own service).</li>
+        <li><b>Book one slot</b> for your team on the <a href="mentoring/">mentoring page</a> (12:00-15:00, meeting room next to the library). One person books and adds the members; any member can change it. Your booked time = attendance. If your team meets the professor later, that's fine.</li>
+        <li><b>Make your pitch draft as a team</b> - slide order, who says what, timing. Keep it in one team folder in the leader's Google Drive, shared with members and the professor. Paste the folder link on the mentoring page.</li>
+        <li><b>Mentoring</b> - bring the draft. Write down what the professor says.</li>
+        <li><b>Write your own part</b> with the AI assistant and submit by 18:00: your pitch in one line, your pitch script, what you heard in mentoring + what you will fix ("not yet" is fine).</li>
       </ol>
-      <p>A team of one? You are your own leader - write about your own service. Every member submits. Today 18:00.</p>
+      <p>A team of one? You present the whole thing - about 3 minutes. Every member submits. Today 18:00.</p>
     `,
   },
 
