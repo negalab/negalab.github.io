@@ -700,6 +700,7 @@ const WEEKS = {
     links: [
       { label: "Week 11 slides (PDF)", url: "materials/W11_Slides.pdf" },
       { label: "Team formation sheet (PDF)", url: "materials/W11_Team_Formation.pdf" },
+      { label: "▶ Week 12 — book your team mentoring slot (leaders)", url: "mentoring/" },
     ],
     greet: "Congratulations on your new team! Tell me about the people you'll build with.\n\nWorking alone? That's fine too - a team of one is a real team, and you are your own leader.\n\nWrite in your own language if you want.",
     interview: [
@@ -722,27 +723,33 @@ const WEEKS = {
   },
 
   12: {
-    name: "Build Your Service + Super App · Part 1",
-    build: "the first working version of YOUR service in Make (trigger first, then the ○ rule modules), and with your team: the super app skeleton - what data each service passes to the others.",
-    submit: "your Make scenario (link or screenshot), which modules run, what is missing - plus your team's super app skeleton: the data each service passes, marked ○ / ★. Today Nov 18, 18:00 on time; later is late.",
+    name: "Team Mentoring · Our Project, My Role",
+    build: "your team meets the professor for 10 minutes (book one slot), and you write - in your own words - your team project, your role and work plan, and your part in the pitch.",
+    submit: "three things, in your own words: (1) your team project - what you are making, for whom, how your team's services fit together; (2) your role in the team and your work plan until the pitch (Dec 2); (3) your part in the pitch. Today Nov 18, 18:00 on time; later is late.",
     video: "",
-    coach: "WEEK 12 · BUILD YOUR SERVICE IN MAKE (1/2). ROLE: a hands-on Make mentor. Max 3 sentences, then ONE question. Start from their week-10 Make plan (name it if their submissions show it). Build order: trigger module first, run once, then add the ○ rule modules one by one, running after each. For ★ steps: first try the ways to turn them into ○ (a list, a choice, a number, use AI once and keep it); if one must stay, use a small model. Help debug: ask what the module shows after Run once. Free plan limits: keep to one scenario and few runs. TEAM PART (second half of class): the super app skeleton - for each member, what their service gives out (customer, booking, coin, review…) and what it takes in from others; mark each hand-off ○ or ★. Keep inputs/outputs clear so the services can connect. SUMMARY (when asked): own scenario note, modules that run, ★ count, what is missing; then the super app skeleton table. On yes, call submit_assignment. DEADLINE today Nov 18 18:00 Seoul.",
-    links: [],
-    interview: [
-      "Your Make scenario: link or screenshot, which modules run, how many ★, and what is still missing",
+    coach: "WEEK 12 · OUR PROJECT, MY ROLE. ROLE: a warm senior who listens. No technical words - no Make, no modules, no rule or AI marks. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling or push for exact facts; rough is fine. Mentoring with the professor may be today or later - never assume it happened; if they mention it, ask what they heard. OPENING: \"Tell me about your team's project - what are you making together?\" Then, one at a time, as the talk goes: who is it for; what each member's service does and how they connect into one app; what YOUR role is in the team; what you will do, and when, until the pitch on Dec 2; and in the pitch, which part YOU will present (the leader presents the whole super app; every member presents their own service). IF A TEAM OF ONE: they are their own leader - ask about their own service, plan, and how they will present it. Never invent members, names, or details. CLOSING: \"Let's write it down.\" Then show three short paragraphs in their own words: 1. Our team project. 2. My role and my plan until Dec 2. 3. My part in the pitch. Ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may fix it and submit again. DEADLINE: today Nov 18, 18:00 Seoul time (on time); after 18:00 is late.",
+    links: [
+      { label: "▶ Book your team mentoring slot (team leader)", url: "mentoring/" },
     ],
-    interviewLabels: ["Make build 1"],
+    greet: "Tell me about your team's project - what are you making together?\n\nNo technical words needed. Write in your own language if you want.",
+    interview: [
+      "Our team project, in your own words: what you are making, for whom, and how your team's services fit together",
+      "My role in the team, and my work plan until the pitch (Dec 2)",
+      "My part in the pitch: what I will present",
+    ],
+    interviewLabels: ["Our project", "My role + plan", "My pitch part"],
     tutorial: `
-      <h4>Week 12 (Nov 18) - your service + the super app, part 1</h4>
-      <p>Open your week-10 worksheet. Build it in Make, <b>one module at a time</b>.</p>
+      <h4>Week 12 (Nov 18) - team mentoring, no lecture</h4>
+      <p>Each team meets the professor for <b>10 minutes</b> in the <b>meeting room next to the library</b>, 12:00-15:00. <b>Every team books one slot</b> - the team leader books on the <a href="mentoring/">mentoring page</a>, first come first served. If your team meets the professor later, that's fine. <b>Your booked time = attendance.</b></p>
+      <p><b>Team leader: make one team folder in your Google Drive</b>, share it with your members and the professor, and keep your deck and all presentation materials there. Paste the folder link on the mentoring page.</p>
+      <h4>Today's submission - in your own words</h4>
+      <p>Talk with the AI assistant, then submit three short paragraphs. No technical words needed.</p>
       <ol>
-        <li>Trigger first (Webhooks, Google Forms, Sheets…). <b>Run once.</b></li>
-        <li>Add the ○ rule modules one by one. Run once after each.</li>
-        <li>For each ★: can a list, a choice, or a number do it? If one must stay, use a small model.</li>
-        <li>Keep inputs and outputs clear - your team will connect your service to theirs.</li>
+        <li><b>Our team project</b> - what you are making, for whom, and how your team's services fit together.</li>
+        <li><b>My role and my plan</b> - what you do in the team, and what you will do until the pitch on Dec 2.</li>
+        <li><b>My part in the pitch</b> - what you will present (the leader: the super app; every member: their own service).</li>
       </ol>
-      <p><b>Second half - with your team:</b> the super app skeleton. For each service: what it gives the others and what it takes in. Mark each hand-off ○ or ★.</p>
-      <p>Submit your scenario (link or screenshot) + the skeleton. Every member submits. Today 18:00.</p>
+      <p>A team of one? You are your own leader - write about your own service. Every member submits. Today 18:00.</p>
     `,
   },
 
