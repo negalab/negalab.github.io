@@ -700,7 +700,7 @@ const WEEKS = {
     links: [
       { label: "Week 11 slides (PDF)", url: "materials/W11_Slides.pdf" },
       { label: "Team formation sheet (PDF)", url: "materials/W11_Team_Formation.pdf" },
-      { label: "▶ Week 12 — book your team mentoring slot (leaders)", url: "mentoring/" },
+      { label: "▶ Week 12 — book your team mentoring slot", url: "mentoring/" },
     ],
     greet: "Congratulations on your new team! Tell me about the people you'll build with.\n\nWorking alone? That's fine too - a team of one is a real team, and you are your own leader.\n\nWrite in your own language if you want.",
     interview: [
@@ -729,7 +729,7 @@ const WEEKS = {
     video: "",
     coach: "WEEK 12 · OUR PROJECT, MY ROLE. ROLE: a warm senior who listens. No technical words - no Make, no modules, no rule or AI marks. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling or push for exact facts; rough is fine. Mentoring with the professor may be today or later - never assume it happened; if they mention it, ask what they heard. OPENING: \"Tell me about your team's project - what are you making together?\" Then, one at a time, as the talk goes: who is it for; what each member's service does and how they connect into one app; what YOUR role is in the team; what you will do, and when, until the pitch on Dec 2; and in the pitch, which part YOU will present (the leader presents the whole super app; every member presents their own service). IF A TEAM OF ONE: they are their own leader - ask about their own service, plan, and how they will present it. Never invent members, names, or details. CLOSING: \"Let's write it down.\" Then show three short paragraphs in their own words: 1. Our team project. 2. My role and my plan until Dec 2. 3. My part in the pitch. Ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may fix it and submit again. DEADLINE: today Nov 18, 18:00 Seoul time (on time); after 18:00 is late.",
     links: [
-      { label: "▶ Book your team mentoring slot (team leader)", url: "mentoring/" },
+      { label: "▶ Book your team mentoring slot", url: "mentoring/" },
     ],
     greet: "Tell me about your team's project - what are you making together?\n\nNo technical words needed. Write in your own language if you want.",
     interview: [
@@ -740,7 +740,7 @@ const WEEKS = {
     interviewLabels: ["Our project", "My role + plan", "My pitch part"],
     tutorial: `
       <h4>Week 12 (Nov 18) - team mentoring, no lecture</h4>
-      <p>Each team meets the professor for <b>10 minutes</b> in the <b>meeting room next to the library</b>, 12:00-15:00. <b>Every team books one slot</b> - the team leader books on the <a href="mentoring/">mentoring page</a>, first come first served. If your team meets the professor later, that's fine. <b>Your booked time = attendance.</b></p>
+      <p>Each team meets the professor for <b>10 minutes</b> in the <b>meeting room next to the library</b>, 12:00-15:00. <b>Every team books one slot</b> on the <a href="mentoring/">mentoring page</a> - one person books and adds the members, then any member can change it. First come, first served. If your team meets the professor later, that's fine. <b>Your booked time = attendance.</b></p>
       <p><b>Team leader: make one team folder in your Google Drive</b>, share it with your members and the professor, and keep your deck and all presentation materials there. Paste the folder link on the mentoring page.</p>
       <h4>Today's submission - in your own words</h4>
       <p>Talk with the AI assistant, then submit three short paragraphs. No technical words needed.</p>

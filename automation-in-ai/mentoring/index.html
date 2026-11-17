@@ -55,7 +55,7 @@ th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
 
 <div class="rules noprint">
 <ol>
-<li><b>Every team books one slot</b> — the team leader books for the whole team. One team, one slot. First come, first served.</li>
+<li><b>Every team books one slot.</b> One person books for the whole team and adds the members — then <b>any member</b> can change the time, the members or the folder link. One team, one slot. First come, first served.</li>
 <li>Each slot: <b>10 minutes</b> with the professor, then 5 minutes break. Everyone in the team comes.</li>
 <li><b>Team leader: make one team folder in your Google Drive</b> and share it with your members and the professor. Keep your deck and everything for your presentation there — always. Paste the folder link here <b>the day before</b>; the professor reads it first. In your slot you get a ✓ — or one or two things to fix.</li>
 <li>In the folder: your super app on one page · each member's Make scenario · your deck.</li>
@@ -84,7 +84,7 @@ th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
       <button class="btn2" onclick="print()">Print</button>
     </div>
     <h3 style="margin:16px 0 0">Schedule — professor view <span id="acount" class="hint"></span></h3>
-    <table><thead><tr><th>Time</th><th>Team</th><th>Leader · members</th><th>Folder</th><th class="noprint">Met</th><th class="noprint"></th></tr></thead><tbody id="atab"></tbody></table>
+    <table><thead><tr><th>Time</th><th>Team</th><th>Booked by · members</th><th>Folder</th><th class="noprint">Met</th><th class="noprint"></th></tr></thead><tbody id="atab"></tbody></table>
   </div>
 
   <div id="pickWrap" class="noprint">
@@ -98,11 +98,11 @@ th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute)}
     <h2 id="formTitle">Book</h2>
     <div class="big" id="formTime"></div>
     <label>Team name</label><input type="text" id="team" maxlength="60" placeholder="Our team">
-    <label>Team members (not you)</label>
+    <label>Team members</label>
     <input type="search" id="msearch" placeholder="Type a name to find a classmate…">
     <div class="members" id="mlist"></div>
     <div class="chips" id="chips"></div>
-    <div class="hint">A team of one? Pick nobody — you are your own leader.</div>
+    <div class="hint">Pick everyone in your team (you are already in). A team of one? Pick nobody.</div>
     <label>Team Drive folder link</label><input type="url" id="deck" placeholder="https://drive.google.com/drive/folders/…">
     <div class="hint">The leader's Google Drive folder with your deck and materials. You can add it later — by the day before your slot. Share → <b>Anyone with the link</b> → Viewer (or add the professor).</div>
     <button class="btn" id="save">Book this slot</button>
@@ -152,26 +152,26 @@ function render() {
   $("when").textContent = `Week ${S.week} · ${fmtDay(S.day)} · 12:00–15:00`;
   $("room").textContent = S.room;
   $("hello").textContent = `Signed in as ${S.me.name} (${S.me.id})`;
-  const m = S.mine, lead = S.i_am_leader;
+  const m = S.mine, lead = S.can_edit, booker = S.i_am_leader;
 
   // my booking
   if (m) {
     const deck = m.deck_url
       ? `<a href="${esc(m.deck_url)}" target="_blank" rel="noopener">Open team folder ↗</a>` + (m.deck_ok === 0 ? `<div class="warn">The professor <b>can't open</b> this link. In Google Drive: Share → <b>Anyone with the link</b> → Viewer. Then save again.</div>` : m.deck_ok === 1 ? ` <span class="good">✓ opens</span>` : "")
-      : `<div class="warn">No team folder link yet. ${lead ? "Tap Edit and add it — by the day before your slot." : "Ask your leader to add it."}</div>`;
+      : `<div class="warn">No team folder link yet. Tap Edit and add it — by the day before your slot.</div>`;
     $("mine").innerHTML = `<div class="card"><h2>${esc(m.team_name)}</h2>
       <div class="big">${esc(m.start)}</div>
       <div>${esc(fmtDay(S.day))} · ${esc(S.room)} · ${S.len_min} min</div>
-      <p style="margin:10px 0 4px"><b>Leader:</b> ${esc(m.leader.name)}${m.members.length ? ` · <b>Members:</b> ${m.members.map(x => esc(x.name)).join(", ")}` : " · team of one"}</p>
+      <p style="margin:10px 0 4px"><b>Booked by:</b> ${esc(m.leader.name)}${m.members.length ? ` · <b>Members:</b> ${m.members.map(x => esc(x.name)).join(", ")}` : " · team of one"}</p>
       ${deck}
-      ${lead ? `<div class="row noprint"><button class="btn2" id="edit">Edit team / folder</button><button class="btn2" id="cancel">Cancel booking</button></div>
-      <div class="hint">To move to another time, tap a free slot below.</div>` : `<div class="hint">Only your leader (${esc(m.leader.name)}) can change this booking.</div>`}</div>`;
-    if (lead) { $("edit").onclick = () => openForm(m.slot_no); $("cancel").onclick = cancel; }
-  } else $("mine").innerHTML = S.me.is_admin ? "" : `<div class="card"><h2>Your team has no slot yet</h2>Team leader: pick a free time below. Team member: your leader books for you — you'll see it here.</div>`;
+      <div class="row noprint"><button class="btn2" id="edit">Edit team / folder</button>${booker ? `<button class="btn2" id="cancel">Cancel booking</button>` : ""}</div>
+      <div class="hint">Anyone in the team can edit or move to another free time below.${booker ? "" : ` Only ${esc(m.leader.name)} (who booked) can cancel.`}</div></div>`;
+    $("edit").onclick = () => openForm(m.slot_no); if (booker) $("cancel").onclick = cancel;
+  } else $("mine").innerHTML = S.me.is_admin ? "" : `<div class="card"><h2>Your team has no slot yet</h2>One person in your team picks a free time below and adds the members. If a teammate already booked and added you, you'll see it here.</div>`;
 
   // grid
   const canPick = !m || lead;
-  $("gridTitle").textContent = m ? (lead ? "Move to another time" : "All times") : "Pick a free time";
+  $("gridTitle").textContent = m ? "Move to another time" : "Pick a free time";
   $("grid").innerHTML = S.slots.map(s => {
     const cls = s.mine ? "mine" : s.past ? "past" : s.taken ? "taken" : "";
     const sub = s.mine ? "yours" : s.past ? "passed" : s.taken ? "taken" : "free";
@@ -216,7 +216,7 @@ function renderChips() {
 
 function openForm(n) {
   pick = n;
-  const s = S.slots.find(x => x.no === n), m = S.i_am_leader ? S.mine : null;
+  const s = S.slots.find(x => x.no === n), m = S.can_edit ? S.mine : null;
   $("formTitle").textContent = m ? (m.slot_no === n ? "Edit your booking" : "Move your booking to") : "Book";
   $("formTime").textContent = `${s.start}–${s.end}`;
   $("save").textContent = m ? (m.slot_no === n ? "Save" : "Move here") : "Book this slot";
