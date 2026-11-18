@@ -747,7 +747,8 @@ const WEEKS = {
       <ol>
         <li><b>Book one slot</b> for your team on the <a href="mentoring/">mentoring page</a> (12:00-15:00, meeting room next to the library). One person books and adds the members; any member can change it. Your booked time = attendance. If your team meets the professor later, that's fine.</li>
         <li><b>Make your pitch draft as a team</b> - slide order, who says what, timing. Keep it in one team folder in the leader's Google Drive, shared with members and the professor. Paste the folder link on the mentoring page.</li>
-        <li><b>Pitch mentoring</b> - bring the draft. Write down what the professor says. Can't come to the room? Join on Zoom at your booked time: <a href="https://us06web.zoom.us/j/4718729720" target="_blank" rel="noopener">https://us06web.zoom.us/j/4718729720</a></li>
+        <li><b>Pitch mentoring</b> - bring the draft. Write down what the professor says.</li>
+        <li><b>Want more mentoring, or can't make it today?</b> You can meet the professor on Zoom. First agree on a time with all your team members, then the leader - or any member - asks the professor for that time on KakaoTalk. Zoom: <a href="https://us06web.zoom.us/j/4718729720" target="_blank" rel="noopener">https://us06web.zoom.us/j/4718729720</a></li>
         <li><b>Write your own part</b> with the AI assistant and submit by 18:00: your pitch in one line, your pitch script, what you heard in mentoring + what you will fix ("not yet" is fine).</li>
       </ol>
       <p>Every member submits. Today 18:00.</p>
