@@ -724,17 +724,17 @@ const WEEKS = {
 
   12: {
     name: "Pitch Prep · Pitch Mentoring",
-    build: "with your team, the first draft of your Dec 2 pitch - slide order, who says what, timing (leader ~3 min: the super app; each member 1 min: own service) - in your team folder. The professor mentors your pitch in 10 minutes.",
-    submit: "(1) your team's pitch in one line; (2) your own pitch script - what you will say (member 1 min, leader 3 min); (3) what you heard in mentoring and what you will fix by Dec 2 (\"not yet\" is fine). Today Nov 18, 18:00 on time; later is late.",
+    build: "with your team, the first draft of your Dec 2 pitch - slide order, who says what, timing (the leader: the super app, 2 min; everyone, leader too: own service, 1 min each) - in your team folder. The professor mentors your pitch in 10 minutes.",
+    submit: "(1) your team's pitch in one line; (2) your own pitch script - what you will say (1 min; the leader adds the 2-min super app part); (3) what you heard in mentoring and what you will fix by Dec 2 (\"not yet\" is fine). Today Nov 18, 18:00 on time; later is late.",
     video: "",
-    coach: "WEEK 12 · PITCH PREP. Today every team prepares its Dec 2 pitch; the 10-minute pitch mentoring with the professor checks the pitch draft. ROLE: a friendly pitch coach. Simple words - if they use technical words, help them say it so anyone understands. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling; rough is fine. Mentoring may be today or later - never assume it happened; if they mention it, ask what the professor said. PITCH FORMAT (Dec 2): the leader presents the super app in about 3 minutes - name, one line, who it is for, how the members' services connect. Then each member presents their own service in 1 minute - what it does, how it works, why the super app needs it. A member who does not present gets no score for their own service. OPENING: \"Let's get your pitch ready! What is your super app called, and who is it for?\" Then, one at a time: are they the leader or a member; help them build THEIR part as spoken lines - member: what my service does -> how it works (one example) -> why the super app needs it; leader: name -> one line -> who it is for -> how the services connect -> a closing line. Keep a member's part to about 1 minute (~130 words), a leader's to about 3 minutes. Then ask what they heard in mentoring and what they will fix by Dec 2 (\"not yet\" is fine). IF A TEAM OF ONE: they present the whole thing - help with a 3-minute script. Never invent members, names or features. CLOSING: \"Let's write it down.\" Show three short parts: 1. Our pitch in one line. 2. My pitch script (their words, ready to say). 3. Mentoring: what I heard + what I will fix by Dec 2. Ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may fix it and submit again. DEADLINE: today Nov 18, 18:00 Seoul time (on time); after 18:00 is late.",
+    coach: "WEEK 12 · PITCH PREP. Today every team prepares its Dec 2 pitch; the 10-minute pitch mentoring with the professor checks the pitch draft. ROLE: a friendly pitch coach. Simple words - if they use technical words, help them say it so anyone understands. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling; rough is fine. Mentoring may be today or later - never assume it happened; if they mention it, ask what the professor said. PITCH FORMAT (Dec 2): team time = 2 min + 1 min per person. The leader presents the super app in 2 minutes - name, one line, who it is for, what passes between the services. Then EVERYONE, the leader too, presents their own service in 1 minute - what it does, how it works (one example), why the super app needs it. Team of two: 2 + 1 + 1 = 4 min. Team of one: 3 min - \"my app\" 2 min (name, who it is for, what it does, one classmate's service they would like to connect with later) + 1 min how it works with one example. A member who does not present gets no score for their own service. OPENING: \"Let's get your pitch ready! What is your super app called, and who is it for?\" Then, one at a time: are they the leader or a member; help them build THEIR part as spoken lines - member: what my service does -> how it works (one example) -> why the super app needs it; leader: their own 1 minute PLUS the 2-minute super app part: name -> one line -> who it is for -> what passes between the services -> a closing line. Keep each own-service part to about 1 minute (~130 words) and the super app part to about 2 minutes (~260 words). Then ask what they heard in mentoring and what they will fix by Dec 2 (\"not yet\" is fine). IF A TEAM OF ONE: help with the 3-minute script above (my app 2 min + how it works 1 min). Never invent members, names or features. CLOSING: \"Let's write it down.\" Show three short parts: 1. Our pitch in one line. 2. My pitch script (their words, ready to say). 3. Mentoring: what I heard + what I will fix by Dec 2. Ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may fix it and submit again. DEADLINE: today Nov 18, 18:00 Seoul time (on time); after 18:00 is late.",
     links: [
       { label: "▶ Book your team pitch mentoring", url: "mentoring/" },
     ],
     greet: "Let's get your pitch ready for Dec 2!\n\nWhat is your super app called, and who is it for?\n\nWrite in your own language if you want.",
     interview: [
       "Our team's pitch in one line: the super app's name and who it is for",
-      "My pitch script: what I will say on Dec 2 (member ~1 min, leader ~3 min)",
+      "My pitch script: what I will say on Dec 2 (my service 1 min; the leader adds the 2-min super app part)",
       "Mentoring: what I heard, and what I will fix by Dec 2 (\"not yet\" is fine)",
     ],
     interviewLabels: ["Pitch in one line", "My pitch script", "Mentoring + fixes"],
@@ -742,7 +742,7 @@ const WEEKS = {
       <h4>Week 12 (Nov 18) - pitch prep, no lecture</h4>
       <p>Today every team prepares its <b>Dec 2 pitch</b>. The 10-minute <b>pitch mentoring</b> with the professor checks your pitch draft: you get a ✓, or one or two things to fix.</p>
       <h4>The pitch on Dec 2</h4>
-      <p><b>Leader, about 3 minutes:</b> the super app - name, one line, who it is for, how everyone's services connect. <b>Each member, 1 minute:</b> your own service - what it does, how it works, why the super app needs it. A member who does not present gets no score for their own service.</p>
+      <p>Team time = <b>2 minutes + 1 minute per person</b>.</p><ul><li><b>Leader, 2 minutes:</b> the super app - name, one line, who it is for, what passes between the services.</li><li><b>Everyone, the leader too, 1 minute:</b> your own service - what it does, how it works (one example), why the super app needs it.</li></ul><p>Team of two: 2 + 1 + 1 = 4 minutes. Team of five: 7 minutes. <b>Team of one: 3 minutes</b> - "my app" for 2 minutes (name, who it is for, what it does, and one classmate's service you would like to connect with later), then 1 minute on how it works with one example.</p><p>A member who does not present gets no score for their own service.</p>
       <h4>Today's to-do</h4>
       <ol>
         <li><b>Book one slot</b> for your team on the <a href="mentoring/">mentoring page</a> (12:00-15:00, meeting room next to the library). One person books and adds the members; any member can change it. Your booked time = attendance. If your team meets the professor later, that's fine.</li>
@@ -750,7 +750,7 @@ const WEEKS = {
         <li><b>Mentoring</b> - bring the draft. Write down what the professor says.</li>
         <li><b>Write your own part</b> with the AI assistant and submit by 18:00: your pitch in one line, your pitch script, what you heard in mentoring + what you will fix ("not yet" is fine).</li>
       </ol>
-      <p>A team of one? You present the whole thing - about 3 minutes. Every member submits. Today 18:00.</p>
+      <p>Every member submits. Today 18:00.</p>
     `,
   },
 
@@ -775,10 +775,10 @@ const WEEKS = {
 
   14: {
     name: "Super App Pitch",
-    build: "your team's super app pitch: the leader presents the super app, and EVERY member presents their own service.",
+    build: "your team's super app pitch: 2 min + 1 min per person - the leader presents the super app (2 min), and EVERYONE, the leader too, presents their own service (1 min). Team of one: 3 min.",
     submit: "your slides or link + one line on what you learned from the questions. Today Dec 2.",
     video: "",
-    coach: "WEEK 14 · SUPER APP PITCH. ROLE: a calm pitch coach. Max 3 sentences, then ONE question. Rules: every member must come up and present their own service (1 minute); the leader presents the super app (about 3 minutes): name, one line, who it is for, and the integration flow with ○/★. Help them rehearse their own minute: what it does, the Make flow, how it connects (customer moves, data moves, what breaks if removed). After the pitch, help them write one line on the best question they got and their answer. On yes, call submit_assignment.",
+    coach: "WEEK 14 · SUPER APP PITCH. ROLE: a calm pitch coach. Max 3 sentences, then ONE question. Rules: team time = 2 min + 1 min per person. The leader presents the super app (2 minutes): name, one line, who it is for, what passes between the services. Everyone, the leader too, presents their own service (1 minute). Team of one: 3 minutes - my app (2 min) + how it works (1 min). Help them rehearse their own minute: what it does, the Make flow, how it connects (customer moves, data moves, what breaks if removed). After the pitch, help them write one line on the best question they got and their answer. On yes, call submit_assignment.",
     links: [],
     interview: [
       "Your pitch: slides or link, your part, and the best question you got with your answer",
@@ -786,7 +786,7 @@ const WEEKS = {
     interviewLabels: ["Pitch"],
     tutorial: `
       <h4>Week 14 (Dec 2) - super app pitch</h4>
-      <p><b>Every member comes up.</b> The leader presents the super app (about 3 min): name, one line, who it is for, and the integration flow with ○ / ★. Then each member presents their own service (1 min): what it does, the Make flow, how it connects.</p>
+      <p><b>Every member comes up.</b> Team time = 2 minutes + 1 minute per person. The leader presents the super app (2 min): name, one line, who it is for, what passes between the services. Then everyone, the leader too, presents their own service (1 min): what it does, how it works, how it connects. Team of two: 4 min. Team of one: 3 min - my app (2 min) + how it works (1 min).</p>
       <p>A member who does not present gets no score for their own service.</p>
     `,
   },
