@@ -756,22 +756,45 @@ const WEEKS = {
   },
 
   13: {
-    name: "Finish Your Service + Connect the Super App · Part 2",
-    build: "your service finished in Make, and with your team: the integration flow that connects every member's service into one super app.",
-    submit: "your finished scenario (link or screenshot) + your team's integration flow: which data moves between services, marked ○ / ★. Today Nov 25, 18:00 on time; later is late.",
+    name: "Pitch Deck Design · Your Own Story",
+    build: "with your team, a new pitch deck for Dec 2: your story, the problem, your solution - real photos of you and your team, AI situation scenes, few words.",
+    submit: "(1) my story in one line; (2) the slide number with my real photo; (3) our new deck link and the situation scene in one line. \"Not yet\" is fine in a part, then submit again. Nov 25, 18:00 on time; later is late.",
     video: "",
-    coach: "WEEK 13 · FINISH AND CONNECT. ROLE: Make mentor and integration planner. Max 3 sentences, then ONE question. PART 1: help them finish their own scenario (what was missing last week). PART 2: the team integration flow - one shared login or customer list, what data passes between services (booking -> coin -> review…), and where one service hands the customer to another. Mark each integration step ○ or ★ and push ★ down. Check the three questions for their own service: customer moves? data moves? what breaks if removed? Also help them plan their 1-minute part of the week-14 pitch. SUMMARY (when asked): own scenario status, the integration flow table with ○/★, their pitch line. On yes, call submit_assignment. DEADLINE today Nov 25 18:00 Seoul.",
-    links: [],
-    interview: [
-      "Your finished scenario + your team's integration flow (data between services, ○ / ★) + your 1-minute pitch line",
+    coach: "WEEK 13 · PITCH DECK DESIGN. Today every team redesigns its Dec 2 pitch slides. ROLE: a friendly deck coach. Very simple words. Max 3 short sentences, then ONE question. Never list questions. They may write in their own language. Never correct spelling. Never invent their story, members, photos, names or links. You cannot open their slides: ask what is on them. DESIGN RULES: story -> problem -> solution. Real photos of me, my team and the real moment; real faces in real photos, not AI fakes. Use AI for the crazy situation scene, an ad, an app screen. Picture first, few words: one picture per slide. Easy words for classmates. One prototype screen; \"coming soon\" is fine. Small customer group, one twist. ASK ONE AT A TIME, in this order: 1) a true moment when they had the problem; turn it into one or two opening sentences in their words. 2) the service in one sentence: who it is for and what it does. 3) the situation: who uses it, where, what happens; then offer ONE AI picture prompt made from it. 4) which real photos they have - me, team, the moment - and on which slide number my photo is. 5) their new deck link. If the answer is vague, ask one easier question. If there is no photo or no deck yet, give one small next step: take the photo today, or open a new deck and start with slide 1; they may submit with \"not yet\" in that part. TEAM OF ONE: same steps, \"my app\". PITCH TIME (Dec 2): 2 min + 1 min per person; leader 2 min super app; everyone, leader too, 1 min own service; alone 3 min. Team feedback: the download button on the Week 13 page; you have not seen it. CLOSING: show three short parts: 1. My story in one line. 2. My photo is on slide number __ (or not yet). 3. Deck link (or not yet) and the situation scene in one line. Ask: \"Submit like this?\" When they say yes, call submit_assignment right away. They may submit again. DEADLINE: Nov 25, 18:00 Seoul time (on time); after that is late.",
+    links: [
+      { label: "▶ Book your team pitch mentoring", url: "mentoring/" },
     ],
-    interviewLabels: ["Build 2 + super app"],
+    greet: "Let's make your pitch deck your own story!\n\nThink of one true moment when you had the problem your service solves. What happened?\n\nWrite in your own language if you want.",
+    interview: [
+      "My story in one line: the true moment when I had this problem",
+      "My real photo: the slide number (\"not yet\" is fine)",
+      "Our new deck link (\"not yet\" is fine) + the situation scene in one line",
+    ],
+    interviewLabels: ["My story", "My photo slide", "Deck + scene"],
     tutorial: `
+      <h4>Week 13 (Nov 25) - make your pitch deck your own story</h4>
       <p><button type="button" onclick="downloadTeamFeedback(this)" style="padding:12px 18px;font-size:15px;font-weight:700;background:#111;color:#fff;border:0;cursor:pointer">Download my team feedback (PDF)</button><br>Your own team's page. If your team is not on the W12 booking list, you get the page for every team.</p>
-      <h4>Week 13 (Nov 25) - finish, then connect</h4>
-      <p><b>1. Finish your service.</b> Fix what was missing last week. Run it end to end.</p>
-      <p><b>2. Connect with your team.</b> Draw the super app's integration flow: one customer list or login, what data moves between services, where one service hands the customer to the next. Mark each step ○ or ★.</p>
-      <p><b>3. Plan your pitch part.</b> One minute: what your service does, your Make flow, and why the super app needs it.</p>
+      <h4>Seven rules for every team</h4>
+      <ol>
+        <li><b>Open with your story.</b> Story, then problem, then solution.</li>
+        <li><b>Real photos.</b> You, your team, the real moment. Use real photos of your faces.</li>
+        <li><b>Use AI a lot.</b> A crazy situation scene, an ad, an app screen.</li>
+        <li><b>Pictures before text.</b> One picture on one slide. You talk.</li>
+        <li><b>Easy words.</b> Your classmates are not experts.</li>
+        <li><b>One prototype screen.</b> It does not have to work. "Coming soon" is fine.</li>
+        <li><b>Narrow and different.</b> A small customer group, one twist, one brand feeling.</li>
+      </ol>
+      <h4>Today's to-do</h4>
+      <ol>
+        <li>Download your team feedback and read it together.</li>
+        <li>Take a team photo and a photo of each member.</li>
+        <li>Make one or more AI situation scenes. Ask your friends before you use their faces.</li>
+        <li>Make the new deck. Put it in your team folder.</li>
+        <li>Not mentored yet? Book a slot on the <a href="mentoring/">mentoring page</a>.</li>
+        <li><b>Every member:</b> talk with the AI assistant and submit by 18:00.</li>
+      </ol>
+      <h4>The pitch on Dec 2</h4>
+      <p>Team time = <b>2 minutes + 1 minute per person</b>. The leader: the super app, 2 minutes. Everyone, the leader too: own service, 1 minute. Team of one: 3 minutes.</p>
     `,
   },
 
