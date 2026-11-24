@@ -767,6 +767,7 @@ const WEEKS = {
     ],
     interviewLabels: ["Build 2 + super app"],
     tutorial: `
+      <p><button type="button" onclick="downloadTeamFeedback(this)" style="padding:12px 18px;font-size:15px;font-weight:700;background:#111;color:#fff;border:0;cursor:pointer">Download my team feedback (PDF)</button><br>Your own team's page. If your team is not on the W12 booking list, you get the page for every team.</p>
       <h4>Week 13 (Nov 25) - finish, then connect</h4>
       <p><b>1. Finish your service.</b> Fix what was missing last week. Run it end to end.</p>
       <p><b>2. Connect with your team.</b> Draw the super app's integration flow: one customer list or login, what data moves between services, where one service hands the customer to the next. Mark each step ○ or ★.</p>

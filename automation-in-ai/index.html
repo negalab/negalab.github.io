@@ -928,6 +928,19 @@
       }
     }
     function signOut() { localStorage.removeItem("dtw_me"); location.reload(); }
+    async function downloadTeamFeedback(btn) {
+      const label = btn.textContent;
+      if (!me) { alert("Please sign in first."); return; }
+      btn.disabled = true; btn.textContent = "Downloading…";
+      try {
+        const r = await fetch(`${API}/team-feedback`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ studentId: me.id, email: me.email }) });
+        if (!r.ok) { const d = await r.json().catch(() => ({})); alert(d.message || "Download failed. Please sign in again."); return; }
+        const u = URL.createObjectURL(await r.blob());
+        const l = document.createElement("a"); l.href = u; l.download = "W13_team_feedback.pdf"; document.body.appendChild(l); l.click(); l.remove();
+        setTimeout(() => URL.revokeObjectURL(u), 60000);
+      } catch (e) { alert("Network error. Check Wi-Fi."); }
+      finally { btn.disabled = false; btn.textContent = label; }
+    }
     function onLogin() {
       document.getElementById("loginModal").style.display = "none";
       const sb = document.getElementById("signInBtn"); if (sb) sb.style.display = "none";
